@@ -29,7 +29,7 @@
         "trading"
     ],
     "activationEvents": [
-        "*"
+        "onLanguage:pine"
     ],
     "main": "./out/extension.js",
     "contributes": {
