@@ -1,0 +1,222 @@
+{
+
+"% ⇨ ⟗" : {
+    "prefix" : "%",
+    "body" : [
+        "% $0"
+    ],
+    "description" : "% | Language Operator"
+},
+"%= ⇨ ⟗" : {
+    "prefix" : "%=",
+    "body" : [
+        "%= $0"
+    ],
+    "description" : "%= | Language Operator"
+},
+"* ⇨ ⟗" : {
+    "prefix" : "*",
+    "body" : [
+        "* $0"
+    ],
+    "description" : "* | Language Operator"
+},
+"*= ⇨ ⟗" : {
+    "prefix" : "*=",
+    "body" : [
+        "*= $0"
+    ],
+    "description" : "*= | Language Operator"
+},
+"+ ⇨ ⟗" : {
+    "prefix" : "+",
+    "body" : [
+        "+ $0"
+    ],
+    "description" : "+ | Language Operator"
+},
+"+= ⇨ ⟗" : {
+    "prefix" : "+=",
+    "body" : [
+        "+= $0"
+    ],
+    "description" : "+= | Language Operator"
+},
+"- ⇨ ⟗" : {
+    "prefix" : "-",
+    "body" : [
+        "- $0"
+    ],
+    "description" : "- | Language Operator"
+},
+"-= ⇨ ⟗" : {
+    "prefix" : "-=",
+    "body" : [
+        "-= $0"
+    ],
+    "description" : "-= | Language Operator"
+},
+"/ ⇨ ⟗" : {
+    "prefix" : "/",
+    "body" : [
+        "/ $0"
+    ],
+    "description" : "/ | Language Operator"
+},
+"/= ⇨ ⟗" : {
+    "prefix" : "/=",
+    "body" : [
+        "/= $0"
+    ],
+    "description" : "/= | Language Operator"
+},
+"< ⇨ ⟗" : {
+    "prefix" : "<",
+    "body" : [
+        "< $0"
+    ],
+    "description" : "< | Language Operator"
+},
+"<= ⇨ ⟗" : {
+    "prefix" : "<=",
+    "body" : [
+        "<= $0"
+    ],
+    "description" : "<= | Language Operator"
+},
+"== ⇨ ⟗" : {
+    "prefix" : "==",
+    "body" : [
+        "== $0"
+    ],
+    "description" : "== | Language Operator"
+},
+"=> ⇨ ⟗" : {
+    "prefix" : "=>",
+    "body" : [
+        "=> $0"
+    ],
+    "description" : "=> | Language Operator"
+},
+"> ⇨ ⟗" : {
+    "prefix" : ">",
+    "body" : [
+        "> $0"
+    ],
+    "description" : "> | Language Operator"
+},
+">= ⇨ ⟗" : {
+    "prefix" : ">=",
+    "body" : [
+        ">= $0"
+    ],
+    "description" : ">= | Language Operator"
+},
+"?: ⇨ ⟗" : {
+    "prefix" : "?:",
+    "body" : [
+        "$1 ? $2 : $3 $0"
+    ],
+    "description" : "?: | Language Operator"
+},
+"[] ⇨ ⟗" : {
+    "prefix" : "[",
+    "body" : [
+        "[$0]"
+    ],
+    "description" : "[] | Language Operator"
+},
+"and ⇨ ⟗" : {
+    "prefix" : "and",
+    "body" : [
+        "and$0"
+    ],
+    "description" : "and | Language Operator"
+},
+"export ⇨ ⟗" : {
+    "prefix" : "export",
+    "body" : [
+        "export$0"
+    ],
+    "description" : "export | Language Operator"
+},
+"for ⇨ ⟗" : {
+    "prefix" : "for",
+    "body" : [
+        "for$0"
+    ],
+    "description" : "for | Language Operator"
+},
+"if ⇨ ⟗" : {
+    "prefix" : "if",
+    "body" : [
+        "if$0"
+    ],
+    "description" : "if | Language Operator"
+},
+"import ⇨ ⟗" : {
+    "prefix" : "import",
+    "body" : [
+        "import$0"
+    ],
+    "description" : "import | Language Operator"
+},
+"not ⇨ ⟗" : {
+    "prefix" : "not",
+    "body" : [
+        "not$0"
+    ],
+    "description" : "not | Language Operator"
+},
+"or ⇨ ⟗" : {
+    "prefix" : "or",
+    "body" : [
+        "or$0"
+    ],
+    "description" : "or | Language Operator"
+},
+"series ⇨ ⟗" : {
+    "prefix" : "series",
+    "body" : [
+        "series$0"
+    ],
+    "description" : "series | Language Operator"
+},
+"simple ⇨ ⟗" : {
+    "prefix" : "simple",
+    "body" : [
+        "simple$0"
+    ],
+    "description" : "simple | Language Operator"
+},
+"switch ⇨ ⟗" : {
+    "prefix" : "switch",
+    "body" : [
+        "switch$0"
+    ],
+    "description" : "switch | Language Operator"
+},
+"var ⇨ ⟗" : {
+    "prefix" : "var",
+    "body" : [
+        "var$0"
+    ],
+    "description" : "var | Language Operator"
+},
+"varip ⇨ ⟗" : {
+    "prefix" : "varip",
+    "body" : [
+        "varip$0"
+    ],
+    "description" : "varip | Language Operator"
+},
+"while ⇨ ⟗" : {
+    "prefix" : "while",
+    "body" : [
+        "while$0"
+    ],
+    "description" : "while | Language Operator"
+}
+
+}
+

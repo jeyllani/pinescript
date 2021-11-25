@@ -1,0 +1,1278 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Pine Script",
+  "patterns": [
+    {
+      "match": "(<parameter_name>|<default_value>|<series|simple>|<function_code>|<source>)",
+      "name": "comment.line.double-slash.ps"
+    },
+    {
+      "match": "(^\/\/)\\s*(©)\\s*(\\w+)(.*)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "3": {
+          "name": "constant.numeric.ps"
+        },
+        "4": {
+          "name": "comment.line.double-slash.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/)(@)(version)(=)(5)(.*)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "keyword.operator.logical.js.ps"
+        },
+        
+        "3": {
+          "name": "token.error-token.ps"
+        },
+        "4": {
+          "name": "keyword.operator.logical.js.ps"
+        },
+        "5": {
+          "name": "constant.numeric.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/)\\s*(ⓘ)\\s*(https:\/\/www\\.tradingview\\.com)([\\w.,@?^=%&:\/~+#-\\{]*[\\}\\w@?^=%&\/~+#-])(\\w+)(.*)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "constant.numeric.ps"
+        },
+        "3": {
+          "name": "keyword.operator.logical.js.ps"
+        },
+        "4": {
+          "name": "keyword.operator.logical.js.ps"
+        },
+        "5": {
+          "name": "keyword.operator.logical.js.ps"
+        }
+      }
+    },
+    {
+      "match": "^(?:import)\\s*(\\w+)(?:\/)(\\w+)(?:\/)(\\w+)\\s*(?:as)\\s*(?<name>\\w+)",
+      "captures": {
+        "0": {
+          "name": "punctuation.section.embedded.begin.ps"
+        },
+        "1": {
+          "name": "keyword.operator.logical.js.ps"
+        },
+        "2": {
+          "name": "token.package.ps"
+        },
+        "3": {
+          "name": "constant.numeric.ps"
+        },
+        "4": {
+          "name": "storage.type.cs.ps"
+        },
+        "5": {
+          "name": "punctuation.definition.list.markdown.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/)(@)(version)(=)(5)(.*)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "keyword.operator.logical.ps"
+        },
+        "3": {
+          "name": "constant.numeric.ps"
+        },
+        "4": {
+          "name": "keyword.operator.logical.ps"
+        },
+        "5": {
+          "name": "punctuation.definition.list.markdown.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/).*(\\d{10})(.*)(#)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "punctuation.definition.list.markdown.ps"
+        },
+        "3": {
+          "name": "comment.line.double-slash.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/)\\s(@)(description|function|param|returns)(.*)",
+      "captures": {
+        "0": {
+          "name": "invalid.illegal.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "punctuation.section.embedded.begin.ps"
+        },
+        "3": {
+          "name": "token.package.ps"
+        },
+        "4": {
+          "name": "comment.line.double-slash.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/).*(\\d{4}\\s\\w{3,10}\\s\\w{3,10}).*(\\|)\\s(\\d{2}:\\d{2}:\\d{2})(.*)(#)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "markup.italic.markdown.ps"
+        },
+        "3": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "4": {
+          "name": "punctuation.definition.list.markdown.ps"
+        },
+        "5": {
+          "name": "invalid.illegal.ps"
+        },
+        "6": {
+          "name": "comment.line.double-slash.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/).*(\\d{2}-\\d{2}-\\d{2}).*(\\|)\\s(\\d{2}:\\d{2}:\\d{2})(.*)(#)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "markup.italic.markdown.ps"
+        },
+        "3": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "4": {
+          "name": "punctuation.definition.list.markdown.ps"
+        },
+        "5": {
+          "name": "invalid.illegal.ps"
+        },
+        "6": {
+          "name": "comment.line.double-slash.ps"
+        }
+      }
+    },
+    {
+      "match": "(^\/\/).*(##)(.*)(\\|)\\s*(>)\\s*(.*)(#)",
+      "captures": {
+        "0": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "1": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "2": {
+          "name": "markup.italic.markdown.ps"
+        },
+        "3": {
+          "name": "token.info-token.ps"
+        },
+        "4": {
+          "name": "comment.line.double-slash.ps"
+        },
+        "5": {
+          "name": "invalid.illegal.ps"
+        },
+        "6": {
+          "name": "punctuation.definition.list.markdown.ps"
+        }
+      }
+    },
+    {
+      "match": "//.*",
+      "name": "comment.line.double-slash.ps"
+    },
+    {
+      "match": "[]\\[]",
+      "name": "invalid.illegal.ps"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "strings": {
+      "patterns": [
+        {
+          "match": "\\b(export|import)\\b",
+          "name": "punctuation.section.embedded.begin.ps"
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.begin.ps"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.end.ps"
+            }
+          },
+          "name": "string.quoted.double.ps",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escaped.ps"
+            }
+          ]
+        },
+        {
+          "begin": "'",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.begin.ps"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.end.ps"
+            }
+          },
+          "name": "string.quoted.single.ps",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escaped.ps"
+            }
+          ]
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "begin": "\\b(adjustment)\\b(?!\\()(?=\\.)",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          },
+          "end": "\\b(dividends|none|splits)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          }
+        },
+        {
+          "begin": "\\b(alert)\\b(?!\\()(?=\\.)",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          },
+          "end": "\\b(freq_all|freq_once_per_bar|freq_once_per_bar_close)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          }
+        },
+        {
+          "begin": "\\b(barmerge)\\b(?!\\()(?=\\.)",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          },
+          "end": "\\b(gaps_off|gaps_on|lookahead_off|lookahead_on)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          }
+        },
+        {
+          "begin": "\\b(barstate)\\b(?!\\()(?=\\.)",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          },
+          "end": "\\b(isconfirmed|isfirst|ishistory|islast|islastconfirmedhistory|isnew|isrealtime)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          }
+        },
+        {
+          "match": "\\b(box.all)\\b",
+          "name": "variable.other.ps"
+        },
+        {
+          "begin": "\\b(chart)\\b(?!\\()(?=\\.)",
+          "beginCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          },
+          "end": "\\b(bg_color|fg_color)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "variable.other.ps"
+            }
+          }
+        },
+        {
+          "match": "(color)(\\.)(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(currency)(\\.)(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(dayofweek)(\\.)(friday|monday|saturday|sunday|thursday|tuesday|wednesday)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(display)(\\.)(all|none)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(dividends)(\\.)(gross|net)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(earnings)(\\.)(actual|estimate|standardized)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(extend)(\\.)(both|left|none|right)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(format)(\\.)(inherit|mintick|percent|price|volume)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(hline)(\\.)(style_dashed|style_dotted|style_solid)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(label)(\\.)(all|style_arrowdown|style_arrowup|style_circle|style_cross|style_diamond|style_flag|style_label_center|style_label_down|style_label_left|style_label_lower_left|style_label_lower_right|style_label_right|style_label_upper_left|style_label_upper_right|style_label_up|style_none|style_square|style_triangledown|style_triangleup|style_xcross)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(line)(\\.)(all|style_arrow_both|style_arrow_left|style_arrow_right|style_dashed|style_dotted|style_solid|style_solidline|style_dottedline|style_dashedline|style_arrow_leftline|style_arrow_rightline|style_arrow_bothline)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(location)(\\.)(abovebar|absolute|belowbar|bottom|top)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(order)\\b(\\.)\\b(ascending|descending)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(plot)\\b(\\.)\\b(style_areabr|style_area|style_circles|style_columns|style_cross|style_histogram|style_line|style_linebr|style_stepline|style_stepline_diamond)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(position)\\b(\\.)\\b(bottom_center|bottom_left|bottom_right|middle_center|middle_left|middle_right|top_center|top_left|top_right)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(scale)\\b(\\.)\\b(left|none|right)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(session)\\b(\\.)\\b(extended|ismarket|ispostmarket|ispremarket|regular)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(shape)\\b(\\.)\\b(arrowdown|arrowup|circle|cross|diamond|flag|labeldown|labelup|square|triangledown|triangleup|xcross)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(size)\\b(\\.)\\b(auto|huge|large|normal|small|tiny)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(splits)\\b(\\.)\\b(denominator|numerator)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(strategy)\\b(\\.)\\b(account_currency|cash|equity|eventrades|fixed|grossloss|grossprofit|initial_capital|long|losstrades|max_contracts_held_all|max_contracts_held_long|max_contracts_held_short|max_drawdown|netprofit|openprofit|percent_of_equity|position_avg_price|position_entry_name|position_size|short|wintrades)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(commission)(\\.)(cash_per_contract|cash_per_order|percent)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            },
+            "3": {
+              "name": "variable.other.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(direction)(\\.)(all|long|short)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            },
+            "3": {
+              "name": "variable.other.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(oca)(\\.)(cancel|none|reduce)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            },
+            "3": {
+              "name": "variable.other.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(syminfo)\\b(\\.)\\b(basecurrency|currency|description|mintick|pointvalue|prefix|root|session|ticker|tickerid|timezone|type)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(table)\\b(\\.)\\b(all)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(text)\\b(\\.)\\b(align_bottom|align_center|align_left|align_right|align_top)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(timeframe)\\b(\\.)\\b(isdaily|isdwm|isintraday|isminutes|ismonthly|isseconds|isweekly|multiplier|period)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(xloc)\\b(\\.)\\b(bar_index|bar_time)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(yloc)\\b(\\.)\\b(abovebar|belowbar|price)\\b",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.numeric.ps"
+        },
+        {
+          "match": "\\b([0-9]+)\\b",
+          "name": "constant.numeric.ps"
+        },
+        {
+          "match": "#[a-fA-F0-9]{6}",
+          "name": "contstant.other.ps"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#constants"
+        },
+        {
+          "match": "\\b(indicator|library|strategy)+?(?=\\()",
+          "name": "variable.parameter.function.language.special.self.python.ps"
+        },
+        {
+          "match": "(array)(\\.)(avg|clear|concat|copy|covariance|fill|from|get|includes|indexof|insert|join|lastindexof|max|median|min|mode|new_bool|new_box|new_color|new_float|new_int|new_label|new_line|new_string|new_table|pop|push|range|remove|reverse|set|shift|size|slice|sort|standardize|stdev|sum|unshift|variance)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(box)(\\.)(delete|get_bottom|get_left|get_right|get_top|new|set_bgcolor|set_border_color|set_border_style|set_border_width|set_bottom|set_extend|set_left|set_lefttop|set_right|set_rightbottom|set_top)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(color)(\\.)(rgb|b|from_gradient|g|new|r|t)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(input)(\\.)(bool|color|float|int|price|session|source|string|symbol|time|timeframe)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(label)(\\.)(delete|get_text|get_x|get_y|new|set_color|set_size|set_style|set_text|set_textalign|set_textcolor|set_tooltip|set_x|set_xloc|set_xy|set_y|set_yloc)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(line)(\\.)(delete|get_price|get_x1|get_x2|get_y1|get_y2|new|set_color|set_extend|set_style|set_width|set_x1|set_x2|set_xloc|set_xy1|set_xy2|set_y1|set_y2)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(math)(\\.)(abs|acos|asin|atan|avg|ceil|cos|exp|floor|log|log10|max|min|pow|random|round|round_to_mintick|sign|sin|sqrt|sum|tan|todegrees|toradians)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(ta)(\\.)(tr|alma|atr|barssince|bb|bbw|cci|change|cagr|cmo|cog|correlation|cross|crossover|crossunder|cum|dev|dmi|ema|falling|highest|highestbars|hma|kc|kcw|linreg|lowest|lowestbars|macd|median|mfi|mode|mom|percentile_linear_interpolation|percentile_nearest_rank|percentrank|pivothigh|pivotlow|range|rising|rma|roc|rsi|sar|sma|stdev|stoch|supertrend|swma|tsi|valuewhen|variance|vwap|vwma|wma|wpr)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(ta)(\\.)(wad|tr|vwap|obv|accdist|iii|nvi|pvi|pvt|wvad)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(request)(\\.)(dividends|earnings|financial|quandl|security|splits|error)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(closedtrades)(\\.)(commission|entry_bar_index|entry_price|entry_time|exit_bar_index|exit_price|exit_time|max_drawdown|max_runup|profit|size)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            },
+            "3": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(opentrades)(\\.)(commission|entry_bar_index|entry_price|entry_time|max_drawdown|max_runup|profit|size)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            },
+            "3": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(risk)(\\.)(allow_entry_in|max_cons_loss_days|max_drawdown|max_intraday_filled_orders|max_intraday_loss|max_position_size)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            },
+            "3": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(strategy)(\\.)(cancel|cancel_all|close|close_all|convert_to_account|convert_to_symbol|entry|exit|order|allow_entry_in|max_cons_loss_days|max_drawdown|max_intraday_filled_orders|max_intraday_loss|max_position_size)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(str)(\\.)(format|length|replace_all|split|tonumber|tostring)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(table)(\\.)(cell|cell_set_bgcolor|cell_set_height|cell_set_text|cell_set_text_color|cell_set_text_halign|cell_set_text_size|cell_set_text_valign|cell_set_width|clear|delete|new|set_bgcolor|set_border_color|set_border_width|set_frame_color|set_frame_width|set_position)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(ticker)(\\.)(heikinashi|kagi|linebreak|modify|new|pointfigure|renko)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(runtime)(\\.)(error)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(abovebar|belowbar|bar_index|close|high|hl2|hlc3|low|ohlc4|open|timenow|time_tradingday|volume)\\b",
+          "name": "variable.other.ps"
+        },
+        {
+          "match": "\\b(alert|alertcondition|barcolor|bgcolor|bool|box|color|dayofmonth|dayofweek|fill|fixnan|float|hline|hour|input|int|label|line|max_bars_back|minute|month|na|nz|plot|plotarrow|plotbar|plotcandle|plotchar|plotshape|second|string|table|time|time_close|timestamp|weekofyear|year)(?=\\()",
+          "name": "string.unquoted.asciidoc.ps"
+        },
+        {
+          "match": "(\\w+)(\\.)(\\w+)\\(",
+          "captures": {
+            "0": {
+              "name": "invalid.illegal.ps"
+            },
+            "1": {
+              "name": "storage.type.cs.ps"
+            },
+            "2": {
+              "name": "invalid.illegal.ps"
+            },
+            "3": {
+              "name": "token.error-token.ps"
+            }
+          }
+        },
+        {
+          "match": "(?!=export)(\\s)(\\w+*)\\s(?=\\()",
+          "captures": {
+            "0": {
+              "name": "token.error-token.ps"
+            }
+          }
+        },
+        {
+          "match": "(\\w+*)\\(",
+          "captures": {
+            "0": {
+              "name": "invalid.illegal.ps"
+            },
+            "1": {
+              "name": "token.error-token.ps"
+            }
+          }
+        },
+        {
+          "match": "(=>)",
+          "name": "invalid.illegal.non-null-typehinted.php.ps"
+        },
+        {
+          "match": "(\\))\\s*(=>)\\s*",
+          "captures": {
+            "0": {
+              "name": "invalid.illegal.non-null-typehinted.php.ps"
+            },
+            "1": {
+              "name": "invalid.illegal.ps"
+            }
+          }
+        },
+        {
+          "match": "\\b(strategy.opentrades)\\b",
+          "name": "variable.other.ps"
+        },
+        {
+          "match": "\\b(strategy.closedtrades)\\b",
+          "name": "variable.other.ps"
+        },
+        {
+          "match": "\\b(dayofmonth|dayofweek|second|hour|minute|month|na|time|time_close|weekofyear|year)\\b",
+          "name": "variable.other.ps"
+        },
+        {
+          "match": "(math)(\\.)(e|phi|pi|rphi)",
+          "captures": {
+            "0": {
+              "name": "variable.other.ps"
+            },
+            "1": {
+              "name": "variable.other.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(box|by|if|in|else|elseif|line|table|continue|break|for|return|var|varip|not|while|switch|series)\\b",
+          "name": "keyword.operator.logical.js.ps"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": "[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\=|:=)",
+          "name": "punctuation.separator.parameters.ps"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "match": "(\\-\\=|\\+\\=|\\*\\=|/=|%=)",
+          "name": "punctuation.section.embedded.begin.ps"
+        },
+        {
+          "match": "(\\-|\\+|\\*|/|%)",
+          "name": "punctuation.section.embedded.begin.ps"
+        },
+        {
+          "match": "(={2}|!=|<=|>=|<|>|:=)",
+          "name": "punctuation.section.embedded.begin.ps"
+        },
+        {
+          "match": "(\\?|\\:)",
+          "name": "keyword.operator.ternary.ps"
+        },
+        {
+          "match": "\\b(and|or|not|bool|float|int|string|color|table|simple)\\b",
+          "name": "keyword.operator.logical.js.ps"
+        },
+        {
+          "match": "\\.",
+          "name": "invalid.illegal.java"
+        },
+        {
+          "match": "\\(",
+          "name": "invalid.illegal.ps"
+        },
+        {
+          "match": "\\)",
+          "name": "invalid.illegal.ps"
+        },
+        {
+          "match": "\\,",
+          "name": "invalid.illegal.ps"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.arithmetic.ps"
+        },
+        {
+          "match": "[a-zA-Z_][a-zA-Z0-9_]*",
+          "name": "punctuation.separator.parameters.ps"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.ps"
+}

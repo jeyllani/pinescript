@@ -1,0 +1,493 @@
+{
+
+"alert_message = 𝑥": {
+  "prefix": "alert_message",
+  "body": [
+    "alert_message = ${1:\"${2}\"}"
+  ],
+  "description": "alert_message = "
+},
+
+"backtest_fill_limits_assumption = 𝑥": {
+  "prefix": "backtest_fill_limits_assumption",
+  "body": [
+    "backtest_fill_limits_assumption = ${1| ,true,false|}"
+  ],
+  "description": "backtest_fill_limits_assumption = 𝑥"
+},
+
+"bgcolor = 𝑥": {
+  "prefix": "bgcolor",
+  "body": [
+    "bgcolor = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${0}"
+  ],
+  "description": "bgcolor = color.new(color = , transp = )"
+},
+
+
+"bordercolor = 𝑥": {
+  "prefix": "bordercolor",
+  "body": [
+    "bordercolor = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})$0"
+  ],
+  "description": "bordercolor = 𝑥"
+},
+
+"calc_on_order_fills = 𝑥": {
+  "prefix": "calc_on_order_fills",
+  "body": [
+    "calc_on_order_fills = ${1| ,true,false|}"
+  ],
+  "description": "calc_on_order_fills = 𝑥"
+},
+
+"char = 𝑥": {
+  "prefix": "char",
+  "body": [
+    "char = \"${1| ,♯,☉,☼,☀,✗,✓,🠐,🠒 ,🠑,🠓,🡔,🡕,🡖,🡗,⇦,⇨,⇧,⇩,⤺,⤻,⤹,⤸,⇤,⇥,⤒,⤓,↨,⇆,⇄,⇅,⇵,➢,➣,➤,↚,↛,↮,↯,⭍,↞,↠,↟,↡,⯬,⯭,⯮,⯯,➳,➵,➴,➶,➸,➷|}\""
+  ],
+  "description": "char = 𝑥"
+},
+
+"close_entries_rule = 𝑥": {
+  "prefix": "close_entries_rule",
+  "body": [
+    "close_entries_rule = ${1| ,'FIFO','ANY'|}"
+  ],
+  "description": "close_entries_rule = 𝑥"
+},
+
+"color = 𝑥": {
+  "prefix": "color",
+  "body": [
+    "color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${0}"
+  ],
+  "description": "color = color.new(color = , transp = )"
+},
+
+"comment = 𝑥": {
+  "prefix": "comment",
+  "body": [
+    "comment = \"${1}\""
+  ],
+  "description": "comment = 𝑥"
+},
+
+"commission_type = 𝑥": {
+  "prefix": "commission_type",
+  "body": [
+    "commission_type = ${1| ,strategy.commission.percent,strategy.commission.cash_per_contract,strategy.commission.cash_per_order|}"
+  ],
+  "description": "commission_type = 𝑥"
+},
+
+"currency = 𝑥": {
+  "prefix": "currency",
+  "body": [
+    "currency = ${1| ,currency.NONE,currency.USD,currency.EUR,currency.AUD,currency.GBP,currency.NZD,currency.CAD,currency.CHF,currency.HKD,currency.JPY,currency.NOK,currency.SEK,currency.SGD,currency.TRY,currency.ZAR|}"
+  ],
+  "description": "currency = 𝑥"
+},
+
+"default_qty_type = 𝑥": {
+  "prefix": "default_qty_type",
+  "body": [
+    "default_qty_type = ${1| ,strategy.fixed,strategy.cash,strategy.percent_of_equity|}"
+  ],
+  "description": "default_qty_type = 𝑥"
+},
+
+"defval = 𝑥": {
+  "prefix": "defval",
+  "body": [
+    "defval = ${1}, ${0}"
+  ],
+  "description": "defval = 𝑥"
+},
+
+"display = 𝑥": {
+  "prefix": "display",
+  "body": [
+    "display = ${1| ,display.none,display.all|}"
+  ],
+  "description": "display = 𝑥"
+},
+
+"editable = 𝑥": {
+  "prefix": "editable",
+  "body": [
+    "editable = ${1| ,true,false|}"
+  ],
+  "description": "editable = 𝑥"
+},
+
+"explicit_plot_zorder = 𝑥": {
+  "prefix": ["explicit_plot_zorder"],
+  "body": [
+    "explicit_plot_zorder = ${1| ,true,false|}"
+  ],
+  "description": "explicit_plot_zorder = 𝑥"
+},
+
+"export 𝑓 ⇨ 𝑥": {
+  "prefix": ["export", "library.function"],
+  "body": [
+    "export ${1/ /_/g} (${2:<series|simple>} ${3| ,int,float,bool,table,color|} ${4:<parameter_name>} = ${5:[<default_value>]}${6:, ${7:[𝑥]}}) =>",
+    "	${8:<function_code>}"
+  ],
+  "description": "export function_name() => \\n\\t "
+},
+
+"field = 𝑥": {
+  "prefix": "field",
+  "body": [
+    "field = ${1| ,dividends.gross,divdends.net|}"
+  ],
+  "description": "field = 𝑥"
+},
+
+"format = 𝑥": {
+  "prefix": "format",
+  "body": [
+    "format = ${1| ,format.inherit,format.price,format.value|}"
+  ],
+  "description": "format = 𝑥"
+},
+
+"formatString = 𝑥": {
+  "prefix": "formatString",
+  "body": [
+    "formatString = \"${1}\""
+  ],
+  "description": "formatString = 𝑥"
+},
+
+"freq = 𝑥": {
+  "prefix": "freq =",
+  "body": [
+    "freq = ${1| ,alert.freq_all,alert.freq_once_per_bar,alert.freq_once_per_bar_close|}"
+  ],
+  "description": "field = 𝑥"
+},
+
+"from_entry = 𝑥": {
+  "prefix": "from_entry",
+  "body": [
+    "from_entry = \"${1}\""
+  ],
+  "description": "from_entry = 𝑥"
+},
+
+"gaps = 𝑥": {
+  "prefix": "gaps",
+  "body": [
+    "gaps = ${1| ,barmerge.gaps_off,barmerge.gaps_on|}"
+  ],
+  "description": "gaps = 𝑥"
+},
+
+"group = 𝑥": {
+  "prefix": "group",
+  "body": [
+    "group = ${1| ,\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\"|}${0}"
+    ],
+  "description": "group ="
+},
+
+"ignore_invalid_symbol = 𝑥": {
+  "prefix": "ignore_invalid_symbol ",
+  "body": [
+    "ignore_invalid_symbol = ${1| ,true,false|}"
+  ],
+  "description": "ignore_invalid_symbol = 𝑥"
+},
+
+"import ⇨ 𝑓𝑥": {
+  "prefix": "import",
+  "body": [
+    "// <<<=======================================================================<<<",
+    "//                  Importing Function | $4 |",
+    "// >>>----------------------------------------------------------------------->>>",
+    "import ${1:username}/${2:libraryName}/1 as ${3:alias}",
+    "// <<<-----------------------------------------------------------------------<<<",
+    "//                  Importing Function | $4 |",
+    "// >>>=======================================================================>>>",
+    "",
+    "f_$3_$4 		= $3.${4:functionName}(${5:${6:<parameter_name>}${7:, ${8:<parameter_name>}}})",
+    "$0"
+  ],
+  "description": "import {username}/{libraryName}/{libraryVersion} as {alias}"
+},
+
+"inline = 𝑥": {
+  "prefix": "inline",
+  "body": [
+    "inline = \"${1| ,00,01,02,03,04,05,06,07,08,09,10,AA,AB,AC,AD,AE,AF,BA,BB,BC,BD,BE,BF,CA,CB,CC,CD,CE,CF|}\""
+  ],
+  "description": "inline = \"..\""
+},
+
+"join = 𝑥": {
+  "prefix": "join",
+  "body": [
+    "join = ${1| ,true,false|}"
+  ],
+  "description": "join = 𝑥"
+},
+
+"linestyle = 𝑥": {
+  "prefix": "linestyle",
+  "body": [
+    "linestyle = ${1| ,hline.style_solid,hline.style_dotted,hline.style_dashed|}"
+  ],
+  "description": "linestyle = 𝑥"
+},
+
+"location = 𝑥": {
+  "prefix": "location",
+  "body": [
+    "location = ${1| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}"
+  ],
+  "description": "location = 𝑥"
+},
+
+"lookahead = 𝑥": {
+  "prefix": "lookahead",
+  "body": [
+    "lookahead =  ${1| ,barmerge.lookahead_off,barmerge.lookahead_on|}"
+  ],
+  "description": "lookahead = 𝑥"
+},
+
+"message = 𝑥": {
+  "prefix": "message",
+  "body": [
+    "message = \"${1}\""
+  ],
+  "description": "message = 𝑥"
+},
+
+"order = 𝑥": {
+  "prefix": "order",
+  "body": [
+    "order = ${1| ,order.ascending,order.descending|}$0"
+  ],
+  "description": "order = 𝑥"
+},
+
+"overlay = 𝑥": {
+  "prefix": "overlay",
+  "body": [
+    "overlay = ${1| ,true,false|}"
+  ],
+  "description": "overlay = 𝑥"
+},
+
+"position = 𝑥": {
+  "prefix": "position.",
+  "body": [
+    "position = ${1| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|}"
+  ],
+  "description": "position = 𝑥"
+},
+
+"process_orders_on_close = 𝑥": {
+  "prefix": "process_orders_on_close.",
+  "body": [
+    "process_orders_on_close = ${1| ,true,false|}"
+  ],
+  "description": "process_orders_on_close = 𝑥"
+},
+
+"scale = 𝑥": {
+  "prefix": "scale",
+  "body": [
+    "scale = ${1| ,scale.right,scale.left,scale.none|}"
+  ],
+  "description": "scale = 𝑥"
+},
+
+"separator = 𝑥": {
+  "prefix": "separator",
+  "body": [
+    "separator = \"${1}\""
+  ],
+  "description": "separator = 𝑥"
+},
+
+"shorttitle = 𝑥": {
+  "prefix": "shorttitle",
+  "body": [
+    "shorttitle = \"${1}\""
+  ],
+  "description": "shorttitle = 𝑥"
+},
+
+"size = 𝑥": {
+  "prefix": "size",
+  "body": [
+    "size = ${1| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}"
+  ],
+  "description": "size = 𝑥"
+},
+
+"style = 𝑥": {
+  "prefix": "style",
+  "body": [
+    "style = ${1|  ,plot.style_line,plot.style_stepline,plot.style_stepline_diamond,plot.style_histogram,plot.style_cross,plot.style_area,plot.style_columns,plot.style_circles, ,label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond, ,line.style_solid,line.style_dotted,line.style_dashed,line.style_arrow_left,line.style_arrow_right,line.style_arrow_both, ,shape.xcross,shape.cross,shape.triangleup,shape.triangledown,shape.flag,shape.circle,shape.arrowup,shape.arrowdown,shape.labelup,shape.labeldown,shape.square,shape.diamond|}"
+  ],
+  "description": "style = 𝑥"
+},
+
+"textalign = 𝑥": {
+  "prefix": "textalign",
+  "body": [
+    "textalign = ${1| ,text.align_left,text.align_center,text.align_right|}"
+  ],
+  "description": "textalign = 𝑥"
+},
+
+"text_halign = 𝑥": {
+  "prefix": "text_halign",
+  "body": [
+    "text_halign = ${1| ,text.align_left,text.align_center,text.align_right|}"
+  ],
+  "description": "text_halign = 𝑥"
+},
+
+"text_size = 𝑥": {
+  "prefix": "text_size",
+  "body": [
+    "text_size = ${1| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}"
+  ],
+  "description": "text_size = 𝑥"
+},
+
+"text_valign = 𝑥": {
+  "prefix": "text_valign",
+  "body": [
+    "text_valign = ${1| ,text.align_top,text.align_center,text.align_bottom|}"
+  ],
+  "description": "text_valign = 𝑥"
+},
+
+"ticker = 𝑥": {
+  "prefix": "ticker",
+  "body": [
+    "ticker = ${1| ,syminfo.ticker,syminfo.tickerid|}"
+  ],
+  "description": "ticker = 𝑥"
+},
+
+"timeframe = 𝑥": {
+  "prefix": "timeframe",
+  "body": [
+    "timeframe = \"${1}\""
+  ],
+  "description": "timeframe = 𝑥"
+},
+
+"timezone = 𝑥": {
+  "prefix": "timezone",
+  "body": [
+    "timezone = ${1| ,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}"
+  ],
+  "description": "timezone = \"GMT±..\""
+},
+
+"title = 𝑥": {
+  "prefix": "title",
+  "body": [
+    "title = \"${1}\""
+  ],
+  "description": "title = 𝑥"
+},
+
+"tooltip = 𝑥": {
+  "prefix": "tooltip",
+  "body": [
+    "tooltip = \"${1}\"$0"
+  ],
+  "description": "tooltip = 𝑥"
+},
+
+"{\"\"} tooltip = 𝑥": {
+  "prefix": "tooltip",
+  "body": [
+    "${1:name}_tooltip = ",
+    " \"${2}\" ${3:+ \"\\n\" +${4: \"\\n\" +}",
+    " \"${5}\" ${6:+ \"\\n\" +${7: \"\\n\" +}",
+    " \"${8}\" ${9:+ \"\\n\" +${10:\"\\n\" +}",
+    " \"${11}\"}}}",
+    "$0"
+  ],
+  "description": "new tooltip"
+},
+
+"tooltip {𝑥} text = 𝑥": {
+  "prefix": "tooltip.text",
+  "body": [
+    " \"${1}\" ${2:+ \"\\n\" +${3: \"\\n\" +}}",
+    "$0"
+  ],
+  "description": "tooltip {\\n\\s} text = 𝑥"
+},
+
+"trackprice = 𝑥": {
+  "prefix": "trackprice",
+  "body": [
+    "trackprice = ${1| ,true,false|}"
+  ],
+  "description": "trackprice = 𝑥"
+},
+
+"wickcolor = 𝑥": {
+  "prefix": "wickcolor",
+  "body": [
+    "wickcolor = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})$0"
+  ],
+  "description": "wickcolor = 𝑥"
+},
+
+"xloc = 𝑥": {
+  "prefix": "xloc",
+  "body": [
+    "xloc = ${1| ,xloc.bar_index,xloc.bar_time|}",
+    "",
+    "$0"
+  ],
+  "description": "xloc = 𝑥"
+},
+
+"//@version=5": {
+  "prefix": ["//", "version"],
+  "body": [
+    "//@version=5",
+    "",
+    "$0"
+  ],
+  "description": "//@version=5"
+},
+
+"@ 𝑥": {
+  "prefix": "library.compilers",
+  "body": [
+    "// ===========================================================================*",
+    "// *    >* The ${1} Function *<",
+    "// *==========================================================================*",
+    "// @function ${2:<function_description>}",
+    "// @param ${3:<parameter> <parameter_description>}",
+    "// @returns ${4:<return_value_description>}${5:",
+    "// *==========================================================================*",
+    "// *   > 1.  ${6}${7:",
+    "// *   > 2.  ${8}}${9:",
+    "// *   > 3.  ${10}}${11:",
+    "// *   > 4.  ${12}}${13:",
+    "// *   > 5.  ${14}}",
+    "// *==========================================================================*}",
+    "${0}"
+  ],
+  "description": "@(function|param|returns) ..."
+}
+
+}

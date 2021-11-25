@@ -1,0 +1,172 @@
+{
+
+"{b} indicator ⇨ 𝑓": {
+  "prefix": ["indicator.block", "indicator"],
+  "body": [
+    "// # ========================================================================= #",
+    "// #                   |  $1 Indicator  |",
+    "// # ========================================================================= #",
+    "indicator(",
+    " title                = \"${3}\"${4:,",
+    " shorttitle           = \"${5}\"}${6:,",
+    " overlay              = ${7| ,true,false|}}${8:,",
+    " format               = ${9| ,format.inherit,format.price,format.volume,format.value|}}${10:,",
+    " precision            = ${11| ,1,2,3,4,5|}}${12:,",
+    " scale                = ${13| ,scale.right,scale.left,scale.none|}}${14:,",
+    " timeframe            = \"${15| ,m,H,D,W,M,Y,15,30,45,60,90,120,180,240,480|}\"}${16:,",
+    " timeframe_gaps       = ${17| ,true,false|}}${18:,",
+    " explicit_plot_zorder = ${19| ,false,true|}}${20:,",
+    " max_lines_count      = ${21| ,5,10,50,100,200,300,500|}}${22:,",
+    " max_labels_count     = ${23| ,5,10,50,100,200,300,500|}}${24:,",
+    " max_boxes_count      = ${25| ,5,10,50,100,200,300,500|}}",
+    " )",
+    "// # ========================================================================= #",
+    "// #                   |  $1 Indicator  |",
+    "// # ========================================================================= #",
+    "",
+    "$0"
+  ],
+  "description": "indicator(title, shorttitle, overlay, format, precision, scale, max_bars_back, timeframe, timeframe_gaps, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void"
+},
+
+"Indicator ⇨ 𝑓": {
+  "prefix": "indicator",
+  "body": [
+    "// # ========================================================================= #",
+    "// #                   |  $1 Indicator  |",
+    "// # ========================================================================= #",
+    "indicator(title = \"${1}\"${2:, shorttitle = \"${3}\"}${4:, overlay = ${5| ,true,false|}}${6:, format = ${7| ,format.inherit,format.price,format.volume,format.value|}}${8:, precision = ${9| ,1,2,3,4,5|}}${10:, scale = ${11| ,scale.right,scale.left,scale.none|}}${12:, timeframe = \"${13| ,m,H,D,W,M,Y,15,30,45,60,90,120,180,240,480|}\"}${14:, timeframe_gaps = ${15| ,true,false|}}${16:, explicit_plot_zorder = ${17| ,false,true|}}${18:, max_lines_count = ${19| ,5,10,50,100,200,300,500|}}${20:, max_labels_count = ${21| ,5,10,50,100,200,300,500|}}${22:, max_boxes_count = ${23| ,5,10,50,100,200,300,500|}})",
+    "// # ========================================================================= #",
+    "// #                   |  $1 Indicator  |",
+    "// # ========================================================================= #",
+    "",
+    "$0"
+  ],
+  "description": "indicator(title, shorttitle, overlay, format, precision, scale, max_bars_back, timeframe, timeframe_gaps, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void"
+},
+
+"{username} {b} indicator ⇨ 𝑓": {
+  "prefix": "indicator.new",
+  "body": [
+    "// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/",
+    "// © ${1:username}",
+    "",
+    "//@version=5",
+    "",
+    "// # ========================================================================= #",
+    "// #                   |  $1 Indicator  |",
+    "// # ========================================================================= #",
+    "indicator(",
+    " title                = \"${2}\"${3:,",
+    " shorttitle           = \"${4}\"}${5:,",
+    " overlay              = ${6| ,true,false|}}${7:,",
+    " format               = ${8| ,format.inherit,format.price,format.volume,format.value|}}${9:,",
+    " precision            = ${10| ,1,2,3,4,5|}}${11:,",
+    " scale                = ${12| ,scale.right,scale.left,scale.none|}}${13:,",
+    " timeframe            = \"${14| ,m,H,D,W,M,Y,15,30,45,60,90,120,180,240,480|}\"}${15:,",
+    " timeframe_gaps       = ${16| ,true,false|}}${17:,",
+    " explicit_plot_zorder = ${18| ,false,true|}}${19:,",
+    " max_lines_count      = ${20| ,5,10,50,100,200,300,500|}}${21:,",
+    " max_labels_count     = ${22| ,5,10,50,100,200,300,500|}}${23:,",
+    " max_boxes_count      = ${24| ,5,10,50,100,200,300,500|}}",
+    " )",
+    "// # ========================================================================= #",
+    "// #                   |  $1 Indicator  |",
+    "// # ========================================================================= #",
+    "",
+    "$0"
+  ],
+  "description": "indicator(title, shorttitle, overlay, format, precision, scale, max_bars_back, timeframe, timeframe_gaps, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void"
+},
+
+"New Library ⇨ 𝑓": {
+  "prefix": ["library.new", "library"],
+  "body": [
+    "//@version=5",
+    "",
+    "// @description ${1:<library_description>}",
+    "",
+    "library(title = \"${2/ /_/g}\", overlay = ${3| ,true,false|})",
+    "",
+    "",
+    "export ${4:function_name}(${5:<parameter_name>} = ${6:[<default_value>]}${7:${8:[...]}}) =>",
+    "	${9:<function_code>}",
+    "",
+    "// ===========================================================================*",
+    "// *    >* The $4 Function *<",
+    "// *==========================================================================*",
+    "// @function ${10:<function_description>}",
+    "// @param ${11:<parameter> <parameter_description>}",
+    "// @returns ${12:<return_value_description>}${13:",
+    "// *==========================================================================*",
+    "// *   > 1. ${14:+info}${15:",
+    "// *   > 2. ${16:+info}}${17:",
+    "// *   > 3. ${18:+info}}${19:",
+    "// *   > 4. ${20:+info}}${21:",
+    "// *   > 5. ${22:+info}}}",
+    "// *==========================================================================*",
+    "$0"
+  ],
+  "description": "library(title = string, overlay = bool) → void"
+},
+
+"{b} Strategy ⇨ 𝑓": {
+  "prefix": ["strategy.block", "strategy"],
+  "body": [
+    "// # ========================================================================= #",
+    "// #                   |  $1 STRATEGY  |",
+    "// # ========================================================================= #",
+    "strategy(",
+    " title                           = \"${1}\"${2:,",
+    " shorttitle                      = \"${3}\"}${4:,",
+    " overlay                         = ${5| ,true,false|}}${6:,",
+    " format                          = ${7| ,format.inherit,format.price,format.value|}}${8:, ",
+    " precision                       = ${9| ,1,2,3,4,5|}}${10:, ",
+    " scale                           = ${11| ,scale.right,scale.left,scale.none|}}${12:, ",
+    " pyramiding                      = ${13| ,0,1,2,3,4,5,6,7,8,9,10|}}${14:, ",
+    " calc_on_order_fills             = ${15| ,true,false|}}${16:, ",
+    " calc_on_every_tick              = ${17| ,true,false|}}${18:, ",
+    " max_bars_back                   = ${19| ,1,2,3,4,5,6,7,8|}}${20:, ",
+    " backtest_fill_limits_assumption = ${21| ,true,false|}}${22:, ",
+    " default_qty_type                = ${23| ,strategy.fixed,strategy.cash,strategy.percent_of_equity|}}${24:, ",
+    " default_qty_value               = ${25| ,5,10,15,20,25,30,35,40,50,60,75,80,90,100|}}${26:, ",
+    " initial_capital                 = ${27| ,100,1000,10000,100000|}}${28:, ",
+    " currency                        = ${29| ,currency.NONE,currency.USD,currency.EUR,currency.AUD,currency.GBP,currency.NZD,currency.CAD,currency.CHF,currency.HKD,currency.JPY,currency.NOK,currency.SEK,currency.SGD,currency.TRY,currency.ZAR|}}${30:, ",
+    " slippage                        = ${31| ,1,2,3,4,5|}}${32:, ",
+    " commission_type                 = ${33| ,strategy.commission.percent,strategy.commission.cash_per_contract,strategy.commission.cash_per_order|}}${34:, ",
+    " commission_value                = ${35| ,0.01,0.02,0.03,0.04|}}${36:, ",
+    " process_orders_on_close         = ${37| ,true,false|}}${38:, ",
+    " close_entries_rule              = ${39| ,'FIFO','ANY'|}}${40:, ",
+    " margin_long                     = ${41| ,5,10,15|}}${42:, ",
+    " margin_short                    = ${43| ,5,10,15|}}${44:, ",
+    " explicit_plot_zorder            = ${45| ,true,false|}}${46:, ",
+    " max_lines_count                 = ${47| ,5,10,50,100,200,300,500|}}${48:, ",
+    " max_labels_count                = ${49| ,5,10,50,100,200,300,500|}}${50:, ",
+    " max_boxes_count                 = ${51| ,5,10,50,100,200,300,500|}}",
+    " )",
+    "// # ========================================================================= #",
+    "// #                   |  $1 STRATEGY  |",
+    "// # ========================================================================= #",
+    "",
+    "$0"
+  ],
+  "description": "strategy(title, shorttitle, overlay, format, precision, scale, pyramiding, calc_on_order_fills, calc_on_every_tick, max_bars_back, backtest_fill_limits_assumption, default_qty_type, default_qty_value, initial_capital, currency, slippage, commission_type, commission_value, process_orders_on_close, close_entries_rule, margin_long, margin_short, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void"
+},
+
+"Strategy ⇨ 𝑓": {
+  "prefix": "strategy",
+  "body": [
+    "// # ========================================================================= #",
+    "// #                   |  $1 STRATEGY  |",
+    "// # ========================================================================= #",
+    "strategy(title = \"${1}\"${2:, shorttitle = \"${3}\"}${4:, overlay = ${5| ,true,false|}}${6:, format = ${7| ,format.inherit,format.price,format.value|}}${8:, precision = ${9| ,1,2,3,4,5|}}${10:, scale = ${11| ,scale.right,scale.left,scale.none|}}${12:, pyramiding = ${13| ,0,1,2,3,4,5,6,7,8,9,10|}}${14:, calc_on_order_fills = ${15| ,true,false|}}${16:, calc_on_every_tick = ${17| ,true,false|}}${18:, max_bars_back = ${19| ,1,2,3,4,5,6,7,8|}}${20:, backtest_fill_limits_assumptio = ${21| ,true,false|}}${22:, default_qty_type = ${23| ,strategy.fixed,strategy.cash,strategy.percent_of_equity|}}${24:, default_qty_value = ${25| ,5,10,15,20,25,30,35,40,50,60,75,80,90,100|}}${26:, initial_capital = ${27| ,100,1000,10000,100000|}}${28:, currency = ${29| ,currency.NONE,currency.USD,currency.EUR,currency.AUD,currency.GBP,currency.NZD,currency.CAD,currency.CHF,currency.HKD,currency.JPY,currency.NOK,currency.SEK,currency.SGD,currency.TRY,currency.ZAR|}}${30:, slippage = ${31| ,1,2,3,4,5|}}${32:, commission_type = ${33| ,strategy.commission.percent,strategy.commission.cash_per_contract,strategy.commission.cash_per_order|}}${34:, commission_value = ${35| ,0.01,0.02,0.03,0.04|}}${36:, process_orders_on_close = ${37| ,true,false|}}${38:, close_entries_rule = ${39| ,'FIFO','ANY'|}}${40:, margin_long = ${41| ,5,10,15|}}${42:, margin_short = ${43| ,5,10,15|}}${44:, explicit_plot_zorder = ${45| ,true,false|}}${46:, max_lines_count = ${47| ,5,10,50,100,200,300,500|}}${48:, max_labels_count = ${49| ,5,10,50,100,200,300,500|}}${50:, max_boxes_count = ${51| ,5,10,50,100,200,300,500|}})",
+    "// # ========================================================================= #",
+    "// #                   |  $1 STRATEGY  |",
+    "// # ========================================================================= #",
+    "$0"
+  ],
+  "description": "strategy(title, shorttitle, overlay, format, precision, scale, pyramiding, calc_on_order_fills, calc_on_every_tick, max_bars_back, backtest_fill_limits_assumption, default_qty_type, default_qty_value, initial_capital, currency, slippage, commission_type, commission_value, process_orders_on_close, close_entries_rule, margin_long, margin_short, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void"
+}
+
+}
+

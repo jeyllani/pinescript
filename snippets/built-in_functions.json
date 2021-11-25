@@ -1,0 +1,2799 @@
+{
+
+"Creates an alert ⇨ 𝑓": {
+    "prefix": "alert",
+    "body": [
+    "alert(message = ${1:\"${2:}\"}, freq = ${3| ,alert.freq_all,alert.freq_once_per_bar,alert.freq_once_per_bar_close|})",
+    "${0}"
+    ],
+    "description": "alert(message = string, freq = input string) -> void"
+},
+
+"Creates an alert condition ⇨ 𝑓": {
+  "prefix": "alertcondition",
+  "body": [
+    "alertcondition(condition = $1${2:, title = \"${3}\"}, message = ${4:\"${5}\"}) $0"
+  ],
+  "description": "alertcondition(condition = bool, title = const string, message = const string) → int|float"
+},
+
+"Mean of an array's elements ⇨ 𝑓": {
+  "prefix": "array.avg",
+  "body": [
+    "array.avg(id = $1) $0"
+  ],
+  "description": "array.avg(id = int[]|float[]) → int|float"
+},
+
+"Removes all elements from an array ⇨ 𝑓": {
+  "prefix": "array.clear",
+  "body": [
+    "array.clear(id = $1) $0"
+  ],
+  "description": "array.clear(id = any array type) → void"
+},
+
+"Merges two arrays ⇨ 𝑓": {
+  "prefix": "array.concat",
+  "body": [
+    "array.concat(id1 = $1, id2 = $2) $0"
+  ],
+  "description": "array.concat(id1 = any array type, id2 = any array type) → id1"
+},
+
+"Copy of an existing array ⇨ 𝑓": {
+  "prefix": "array.copy",
+  "body": [
+    "array.copy(id = $1) $0"
+  ],
+  "description": "array.copy(id = any array type) → array"
+},
+
+"Covariance of two arrays ⇨ 𝑓": {
+  "prefix": "array.covariance",
+  "body": [
+    "array.covariance(id1 = $1, id2 = $2) $0"
+  ],
+  "description": "array.covariance(id1 = int[]|float[], id2 = int[]|float[]) → float"
+},
+
+"Sets elements of an array to a single value ⇨ 𝑓": {
+  "prefix": "array.fill",
+  "body": [
+    "array.fill(id = $1, value = $2, index_from = $3, index_to = $4) $0"
+  ],
+  "description": "array.fill(id = any array type, value = series <type of the array's elements>, index_from = int, index_to = int) → bool[]"
+},
+
+"Variable number of arguments and returns an array of the corresponding type ⇨ 𝑓": {
+  "prefix": "array.from",
+  "body": [
+    "array.from(arg0 = ${1}${2:, arg1 = ${3}}${4:, arg3 = ${5}}) $0"
+  ],
+  "description": "array.from(arg0 = series of any argument array type, ...) → (int|float|bool|color|string|label|line|box|table)[]"
+},
+
+"Returns the value of the element at the specified index ⇨ 𝑓": {
+  "prefix": "array.get",
+  "body": [
+    "array.get(id = $1, index = $2) $0"
+  ],
+  "description": "array.get(id = any array type, index = int) → series <type of the array's elements>"
+},
+
+"True if the value was found in an array else false ⇨ 𝑓": {
+  "prefix": "array.includes",
+  "body": [
+    "array.includes(id = $1, value = $2) $0"
+  ],
+  "description": "array.includes(id = any array type, value = series <type of the array's elements>) → series bool"
+},
+
+"Index of the first occurrence of the value else -1 ⇨ 𝑓": {
+  "prefix": "array.indexof",
+  "body": [
+    "array.indexof(id = $1, value = $2) $0"
+  ],
+  "description": "array.indexof(id = any array type, value = series <type of the array's elements>) → int"
+},
+
+"Changes the contents by adding new elements in place ⇨ 𝑓": {
+  "prefix": "array.insert",
+  "body": [
+    "array.insert(id = $1, index = $2, value = $3) $0"
+  ],
+  "description": "array.insert(id = any array type, index = int, value = series <type of the array's elements>) → void"
+},
+
+"Concatenating all the elements of an array, separated by `separator ⇨ 𝑓": {
+  "prefix": "array.join",
+  "body": [
+    "array.join(id = $1, separator = ${2:\"${3}\"}) $0"
+  ],
+  "description": "array.join(id = int[]|float[]|string[], separator = series string) → series string"
+},
+
+"Index of the last occurrence of the value else -1 ⇨ 𝑓": {
+  "prefix": "array.lastindexof",
+  "body": [
+    "array.lastindexof(id = $1, value = $2) $0"
+  ],
+  "description": "array.lastindexof(id = any array type, value = series <type of the array's elements>) → int"
+},
+
+"Largest value from a given array ⇨ 𝑓": {
+  "prefix": "array.max",
+  "body": [
+    "array.max(id = $1) $0"
+  ],
+  "description": "array.max(id = int[]|float[]) → series int|float"
+},
+
+"Median of an array's elements ⇨ 𝑓": {
+  "prefix": "array.median",
+  "body": [
+    "array.median(id = $1) $0"
+  ],
+  "description": "array.median(id = int[]|float[]) → series int|float"
+},
+
+"Lowest value of an array's elements ⇨ 𝑓": {
+  "prefix": "array.min",
+  "body": [
+    "array.min(id = $1) $0"
+  ],
+  "description": "array.min(id = int[]|float[]) → series int|float"
+},
+
+"Mode of an array's elements ⇨ 𝑓": {
+  "prefix": "array.mode",
+  "body": [
+    "array.mode(id = $1) $0"
+  ],
+  "description": "array.mode(id = int[]|float[]) → series int|float"
+},
+
+"Creates a new array object of bool ⇨ 𝑓": {
+  "prefix": "array.new_bool",
+  "body": [
+    "array.new_bool(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_bool(size = bool, initial_value = series bool) → bool[]"
+},
+
+"Creates a new array object of box ⇨ 𝑓": {
+  "prefix": "array.new_box",
+  "body": [
+    "array.new_box(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_box(size = box, initial_value = series box) → box[]"
+},
+
+"Creates a new array object of color ⇨ 𝑓": {
+  "prefix": "array.new_color",
+  "body": [
+    "array.new_color(size = $1, initial_value = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
+  ],
+  "description": "array.new_color(size = color, initial_value = series color) → color[]"
+},
+
+"Creates a new array object of float ⇨ 𝑓": {
+  "prefix": "array.new_float",
+  "body": [
+    "array.new_float(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_float(size = float, initial_value = series float) → float[]"
+},
+
+"Creates a new array object of int ⇨ 𝑓": {
+  "prefix": "array.new_int",
+  "body": [
+    "array.new_int(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_int(size = int, initial_value = series int) → int[]"
+},
+
+"Creates a new array object of label ⇨ 𝑓": {
+  "prefix": "array.new_label",
+  "body": [
+    "array.new_label(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_label(size = int, initial_value = series label) → label[]"
+},
+
+"Creates a new array object of line ⇨ 𝑓": {
+  "prefix": "array.new_line",
+  "body": [
+    "array.new_line(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_line(size = int, initial_value = series line) → line[]"
+},
+
+"Creates a new array object of string ⇨ 𝑓": {
+  "prefix": "array.new_string",
+  "body": [
+    "array.new_string(size = $1, initial_value = ${2:\"${3}\"}) $0"
+  ],
+  "description": "array.new_string(size = int, initial_value = series string) → string[]"
+},
+
+"Creates a new array object of table ⇨ 𝑓": {
+  "prefix": "array.new_table",
+  "body": [
+    "array.new_table(size = $1, initial_value = $2) $0"
+  ],
+  "description": "array.new_table(size = int, initial_value = series table) → table[]"
+},
+
+"Removes the last element from an array and returns its value ⇨ 𝑓": {
+  "prefix": "array.pop",
+  "body": [
+    "array.pop(id = $1) $0"
+  ],
+  "description": "array.pop(id = any array type) → series <type of the array's elements>"
+},
+
+"Appends a value to an array ⇨ 𝑓": {
+  "prefix": "array.push",
+  "body": [
+    "array.push(id = $1, value = $2) $0"
+  ],
+  "description": "array.push(id = any array type, value = <type of the array's elements>) → series void"
+},
+
+"Difference between min and max from array ⇨ 𝑓": {
+  "prefix": "array.range",
+  "body": [
+    "array.range(id = $1) $0"
+  ],
+  "description": "array.range(id = int[]|float[]) → int|float"
+},
+
+"Remove array's element with the specified index ⇨ 𝑓": {
+  "prefix": "array.remove",
+  "body": [
+    "array.remove(id = $1, index = $2) $0"
+  ],
+  "description": "array.remove(id = any array type, index = int) → series <type of the array's elements>"
+},
+
+"First array element = last and last = first ⇨ 𝑓": {
+  "prefix": "array.reverse",
+  "body": [
+    "array.reverse(id = $1) $0"
+  ],
+  "description": "array.reverse(id = any array type) → void"
+},
+
+"Sets the value of the element at the specified index ⇨ 𝑓": {
+  "prefix": "array.set",
+  "body": [
+    "array.set(id = $1, index = $2, value = $3) $0"
+  ],
+  "description": "array.set(id = any array type, index = int, value = <type of the array's elements>) → void"
+},
+
+"Removes an array's first element and returns its value ⇨ 𝑓": {
+  "prefix": "array.shift",
+  "body": [
+    "array.shift(id = $1) $0"
+  ],
+  "description": "array.shift(id = any array type) → series <type of the array's elements>"
+},
+
+"Number of elements in an array ⇨ 𝑓": {
+  "prefix": "array.size",
+  "body": [
+    "array.size(id = $1) $0"
+  ],
+  "description": "array.size(id = any array type) → series int"
+},
+
+"Slice from an existing array ⇨ 𝑓": {
+  "prefix": "array.slice",
+  "body": [
+    "array.slice(id = $1, index_from = $2, index_to = $3) $0"
+  ],
+  "description": "array.slice(id = any array type, index_from = int, index_to = int) → int|float"
+},
+
+"Sorts the elements of an array ⇨ 𝑓": {
+  "prefix": "array.sort",
+  "body": [
+    "array.sort(id = $1, order = ${2| ,order.ascending,order.descending|}) $0"
+  ],
+  "description": "array.sort(id = int[]|float[]|string[], order = sort_order) → void"
+},
+
+"Returns the array of standardized elements ⇨ 𝑓": {
+  "prefix": "array.standardize",
+  "body": [
+    "array.standardize(id = $1) $0"
+  ],
+  "description": "array.standardize(id = int[]|float[]) → int[]|float[]"
+},
+
+"Standard deviation of an array's elements ⇨ 𝑓": {
+  "prefix": "array.stdev",
+  "body": [
+    "array.stdev(id = $1) $0"
+  ],
+  "description": "array.stdev(id = int[]|float[]) → int|float"
+},
+
+"Sum of an array's elements ⇨ 𝑓": {
+  "prefix": "array.sum",
+  "body": [
+    "array.sum(id = $1) $0"
+  ],
+  "description": "array.sum(id = int[]|float[]) → int|float"
+},
+
+"Inserts the value at the beginning of the array ⇨ 𝑓": {
+  "prefix": "array.unshift",
+  "body": [
+    "array.unshift(id = $1, value = $2) $0"
+  ],
+  "description": "array.unshift(id = any array type, value = type of the array's elements) → int|float"
+},
+
+"Variance of an array's elements ⇨ 𝑓": {
+  "prefix": "array.variance",
+  "body": [
+    "array.variance(id = $1) $0"
+  ],
+  "description": "array.variance(id = int[]|float[]) → int|float"
+},
+
+"Color of bars ⇨ 𝑓": {
+  "prefix": "barcolor",
+  "body": [
+    "barcolor(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${3:, offset = ${4}}${5:, editable = ${6| ,true,false|}}${7:, bottom = ${8}}${9:, show_last = ${10}}${11:, title = \"${12}\"})",
+    "$0"
+  ],
+  "description": "barcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void"
+},
+
+"Fill background of bars with specified color ⇨ 𝑓": {
+  "prefix": "bgcolor",
+  "body": [
+    "bgcolor(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${3:, offset = ${4}}${5:, editable = ${6| ,true,false|}}${7:, bottom = ${8}}${9:, show_last = ${10}}${11:, title = \"${12}\"})",
+    "$0"
+  ],
+  "description": "bgcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void"
+},
+
+"Casts na to bool | Value of the argument after casting to bool ⇨ 𝑓": {
+  "prefix": "bool",
+  "body": [
+    "bool(x = $1) $0"
+  ],
+  "description": "bool(x = int) → simple|input|const|series int"
+},
+
+"Casts na to box | Value of the argument after casting to box ⇨ 𝑓": {
+  "prefix": "box",
+  "body": [
+    "box(x = $1)",
+    "$0"
+  ],
+  "description": "box(x = box) → series box"
+},
+
+"Deletes the specified box object ⇨ 𝑓": {
+  "prefix": "box.delete",
+  "body": [
+    "box.delete(id = $1) $0"
+  ],
+  "description": "box.delete(id = box) → series void"
+},
+
+"Price value of the bottom border of the box ⇨ 𝑓": {
+  "prefix": "box.get_bottom",
+  "body": [
+    "box.get_bottom(id = $1) $0"
+  ],
+  "description": "box.get_bottom(id = box) → series float"
+},
+
+"A bar index or a UNIX timestamp of the left border ⇨ 𝑓": {
+  "prefix": "box.get_left",
+  "body": [
+    "box.get_left(id = $1) $0"
+  ],
+  "description": "box.get_left(id = box) → int"
+},
+
+"A bar index or a UNIX timestamp of the right border ⇨ 𝑓": {
+  "prefix": "box.get_right",
+  "body": [
+    "box.get_right(id = $1) $0"
+  ],
+  "description": "box.get_right(id = box) → int"
+},
+
+"Price value of the top border of the box ⇨ 𝑓": {
+  "prefix": "box.get_top",
+  "body": [
+    "box.get_top(id = $1) $0"
+  ],
+  "description": "box.get_top(id = box) → float"
+},
+
+"New Box Object | block ⇨ 𝑓": {
+  "prefix": "box.new.block",
+  "body": [
+    "box.new(",
+    " left         = ${1}, ",
+    " top          = ${2}, ",
+    " right        = ${3}, ",
+    " bottom       = ${4}${5:, ",
+    " border_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, ",
+    " transp       = ${7:0})}${8:, ",
+    " border_width = ${9}}${10:, ",
+    " border_style = ${11| ,line.style_solid,line.style_dotted,line.style_dashed|}}${12:, ",
+    " extend       = ${13| ,extend.none,extend.right,extend.left,extend.both|}}${14:, ",
+    " xloc         = ${15| ,xloc.bar_index,xloc.bar_time|}}${16:, ",
+    " bgcolor      = color.new(color = ${17| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${18:0})}",
+    " )",
+    "$0"
+  ],
+  "description": "box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)"
+},
+
+"New Box Object ⇨ 𝑓": {
+  "prefix": "box.new",
+  "body": [
+    "box.new(left = ${1}, top = ${2}, right = ${3}, bottom = ${4}${5:, border_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})}${8:, border_width = ${9}}${10:, border_style = ${11| ,line.style_solid,line.style_dotted,line.style_dashed|}}${12:, extend = ${13| ,extend.none,extend.right,extend.left,extend.both|}}${14:, xloc = ${15| ,xloc.bar_index,xloc.bar_time|}}${16:, bgcolor = color.new(color = ${17| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${18:0})})",
+    "$0"
+  ],
+  "description": "box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)"
+},
+
+"background color of the box ⇨ 𝑓": {
+  "prefix": "box.set_bgcolor",
+  "body": [
+    "box.set_bgcolor(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
+  ],
+  "description": "box.set_bgcolor(id = box, color = color) → void"
+},
+
+"Border color of the box ⇨ 𝑓": {
+  "prefix": "box.set_border_color",
+  "body": [
+    "box.set_border_color(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
+  ],
+  "description": "box.set_border_color(id = box, color = color) → void"
+},
+
+"Border style of the box ⇨ 𝑓": {
+  "prefix": "box.set_border_style",
+  "body": [
+    "box.set_border_style(id = $1, style = ${2| ,line.style_solid,line.style_dotted,line.style_dashed|}) $0"
+  ],
+  "description": "box.set_border_style(id = box, style = string) → void"
+},
+
+"Border width of the box ⇨ 𝑓": {
+  "prefix": "box.set_border_width",
+  "body": [
+    "box.set_border_width(id = $1, width = $2) $0"
+  ],
+  "description": "box.set_border_width(id = box, width = int) → void"
+},
+
+"Bottom coordinate of the box ⇨ 𝑓": {
+  "prefix": "box.set_bottom",
+  "body": [
+    "box.set_bottom(id = $1, bottom = $2) $0"
+  ],
+  "description": "box.set_bottom(id = box, bottom = int|float) → void"
+},
+
+"Extending type of the box border ⇨ 𝑓": {
+  "prefix": "box.set_extend",
+  "body": [
+    "box.set_extend(id = $1, extend = ${2| ,extend.none,extend.left,extend.right,extend.both|}) $0"
+  ],
+  "description": "box.set_extend(id = box, extend = string) → void"
+},
+
+"Left coordinate of the box ⇨ 𝑓": {
+  "prefix": "box.set_left",
+  "body": [
+    "box.set_left(id = $1, left = $2) $0"
+  ],
+  "description": "box.set_left(id = box, left = int) → void"
+},
+
+"Left and top coordinates of the box ⇨ 𝑓": {
+  "prefix": "box.set_lefttop",
+  "body": [
+    "box.set_lefttop(id = $1, left = $2, top = $3) $0"
+  ],
+  "description": "box.set_lefttop(id = box, left = int, top = int|float) → void"
+},
+
+"Right coordinate of the box ⇨ 𝑓": {
+  "prefix": "box.set_right",
+  "body": [
+    "box.set_right(id = $1, right = $2) $0"
+  ],
+  "description": "box.set_right(id = box, right = int) → void"
+},
+
+"Right and bottom coordinates of the box ⇨ 𝑓": {
+  "prefix": "box.set_rightbottom",
+  "body": [
+    "box.set_rightbottom(id = $1, right = $2, bottom = $3) $0"
+  ],
+  "description": "box.set_rightbottom(id = box, right = int, bottom = int|float) → void"
+},
+
+"Top coordinate of the box ⇨ 𝑓": {
+  "prefix": "box.set_top",
+  "body": [
+    "box.set_top(id = $1, top = $2) $0"
+  ],
+  "description": "box.set_top(id = box, top = int|float) → void"
+},
+
+"Value of the color's blue component ⇨ 𝑓": {
+  "prefix": "color.b",
+  "body": [
+    "color.b(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+  ],
+  "description": "color.b(color = color) → series|const|input float"
+},
+
+"Linear gradient between bottom_color to top_color ⇨ 𝑓": {
+  "prefix": "color.from_gradient",
+  "body": [
+    "color.from_gradient(value = ${1}, bottom_value = ${2}, top_value = ${3}, bottom_color = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}), top_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})) $0"
+  ],
+  "description": "color.from_gradient(value = int|float, bottom_value = int|float, top_value = int|float, bottom_color = color, top_color = color) → series color"
+},
+
+"Value of the color's green component ⇨ 𝑓": {
+  "prefix": "color.g",
+  "body": [
+    "color.g(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+  ],
+  "description": "color.g(color = color) → series|const|input float"
+},
+
+"Color with specified transparency. ⇨ 𝑓": {
+  "prefix": "color.new",
+  "body": [
+    "color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0}) $0"
+  ],
+  "description": "color.new(color = color, transp = int|float) → const color"
+},
+
+"Value of the color's red component ⇨ 𝑓": {
+  "prefix": "color.r",
+  "body": [
+    "color.r(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+  ],
+  "description": "color.r(color = color) → series|const|input float"
+},
+
+"RGB color model ⇨ 𝑓": {
+  "prefix": "color.rgb",
+  "body": [
+    "color.rgb(red = $1, green = $2, blue = $3, transp = $4) $0"
+  ],
+  "description": "color.rgb(red = int|float, green = int|float, blue = int|float, transp = int|float) → series|const|input color"
+},
+
+"Retrieves the color's transparency ⇨ 𝑓": {
+  "prefix": "color.t",
+  "body": [
+    "color.t(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+  ],
+  "description": "color.t(color = color) → series|const|input float"
+},
+
+"Day of month (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "dayofmonth",
+  "body": [
+    "dayofmonth(time = ${1}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) $0"
+  ],
+  "description": "dayofmonth(time = int, timezone = series string) → series int"
+},
+
+"Day of week (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "dayofweek",
+  "body": [
+    "dayofweek(time = ${1}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) $0"
+  ],
+  "description": "dayofweek(time = int, timezone = series string) → series int"
+},
+
+"Fills background between two hlines ⇨ 𝑓": {
+  "prefix": "fill.hline",
+  "body": [
+    "fill(hline1 = ${1}, hline2 = ${2}, color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), title = \"${5}\"${6:, editable = ${7| ,true,false|}}${8:, fillgaps = ${9| ,true,false|}})",
+    "$0"
+  ],
+  "description": "fill(hline1 = hline, hline2 = hline, color = color, title = string, editable = bool, fillgaps = bool) → void"
+},
+
+"Fills background between two plots ⇨ 𝑓": {
+  "prefix": "fill.plot",
+  "body": [
+    "fill(plot1 = ${1}, plot2 = ${2}, color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), title = \"${5}\"${6:, editable = ${7| ,true,false|}}${8:, show_last = ${9}}${10:, fillgaps = ${11| ,true,false|}})",
+    "$0"
+  ],
+  "description": "fill(plot1 = plot, plot2 = plot, color = color, title = string, editable = bool, show_last = input int, fillgaps = bool) → void"
+},
+
+"Replaces NaN values with previous nearest non-NaN value ⇨ 𝑓": {
+  "prefix": "fixnan",
+  "body": [
+    "fixnan(source = $1) $0"
+  ],
+  "description": "fixnan(source = int|float|bool|color) → series int|float|bool|color"
+},
+
+"Casts na float |  Value of the argument after casting to float ⇨ 𝑓": {
+  "prefix": "float",
+  "body": [
+    "float(x = $1) $0"
+  ],
+  "description": "float(x = any) → simple|input|const|series float"
+},
+
+"Renders a horizontal line at a given fixed price level ⇨ 𝑓": {
+  "prefix": "hline",
+  "body": [
+    "hline(price = ${1}, title = \"${2}\", color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:, linestyle = ${6| ,hline.style_solid,hline.style_dotted,hline.style_dashed|}}${7:, linewidth = ${8}}${9:, editable = ${10| ,true,false|}})",
+    "$0"
+  ],
+  "description": "hline(price = int|float, title = const string, color = color, linestyle = hline_style, linewidth = int, editable = bool)"
+},
+
+"Hour (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "hour",
+  "body": [
+    "hour(time = ${1}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}})",
+    "$0"
+  ],
+  "description": "hour(time = int, timezone = string) → series int"
+},
+
+"Input ⇨ 𝑓": {
+  "prefix": "input",
+  "body": [
+    "input(defval = ${1}, title = \"${2}\"${3:,${4: tooltip = ${5:\"${6}\"},}${7: inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\",}${9: group = ${10| ,\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}})",
+    "$0"
+  ],
+  "description": "input(defval = any, title = string, tooltip = string, inline = string, group = string) → input int|float|bool|string|color"
+},
+
+"Boolean input ⇨ 𝑓": {
+  "prefix": "input.bool",
+  "body": [
+    "input.bool(defval = ${1| ,true,false|}, title = \"${2}\"${3:,${4: tooltip = ${5:\"${6:}\"},} ${7:inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\",} ${9:group = ${10|  ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|},} ${11: confirm = ${12| ,false,true|}}}) $0"
+  ],
+  "description": "input.bool(defval = bool, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input bool"
+},
+
+"Color input ⇨ 𝑓": {
+  "prefix": "input.color",
+  "body": [
+    "input.color(defval = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, title = \"${2}\"${3:,${4: tooltip = ${5:\"${6}\"}}${7:, inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\"}${9:, group = ${10| ,\"🔵 Colors 🔵\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${11:, confirm = ${12| ,false,true|}}}) $0"
+  ],
+  "description": "input.color(defval = const color, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input color"
+},
+
+"Float input ⇨ 𝑓": {
+  "prefix": "input.float",
+  "body": [
+  "input.float(defval = ${1| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}, title = \"${2}\"${3:${4:, minval = ${5| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}}${6:, maxval = ${7| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}}${8:, step = ${9| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}}${10:, tooltip = ${11:\"${12}\"}}${13:, inline = \"${14| ,01,02,03,04,05,06,07,08,09,10|}\"}${15:, group = ${16| ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${17:, confirm = ${18| ,false,true|}}}) $0"
+  ],
+  "description": "input.float(defval = float, title = string, minval = float, maxval = float, step = float, tooltip = string, inline = string, group = string, confirm = bool) → input float"
+},
+
+"Float input options ⇨ 𝑓": {
+  "prefix": "input.float",
+  "body": [
+    "input.float(defval = ${1| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}, title = \"${2}\"${3:,${4: options = [${5| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}${6:, ${7| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}}${8:, ${9| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}}${10:, ${11| ,0.00,0.005,0.01,0.02,0.025,0.03,0.05,0.075,0.1,0.15,0.25,0.50,0.75,1.00,1.41421356237,1.61803398875,1.73205080757,2.2360679775,2.64575131106,3.14159265359|}}],}${12: tooltip = ${13:\"${14}\"},}${15: inline = \"${16| ,01,02,03,04,05,06,07,08,09,10|}\",}${17: group = ${18| ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|},}${19: confirm = ${20| ,false,true|}}}) $0"
+  ],
+  "description": "input.float(defval = float, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input float"
+},
+
+"Int input ⇨ 𝑓": {
+  "prefix": "input.int",
+  "body": [
+    "input.int(defval = ${1| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}, title = \"${2}\"${3:${4:, minval = ${5| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}}${6:, maxval = ${7| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}}${8:, step = ${9| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}}${10:, tooltip = ${11:\"${12}\"}}${13:, inline = \"${14| ,01,02,03,04,05,06,07,08,09,10|}\"}${15:, group = ${16| ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${17:, confirm = ${18| ,false,true|}}}) $0"
+  ],
+  "description": "input.int(defval = int, title = string, minval = int, maxval = int, step = int, tooltip = string, inline = string, group = string, confirm = bool) → input int"
+},
+
+"Int input | options ⇨ 𝑓": {
+  "prefix": "input.int.options",
+  "body": [
+    "input.int(defval = ${1| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}, title = \"${2}\"${3:${4:, options = [${5| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}${6:, ${7| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}}${8:, ${9| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}}${10:, ${11| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}}]}${12:, tooltip = ${13:\"${14}\"}}${15:, inline = \"${16| ,01,02,03,04,05,06,07,08,09,10|}\"}${17:, group = ${18| ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${19:, confirm = ${20| ,false,true|}}}) $0"
+  ],
+  "description": "input.int(defval = int, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input int"
+},
+
+"Price input ⇨ 𝑓": {
+  "prefix": "input.price",
+  "body": [
+    "input.price(defval = ${1| ,0,1,2,3,4,5,6,7,8,9,10,15,20,25,30,40,50,60,75,90,100,200,300,400,500,600,700,1000|}${2:.${3| ,01,02,03,04,05,06,07,08,09,1,15,25,30,40,50,60,75,99|}}, title = \"${4}\"${5:${6:, tooltip = ${7:\"${8}\"}}${9:, inline = \"${10| ,01,02,03,04,05,06,07,08,09,10|}\"}${11:, group = ${12| ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${13:, confirm = ${14| ,false,true|}}}) $0"
+  ],
+  "description": "input.price(defval = int|float, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input float"
+},
+
+"Session input ⇨ 𝑓": {
+  "prefix": "input.session",
+  "body": [
+    "input.session(defval = \"${1| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${2| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\", title = \"${3| ,Session|}\"${4:${5:, options = [\"${6| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${7| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\"${8:, \"${9| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${10| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\"}${11:, \"${12| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${13| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\"}]}${14:, tooltip = ${15:\"${16}\"}}${17:, inline = \"${18| ,01,02,03,04,05,06,07,08,09,10|}\"}${19:, group = ${20| ,\"⏱ Session ⏱\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${21:, confirm = ${22| ,false,true|}}}) $0"
+  ],
+  "description": "input.session(defval = string, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input string"
+},
+
+"Source input ⇨ 𝑓": {
+  "prefix": "input.source",
+  "body": [
+    "input.source(defval = ${1| ,open,high,low,close,hl2,hlc3,ohlc4|}, title = \"${2| ,Source|}\"${3:${4:, tooltip = ${5:\"${6:}\"}}${7:, inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\"}${9:, group = ${10| ,\"🌲 Source 🌲\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${11:, confirm = ${12| ,false,true|}}}) $0"
+  ],
+  "description": "input.source(defval = int|float, title = string, tooltip = string, inline = string, group = string) → series float"
+},
+
+"String input ⇨ 𝑓": {
+  "prefix": "input.string",
+  "body": [
+    "input.string(defval = \"${1}\", title = \"${2}\"${3:${4:, options = [\"${5}\"${6:, \"${7}\"}${8:, \"${9}\"}${10:, \"${11}\"}${12:, \"${13}\"}]}${14:, tooltip = ${15:\"${16}\"}}${17:, inline = \"${18| ,01,02,03,04,05,06,07,08,09,10|}\"}${19:, group = ${20| ,\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${21:, confirm = ${22| ,false,true|}}}) $0"
+  ],
+  "description": "input.string(defval = string, title = string, options = string, tooltip = string, inline = string, group = string, confirm = bool) → input string"
+},
+
+"Symbol input ⇨ 𝑓": {
+  "prefix": "input.symbol",
+  "body": [
+    "input.symbol(defval = \"${1}\", title = \"${2}\"${3:${4:, tooltip = ${5:\"${6}\"}}${7:, inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\"}${9:, group = ${10| ,\"🔱 Symbol 🔱\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${11:, confirm = ${12| ,false,true|}}}) $0"
+  ],
+  "description": "input.symbol(defval = string, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input string"
+},
+
+"Time input ⇨ 𝑓": {
+  "prefix": "input.time",
+  "body": [
+    "input.time(defval = timestamp(${1|TZ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}, ${2|Y,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000|}, ${3|M,01,02,03,04,05,06,07,08,09,10,11,12|}, ${4|D,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31|}, ${5|h,00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23|}, ${6|m,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}${7:, ${8|s,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}}), title = \"${9| ,Time|}\"${10:${11:, tooltip = ${12:\"${13:}\"}}${14:, inline = \"${15| ,01,02,03,04,05,06,07,08,09,10|}\"}${16:, group = ${17| ,\"🌲 Source 🌲\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${18:, confirm = ${19| ,false,true|}}}) $0"
+  ],
+  "description": "input.time(defval = const int, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input int"
+},
+
+"Timeframe input ⇨ 𝑓": {
+  "prefix": "input.timeframe",
+  "body": [
+    "input.timeframe(defval = \"${1| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\", title = \"${2}\"${3:${4:, options = [\"${5| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"${6:, \"${7| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"}${8:, \"${9| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"}${10:, \"${11| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"}${12:, \"${13| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"}]}${14:, tooltip = ${15:\"${16}\"}}${17:, inline = \"${18| ,01,02,03,04,05,06,07,08,09,10|}\"}${19:, group = ${20| ,\"⏱ Timeframe ⏱\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"🔵 Colors 🔵\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${21:, confirm = ${22| ,false,true|}}}) $0"
+
+  ],
+  "description": "input.timeframe(defval = string, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input string"
+},
+
+"Casts na or truncates float value to int |  Value of the argument after casting to int ⇨ 𝑓": {
+  "prefix": "int",
+  "body": [
+    "int(x = $1) $0"
+  ],
+  "description": "int(x = int) → simple|input|const|series int"
+},
+
+"Casts na to label | Value of the argument after casting to label ⇨ 𝑓": {
+  "prefix": "label",
+  "body": [
+    "label(x = $1)",
+    "$0"
+  ],
+  "description": "label(x = label) → label"
+},
+
+"Deletes the specified label object ⇨ 𝑓": {
+  "prefix": "label.delete",
+  "body": [
+    "label.delete(id = $1)",
+    "$0"
+  ],
+  "description": "label.delete(id = label) → void"
+},
+
+"Text of this label object ⇨ 𝑓": {
+  "prefix": "label.get_text",
+  "body": [
+    "label.get_text(id = $1)",
+    "$0"
+  ],
+  "description": "label.get_text(id = label) → string"
+},
+
+"UNIX time or bar index ⇨ 𝑓": {
+  "prefix": "label.get_x",
+  "body": [
+    "label.get_x(id = $1)",
+    "$0"
+  ],
+  "description": "label.get_x(id = label) → int"
+},
+
+"Price of this label's position ⇨ 𝑓": {
+  "prefix": "label.get_y",
+  "body": [
+    "label.get_y(id = $1)",
+    "$0"
+  ],
+  "description": "label.get_y(id = label) → float"
+},
+
+"New label Object ⇨ 𝑓": {
+  "prefix": "label.new",
+  "body": [
+    "label.new(x = ${1| ,bar_index|}, y = ${2| ,na,open,high,low,close,hl2,hlc3,ohlc4|}, text = ${3:\"${4}\"}${5:, xloc = ${6| ,xloc.bar_index,xloc.bar_time|}}${7:, yloc = ${8| ,yloc.price,yloc.abovebar,yloc.belowbar|}}${9:, color = color.new(color = ${10| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${11:0})}, style = ${12| ,label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond|}${13:, textcolor = color.new(color = ${14| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${15:0})}${16:, size = ${17| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${18:, textalign = ${19| ,text.align_left,text.align_center,text.align_right|}}${20:, tooltip = ${21:\"${22}\"}})",
+    "$0"
+  ],
+  "description": "label.new(x = int, y = int|float, text = string, xloc = string, yloc = string, color = color, style = string, textcolor = color, size = string , textalign = string, tooltip = string) → series label"
+},
+
+"New label object | Block ⇨ 𝑓": {
+  "prefix": "label.new.block",
+  "body": [
+    "label.new(",
+    " x            = ${1| ,bar_index|},",
+    " y            = ${2| ,na,open,high,low,close,hl2,hlc3,ohlc4|},",
+    " text         = ${3:\"${4}\"}${5:,",
+    " xloc         = ${6| ,xloc.bar_index,xloc.bar_time|}}${7:,",
+    " yloc         = ${8| ,yloc.price,yloc.abovebar,yloc.belowbar|}}${9:,",
+    " color        = color.new(color = ${10| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${11:0})},",
+    " style        = ${12| ,label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond|}${13:,",
+    " textcolor    = color.new(color = ${14| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${15:0})}${16:,",
+    " size         = ${17| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${18:,",
+    " textalign    = ${19| ,text.align_left,text.align_center,text.align_right|}}${20:,",
+    " tooltip      = ${21:\"${22}\"} }",
+    " )",
+    "$0"
+  ],
+  "description": "label.new(x = int, y = int|float, text = string, xloc = string, yloc = string, color = color, style = string, textcolor = color, size = string , textalign = string, tooltip = string) → series label"
+},
+
+"Sets label border and arrow color ⇨ 𝑓": {
+  "prefix": "label.set_color",
+  "body": [
+    "label.set_color(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0}))",
+    "$0"
+  ],
+  "description": "label.set_color(id = label, color = string) → void"
+},
+
+"Sets arrow and text size of the specified label object ⇨ 𝑓": {
+  "prefix": "label.set_size",
+  "body": [
+    "label.set_size(id = $1, size = ${2| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|})",
+    "$0"
+  ],
+  "description": "label.set_size(id = label, size = string) → void"
+},
+
+"Sets label style ⇨ 𝑓": {
+  "prefix": "label.set_style",
+  "body": [
+    "label.set_style(id = $1, style = ${2|label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond|})",
+    "$0"
+  ],
+  "description": "label.set_style(id = label, style = string) → void"
+},
+
+"Sets label text ⇨ 𝑓": {
+  "prefix": "label.set_text",
+  "body": [
+    "label.set_text(id = $1, text = \"${2}\")",
+    "$0"
+  ],
+  "description": "label.set_text(id = label, text = string) → void"
+},
+
+"Sets the alignment for the label text ⇨ 𝑓": {
+  "prefix": "label.set_textalign",
+  "body": [
+    "label.set_textalign(id = $1, textalign = ${2| ,text.align_left,text.align_center,text.align_right|})",
+    "$0"
+  ],
+  "description": "label.set_textalign(id = label, textalign = string) → void"
+},
+
+"Sets color of the label text ⇨ 𝑓": {
+  "prefix": "label.set_textcolor",
+  "body": [
+    "label.set_textcolor(id = $1, textcolor = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})",
+    "$0"
+  ],
+  "description": "label.set_textcolor(id = label, textcolor = color) → void"
+},
+
+"Sets the tooltip text ⇨ 𝑓": {
+  "prefix": "label.set_tooltip",
+  "body": [
+    "label.set_tooltip(id = $1, tooltip = \"${2}\")",
+    "$0"
+  ],
+  "description": "label.set_tooltip(id = label, tooltip = string) → void"
+},
+
+"Sets bar index or bar time of the label position ⇨ 𝑓": {
+  "prefix": "label.set_x",
+  "body": [
+    "label.set_x(id = $1, x = ${2})",
+    "$0"
+  ],
+  "description": "label.set_x(id = label, x = int) → void"
+},
+
+"Sets x-location and new bar index/time value ⇨ 𝑓": {
+  "prefix": "label.set_xloc",
+  "body": [
+    "label.set_xloc(id = $1, x = ${2}, xloc = ${3| ,xloc.bar_index,xloc.bar_time|})",
+    "$0"
+  ],
+  "description": "label.set_xloc(id = label, x = int, xloc = string) → void"
+},
+
+"Sets bar index/time and price of the label position ⇨ 𝑓": {
+  "prefix": "label.set_xy",
+  "body": [
+    "label.set_xy(id = $1, x = ${2}, y = ${3})",
+    "$0"
+  ],
+  "description": "label.set_xy(id = label, x = int, y = int|float) → void"
+},
+
+"Sets price of the label position ⇨ 𝑓": {
+  "prefix": "label.set_y",
+  "body": [
+    "label.set_y(id = $1, y = ${2})",
+    "$0"
+  ],
+  "description": "label.set_y(id = label, y = int|float) → void"
+},
+
+"Sets new y-location calculation algorithm ⇨ 𝑓": {
+  "prefix": "label.set_yloc",
+  "body": [
+    "label.set_yloc(id = $1, yloc = ${2| ,yloc.price,yloc.abovebar,yloc.belowbar|})",
+    "$0"
+  ],
+  "description": "label.set_yloc(id = label, yloc = string) → void"
+},
+
+"Casts na to line ⇨ 𝑓": {
+  "prefix": "line",
+  "body": [
+    "line(id = $1) $0"
+  ],
+  "description": "line(id = line) → line  "
+},
+
+"Declaration statement identifying a script as a library ⇨ 𝑓": {
+  "prefix": "library",
+  "body": [
+    "library(title = \"${1}\", overlay = ${2| ,true,false|}) $0"
+  ],
+  "description": "library(title = string, overlay = bool) → void"
+},
+
+"Deletes the specified line object ⇨ 𝑓": {
+  "prefix": "line.delete",
+  "body": [
+    "line.delete(id = $1) $0"
+  ],
+  "description": "line.delete(id = line) → void"
+},
+
+"Price level of a line at a given bar index ⇨ 𝑓": {
+  "prefix": "line.get_price",
+  "body": [
+    "line.get_price(id = $1, x = $2) $0"
+  ],
+  "description": "line.get_price(id = line, x = int) → float"
+},
+
+"Returns UNIX time of the first point of the line ⇨ 𝑓": {
+  "prefix": "line.get_x1",
+  "body": [
+    "line.get_x1(id = $1) $0"
+  ],
+  "description": "line.get_x1(id = line) → int"
+},
+
+"Returns UNIX time of the second point of the line ⇨ 𝑓": {
+  "prefix": "line.get_x2",
+  "body": [
+    "line.get_x2(id = $1) $0"
+  ],
+  "description": "line.get_x2(id = line) → int"
+},
+
+"Returns price of the first point of the line ⇨ 𝑓": {
+  "prefix": "line.get_y1",
+  "body": [
+    "line.get_y1(id = $1) $0"
+  ],
+  "description": "line.get_y1(id = line) → float"
+},
+
+"Returns price of the second point of the line ⇨ 𝑓": {
+  "prefix": "line.get_y2",
+  "body": [
+    "line.get_y2(id = $1) $0"
+  ],
+  "description": "line.get_y2(id = line) → float"
+},
+
+"Creates new line object ⇨ 𝑓": {
+  "prefix": "line.new",
+  "body": [
+    "line.new(x1 = $1, y1 = $2, x2 = $3, y2 = $4, xloc = ${5| ,xloc.bar_index,xloc.bar_time|}, extend = ${6| ,extend.none,extend.right,extend.left,extend.both|}, color = color.new(color = ${7| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${8:0}), style = ${9| ,line.style_solidline,line.style_dottedline,line.style_dashedline,line.style_arrow_leftline,line.style_arrow_rightline,line.style_arrow_bothline|}, width = $10) $0"
+  ],
+  "description": "line.new(x1 = int, y1 = int|float, x2 = int, y2 = int|float, xloc = string, extend = string, color = series color, style = string, width = series int) → series line"
+},
+
+"Sets the line color ⇨ 𝑓": {
+  "prefix": "line.set_color",
+  "body": [
+    "line.set_color(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = $3) $0"
+  ],
+  "description": "line.set_color(id = line, color = color) → void"
+},
+
+"Sets extending type of this line object ⇨ 𝑓": {
+  "prefix": "line.set_extend",
+  "body": [
+    "line.set_extend(id = $1, extend = ${2| ,extend.none,extend.right,extend.left,extend.both|}) $0"
+  ],
+  "description": "line.set_extend(id = line, extend = string) → void"
+},
+
+"Sets the line width ⇨ 𝑓": {
+  "prefix": "line.set_style",
+  "body": [
+    "line.set_style(id = $1, style = ${2| ,line.style_solidline,line.style_dottedline,line.style_dashedline,line.style_arrow_leftline,line.style_arrow_rightline,line.style_arrow_bothline|}) $0"
+  ],
+  "description": "line.set_style(id = line, style = string) → void"
+},
+
+"Sets the line style ⇨ 𝑓": {
+  "prefix": "line.set_width",
+  "body": [
+    "line.set_width(id = $1, width = $2) $0"
+  ],
+  "description": "line.set_width(id = line, width = int) → void"
+},
+
+"Sets bar index or bar time of the first point ⇨ 𝑓": {
+  "prefix": "line.set_x1",
+  "body": [
+    "line.set_x1(id = $1, x = $2) $0"
+  ],
+  "description": "line.set_x1(id = line, x = int) → void"
+},
+
+"Sets bar index or bar time of the second point ⇨ 𝑓": {
+  "prefix": "line.set_y2",
+  "body": [
+    "line.set_y2(id = $1, x = $2) $0"
+  ],
+  "description": "line.set_y2(id = line, x = int) → void"
+},
+
+"Sets x-location and new bar index/time values ⇨ 𝑓": {
+  "prefix": "line.set_xloc",
+  "body": [
+    "line.set_xloc(id = $1, x1 = $2, x2 = $3, xloc = $4) $0"
+  ],
+  "description": "line.set_xloc(id = line, x1 = int, x2 = int, xloc = string) → void"
+},
+
+"Sets bar index/time and price of the first point ⇨ 𝑓": {
+  "prefix": "line.set_xy1",
+  "body": [
+    "line.set_xy1(id = $1, x = ${2| ,xloc.bar_index, xloc.bar_time|}, y = $3) $0"
+  ],
+  "description": "line.set_xy1(id = line, x = int, y = int|float) → void"
+},
+
+"Sets bar index/time and price of the second point ⇨ 𝑓": {
+  "prefix": "line.set_xy2",
+  "body": [
+    "line.set_xy2(id = $1, x = $2, y = $3) $0"
+  ],
+  "description": "line.set_xy2(id = line, x = int, y = int|float) → void"
+},
+
+"Sets price of the first point ⇨ 𝑓": {
+  "prefix": "line.set_y1",
+  "body": [
+    "line.set_y1(id = $1, y = $2) $0"
+  ],
+  "description": "line.set_y1(id = line, y = int|float) → void"
+},
+
+"Sets price of the second point ⇨ 𝑓": {
+  "prefix": "line.set_y2",
+  "body": [
+    "line.set_y2(id = $1, y = $2) $0"
+  ],
+  "description": "line.set_y2(id = line, y = int|float) → void"
+},
+
+"Absolute value of `number` ⇨ 𝑓": {
+  "prefix": "math.abs",
+  "body": [
+    "math.abs(number = $1) $0"
+  ],
+  "description": "math.abs(number = int|float) → simple|input|const|series int|float"
+},
+
+"Arc cosine of a value in the range [0, Pi] or na if not in [-1, 1] ⇨ 𝑓": {
+  "prefix": "math.acos",
+  "body": [
+    "math.acos(angle = $1) $0"
+  ],
+  "description": "math.acos(angle = int|float) → simple|input|const|series float"
+},
+
+"Arc sin of a value in the range [-Pi/2, Pi/2] or na if not in [-1, 1] ⇨ 𝑓": {
+  "prefix": "math.asin",
+  "body": [
+    "math.asin(angle = $1) $0"
+  ],
+  "description": "math.asin(angle = int|float) → simple|input|const|series float"
+},
+
+"Arc tangent of a value in the range [-Pi/2, Pi/2] ⇨ 𝑓": {
+  "prefix": "math.atan",
+  "body": [
+    "math.atan(angle = $1) $0"
+  ],
+  "description": "math.atan(angle = int|float) → simple|input|const|series float"
+},
+
+"Average of all given series ⇨ 𝑓": {
+  "prefix": "math.avg",
+  "body": [
+    "math.avg(number0 = $1, number1 = $2, number2 = $3) $0"
+  ],
+  "description": "math.avg(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple float"
+},
+
+"Smallest integer greater than or equal to the given number ⇨ 𝑓": {
+  "prefix": "math.ceil",
+  "body": [
+    "math.ceil(number = $1) $0"
+  ],
+  "description": "math.ceil(number = int|float) → simple|input|const|series float"
+},
+
+"Trigonometric cosine of an angle ⇨ 𝑓": {
+  "prefix": "math.cos",
+  "body": [
+    "math.cos(angle = $1) $0"
+  ],
+  "description": "math.cos(angle = int|float) → simple|input|const|series float"
+},
+
+"e raised to the power of `number` ⇨ 𝑓": {
+  "prefix": "math.exp",
+  "body": [
+    "math.exp(number = $1) $0"
+  ],
+  "description": "math.exp  (number = int|float) → simple|input|const|series float"
+},
+
+"largest integer less than or equal to the given number ⇨ 𝑓": {
+  "prefix": "math.floor",
+  "body": [
+    "math.floor(number = $1) $0"
+  ],
+  "description": "math.floor  (number = int|float) → simple|input|const|series float"
+},
+
+"Natural logarithm of any `number` > 0 ⇨ 𝑓": {
+  "prefix": "math.log",
+  "body": [
+    "math.log(number = $1) $0"
+  ],
+  "description": "math.log  (number = int|float) → simple|input|const|series float"
+},
+
+"Base 10 logarithm of `number` ⇨ 𝑓": {
+  "prefix": "math.log10",
+  "body": [
+    "math.log10(number = $1) $0"
+  ],
+  "description": "math.log10(number = int|float) → simple|input|const|series float"
+},
+
+"Greatest of multiple values ⇨ 𝑓": {
+  "prefix": "math.max",
+  "body": [
+    "math.max(number0 = $1, number1 = $2, number2 = $3) $0"
+  ],
+  "description": "math.max(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple|input|const|series int|float"
+},
+
+"Smallest of multiple values ⇨ 𝑓": {
+  "prefix": "math.min",
+  "body": [
+    "math.min(number0 = $1, number1 = $2, number2 = $3) $0"
+  ],
+  "description": "math.min(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple|input|const|series int|float"
+},
+
+"Mathematical power function ⇨ 𝑓": {
+  "prefix": "math.pow",
+  "body": [
+    "math.pow(base = $1, exponent = $2) $0"
+  ],
+  "description": "math.pow(base = int|float, exponent = int|float) → series float"
+},
+
+"Pseudo-random value ⇨ 𝑓": {
+  "prefix": "math.random",
+  "body": [
+    "math.random(min = $1, max = $2${3:, seed = $4}) $0"
+  ],
+  "description": "math.random(min = int|float, max = int|float, seed = int) → series float"
+},
+
+"Value of `number` rounded to the nearest integer | precision ⇨ 𝑓": {
+  "prefix": "math.round",
+  "body": [
+    "math.round(number = $1${2:, precision = $3}) $0"
+  ],
+  "description": "math.round(number = int|float, precision = int) → simple|input|const|series int|float"
+},
+
+"`number` rounded to tick precision ⇨ 𝑓": {
+  "prefix": "math.round_to_mintick",
+  "body": [
+    "math.round_to_mintick(number = $1) $0"
+  ],
+  "description": "math.round_to_mintick(number = int|float) → float"
+},
+
+"sign of the argument ⇨ 𝑓": {
+  "prefix": "math.sign",
+  "body": [
+    "math.sign(number = $1) $0"
+  ],
+  "description": "math.sign(number = int|float) → simple|input|const|series float"
+},
+
+"Trigonometric sine of an angle ⇨ 𝑓": {
+  "prefix": "math.sin",
+  "body": [
+    "math.sin(angle = $1) $0"
+  ],
+  "description": "math.sin(angle = int|float)  → simple|input|const|series float"
+},
+
+"Square root of `number` ⇨ 𝑓": {
+  "prefix": "math.sqrt",
+  "body": [
+    "math.sqrt(number = $1) $0"
+  ],
+  "description": "math.sqrt(number = int|float) → simple|input|const|series float"
+},
+
+"Sum of last y values of x ⇨ 𝑓": {
+  "prefix": "math.sum",
+  "body": [
+    "math.sum(source = $1, length = $2) $0"
+  ],
+  "description": "math.sum(source = int|float, length = int) → series float"
+},
+
+"Trigonometric tangent of an angle ⇨ 𝑓": {
+  "prefix": "math.tan",
+  "body": [
+    "math.tan(angle = $1) $0"
+  ],
+  "description": "math.tan(angle = int|float) → series float"
+},
+
+"Approx. angle in degrees from an angle measured in radians ⇨ 𝑓": {
+  "prefix": "math.todegrees",
+  "body": [
+    "math.todegrees(radians = $1) $0"
+  ],
+  "description": "math.todegrees(radians = int|float) → series float"
+},
+
+"Approx. angle in radians from an angle measured in degrees ⇨ 𝑓": {
+  "prefix": "math.toradians",
+  "body": [
+    "math.toradians(degrees = $1) $0"
+  ],
+  "description": "math.toradians(degrees = int|float) → series float"
+},
+
+"Maximum number of bars that is available for historical reference ⇨ 𝑓": {
+  "prefix": "max_bars_back",
+  "body": [
+    "max_bars_back(var = $1, num = $2) $0"
+  ],
+  "description": "max_bars_back(var = int|float|bool|color|label|line, num = litteral int) → void"
+},
+
+"Minute (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "month",
+  "body": [
+    "minute(time ${1:= time}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) ${0}"
+  ],
+  "description": "minute(time = int, timezone = string) → series int"
+},
+
+"Month (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "month",
+  "body": [
+    "month(time ${1:= time}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) ${0}"
+  ],
+  "description": "month(time = int, timezone = string) → series int"
+},
+
+"true if x is not a valid number (x is NaN), otherwise false ⇨ 𝑓": {
+  "prefix": "na",
+  "body": [
+    "na(x = ${1}) ${0}"
+  ],
+  "description": "na(x) → simple|series bool"
+},
+
+"Replaces NaN values with zeros (or given value) in a series ⇨ 𝑓": {
+  "prefix": "nz",
+  "body": [
+    "nz(source = ${1}${2:, replacement = ${3}}) ${0}"
+  ],
+  "description": "nz(source = int|float|bool|color, replacement = int|float|bool|color) → int|float|bool|color"
+},
+
+"Plots a series of data on the chart ⇨ 𝑓": {
+  "prefix": "plot",
+  "body": [
+    "plot(series = ${1}, title = \"${2}\", color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:${6:, linewidth = ${7}}${8:, style = ${9| ,plot.style_line,plot.style_stepline,plot.style_stepline_diamond,plot.style_histogram,plot.style_cross,plot.style_area,plot.style_columns,plot.style_circles|}}${10:, trackprice = ${11| ,true,false|}}${12:, offset = ${13}}${14:, join = ${15| ,true,false|}}${16:, editable = ${17| ,true,false|}}${18:, show_last = ${19}}${20:, display = ${21| ,display.none,display.all|}}})",
+    "${0}"
+  ],
+  "description": "plot(series = int|float, title = string, color = color, linewidth = input int, trackprice = bool, histbase = int|float, offset = int, join = bool, editable = bool, show_last = int, display = plot_display) → plot"
+},
+
+"Plots a series of data on the chart | block ⇨ 𝑓": {
+  "prefix": "plot.block",
+  "body": [
+    "plot(",
+    " series       = ${1},",
+    " title        = \"${2}\",",
+    " color        = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:${6:,",
+    " linewidth    = ${7}}${8:,",
+    " style        = ${9| ,plot.style_line,plot.style_stepline,plot.style_stepline_diamond,plot.style_histogram,plot.style_cross,plot.style_area,plot.style_columns,plot.style_circles|}}${10:,",
+    " trackprice   = ${11| ,true,false|}}${12:,",
+    " offset       = ${13}}${14:,",
+    " join         = ${15| ,true,false|}}${16:,",
+    " editable     = ${17| ,true,false|}}${18:,",
+    " show_last    = ${19}}${20:,",
+    " display      = ${21| ,display.none,display.all|}}}",
+    " )",
+    "${0}"
+  ],
+  "description": "plot(series = int|float, title = string, color = color, linewidth = input int, trackprice = bool, histbase = int|float, offset = int, join = bool, editable = bool, show_last = int, display = plot_display) → plot"
+},
+
+"Plots up and down arrows on the chart ⇨ 𝑓": {
+  "prefix": "plotarrow",
+  "body": [
+    "plotarrow(series = ${1}, title = \"${2}\", colorup = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), colordn = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:, offset = ${8}}, minheight = ${9}, maxheight = ${10}${11:${12:, editable = ${13| ,true,false|}}${14:, show_last = ${15}}${16:, display = ${17| ,display.none,display.all|}}})",
+    "${0}"
+  ],
+  "description": "plotarrow(series = any, title = string, colorup = color, colordown = color, offset = int, minheight = int, maxheight = int, editable = bool, show_last = int, display = plot_display) → void"
+},
+
+"Plots up and down arrows on the chart | block ⇨ 𝑓": {
+  "prefix": "plotarrow.block",
+  "body": [
+    "plotarrow(",
+    " series       = ${1},",
+    " title        = \"${2}\",",
+    " colorup      = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}),",
+    " colordn      = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:,",
+    " offset       = ${8}},",
+    " minheight    = ${9},",
+    " maxheight    = ${10}${11:${12:,",
+    " editable     = ${13| ,true,false|}}${14:,",
+    " show_last    = ${15}}${16:,",
+    " display      = ${17| ,display.none,display.all|}}}",
+    " )",
+    "${0}"
+  ],
+  "description": "plotarrow(series = any, title = string, colorup = color, colordown = color, offset = int, minheight = int, maxheight = int, editable = bool, show_last = int, display = plot_display) → void"
+},
+
+"Plots ohlc bars on the chart ⇨ 𝑓": {
+  "prefix": "plotbar",
+  "body": [
+    "plotbar(open = ${1}, high = ${2}, low = ${3}, close = ${4}, title = \"${5}\", color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})${8:${9:, editable = ${10| ,true,false|}}${11:, show_last = ${12}}${13:, display = ${14| ,display.none,display.all|}}})",
+    "${0}"
+  ],
+  "description": "plotbar(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, editable = bool, show_last = input int, display = plot_display) → void"
+},
+
+"Plots ohlc bars on the chart | block ⇨ 𝑓": {
+  "prefix": "plotbar.block",
+  "body": [
+    "plotbar(",
+    " open        = ${1},",
+    " high        = ${2},",
+    " low         = ${3},",
+    " close       = ${4},",
+    " title       = \"${5}\",",
+    " color       = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})${8:${9:,",
+    " editable    = ${10| ,true,false|}}${11:,",
+    " show_last   = ${12}}${13:,",
+    " display     = ${14| ,display.none,display.all|}}}",
+    " )",
+    "${0}"
+  ],
+  "description": "plotbar(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, editable = bool, show_last = input int, display = plot_display) → void"
+},
+
+
+  "Plots candles on the chart ⇨ 𝑓": {
+  "prefix": "plotcandle",
+  "body": [
+    "plotcandle(open = $1, high = $3, low = $4, close = $2, title = \"$5\", color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}), wickcolor = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0})${10:${11:, editable = ${12| ,true,false|}}${13:, show_last = ${14}}${15:, bordercolor = color.new(color = ${16| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${17:0})}${18:, display = ${19| ,display.none,display.all|}}})",
+    "${0}"
+  ],
+  "description": "plotcandle(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, wickcolor = color, editable = bool, show_last = input int, bordercolor = color, display = plot_display) → void"
+},
+
+"Plots candles on the chart | block ⇨ 𝑓": {
+  "prefix": "plotcandle.block",
+  "body": [
+    "plotcandle(",
+    " open        = ${1},",
+    " high        = $2,",
+    " low         = $3,",
+    " close       = $4,",
+    " title       = \"$5\",",
+    " color       = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}),",
+    " wickcolor   = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0})${10:${11:,",
+    " editable    = ${12| ,true,false|}}${13:,",
+    " show_last   = $14}${15:,",
+    " bordercolor = color.new(color = ${16| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${17:0})}${18:,",
+    " display     = ${19| ,display.none,display.all|}}}",
+    " )",
+  "${0}"
+  ],
+  "description": "plotcandle(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, wickcolor = color, editable = bool, show_last = input int, bordercolor = color, display = plot_display) → void"
+},
+
+"Plots visual Unicode Char | block ⇨ 𝑓": {
+  "prefix": "plotchar.block",
+  "body": [
+    "plotchar(",
+    " series     = ${1},",
+    " title      = \"${2}\",",
+    " char       = \"${3| ,♯,☉,☼,☀,✗,✓,🠐,🠒 ,🠑,🠓,🡔,🡕,🡖,🡗,⇦,⇨,⇧,⇩,⤺,⤻,⤹,⤸,⇤,⇥,⤒,⤓,↨,⇆,⇄,⇅,⇵,➢,➣,➤,↚,↛,↮,↯,⭍,↞,↠,↟,↡,⯬,⯭,⯮,⯯,➳,➵,➴,➶,➸,➷|}\",",
+    " location   = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|},",
+    " color      = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:,",
+    " offset     = ${9}}${10:,",
+    " text       = \"${11}\"}${12:,",
+    " textcolor  = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:,",
+    " editable   = ${16| ,true,false|}}${17:,",
+    " size       = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:,",
+    " show_last  = ${20}}${21:,",
+    " display    = ${22| ,display.none,display.all|}}}",
+    " )",
+  "${0}"
+  ],
+  "description": "plotchar(series = bool, title = string, char = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void"
+},
+
+"Plots visual shapes using any given one Unicode char ⇨ 𝑓": {
+  "prefix": "plotchar",
+  "body": [
+    "plotchar(series = ${1}, title = \"${2}\", char = \"${3| ,♯,☉,☼,☀,✗,✓,🠐,🠒 ,🠑,🠓,🡔,🡕,🡖,🡗,⇦,⇨,⇧,⇩,⤺,⤻,⤹,⤸,⇤,⇥,⤒,⤓,↨,⇆,⇄,⇅,⇵,➢,➣,➤,↚,↛,↮,↯,⭍,↞,↠,↟,↡,⯬,⯭,⯮,⯯,➳,➵,➴,➶,➸,➷|}\", location = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}, color = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:, offset = ${9}}${10:, text = \"${11}\"}${12:, textcolor = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:, editable = ${16| ,true,false|}}${17:, size = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:, show_last = ${20}}${21:, display = ${22| ,display.none,display.all|}}})",
+    "${0}"
+    ],
+  "description": "plotchar(series = bool, title = string, char = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void"
+},
+
+"Plots visual shapes on the chart | block ⇨ 𝑓": {
+  "prefix": "plotshape.block",
+  "body": [
+    "plotshape(",
+    " series     = ${1},",
+    " title      = \"${2}\",",
+    " style      = ${3| ,shape.xcross,shape.cross,shape.triangleup,shape.triangledown,shape.flag,shape.circle,shape.arrowup,shape.arrowdown,shape.labelup,shape.labeldown,shape.square,shape.diamond|},",
+    " location   = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|},",
+    " color      = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:,",
+    " offset     = ${9}}${10:,",
+    " text       = \"${11}\"}${12:,",
+    " textcolor  = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:,",
+    " editable   = ${16| ,true,false|}}${17:,",
+    " size       = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:,",
+    " show_last  = ${20}}${21:,",
+    " display    = ${22| ,display.none,display.all|}}}",
+    " )",
+    "${0}"
+  ],
+  "description": "plotshape(series = bool, title = string, style = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void"
+},
+
+"Plots visual shapes on the chart ⇨ 𝑓": {
+  "prefix": "plotshape",
+  "body": [
+    "plotshape(series = ${1}, title = \"${2}\", style = ${3| ,shape.xcross,shape.cross,shape.triangleup,shape.triangledown,shape.flag,shape.circle,shape.arrowup,shape.arrowdown,shape.labelup,shape.labeldown,shape.square,shape.diamond|}, location = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}, color = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:, offset = ${9}}${10:, text = \"${11}\"}${12:, textcolor = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:, editable = ${16| ,true,false|}}${17:, size = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:, show_last = ${20}}${21:, display = ${22| ,display.none,display.all|}}})",
+    "${0}"
+  ],
+  "description": "plotshape(series = bool, title = string, style = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void"
+},
+
+"Dividends data for the specified symbol ⇨ 𝑓": {
+  "prefix": "request.dividends",
+  "body": [
+    "request.dividends(ticker = ${1| ,syminfo.ticker,syminfo.tickerid|}${2:${3:, field = ${4| ,dividends.gross,divdends.net|}}${5:, gaps = ${6| ,barmerge.gaps_off,barmerge.gaps_on|}}${7:, lookahead =  ${8| ,barmerge.lookahead_off,barmerge.lookahead_on|}}${9:, ignore_invalid_symbol = ${10| ,true,false|}}}) ${11}"
+  ],
+  "description": "request.dividends(ticker = string, field = string, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float"
+},
+
+"Earnings data for the specified symbol ⇨ 𝑓": {
+  "prefix": "request.earnings",
+  "body": [
+    "request.earnings(ticker = ${1| ,syminfo.ticker,syminfo.tickerid|}${2:${3:, field = ${4| ,dividends.gross,divdends.net|}}${5:, gaps = ${6| ,barmerge.gaps_off,barmerge.gaps_on|}}${7:, lookahead =  ${8| ,barmerge.lookahead_off,barmerge.lookahead_on|}}${9:, ignore_invalid_symbol = ${10| ,true,false|}}}) ${11}"
+  ],
+  "description": "request.earnings(ticker = string, field = string, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float"
+},
+
+"Requests financial series for symbol ⇨ 𝑓": {
+  "prefix": "request.financial",
+  "body": [
+    "request.financial(symbol = ${1| ,syminfo.ticker,syminfo.tickerid|}, financial_id = \"${2}\", gaps = ${3| ,barmerge.gaps_off,barmerge.gaps_on|}, period = ${3}${4:,ignore_invalid_symbol = ${5| ,true,false|}}) ${0}",
+    "// Financial ID's https://www.tradingview.com/?solution=43000564727"
+  ],
+  "description": "request.financial(symbol = string, financial_id = string, period = string, gaps = barmerge_gaps, ignore_invalid_symbol = bool, currency = input string) → series float"
+},
+
+"Requests Quandl data for a symbol. ⇨ 𝑓": {
+  "prefix": "request.quandl",
+  "body": [
+    "request.quandl(ticker = ${1| ,syminfo.ticker,syminfo.tickerid|}, gaps = ${2| ,barmerge.gaps_off,barmerge.gaps_on|}, index = ${3}${4:,ignore_invalid_symbol = ${5| ,true,false|}}) ${0}"
+  ],
+  "description": "request.quandl(ticker = string, gaps = built-in, index = int, ignore_invalid_symbol = bool) → series float"
+},
+
+"Request another symbol/resolution ⇨ 𝑓": {
+  "prefix": "request.security",
+  "body": [
+    "request.security(symbol = ${1| ,syminfo.ticker,syminfo.tickerid|}, timeframe = \"${2}\", expression = ${3}${4:${5:, gaps = ${6| ,barmerge.gaps_off,barmerge.gaps_on|}}${7:,lookahead =  ${8| ,barmerge.lookahead_off,barmerge.lookahead_on|}}${9:,ignore_invalid_symbol = ${10| ,true,false|}}}) ${0}"
+  ],
+  "description": "request.security(symbol = string, timeframe = string, expression = any, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float|int|bool|color"
+},
+
+"Requests splits data for the specified symbol ⇨ 𝑓": {
+  "prefix": "request.splits",
+  "body": [
+    "request.splits(ticker = ${1| ,syminfo.ticker,syminfo.tickerid|}, field = ${2|splits.denominator,splits.numerator|}${3:${4:,gaps = ${5| ,barmerge.gaps_off,barmerge.gaps_on|}}${6:,lookahead =  ${7| ,barmerge.lookahead_off,barmerge.lookahead_on|}}${8:,ignore_invalid_symbol = ${9| ,true,false|}}}) ${0}"
+  ],
+  "description": "request.splits(ticker = string, field = string, gaps = const, lookahead = const, ignore_invalid_symbol = bool) → series float"
+}, 
+
+"Error message ⇨ 𝑓": {
+  "prefix": "runtime.error",
+  "body": [
+    "runtime.error(message = ${1:\"${2}\"}) ",
+    "",
+    "${0}"
+  ],
+  "description": "runtime.error(message = string) → void"
+},
+
+"Second (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "second",
+  "body": [
+    "second(time = ${1}${2:, timezone = ${3:\"${4}\"}})  ${0}"
+  ],
+  "description": "second(time = int, timezone = string) → series int"
+},
+
+"Formatting string and value(s) into a formatted string ⇨ 𝑓": {
+  "prefix": "str.format",
+  "body": [
+    "str.format(formatString ${1:\"${2}\"}, arg0 = ${3}${4:, arg1 = ${5}}) ${0}"
+  ],
+  "description": "str.format(formatString = string, arg0 = any series, arg1 = any series, ...) → simple string"
+},
+
+"Integer of the amount of chars in that string ⇨ 𝑓": {
+  "prefix": "str.length",
+  "body": [
+    "str.length(string = ${1:\"${2}\"}) ${0}"
+  ],
+  "description": "str.length(string = string) → const int|simple|series"
+},
+
+"Replaces each occurrence ⇨ 𝑓": {
+  "prefix": "str.replace_all",
+  "body": [
+    "str.replace_all(source = ${1:\"${2}\"}, target = ${3:\"${4}\"}, replacement = ${5:\"${6}\"}) ${0}"
+  ],
+  "description": "str.replace_all(source = string, target = string, replacement = string) → series string"
+},
+
+"Divides a string into an array of substrings and returns its array id ⇨ 𝑓": {
+  "prefix": "str.split",
+  "body": [
+    "str.split(value = ${1:\"${2}\"}, separator = ${3:\"${4}\"}) ${0}"
+  ],
+  "description": "str.split(string = string, separator = string) → string[]"
+},
+
+"String to float else na ⇨ 𝑓": {
+  "prefix": "str.tonumber",
+  "body": [
+    "str.tonumber(string = ${1:\"${2}\"}) ${0}"
+  ],
+  "description": "str.tonumber(string = string) → series float"
+},
+
+"String representation of the `value` argument else NaN ⇨ 𝑓": {
+  "prefix": "str.tostring",
+  "body": [
+    "str.tostring(value = \"${1}\"${2:,format = ${3| ,format.mintick,format.percent,format.volume|}}) ${0}"
+  ],
+  "description": "str.tostring(value = any series, format = string) → simple|series string"
+},
+
+"Cancel/deactivate pending orders by referencing their id ⇨ 𝑓": {
+  "prefix": "strategy.cancel",
+  "body": [
+    "strategy.cancel(id = \"${1}\"${2:,when = ${3}}) ",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.cancel(id = string, when = bool) → series void"
+},
+
+"Cancel/deactivate all pending orders ⇨ 𝑓": {
+  "prefix": "strategy.cancel_all",
+  "body": [
+    "strategy.cancel_all(${1:when = ${2}}) ${0}"
+  ],
+  "description": "strategy.cancel_all(when = bool) → series void"
+},
+
+"Exit from the entry with the specified ID ⇨ 𝑓": {
+  "prefix": "strategy.close",
+  "body": [
+    "strategy.close(id = \"${1}\"${2:${3:, when = ${4}}${5:, comment = ${6:\"${7}\"}}${8:, qty = ${9}}${10:, qty_percent = ${11}}${12:, alert_message = ${13:\"${14}\"}}})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.close(id = string, when = bool, comment = string, qty = int|float, qty_percent = int|float, alert_message = string) → void"
+},
+
+"Exit all the open positions ⇨ 𝑓": {
+  "prefix": "strategy.close_all",
+  "body": [
+    "strategy.close_all(when = \"${1}\"${2:${3:,comment = ${4:\"${5}\"}}${6:, alert_message = ${7:\"${8}\"}}})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.close_all(when = bool, comment = string, alert_message = string) → void"
+},
+
+"Sum of entry and exit fees paid in the closed trade ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.commission",
+  "body": [
+    "strategy.closedtrades.commission(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.commission(trade_num = int) → series float"
+},
+
+"bar_index of the closed trade's ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.entry_bar_index",
+  "body": [
+    "strategy.closedtrades.entry_bar_index(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.entry_bar_index(trade_num = int) → series int"
+},
+
+"Price of the closed trade's entry ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.entry_price",
+  "body": [
+    "strategy.closedtrades.entry_price(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.entry_price(trade_num = int) → series int"
+},
+
+"UNIX time of the closed trade's entry ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.entry_time",
+  "body": [
+    "strategy.closedtrades.entry_time(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.entry_time(trade_num = int) → series int"
+},
+
+"bar_index of the closed trade's exit ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.exit_bar_index",
+  "body": [
+    "strategy.closedtrades.exit_bar_index(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.exit_bar_index(trade_num = int) → series int"
+},
+
+"Price of the closed trade's exit ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.exit_price",
+  "body": [
+    "strategy.closedtrades.exit_price(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.exit_price(trade_num = int) → series float"
+},
+
+"UNIX time of the closed trade's exit ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.exit_time",
+  "body": [
+    "strategy.closedtrades.exit_time(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.exit_time(trade_num = int) → series int"
+},
+
+"Maximum possible loss during the closed trades ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.max_drawdown",
+  "body": [
+    "strategy.closedtrades.max_drawdown(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.max_drawdown(trade_num = int) → series float"
+},
+
+"Maximum possible profit during the closed trade  ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.max_runup",
+  "body": [
+    "strategy.closedtrades.max_runup(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.max_runup(trade_num = int) → series float"
+},
+
+"profit/loss of the closed trade ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.profit",
+  "body": [
+    "strategy.closedtrades.profit(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.profit(trade_num = int) → series float"
+},
+
+"Trade number of the closed trade ⇨ 𝑓": {
+  "prefix": "strategy.closedtrades.size",
+  "body": [
+    "strategy.closedtrades.size(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.closedtrades.size(trade_num = int) → series float"
+},
+
+"Converts currency used on the chart to `value`  ⇨ 𝑓": {
+  "prefix": "strategy.convert_to_account",
+  "body": [
+    "strategy.convert_to_account(value = ${1}) ${0}"
+  ],
+  "description": "strategy.convert_to_account(value) → series float"
+},
+
+"Converts `value` to the currency on the chart ⇨ 𝑓": {
+  "prefix": "strategy.convert_to_symbol",
+  "body": [
+    "strategy.convert_to_symbol(value = ${1}) ${0}"
+  ],
+  "description": "strategy.convert_to_symbol(value = int|float) → series float"
+},
+
+"Command to enter market position ⇨ 𝑓": {
+  "prefix": "strategy.entry",
+  "body": [
+    "strategy.entry(id = \"${1}\", direction = ${2| ,strategy.long,strategy.short|}${3:${4:, qty = ${5}}${6:, limit = ${7}}${8:, stop = ${9}}${10:, oca_name = ${11:\"${12}\"}}${13:, oca_type = ${14| ,strategy.oca.none,strategy.oca.cancel,strategy.oca.reduce|}}${15:, comment = ${16:\"${17}\"}}${18:, when = ${19}}${20:, alert_message = ${21:\"${22}\"}}})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.entry(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void"
+},
+
+"Command to enter market position | block ⇨ 𝑓": {
+  "prefix": "strategy.entry.block",
+  "body": [
+    "strategy.entry(",
+    " id             = \"${1}\",",
+    " direction      = ${2| ,strategy.long,strategy.short|}${3:${4:,",
+    " qty            = ${5}}${6:,",
+    " limit          = ${7}}${8:,",
+    " stop           = ${9}}${10:,",
+    " oca_name       = ${11:\"${12}\"}}${13:,",
+    " oca_type       = ${14| ,strategy.oca.none,strategy.oca.cancel,strategy.oca.reduce|}}${15:,",
+    " comment        = ${16:\"${17}\"}}${18:,",
+    " when           = ${19}}${20:,",
+    " alert_message  = ${21:\"${22}\"}}}",
+    " )",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.entry(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void"
+},
+
+"Command to exit ⇨ 𝑓": {
+    "prefix": "strategy.exit",
+    "body": [
+      "strategy.exit(id = \"${1}\", from_entry = \"${2}\"${3:${4:, qty = ${5}}${6:, qty_percent = ${7}}${8:, profit = ${9}}${10:, limit = ${11}}${12:, loss = ${13}}${14:, stop = ${15}}${16:, trail_price = ${17}}${18:, trail_points = ${19}}${20:, trail_offset = ${21}}${22:, oca_name = ${23:\"${24}\"}}${25:, comment = ${26:\"${27}\"}}${28:, when = ${29}}${30:, trail_offset = ${31}}${32:, alert_message = ${33:\"${34}\"}}})",
+      "",
+      "${0}"
+    ],
+    "description": "strategy.exit(id = string, from_entry = string, qty = int|float, qty_percent = int|float, profit = int|float, limit = int|float, loss = int|float, stop = int|float, trail_price = int|float, trail_points = int|float, trail_offset = int|float, oca_name = string, comment = string, when = bool, alert_message = string) → void"
+},
+
+"Command to exit | block ⇨ 𝑓": {
+  "prefix": "strategy.exit.block",
+    "body": [
+      "strategy.exit(",
+      " id             = \"${1}\",",
+      " from_entry     = \"${2}\"${3:${4:,",
+      " qty            = ${5}}${6:,",
+      " qty_percent    = ${7}}${8:,",
+      " profit         = ${9}}${10:,",
+      " limit          = ${11}}${12:,",
+      " loss           = ${13}}${14:,",
+      " stop           = ${15}}${16:,",
+      " trail_price    = ${17}}${18:,",
+      " trail_points   = ${19}}${20:,",
+      " trail_offset   = ${21}}${22:,",
+      " oca_name       = ${23:\"${24}\"}}${25:,",
+      " comment        = ${26:\"${27}\"}}${28:,",
+      " when           = ${29}}${30:,",
+      " trail_offset   = ${31}}${32:,",
+      " alert_message  = ${33:\"${34}\"}}}",
+      " )",
+      "",
+      "${0}"
+    ],
+    "description": "strategy.exit(id = string, from_entry = string, qty = int|float, qty_percent = int|float, profit = int|float, limit = int|float, loss = int|float, stop = int|float, trail_price = int|float, trail_points = int|float, trail_offset = int|float, oca_name = string, comment = string, when = bool, alert_message = string) → void"
+},
+
+"Sum of entry and exit fees paid in the open trade ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.commission",
+  "body": [
+    "strategy.opentrades.commission(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.commission(trade_num = int) → float"
+},
+
+"bar_index of the open trades entry ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.entry_bar_index",
+  "body": [
+    "strategy.opentrades.entry_bar_index(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.entry_bar_index(trade_num = int) → float"
+},
+
+"Price of the open trades entry ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.entry_price",
+  "body": [
+    "strategy.opentrades.entry_price(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.entry_price(trade_num = int) → float"
+},
+
+"UNIX time of the open trades entry ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.entry_time",
+  "body": [
+    "strategy.opentrades.entry_time(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.entry_time(trade_num = int) → float"
+},
+
+"Maximum possible loss during the trade ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.max_drawdown",
+  "body": [
+    "strategy.opentrades.max_drawdown(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.max_drawdown(trade_num = int) → float"
+},
+
+"Maximum possible profit during the trade ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.max_runup",
+  "body": [
+    "strategy.opentrades.max_runup(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.max_runup(trade_num = int) → float"
+},
+
+"profit/loss of the open trade ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.profit",
+  "body": [
+    "strategy.opentrades.profit(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.profit(trade_num = int) → float"
+},
+
+"Direction and number of contracts traded in the open trade ⇨ 𝑓": {
+  "prefix": "strategy.opentrades.size",
+  "body": [
+    "strategy.opentrades.size(trade_num = ${1}) ${0}"
+  ],
+  "description": "strategy.opentrades.size(trade_num = int) → float"
+},
+
+"Command to place order | block ⇨ 𝑓": {
+  "prefix": "strategy.order.block",
+  "body": [
+    "strategy.order(",
+    " id             = \"${1}\", ",
+    " direction      = ${2| ,strategy.long,strategy.short|}${3:${4:, ",
+    " qty            = ${5}}${6:,",
+    " limit          = ${7}}${8:, ",
+    " stop           = ${9}}${10:,",
+    " oca_name       = ${11:\"${12}\"}}${13:, ",
+    " oca_type       = ${14| ,strategy.oca.none,strategy.oca.cancel,strategy.oca.reduce|}}${15:,",
+    " comment        = ${16:\"${17}\"}}${18:,",
+    " when           = ${19}}${20:,",
+    " alert_message  = ${21:\"${22}\"}}}",
+    " )",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.order(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void"
+},
+
+"Command to place order ⇨ 𝑓": {
+  "prefix": "strategy.order",
+  "body": [
+    "strategy.order(id = \"${1}\", direction = ${2| ,strategy.long,strategy.short|}${3:${4:, qty = ${5}}${6:,limit = ${7}}${8:, stop = ${9}}${10:,oca_name = ${11:\"${12}\"}}${13:, oca_type = ${14| ,strategy.oca.none,strategy.oca.cancel,strategy.oca.reduce|}}${15:,comment = ${16:\"${17}\"}}${18:,when = ${19}}${20:,alert_message = ${21:\"${22}\"}}})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.order(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void"
+},
+
+"Strict `value` direction entry ⇨ 𝑓": {
+  "prefix": "strategy.risk.allow_entry_in",
+  "body": [
+    "strategy.risk.allow_entry_in(value = ${1| ,strategy.direction.all,strategy.direction.long,strategy.direction.short|})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.risk.allow_entry_in(value = string) → void"
+},
+
+"Close all and stop after consecutive days with `count` losses ⇨ 𝑓": {
+  "prefix": "strategy.risk.max_cons_loss_days",
+  "body": [
+    "strategy.risk.max_cons_loss_days(count = ${1}, alert_message = ${2:\"${3}\"})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.risk.max_cons_loss_days(count = int, alert_message = string) → series void"
+},
+
+"Maximum drawdown ⇨ 𝑓": {
+  "prefix": "strategy.risk.max_drawdown",
+  "body": [
+    "strategy.risk.max_drawdown(count = ${1}, type = ${2| ,strategy.percent_of_equity,strategy.cash|}, alert_message = ${3:\"${4}\"})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.risk.max_drawdown(count = int, type = string, alert_message = string) → series void"
+},
+
+"Maximum number of filled orders per 1 day ⇨ 𝑓": {
+  "prefix": "strategy.risk.max_intraday_filled_orders",
+  "body": [
+    "strategy.risk.max_intraday_loss(count = ${1}, alert_message = ${2:\"${3}\"})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.risk.max_intraday_loss(count = int, alert_message = string) → series void"
+},
+
+"Maximum loss per 1 day ⇨ 𝑓": {
+  "prefix": "strategy.risk.max_intraday_loss",
+  "body": [
+    "strategy.risk.max_intraday_loss(value = ${1}, type = ${2| ,strategy.percent_of_equity,strategy.cash,strategy.percent_of_equity|}, alert_message = ${3:\"${4}\"}) ",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.risk.max_intraday_loss(value = int|float, type = string, alert_message = string) → series void"
+},
+
+"Maximum number of contracts|shares|lots|units in a position ⇨ 𝑓": {
+  "prefix": "strategy.risk.max_position_size",
+  "body": [
+    "strategy.risk.max_position_size(contracts = ${1})",
+    "",
+    "${0}"
+  ],
+  "description": "strategy.risk.max_position_size(contracts = int|float) → void"
+},
+
+"Value of the argument after casting to string ⇨ 𝑓": {
+  "prefix": "string",
+  "body": [
+    "string(${1}) ${0}"
+  ],
+  "description": "string(x) → (const|input|simple|series) string"
+},
+
+"Arnaud Legoux Moving Average ⇨ 𝑓": {
+  "prefix": "ta.alma",
+  "body": [
+    "ta.alma(series = ${1}, length = ${2}, offset = ${3}, sigma = ${4}${5:, floor = ${6| ,true,false|}}) ${0}"
+  ],
+  "description": "ta.highest(series = int|float, length = int, offset  = int|float, sigma = int|float, floor = bool) → series float"
+},
+
+"Average True Range ⇨ 𝑓": {
+  "prefix": "ta.atr",
+  "body": [
+    "ta.atr(length = ${1}) ${0}"
+  ],
+  "description": "ta.atr(length = int) → series float"
+},
+
+"Bars since the last time the condition was true ⇨ 𝑓": {
+  "prefix": "ta.barssince",
+  "body": [
+    "ta.barssince(condition = ${1}) ${0}"
+  ],
+  "description": "ta.barssince(condition = bool) → series int"
+},
+
+"Bollinger Bands | [middle, upper, lower] ⇨ 𝑓": {
+  "prefix": "ta.bb",
+  "body": [
+    "ta.bb(series = ${1}, length = ${2}, mult = ${3}) ${0}"
+  ],
+  "description": "ta.bb(series = int|float, length = int, mult = int|float) → [series float, series float, series float]"
+},
+  
+"Bollinger Bands Width ⇨ 𝑓": {
+  "prefix": "ta.bbw",
+  "body": [
+    "ta.bbw(series = ${1}, length = ${2}, mult = ${3}) ${0}"
+  ],
+  "description": "ta.bbw(series = int|float, length = int, mult = int|float) → series float"
+},
+
+"CCI | Commodity Channel Index ⇨ 𝑓": {
+  "prefix": "ta.cci",
+  "body": [
+    "ta.cci(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.cci(source = int|float, length = int) → series float"
+},
+
+"Difference between current value and previous ⇨ 𝑓": {
+  "prefix": "ta.change",
+  "body": [
+    "ta.change(source = ${1}${2:, length = ${3}}) ${0}"
+  ],
+  "description": "ta.change(source = int|float, length = int) → series float"
+},
+
+"Chande Momentum Oscillator ⇨ 𝑓": {
+  "prefix": "ta.cmo",
+  "body": [
+    "ta.cmo(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.cmo(source = int|float, length = int) → series float"
+},
+
+"COG | Center Of Gravity ⇨ 𝑓": {
+  "prefix": "ta.cog",
+  "body": [
+    "ta.cog(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.cog(source = int|float, length = int) → series float"
+},
+
+"Pearson Correlation coefficient ⇨ 𝑓": {
+  "prefix": "ta.correlation",
+  "body": [
+    "ta.correlation(source1 = ${1}, source2 = ${2}, source2 = ${3}) ${0}"
+  ],
+  "description": "ta.correlation(source1 = int|float, source2 = int|float, length = int) → series float"
+},
+
+"true if two series have crossed each other ⇨ 𝑓": {
+  "prefix": "ta.cross",
+  "body": [
+    "ta.cross(source1 = ${1}, source2 = ${2}) ${0}"
+  ],
+  "description": "ta.cross(source1 = int|float, source2 = int|float) → series bool"
+},
+
+"true if `source1` crossed over `source2` ⇨ 𝑓": {
+  "prefix": "ta.crossover",
+  "body": [
+    "ta.crossover(source1 = ${1}, source2 = ${2}) ${0}"
+  ],
+  "description": "ta.crossover(source1 = int|float, source2 = int|float) → series bool"
+},
+
+"true if `source1` crossed under `source2` ⇨ 𝑓": {
+  "prefix": "ta.crossunder",
+  "body": [
+    "ta.crossunder(source1 = ${1}, source2 = ${2}) ${0}"
+  ],
+  "description": "ta.crossunder(source1 = int|float, source2 = int|float) → series bool"
+},
+
+"Total sum `source` series ⇨ 𝑓": {
+  "prefix": "ta.cum",
+  "body": [
+    "ta.cum(source = ${1}) ${0}"
+  ],
+  "description": "ta.cum(source = int|float) → series float"
+},
+
+"Deviation between the `source` series and it's ta.sma ⇨ 𝑓": {
+  "prefix": "ta.dev",
+  "body": [
+    "ta.dev(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.dev(source = int|float, length = int) → series float"
+},
+
+"Tuple of three : [+DI, -DI, ADX] ⇨ 𝑓": {
+  "prefix": "ta.dmi",
+  "body": [
+    "ta.dmi(diLength = ${1}, adxSmoothing = ${2}) ${0}"
+  ],
+  "description": "ta.dmi(diLength = int, adxSmoothing = int) → [series float, series float, series float]"
+},
+
+"Exponentially Moving Average ⇨ 𝑓": {
+  "prefix": "ta.ema",
+  "body": [
+    "ta.ema(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.ema(source = int|float, length = int) → series float"
+},
+
+"`source` series is now falling for `length` bars long ⇨ 𝑓": {
+  "prefix": "ta.falling",
+  "body": [
+    "ta.falling(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.falling(source = int|float, length = int) → series bool"
+},
+
+  "Highest value in the `source` series ⇨ 𝑓": {
+  "prefix": "ta.highest",
+  "body": [
+    "ta.highest(${1:source =${2}, }length = ${3}) ${0}"
+  ],
+  "description": "ta.highest(source = int|float, length = int) → series float"
+},
+
+"Offset to the highest bar ⇨ 𝑓": {
+  "prefix": "ta.highestbars",
+  "body": [
+    "ta.highestbars(${1:source =${2}, }length = ${3}) ${0}"
+  ],
+  "description": "ta.highestbars(source = int|float, length = int) → series int"
+},
+
+"Hull Moving Average ⇨ 𝑓": {
+  "prefix": "ta.hma",
+  "body": [
+    "ta.hma(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.hma(source = int|float, length = int) → series float"
+},
+
+"Keltner Channels ⇨ 𝑓": {
+  "prefix": "ta.kc",
+  "body": [
+    "ta.kc(series = ${1}, length = ${2}, mult = ${3}${4:, useTrueRange = ${5| ,true,false|}}) ${0}"
+  ],
+  "description": "ta.kc(series = int|float, length = int, mult = int|float, useTrueRange = bool) → [series float, series float, series float]"
+},
+
+"Keltner Channels Width ⇨ 𝑓": {
+  "prefix": "ta.kcw",
+  "body": [
+    "ta.kcw(series = ${1}, length = ${2}, mult = ${3}${4:, useTrueRange = ${5| ,true,false|}}) ${0}"
+  ],
+  "description": "ta.kcw(series = int|float, length = int, mult = int|float, useTrueRange = bool) → series float"
+},
+
+"Linear Regression Curve ⇨ 𝑓": {
+  "prefix": "ta.linreg",
+  "body": [
+    "ta.linreg(source = ${1}, length = ${2}, offset = ${3}) ${0}"
+  ],
+  "description": "ta.linreg(source = int|float, length = int, offset = int) → series float"
+},
+
+"Lowest value in the `source` ⇨ 𝑓": {
+  "prefix": "ta.lowest",
+  "body": [
+    "ta.lowest(source = ${1}${2:, length = ${3}}) ${0}"
+  ],
+  "description": "ta.lowest(source = int|float, length = int) → series float"
+},
+
+"Offset to the lowest bar ⇨ 𝑓": {
+  "prefix": "ta.lowestbars",
+  "body": [
+    "ta.lowestbars(source = ${1}${2:, length = ${3}}) ${0}"
+  ],
+  "description": "ta.lowestbars(source = int|float, length = int) → series int"
+},
+
+"MACD | Moving Average Convergence/Divergence ⇨ 𝑓": {
+  "prefix": "ta.macd",
+  "body": [
+    "ta.macd(source = ${1}, fastlen = ${2}, slowlen = ${3}, siglen = ${4}) ${0}"
+  ],
+  "description": "ta.macd(source = int|float, fastlen = int, slowlen = int, siglen = int) → [series float, series float, series float]"
+},
+
+"Median of `source` ⇨ 𝑓": {
+  "prefix": "ta.median",
+  "body": [
+    "ta.median(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.median(source = int|float, length = int) → series int|float"
+},
+
+"Money Flow Index ⇨ 𝑓": {
+  "prefix": "ta.mfi",
+  "body": [
+    "ta.mfi(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.mfi(source = int|float, length = int) → series float"
+},
+
+"Mode of `source` ⇨ 𝑓": {
+  "prefix": "ta.mode",
+  "body": [
+    "ta.mode(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.mode(source = int|float, length = int) → series int|float"
+},
+
+"Momentum of `source` price & `length` ⇨ 𝑓": {
+  "prefix": "ta.mom",
+  "body": [
+    "ta.mom(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.mom(source = int|float, length = int) → series float"
+},
+
+"Percentile method of linear interpolation ⇨ 𝑓": {
+  "prefix": "ta.percentile_linear_interpolation",
+  "body": [
+    "ta.percentile_linear_interpolation(source = ${1}, length = ${2}, percentage = ${3}) ${0}"
+  ],
+  "description": "ta.percentile_linear_interpolation(source = int|float, length = int, percentage = int|float) → series float"
+},
+
+"Percentile using method of Nearest Rank ⇨ 𝑓": {
+  "prefix": "ta.percentile_nearest_rank",
+  "body": [
+    "ta.percentile_nearest_rank(source = ${1}, length = ${2}, percentage = ${3}) ${0}"
+  ],
+  "description": "ta.percentile_nearest_rank(source = int|float, length = int, percentage = int|float) → series float"
+},
+
+"Prev. values less than or equal to the curr. value ⇨ 𝑓": {
+  "prefix": "ta.percentrank",
+  "body": [
+    "ta.percentrank(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.percentrank(source = int|float, length = int) → series float"
+},
+
+"Price of the pivot high point else 'NaN' ⇨ 𝑓": {
+  "prefix": "ta.pivothigh",
+  "body": [
+    "ta.pivothigh(source = ${1}, leftbars = ${2}${3:, rightbars = ${4}}) ${0}"
+  ],
+  "description": "ta.pivothigh(source = int|float, leftbars = int|float, rightbars = int|float) → series float"
+},
+
+"Price of the pivot low point else 'NaN' ⇨ 𝑓": {
+  "prefix": "ta.pivotlow",
+  "body": [
+    "ta.pivotlow(source = ${1}, leftbars = ${2}${3:, rightbars = ${4}}) ${0}"
+  ],
+  "description": "ta.pivotlow(source = int|float, leftbars = int|float, rightbars = int|float) → series float"
+},
+
+"Difference between the min and max ⇨ 𝑓": {
+  "prefix": "ta.range",
+  "body": [
+    "ta.range(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.range(source = int|float, length = int) → series int|float"
+},
+
+"`source` series is now rising for `length` bars long ⇨ 𝑓": {
+  "prefix": "ta.rising",
+  "body": [
+    "ta.rising(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.rising(source = int|float, length = int) → series bool"
+},
+
+"Moving average used in RSI ⇨ 𝑓": {
+  "prefix": "ta.rma",
+  "body": [
+    "ta.rma(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.rma(source = int|float, length = int) → series float"
+},
+
+"Rate of change ⇨ 𝑓": {
+  "prefix": "ta.roc",
+  "body": [
+    "ta.roc(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.roc(source = int|float, length = int) → series float"
+},
+
+"Relative strength index ⇨ 𝑓": {
+  "prefix": "ta.rsi",
+  "body": [
+    "ta.rsi(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.rsi(source = int|float, length = int) → series float"
+},
+
+"Parabolic SAR | Stop And Reverse ⇨ 𝑓": {
+  "prefix": "ta.sar",
+  "body": [
+    "ta.sar(start = ${1}, inc = ${2}, max = ${3}) ${0}"
+  ],
+  "description": "ta.sar(start = int|float, inc = int|float, max = int|float) → series float"
+},
+
+"Simple moving average ⇨ 𝑓": {
+  "prefix": "ta.sma",
+  "body": [
+    "ta.sma(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.sma(source = int|float, length = int) → series float"
+},
+
+"Standard deviation ⇨ 𝑓": {
+  "prefix": "ta.stdev",
+  "body": [
+    "ta.stoch(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.stdev(source = int|float, length = int) → series float"
+},
+
+"Stochastic ⇨ 𝑓": {
+  "prefix": "ta.stoch",
+  "body": [
+    "ta.stoch(source = ${1}, high = ${2}, low = ${3},  length = ${4}) ${0}"
+  ],
+  "description": "ta.stoch(source = int|float, high = int|float, low = int|float, length = int) → series float"
+},
+
+"Supertrend Indicator ⇨ 𝑓": {
+  "prefix": "ta.supertrend",
+  "body": [
+    "ta.supertrend(factor = ${1:ATR Multiplier}, atrPeriod = ${2:ATR Length}) ${0}"
+  ],
+  "description": "ta.supertrend(factor = int|float, atrPeriod = int) → [series float, series float]"
+},
+
+"Symmetrically weighted moving average ⇨ 𝑓": {
+  "prefix": "ta.swma",
+  "body": [
+    "ta.swma(source = ${1| ,close,high,low,open,hl2,hlc3,ohlc4|}) ${0}"
+  ],
+  "description": "ta.swma(source = int|float) → series float"
+},
+
+"True range ⇨ 𝑓": {
+  "prefix": "ta.tr",
+  "body": [
+    "ta.tr(handle_na = ${1|true,false|}) ${0}"
+  ],
+  "description": "ta.tr(handle_na = bool) → series float"
+},
+
+"True strength index ⇨ 𝑓": {
+  "prefix": "ta.tsi",
+  "body": [
+    "ta.tsi(source = ${1}, short_length = ${2}, long_length = ${3}) ${0}"
+  ],
+  "description": "ta.tsi(source = int|float, short_length = int, long_length = int) → series float"
+},
+
+"Source value when condition was true ⇨ 𝑓": {
+  "prefix": "ta.valuewhen",
+  "body": [
+    "ta.valuewhen(condition = ${1}, source = ${2|close,high,low,open,hl2,hlc3,ohlc4|}, occurrence = ${3|0,1,2,3,4,5,6,7,8,9|}) ${0}"
+  ],
+  "description": "ta.valuewhen(condition = bool, source = int|float, occurrence = int) → series int|float"
+},
+
+"Variance of `source` for `length` bars back ⇨ 𝑓": {
+  "prefix": "ta.variance",
+  "body": [
+    "ta.variance(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.variance(source = int|float, length = int) → series float"
+},
+
+"Volume weighted average price ⇨ 𝑓": {
+  "prefix": "ta.vwap",
+  "body": [
+    "ta.vwap(source = ${1}) ${0}"
+  ],
+  "description": "ta.vwap(source = int|float) → series float"
+},
+
+"Volume-weighted moving average ⇨ 𝑓": {
+  "prefix": "ta.vwma",
+  "body": [
+    "ta.vwma(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.vwma(source = int|float, length = int) → series float"
+},
+
+"Weighted moving average ⇨ 𝑓": {
+  "prefix": "ta.wma",
+  "body": [
+    "ta.wma(source = ${1}, length = ${2}) ${0}"
+  ],
+  "description": "ta.wma(source = int|float, length = int) → series float"
+},
+
+"Williams %R. Oscillator ⇨ 𝑓": {
+    "prefix": "ta.wpr",
+    "body": [
+      "ta.wpr(length = ${1}) ${0}"
+    ],
+    "description": "ta.wpr(length = int) → series float"
+},
+
+"Casts na to table | Value of the argument after casting to table ⇨ 𝑓": {
+  "prefix": "table",
+  "body": [
+    "table(x = ${1}) $0"
+  ],
+  "description": "table(x = table) → series table"
+},
+
+"Defines a cell in the table and sets its attributes | Block ⇨ 𝑓": {
+  "prefix": "table.cell.block",
+  "body": [
+    "table.cell(",
+    " table_id       = ${1}, ",
+    " column         = ${2| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, ",
+    " row            = ${3| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, ",
+    " text           = ${4:\"${5}\"}, ",
+    " width          = ${6| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, ",
+    " height         = ${7| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, ",
+    " text_color     = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0}), ",
+    " text_halign    = ${10| ,text.align_left,text.align_center,text.align_right|}, ",
+    " text_valign    = ${11| ,text.align_top,text.align_center,text.align_bottom|}, ",
+    " text_size      = ${12| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}, ",
+    " bgcolor        = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})",
+    " )",
+    "$0"
+    ],
+  "description": "table.cell(table_id = table, column = int, row = int, text = string, width = int|float, height = int|float, text_color = color, text_halign = string, text_valign = string, text_size = string, bgcolor = color) → void"
+},
+"Defines a cell in the table and sets its attributes ⇨ 𝑓": {
+  "prefix": "table.cell",
+  "body": [
+    "table.cell(table_id = ${1}, column = ${2| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, row = ${3| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, text = ${4:\"${5}\"}, width = ${6| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, height = ${7| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, text_color = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0}), text_halign = ${10| ,text.align_left,text.align_center,text.align_right|}, text_valign = ${11| ,text.align_top,text.align_center,text.align_bottom|}, text_size = ${12| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}, bgcolor = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0}))",
+    "$0"
+    ],
+  "description": "table.cell(table_id = table, column = int, row = int, text = string, width = int|float, height = int|float, text_color = color, text_halign = string, text_valign = string, text_size = string, bgcolor = color) → void"
+},
+
+"Background color of the cell ⇨ 𝑓": {
+  "prefix": "table.cell_set_bgcolor",
+  "body": [
+    "table.cell_set_bgcolor(table_id = ${1}, column = ${2}, row = ${3}, bgcolor = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}))",
+    "$0"
+  ],
+  "description": "table.cell_set_bgcolor(table_id = table, column = int, row = int, bgcolor = color) → void"
+},
+
+"Height of cell ⇨ 𝑓": {
+  "prefix": "table.cell_set_height",
+  "body": [
+    "table.cell_set_height(table_id = ${1}, column = ${2}, row = ${3}, height = ${4})",
+    "$0"
+  ],
+  "description": "table.cell_set_height(table_id = table, column = int, row = int, height = int|float) → void"
+},
+
+"Sets the text in the specified cell ⇨ 𝑓": {
+  "prefix": "table.cell_set_text",
+  "body": [
+    "table.cell_set_text(table_id = ${1}, column = ${2}, row = ${3}, text = ${4:\"${5}\"})",
+    "$0"
+  ],
+  "description": "table.cell_set_text(table_id = table, column = int, row = int, text = string) → void"
+},
+
+"Color of the text inside the cell ⇨ 𝑓": {
+  "prefix": "table.cell_set_text_color",
+  "body": [
+    "table.cell_set_text_color(table_id = ${1}, column = ${2}, row = ${3}, text_color = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}))",
+    "$0"
+  ],
+  "description": "table.cell_set_text_color(table_id = table, column = int, row = int, text_color = color) → void"
+},
+
+"Horizontal alignment of the cell's text ⇨ 𝑓": {
+  "prefix": "table.cell_set_text_halign",
+  "body": [
+    "table.cell_set_text_halign(table_id = ${1}, column = ${2}, row = ${3}, text_halign = ${4| ,text.align_left,text.align_center,text.align_right|})",
+    "$0"
+  ],
+  "description": "table.cell_set_text_halign(table_id = table, column = int, row = int, text_halign = string) → void"
+},
+
+"Size of the cell's text ⇨ 𝑓": {
+  "prefix": "table.cell_set_text_size",
+  "body": [
+    "table.cell_set_text_size(table_id = ${1}, column = ${2}, row = ${3}, text_size = ${4| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|})",
+    "$0"
+  ],
+  "description": "table.cell_set_text_size(table_id = table, column = int, row = int, text_size = string) → void"
+},
+
+"Vertical alignment of a cell's text ⇨ 𝑓": {
+  "prefix": "table.cell_set_text_valign",
+  "body": [
+    "table.cell_set_text_valign(table_id = ${1}, column = ${2}, row = ${3}, text_valign = ${4| ,text.align_top,text.align_center,text.align_bottom|})",
+    "$0"
+  ],
+  "description": "table.cell_set_text_valign(table_id = table, column = int, row = int, text_valign = string) → void"
+},
+
+"Width of the cell ⇨ 𝑓": {
+  "prefix": "table.cell_set_width",
+  "body": [
+    "table.cell_set_width(table_id = ${1}, column = ${2}, row = ${3}, width = ${4})",
+    "$0"
+  ],
+  "description": "table.cell_set_width(table_id = table, column = int, row = int, width = int|float) → void"
+},
+
+"Removes a cell or a sequence of cells from the table ⇨ 𝑓": {
+  "prefix": "table.clear",
+  "body": [
+    "table.clear(table_id = ${1}, start_column = ${2}, start_row = ${3}, end_column = ${4}, end_row = ${5})",
+    "$0"
+  ],
+  "description": "table.clear(table_id = table, start_column = int, start_row = int, end_column = int, end_row = int) → void"
+},
+
+"Deletes a table ⇨ 𝑓": {
+  "prefix": "table.delete",
+  "body": [
+    "table.delete(table_id = ${1})",
+    "$0"
+  ],
+  "description": "table.delete(table_id = table) → void"
+},
+
+"Creates a new table | block ⇨ 𝑓": {
+  "prefix": "table.new.block",
+  "body": [
+    "table.new(",
+    " position       = ${1| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|},",
+    " columns        = ${2| ,1,2,3,4,5|},",
+    " rows           = ${3| ,1,2,3,4,5|},",
+    " bgcolor        = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}),",
+    " frame_color    = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}),",
+    " frame_width    = ${8| ,1,2,3,4,5|},",
+    " border_color   = color.new(color = ${9| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${10:0}),",
+    " border_width   = ${11| ,1,2,3,4,5|}",
+    " )",
+    "$0"
+  ],
+  "description": "table.new(position = int, columns = int, rows = int, bgcolor = color, frame_color = color, frame_width = int, border_color = color, border_width = int) → series table"
+},
+
+"Creates a new table ⇨ 𝑓": {
+  "prefix": "table.new",
+  "body": [
+    "table.new(position = ${1| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|}, columns = ${2| ,1,2,3,4,5|}, rows = ${3| ,1,2,3,4,5|}, bgcolor = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}), frame_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}), frame_width = ${8| ,1,2,3,4,5|}, border_color = color.new(color = ${9| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${10:0}), border_width = ${11| ,1,2,3,4,5|})",
+    "$0"
+  ],
+  "description": "table.new(position = int, columns = int, rows = int, bgcolor = color, frame_color = color, frame_width = int, border_color = color, border_width = int) → series table"
+},
+
+"Background color of a table ⇨ 𝑓": {
+  "prefix": "table.set_bgcolor",
+  "body": [
+    "table.set_bgcolor(table_id = ${1}, bgcolor = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
+  ],
+  "description": "table.set_bgcolor(table_id = table, bgcolor = color) → void"
+},
+
+"Color of the borders of the table's cells ⇨ 𝑓": {
+  "prefix": "table.set_border_color",
+  "body": [
+    "table.set_border_color(table_id = ${1}, border_color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
+  ],
+  "description": "table.set_border_color(table_id = table, border_color = color) → void"
+},
+
+"Width of the borders of the table's cells ⇨ 𝑓": {
+  "prefix": "table.set_border_width",
+  "body": [
+    "table.set_border_width(table_id = ${1}, border_width = ${2}) ${0}"
+  ],
+  "description": "table.set_border_width(table_id = table, border_width = int) → void"
+},
+
+"Color of the outer frame of a table ⇨ 𝑓": {
+  "prefix": "table.set_frame_color",
+  "body": [
+    "table.set_frame_color(table_id = ${1}, frame_color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
+  ],
+  "description": "table.set_frame_color(table_id = table, frame_color = color) → void"
+},
+
+"Width of the outer frame of a table ⇨ 𝑓": {
+  "prefix": "table.set_frame_width",
+  "body": [
+    "table.set_frame_width(table_id = ${1}, frame_width = ${2}) ${0}"
+  ],
+  "description": "table.set_frame_width(table_id = table, frame_width = int) → void"
+},
+
+"Position of a table ⇨ 𝑓": {
+  "prefix": "table.set_position",
+  "body": [
+    "table.set_position(table_id = ${1}, position = ${2| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|}) ${0}"
+  ],
+  "description": "table.set_position(table_id = table, position = string) → void"
+},
+
+"Ticker identifier for requesting Heikin Ashi bar values ⇨ 𝑓": {
+  "prefix": "ticker.heikinashi",
+  "body": [
+    "ticker.heikinashi(symbol =  ${1| ,\"\",syminfo.ticker,syminfo.tickerid|}) ${0}"
+  ],
+  "description": "ticker.heikinashi(symbol = simple string) → simple string"
+},
+
+"Ticker identifier for requesting Kagi values ⇨ 𝑓": {
+  "prefix": "ticker.kagi",
+  "body": [
+    "ticker.kagi(symbol =  ${1| ,\"\",syminfo.ticker,syminfo.tickerid|}, reversal = ${2}) ${0}"
+  ],
+  "description": "ticker.kagi(symbol = string, reversal = int|float) → simple string"
+},
+
+"Ticker identifier for requesting Line Break values ⇨ 𝑓": {
+  "prefix": "ticker.linebreak",
+  "body": [
+    "ticker.linebreak(symbol =  ${1| ,\"\",syminfo.ticker,syminfo.tickerid|}, number_of_lines = ${2}) ${0}"
+  ],
+  "description": "ticker.linebreak(symbol = string, number_of_lines = int) → simple string"
+},
+
+"Modify called ticker ⇨ 𝑓": {
+  "prefix": "ticker.modify",
+  "body": [
+    "ticker.modify(tickerid = \"${1}\", session = ${2| ,session.regular,session.extended|}, adjustment = ${3| ,adjustment.none,adjustment.splits,adjustment.dividends|}) ${0}"
+  ],
+  "description": "ticker.modify(tickerid = string, session = string, adjustment = string) → simple string"
+},
+
+"Creates a ticker identifier ⇨ 𝑓": {
+  "prefix": "ticker.new",
+  "body": [
+    "ticker.new(prefix = ${1| ,\"\",syminfo.prefix|}, ticker = ${2| ,\"\",syminfo.ticker|}, session = ${3| ,session.regular,session.extended|}, adjustment = ${4| ,adjustment.none,adjustment.splits,adjustment.dividends|}) ${0}"
+  ],
+  "description": "ticker.new(prefix = string, ticker = string, session = string, adjustment = string) → simple string"
+},
+
+"Ticker identifier for requesting Point & Figure values ⇨ 𝑓": {
+  "prefix": "ticker.pointfigure",
+  "body": [
+    "ticker.pointfigure(symbol = ${1| ,\"\",syminfo.ticker,syminfo.tickerid|}, source = ${2| ,\"hl\",\"close\"|}, style = ${3| ,\"ATR\",\"Traditional\"|}, param = ${4}, reversal = ${5}) ${0}"
+  ],
+  "description": "ticker.pointfigure(symbol = string, source = string, style = string, param = int|float, reversal = int) → simple string"
+},
+
+"Ticker identifier for requesting Renko values ⇨ 𝑓": {
+  "prefix": "ticker.renko",
+  "body": [
+    "ticker.renko(symbol = \"${1}\", style = ${2| ,\"ATR\",\"Traditional\"|}, param = ${3} ) ${0}"
+  ],
+  "description": "ticker.renko(symbol = string, style = string, param = int|float) → simple string"
+},
+
+"UNIX time of the current bar for the specified timeframe and session or NaN ⇨ 𝑓": {
+  "prefix": "time",
+  "body": [
+    "time(timeframe = \"${1| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"${2:, session = \"${3| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${4| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\"${5:, timezone = ${6| ,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}}) $0"
+  ],
+  "description": "time(timeframe = string, timezone = series string) → series int"
+},
+
+"UNIX time of the close of the current bar for the specified resolution and session or NaN ⇨ 𝑓": {
+  "prefix": "time_close",
+  "body": [
+    "time_close(timeframe = \"${1| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"${2:, session = \"${3| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${4| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\"${5:, timezone = ${6| ,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}}) $0"
+  ],
+  "description": "time_close(timeframe = string, timezone = series string) → series int"
+},
+
+"UNIX time of specified date and time | int 1 ⇨ 𝑓": {
+  "prefix": ["timestamp", "timestamp.int"],
+  "body": [
+  "timestamp(${1|Y,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000|}, ${2|M,01,02,03,04,05,06,07,08,09,10,11,12|}, ${3|D,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31|}, ${4|h,00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23|}, ${5|m,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}${6:, ${7|s,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}}) $0"
+],
+"description": "timestamp(year = int, month = int, day = int, hour = int, minute = int, second = int) → simple int"
+},
+"UNIX time of specified date and time | int 2 -TZ ⇨ 𝑓": {
+"prefix": ["timestamp.int.2"],
+"body": [
+  "timestamp(${1|TZ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}, ${2|Y,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000|}, ${3|M,01,02,03,04,05,06,07,08,09,10,11,12|}, ${4|D,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31|}, ${5|h,00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23|}, ${6|m,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}${7:, ${8|s,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}}) $0"
+],
+"description": "timestamp(timezone = string, year = int, month = int, day = int, hour = int, minute = int, second = int) → simple int"
+},
+
+"UNIX time of specified date and time | dateString 1 -TZ ⇨ 𝑓": {
+  "prefix": ["timestamp.string.1"],
+  "body": [
+  "timestamp(dateString = \"${1|D,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31|} ${2|M,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec|} ${3|Y,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000|} ${4|h,00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23|}:${5|m,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}:${6|s,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|} ${7|TZ,GMT-12,GMT-11,GMT-10,GMT-9,GMT-8,GMT-7,GMT-6,GMT-5,GMT-4,GMT-3,GMT-2,GMT-1,GMT+0,GMT+1,GMT+2,GMT+3,GMT+4,GMT+5,GMT+6,GMT+7,GMT+8,GMT+9,GMT+10,GMT+11,GMT+12|}\") $0"
+  ],
+  "description": "timestamp(dateString = string) → const int"
+},
+
+"UNIX time of specified date and time | dateString 2 ⇨ 𝑓": {
+  "prefix": ["timestamp.string.2"],
+  "body": [
+  "timestamp(dateString = \"${1|Y,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000|}-${2|M,01,02,03,04,05,06,07,08,09,10,11,12|}-${3|D,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31|}T${4|h,00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23|}:${5|m,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}:${6|Seconds,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}\") $0"
+],
+"description": "timestamp(dateString = string) → const int"
+},
+
+"UNIX time of specified date and time | dateString 3 ⇨ 𝑓": {
+  "prefix": ["timestamp.string.3"],
+  "body": [
+  "timestamp(dateString = \"${1|M,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec|} ${2|D,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31|} ${3|Y,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000|} ${4|h,00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23|}:${5|m,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}:${6|s,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59|}\") $0"
+],
+"description": "timestamp(dateString = string) → const int"
+},
+
+"Week of year (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "weekofyear",
+  "body": [
+    "weekofyear(time = ${1}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) $0"
+  ],
+  "description": "weekofyear(time = int, timezone = series string) → series int"
+},
+
+"Year (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
+  "prefix": "year",
+  "body": [
+    "year(time = ${1}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) $0"
+  ],
+  "description": "year(time = int, timezone = series string) → series int"
+}
+
+}

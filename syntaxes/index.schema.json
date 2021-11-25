@@ -1,0 +1,93 @@
+{
+   "title": "Firestore Index Definitions",
+   "type": "object",
+   "properties": {
+      "indexes": {
+         "type": "array",
+         "items": {
+            "type": "object",
+            "properties": {
+               "collectionGroup": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_]+$",
+                  "description": "The collection group ID to which this index applies."
+               },
+               "queryScope": {
+                  "enum": ["COLLECTION", "COLLECTION_GROUP"],
+                  "description": "The query scope to which this index applies."
+               },
+               "fields": {
+                  "type": "array",
+                  "items": {
+                     "type": "object",
+                     "properties": {
+                        "fieldPath": {
+                           "type": "string",
+                           "pattern": "^[a-zA-Z0-9_/.]+$",
+                           "description": "The path of the field. Special field paths __name__, __type__, and __scatter__ may be used."
+                        },
+                        "order": {
+                           "enum": ["ASCENDING", "DESCENDING"],
+                           "description": "The order determines how a field is indexed."
+                        },
+                        "arrayConfig": {
+                           "enum": ["CONTAINS"],
+                           "description": "The arrayConfig determines how an array field is indexed."
+                        }
+                     },
+                     "uniqueItems": true,
+                     "required": ["fieldPath"]
+                  },
+                  "minItems": 1
+               }
+            },
+            "required": ["collectionGroup", "queryScope", "fields"]
+         },
+         "minItems": 0
+      },
+      "fieldOverrides": {
+         "type": "array",
+         "items": {
+            "type": "object",
+            "properties": {
+               "collectionGroup": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_]+$",
+                  "description": "The collection group ID to which this field override applies."
+               },
+               "fieldPath": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_/.]+$",
+                  "description": "The field path to which this field override applies."
+               },
+               "indexes": {
+                  "type": "array",
+                  "items": {
+                     "type": "object",
+                     "properties": {
+                        "queryScope": {
+                           "enum": ["COLLECTION", "COLLECTION_GROUP"],
+                           "description": "The query scope to which this index applies."
+                        },
+                        "order": {
+                           "enum": ["ASCENDING", "DESCENDING"],
+                           "description": "The order determines how a field is indexed."
+                        },
+                        "arrayConfig": {
+                           "enum": ["CONTAINS"],
+                           "description": "The arrayConfig determines how an array field is indexed."
+                        }
+                     },
+                     "uniqueItems": true,
+                     "required": ["order", "queryScope"]
+                  },
+                  "minItems": 0
+               }
+            },
+            "required": ["collectionGroup", "queryScope", "fields"]
+         },
+         "minItems": 0
+      }
+   },
+   "required": ["indexes"]
+}

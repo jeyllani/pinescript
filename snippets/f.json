@@ -1,0 +1,67 @@
+{
+
+  "Array Content to Label ⇨ Ⓕ": {
+    "prefix": "f.array.label",
+    "body": [
+      "// # ========================= Array Content Label =========================== #",
+      "var A = ${1:// Insert your Array}",
+      "lab = \"\"",
+      "",
+      "for i = 0 to array.size(A) - 1",
+      "    lab := lab + str.tostring(array.get(A, i)) + \" \"",
+      "",
+      "arrayLabel = label.new(x = bar_index, y = close, text = lab, color = color.new(color = color.white transp = 15), textcolor = color.new(color = color.black, transp = 0), size = size.normal, textalign = text.align_right)",
+      "label.delete(l[1])",
+      "// # ========================= Array Content Label =========================== #",
+      "",
+      "$0"
+    ],
+    "description": "Array Content to Label"
+  },
+
+"Gradient Function ⇨ Ⓕ": {
+  "prefix": "f.gradient",
+  "body": [
+  "// # ========================================================================= #",
+  "// #                         Gradient Function                                 #",
+  "// # ========================================================================= #",
+  "",
+  "dataGradient                     = ${1:MyDataVariable} // Series of data to be plotted // ",
+  "",
+  "f_gradient(_c_col, _transp) =>",
+  "",
+  "    _c_red                         = color.r(_c_col)",
+  "    _c_green                       = color.g(_c_col)",
+  "    _c_blue                        = color.b(_c_col)",
+  "",
+  "    color.rgb(_c_red, _c_green, _c_blue, _transp)",
+  "",
+  "gradientData                     = color.from_gradient(dataGradient, ${2| ,\"Bottom Level Value\",-100,-75,-50,-25,0,10,20,25,30,40,50,60,70,75,80,90,100|}, ${3| ,\"Top Level Value\",-100,-75,-50,-25,0,10,20,25,30,40,50,60,70,75,80,90,100|}, ${4| ,🎨 \"Bottom Level Color\" 🎨,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, ${5| ,🎨 \"Top Level Color\" 🎨,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|})",
+  "",
+  "plot(series = dataGradient, ${6:title = \"$1 Gradient\",} color = f_gradient(gradientData, ${7|Transparency,10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100|})${8:, ${9:${10:linewidth = ${11| ,1,2,3,4|},} ${12:style = ${13| ,plot.style_area,plot.style_areabr,plot.style_circles,plot.style_columns,plot.style_cross,plot.style_histogram,plot.style_line,plot.style_linebr,plot.style_stepline|},} ${14:trackprice = ${15| ,false,true|},} ${16:histbase = ${17| ,0.00, 0.50, 1.00, 2.00, 5.00, 7.00, 10.00, 25.00, 50.00, 75.00, 100.00|},} ${18:offset = ${19| ,0,1,2,3,4,5,6,7,8,9,10,20,25,30,35,40,50|},} ${20:join = ${21| ,false,true|},} ${22:editable = ${23| ,false,true|},} ${24:show_last = ${25| ,0,1,2,3,4,5,6,7,8,9,10,20,25,30,35,40,50|},} ${26:display = ${27| ,true,false|}}}})",
+  "",
+  "// # ========================================================================= #",
+  "// #                         Gradient Function                                 #",
+  "// # ========================================================================= #",
+  "",
+  "${0}"
+  ],
+  "description": "Gradient"
+},
+
+"Security Function ⇨ Ⓕ": {
+  "prefix": "f.security",
+  "body": [
+    "// # ========================== Security Function ============================ #",
+    "",
+    "f_security(_symbol, _tf, _src) =>",
+    "    request.security(symbol = _symbol, timeframe = _tf, expression = _src${1|[barstate.isrealtime ? 1 : 0],[0]|}${2:${3:, gaps = ${4| ,barmerge.gaps_off,barmerge.gaps_on|}}${5:, lookahead = ${6| ,barmerge.lookahead_off,barmerge.lookahead_on|}}})",
+    "",
+    "// # ========================== Security Function ============================ #",
+    "",
+    "${0}"
+  ],
+  "description": "Security Function"
+}
+
+}

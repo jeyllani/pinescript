@@ -1,0 +1,144 @@
+{
+    "name": "pinescript",
+    "displayName": "Pine Script",
+    "description": "Pine Script V5 Syntax Highlighting & Snippets",
+    "icon": "images/pineicon.png",
+    "publisher": "JeylaniB",
+    "license": "MIT",
+    "version": "1.0.1",
+    "engines": {
+        "vscode": "^1.62.0"
+    },
+    "author": {
+        "name": "Jeylani"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "pine",
+        "pinescript",
+        "Pine Script V5",
+        "pine script",
+        "pinecode",
+        "pine code",
+        "pineeditor",
+        "pine editor",
+        "tradingview",
+        "trade",
+        "trading"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "pine",
+                "path": "./snippets/built-in_language_operators.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/built-in_functions.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/built-in_variables_dictionnary.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/built-in_scripts.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/comments.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/ect.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/f.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/loopscounters.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/principals.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/scripts_add.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/unicode.json"
+            },
+            {
+                "language": "pine",
+                "path": "./snippets/words.json"
+            }
+        ],
+        "languages": [
+            {
+                "id": "pine",
+                "aliases": [
+                    "Pine Script",
+                    "PineScript",
+                    "Pine"
+                ],
+                "extensions": [
+                    ".ps",
+                    ".pine",
+                    ".pinescript",
+                    ".pinecode",
+                    ".tdps",
+                    ".trading",
+                    ".tradingview",
+                    ".script",
+                    ".help"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "pine",
+                "scopeName": "source.ps",
+                "path": "./syntaxes/ps.tmLanguage.json"
+            }
+        ],
+        "scripts": {
+            "vscode:prepublish": "npm run esbuild-base -- --minify",
+            "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+            "esbuild": "npm run esbuild-base -- --sourcemap",
+            "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+            "test-compile": "tsc -p ./"
+        },
+        "devDependencies": {
+            "@types/vscode": "^1.62.0",
+            "@types/glob": "^7.1.4",
+            "@types/mocha": "^9.0.0",
+            "@types/node": "14.x",
+            "@typescript-eslint/eslint-plugin": "^5.1.0",
+            "@typescript-eslint/parser": "^5.1.0",
+            "eslint": "^8.1.0",
+            "glob": "^7.1.7",
+            "mocha": "^9.1.3",
+            "typescript": "^4.4.4",
+            "@vscode/test-electron": "^1.6.2"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jeyllani/pinescript.git"
+    },
+    "homepage": "https://github.com/jeyllani/pinescript/blob/022e4e3c6aab2839197d37d400872e6207085234/README.md",
+    "devDependencies": {
+        "esbuild": "^0.13.15"
+    }
+}

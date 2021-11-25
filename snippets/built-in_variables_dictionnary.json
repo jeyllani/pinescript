@@ -1,0 +1,1843 @@
+{
+    "adjustment.dividends ⇨ 𝑥": {
+        "prefix": "adjustment.dividends",
+        "body": [
+            "adjustment.dividends$0"
+        ],
+        "description": "adjustment.dividends | Built-in variable"
+    },
+    "adjustment.none ⇨ 𝑥": {
+        "prefix": "adjustment.none",
+        "body": [
+            "adjustment.none$0"
+        ],
+        "description": "adjustment.none | Built-in variable"
+    },
+    "adjustment.splits ⇨ 𝑥": {
+        "prefix": "adjustment.splits",
+        "body": [
+            "adjustment.splits$0"
+        ],
+        "description": "adjustment.splits | Built-in variable"
+    },
+    "alert.freq_all ⇨ 𝑥": {
+        "prefix": "alert.freq_all",
+        "body": [
+            "alert.freq_all$0"
+        ],
+        "description": "alert.freq_all | Built-in variable"
+    },
+    "alert.freq_once_per_bar ⇨ 𝑥": {
+        "prefix": "alert.freq_once_per_bar",
+        "body": [
+            "alert.freq_once_per_bar$0"
+        ],
+        "description": "alert.freq_once_per_bar | Built-in variable"
+    },
+    "alert.freq_once_per_bar_close ⇨ 𝑥": {
+        "prefix": "alert.freq_once_per_bar_close",
+        "body": [
+            "alert.freq_once_per_bar_close$0"
+        ],
+        "description": "alert.freq_once_per_bar_close | Built-in variable"
+    },
+    "bar_index ⇨ 𝑥": {
+        "prefix": "bar_index",
+        "body": [
+            "bar_index$0"
+        ],
+        "description": "bar_index | Built-in variable"
+    },
+    "barmerge.gaps_off ⇨ 𝑥": {
+        "prefix": "barmerge.gaps_off",
+        "body": [
+            "barmerge.gaps_off$0"
+        ],
+        "description": "barmerge.gaps_off | Built-in variable"
+    },
+    "barmerge.gaps_on ⇨ 𝑥": {
+        "prefix": "barmerge.gaps_on",
+        "body": [
+            "barmerge.gaps_on$0"
+        ],
+        "description": "barmerge.gaps_on | Built-in variable"
+    },
+    "barmerge.lookahead_off ⇨ 𝑥": {
+        "prefix": "barmerge.lookahead_off",
+        "body": [
+            "barmerge.lookahead_off$0"
+        ],
+        "description": "barmerge.lookahead_off | Built-in variable"
+    },
+    "barmerge.lookahead_on ⇨ 𝑥": {
+        "prefix": "barmerge.lookahead_on",
+        "body": [
+            "barmerge.lookahead_on$0"
+        ],
+        "description": "barmerge.lookahead_on | Built-in variable"
+    },
+    "barstate.isconfirmed ⇨ 𝑥": {
+        "prefix": "barstate.isconfirmed",
+        "body": [
+            "barstate.isconfirmed$0"
+        ],
+        "description": "barstate.isconfirmed | Built-in variable"
+    },
+    "barstate.isfirst ⇨ 𝑥": {
+        "prefix": "barstate.isfirst",
+        "body": [
+            "barstate.isfirst$0"
+        ],
+        "description": "barstate.isfirst | Built-in variable"
+    },
+    "barstate.ishistory ⇨ 𝑥": {
+        "prefix": "barstate.ishistory",
+        "body": [
+            "barstate.ishistory$0"
+        ],
+        "description": "barstate.ishistory | Built-in variable"
+    },
+    "barstate.islast ⇨ 𝑥": {
+        "prefix": "barstate.islast",
+        "body": [
+            "barstate.islast$0"
+        ],
+        "description": "barstate.islast | Built-in variable"
+    },
+    "barstate.islastconfirmedhistory ⇨ 𝑥": {
+        "prefix": "barstate.islastconfirmedhistory",
+        "body": [
+            "barstate.islastconfirmedhistory$0"
+        ],
+        "description": "barstate.islastconfirmedhistory | Built-in variable"
+    },
+    "barstate.isnew ⇨ 𝑥": {
+        "prefix": "barstate.isnew",
+        "body": [
+            "barstate.isnew$0"
+        ],
+        "description": "barstate.isnew | Built-in variable"
+    },
+    "barstate.isrealtime ⇨ 𝑥": {
+        "prefix": "barstate.isrealtime",
+        "body": [
+            "barstate.isrealtime$0"
+        ],
+        "description": "barstate.isrealtime | Built-in variable"
+    },
+    "box.all ⇨ 𝑥": {
+        "prefix": "box.all",
+        "body": [
+            "box.all$0"
+        ],
+        "description": "box.all | Built-in variable"
+    },
+    "chart.bg_color ⇨ 𝑥": {
+        "prefix": "chart.bg_color",
+        "body": [
+            "chart.bg_color$0"
+        ],
+        "description": "chart.bg_color | Built-in variable"
+    },
+    "chart.fg_color ⇨ 𝑥": {
+        "prefix": "chart.fg_color",
+        "body": [
+            "chart.fg_color$0"
+        ],
+        "description": "chart.fg_color | Built-in variable"
+    },
+    "close ⇨ 𝑥": {
+        "prefix": "close",
+        "body": [
+            "close$0"
+        ],
+        "description": "close | Built-in variable"
+    },
+    "color.aqua ⇨ 𝑥": {
+        "prefix": "color.aqua",
+        "body": [
+            "color.aqua$0"
+        ],
+        "description": "color.aqua | Built-in variable"
+    },
+    "color.black ⇨ 𝑥": {
+        "prefix": "color.black",
+        "body": [
+            "color.black$0"
+        ],
+        "description": "color.black | Built-in variable"
+    },
+    "color.blue ⇨ 𝑥": {
+        "prefix": "color.blue",
+        "body": [
+            "color.blue$0"
+        ],
+        "description": "color.blue | Built-in variable"
+    },
+    "color.fuchsia ⇨ 𝑥": {
+        "prefix": "color.fuchsia",
+        "body": [
+            "color.fuchsia$0"
+        ],
+        "description": "color.fuchsia | Built-in variable"
+    },
+    "color.gray ⇨ 𝑥": {
+        "prefix": "color.gray",
+        "body": [
+            "color.gray$0"
+        ],
+        "description": "color.gray | Built-in variable"
+    },
+    "color.green ⇨ 𝑥": {
+        "prefix": "color.green",
+        "body": [
+            "color.green$0"
+        ],
+        "description": "color.green | Built-in variable"
+    },
+    "color.lime ⇨ 𝑥": {
+        "prefix": "color.lime",
+        "body": [
+            "color.lime$0"
+        ],
+        "description": "color.lime | Built-in variable"
+    },
+    "color.maroon ⇨ 𝑥": {
+        "prefix": "color.maroon",
+        "body": [
+            "color.maroon$0"
+        ],
+        "description": "color.maroon | Built-in variable"
+    },
+    "color.navy ⇨ 𝑥": {
+        "prefix": "color.navy",
+        "body": [
+            "color.navy$0"
+        ],
+        "description": "color.navy | Built-in variable"
+    },
+    "color.olive ⇨ 𝑥": {
+        "prefix": "color.olive",
+        "body": [
+            "color.olive$0"
+        ],
+        "description": "color.olive | Built-in variable"
+    },
+    "color.orange ⇨ 𝑥": {
+        "prefix": "color.orange",
+        "body": [
+            "color.orange$0"
+        ],
+        "description": "color.orange | Built-in variable"
+    },
+    "color.purple ⇨ 𝑥": {
+        "prefix": "color.purple",
+        "body": [
+            "color.purple$0"
+        ],
+        "description": "color.purple | Built-in variable"
+    },
+    "color.red ⇨ 𝑥": {
+        "prefix": "color.red",
+        "body": [
+            "color.red$0"
+        ],
+        "description": "color.red | Built-in variable"
+    },
+    "color.silver ⇨ 𝑥": {
+        "prefix": "color.silver",
+        "body": [
+            "color.silver$0"
+        ],
+        "description": "color.silver | Built-in variable"
+    },
+    "color.teal ⇨ 𝑥": {
+        "prefix": "color.teal",
+        "body": [
+            "color.teal$0"
+        ],
+        "description": "color.teal | Built-in variable"
+    },
+    "color.white ⇨ 𝑥": {
+        "prefix": "color.white",
+        "body": [
+            "color.white$0"
+        ],
+        "description": "color.white | Built-in variable"
+    },
+    "color.yellow ⇨ 𝑥": {
+        "prefix": "color.yellow",
+        "body": [
+            "color.yellow$0"
+        ],
+        "description": "color.yellow | Built-in variable"
+    },
+    "currency.AUD ⇨ 𝑥": {
+        "prefix": "currency.AUD",
+        "body": [
+            "currency.AUD$0"
+        ],
+        "description": "currency.AUD | Built-in variable"
+    },
+    "currency.CAD ⇨ 𝑥": {
+        "prefix": "currency.CAD",
+        "body": [
+            "currency.CAD$0"
+        ],
+        "description": "currency.CAD | Built-in variable"
+    },
+    "currency.CHF ⇨ 𝑥": {
+        "prefix": "currency.CHF",
+        "body": [
+            "currency.CHF$0"
+        ],
+        "description": "currency.CHF | Built-in variable"
+    },
+    "currency.EUR ⇨ 𝑥": {
+        "prefix": "currency.EUR",
+        "body": [
+            "currency.EUR$0"
+        ],
+        "description": "currency.EUR | Built-in variable"
+    },
+    "currency.GBP ⇨ 𝑥": {
+        "prefix": "currency.GBP",
+        "body": [
+            "currency.GBP$0"
+        ],
+        "description": "currency.GBP | Built-in variable"
+    },
+    "currency.HKD ⇨ 𝑥": {
+        "prefix": "currency.HKD",
+        "body": [
+            "currency.HKD$0"
+        ],
+        "description": "currency.HKD | Built-in variable"
+    },
+    "currency.JPY ⇨ 𝑥": {
+        "prefix": "currency.JPY",
+        "body": [
+            "currency.JPY$0"
+        ],
+        "description": "currency.JPY | Built-in variable"
+    },
+    "currency.NOK ⇨ 𝑥": {
+        "prefix": "currency.NOK",
+        "body": [
+            "currency.NOK$0"
+        ],
+        "description": "currency.NOK | Built-in variable"
+    },
+    "currency.NONE ⇨ 𝑥": {
+        "prefix": "currency.NONE",
+        "body": [
+            "currency.NONE$0"
+        ],
+        "description": "currency.NONE | Built-in variable"
+    },
+    "currency.NZD ⇨ 𝑥": {
+        "prefix": "currency.NZD",
+        "body": [
+            "currency.NZD$0"
+        ],
+        "description": "currency.NZD | Built-in variable"
+    },
+    "currency.RUB ⇨ 𝑥": {
+        "prefix": "currency.RUB",
+        "body": [
+            "currency.RUB$0"
+        ],
+        "description": "currency.RUB | Built-in variable"
+    },
+    "currency.SEK ⇨ 𝑥": {
+        "prefix": "currency.SEK",
+        "body": [
+            "currency.SEK$0"
+        ],
+        "description": "currency.SEK | Built-in variable"
+    },
+    "currency.SGD ⇨ 𝑥": {
+        "prefix": "currency.SGD",
+        "body": [
+            "currency.SGD$0"
+        ],
+        "description": "currency.SGD | Built-in variable"
+    },
+    "currency.TRY ⇨ 𝑥": {
+        "prefix": "currency.TRY",
+        "body": [
+            "currency.TRY$0"
+        ],
+        "description": "currency.TRY | Built-in variable"
+    },
+    "currency.USD ⇨ 𝑥": {
+        "prefix": "currency.USD",
+        "body": [
+            "currency.USD$0"
+        ],
+        "description": "currency.USD | Built-in variable"
+    },
+    "currency.ZAR ⇨ 𝑥": {
+        "prefix": "currency.ZAR",
+        "body": [
+            "currency.ZAR$0"
+        ],
+        "description": "currency.ZAR | Built-in variable"
+    },
+    "dayofmonth ⇨ 𝑥": {
+        "prefix": "dayofmonth",
+        "body": [
+            "dayofmonth$0"
+        ],
+        "description": "dayofmonth | Built-in variable"
+    },
+    "dayofweek ⇨ 𝑥": {
+        "prefix": "dayofweek",
+        "body": [
+            "dayofweek$0"
+        ],
+        "description": "dayofweek | Built-in variable"
+    },
+    "dayofweek.friday ⇨ 𝑥": {
+        "prefix": "dayofweek.friday",
+        "body": [
+            "dayofweek.friday$0"
+        ],
+        "description": "dayofweek.friday | Built-in variable"
+    },
+    "dayofweek.monday ⇨ 𝑥": {
+        "prefix": "dayofweek.monday",
+        "body": [
+            "dayofweek.monday$0"
+        ],
+        "description": "dayofweek.monday | Built-in variable"
+    },
+    "dayofweek.saturday ⇨ 𝑥": {
+        "prefix": "dayofweek.saturday",
+        "body": [
+            "dayofweek.saturday$0"
+        ],
+        "description": "dayofweek.saturday | Built-in variable"
+    },
+    "dayofweek.sunday ⇨ 𝑥": {
+        "prefix": "dayofweek.sunday",
+        "body": [
+            "dayofweek.sunday$0"
+        ],
+        "description": "dayofweek.sunday | Built-in variable"
+    },
+    "dayofweek.thursday ⇨ 𝑥": {
+        "prefix": "dayofweek.thursday",
+        "body": [
+            "dayofweek.thursday$0"
+        ],
+        "description": "dayofweek.thursday | Built-in variable"
+    },
+    "dayofweek.tuesday ⇨ 𝑥": {
+        "prefix": "dayofweek.tuesday",
+        "body": [
+            "dayofweek.tuesday$0"
+        ],
+        "description": "dayofweek.tuesday | Built-in variable"
+    },
+    "dayofweek.wednesday ⇨ 𝑥": {
+        "prefix": "dayofweek.wednesday",
+        "body": [
+            "dayofweek.wednesday$0"
+        ],
+        "description": "dayofweek.wednesday | Built-in variable"
+    },
+    "display.all ⇨ 𝑥": {
+        "prefix": "display.all",
+        "body": [
+            "display.all$0"
+        ],
+        "description": "display.all | Built-in variable"
+    },
+    "display.none ⇨ 𝑥": {
+        "prefix": "display.none",
+        "body": [
+            "display.none$0"
+        ],
+        "description": "display.none | Built-in variable"
+    },
+    "dividends.gross ⇨ 𝑥": {
+        "prefix": "dividends.gross",
+        "body": [
+            "dividends.gross$0"
+        ],
+        "description": "dividends.gross | Built-in variable"
+    },
+    "dividends.net ⇨ 𝑥": {
+        "prefix": "dividends.net",
+        "body": [
+            "dividends.net$0"
+        ],
+        "description": "dividends.net | Built-in variable"
+    },
+    "earnings.actual ⇨ 𝑥": {
+        "prefix": "earnings.actual",
+        "body": [
+            "earnings.actual$0"
+        ],
+        "description": "earnings.actual | Built-in variable"
+    },
+    "earnings.estimate ⇨ 𝑥": {
+        "prefix": "earnings.estimate",
+        "body": [
+            "earnings.estimate$0"
+        ],
+        "description": "earnings.estimate | Built-in variable"
+    },
+    "earnings.standardized ⇨ 𝑥": {
+        "prefix": "earnings.standardized",
+        "body": [
+            "earnings.standardized$0"
+        ],
+        "description": "earnings.standardized | Built-in variable"
+    },
+    "extend.both ⇨ 𝑥": {
+        "prefix": "extend.both",
+        "body": [
+            "extend.both$0"
+        ],
+        "description": "extend.both | Built-in variable"
+    },
+    "extend.left ⇨ 𝑥": {
+        "prefix": "extend.left",
+        "body": [
+            "extend.left$0"
+        ],
+        "description": "extend.left | Built-in variable"
+    },
+    "extend.none ⇨ 𝑥": {
+        "prefix": "extend.none",
+        "body": [
+            "extend.none$0"
+        ],
+        "description": "extend.none | Built-in variable"
+    },
+    "extend.right ⇨ 𝑥": {
+        "prefix": "extend.right",
+        "body": [
+            "extend.right$0"
+        ],
+        "description": "extend.right | Built-in variable"
+    },
+    "format.inherit ⇨ 𝑥": {
+        "prefix": "format.inherit",
+        "body": [
+            "format.inherit$0"
+        ],
+        "description": "format.inherit | Built-in variable"
+    },
+    "format.mintick ⇨ 𝑥": {
+        "prefix": "format.mintick",
+        "body": [
+            "format.mintick$0"
+        ],
+        "description": "format.mintick | Built-in variable"
+    },
+    "format.percent ⇨ 𝑥": {
+        "prefix": "format.percent",
+        "body": [
+            "format.percent$0"
+        ],
+        "description": "format.percent | Built-in variable"
+    },
+    "format.price ⇨ 𝑥": {
+        "prefix": "format.price",
+        "body": [
+            "format.price$0"
+        ],
+        "description": "format.price | Built-in variable"
+    },
+    "format.volume ⇨ 𝑥": {
+        "prefix": "format.volume",
+        "body": [
+            "format.volume$0"
+        ],
+        "description": "format.volume | Built-in variable"
+    },
+    "high ⇨ 𝑥": {
+        "prefix": "high",
+        "body": [
+            "high$0"
+        ],
+        "description": "high | Built-in variable"
+    },
+    "hl2 ⇨ 𝑥": {
+        "prefix": "hl2",
+        "body": [
+            "hl2$0"
+        ],
+        "description": "hl2 | Built-in variable"
+    },
+    "hlc3 ⇨ 𝑥": {
+        "prefix": "hlc3",
+        "body": [
+            "hlc3$0"
+        ],
+        "description": "hlc3 | Built-in variable"
+    },
+    "hline.style_dashed ⇨ 𝑥": {
+        "prefix": "hline.style_dashed",
+        "body": [
+            "hline.style_dashed$0"
+        ],
+        "description": "hline.style_dashed | Built-in variable"
+    },
+    "hline.style_dotted ⇨ 𝑥": {
+        "prefix": "hline.style_dotted",
+        "body": [
+            "hline.style_dotted$0"
+        ],
+        "description": "hline.style_dotted | Built-in variable"
+    },
+    "hline.style_solid ⇨ 𝑥": {
+        "prefix": "hline.style_solid",
+        "body": [
+            "hline.style_solid$0"
+        ],
+        "description": "hline.style_solid | Built-in variable"
+    },
+    "hour ⇨ 𝑥": {
+        "prefix": "hour",
+        "body": [
+            "hour$0"
+        ],
+        "description": "hour | Built-in variable"
+    },
+    "label.all ⇨ 𝑥": {
+        "prefix": "label.all",
+        "body": [
+            "label.all$0"
+        ],
+        "description": "label.all | Built-in variable"
+    },
+    "label.style_arrowdown ⇨ 𝑥": {
+        "prefix": "label.style_arrowdown",
+        "body": [
+            "label.style_arrowdown$0"
+        ],
+        "description": "label.style_arrowdown | Built-in variable"
+    },
+    "label.style_arrowup ⇨ 𝑥": {
+        "prefix": "label.style_arrowup",
+        "body": [
+            "label.style_arrowup$0"
+        ],
+        "description": "label.style_arrowup | Built-in variable"
+    },
+    "label.style_circle ⇨ 𝑥": {
+        "prefix": "label.style_circle",
+        "body": [
+            "label.style_circle$0"
+        ],
+        "description": "label.style_circle | Built-in variable"
+    },
+    "label.style_cross ⇨ 𝑥": {
+        "prefix": "label.style_cross",
+        "body": [
+            "label.style_cross$0"
+        ],
+        "description": "label.style_cross | Built-in variable"
+    },
+    "label.style_diamond ⇨ 𝑥": {
+        "prefix": "label.style_diamond",
+        "body": [
+            "label.style_diamond$0"
+        ],
+        "description": "label.style_diamond | Built-in variable"
+    },
+    "label.style_flag ⇨ 𝑥": {
+        "prefix": "label.style_flag",
+        "body": [
+            "label.style_flag$0"
+        ],
+        "description": "label.style_flag | Built-in variable"
+    },
+    "label.style_label_center ⇨ 𝑥": {
+        "prefix": "label.style_label_center",
+        "body": [
+            "label.style_label_center$0"
+        ],
+        "description": "label.style_label_center | Built-in variable"
+    },
+    "label.style_label_down ⇨ 𝑥": {
+        "prefix": "label.style_label_down",
+        "body": [
+            "label.style_label_down$0"
+        ],
+        "description": "label.style_label_down | Built-in variable"
+    },
+    "label.style_label_left ⇨ 𝑥": {
+        "prefix": "label.style_label_left",
+        "body": [
+            "label.style_label_left$0"
+        ],
+        "description": "label.style_label_left | Built-in variable"
+    },
+    "label.style_label_lower_left ⇨ 𝑥": {
+        "prefix": "label.style_label_lower_left",
+        "body": [
+            "label.style_label_lower_left$0"
+        ],
+        "description": "label.style_label_lower_left | Built-in variable"
+    },
+    "label.style_label_lower_right ⇨ 𝑥": {
+        "prefix": "label.style_label_lower_right",
+        "body": [
+            "label.style_label_lower_right$0"
+        ],
+        "description": "label.style_label_lower_right | Built-in variable"
+    },
+    "label.style_label_right ⇨ 𝑥": {
+        "prefix": "label.style_label_right",
+        "body": [
+            "label.style_label_right$0"
+        ],
+        "description": "label.style_label_right | Built-in variable"
+    },
+    "label.style_label_up ⇨ 𝑥": {
+        "prefix": "label.style_label_up",
+        "body": [
+            "label.style_label_up$0"
+        ],
+        "description": "label.style_label_up | Built-in variable"
+    },
+    "label.style_label_upper_left ⇨ 𝑥": {
+        "prefix": "label.style_label_upper_left",
+        "body": [
+            "label.style_label_upper_left$0"
+        ],
+        "description": "label.style_label_upper_left | Built-in variable"
+    },
+    "label.style_label_upper_right ⇨ 𝑥": {
+        "prefix": "label.style_label_upper_right",
+        "body": [
+            "label.style_label_upper_right$0"
+        ],
+        "description": "label.style_label_upper_right | Built-in variable"
+    },
+    "label.style_none ⇨ 𝑥": {
+        "prefix": "label.style_none",
+        "body": [
+            "label.style_none$0"
+        ],
+        "description": "label.style_none | Built-in variable"
+    },
+    "label.style_square ⇨ 𝑥": {
+        "prefix": "label.style_square",
+        "body": [
+            "label.style_square$0"
+        ],
+        "description": "label.style_square | Built-in variable"
+    },
+    "label.style_triangledown ⇨ 𝑥": {
+        "prefix": "label.style_triangledown",
+        "body": [
+            "label.style_triangledown$0"
+        ],
+        "description": "label.style_triangledown | Built-in variable"
+    },
+    "label.style_triangleup ⇨ 𝑥": {
+        "prefix": "label.style_triangleup",
+        "body": [
+            "label.style_triangleup$0"
+        ],
+        "description": "label.style_triangleup | Built-in variable"
+    },
+    "label.style_xcross ⇨ 𝑥": {
+        "prefix": "label.style_xcross",
+        "body": [
+            "label.style_xcross$0"
+        ],
+        "description": "label.style_xcross | Built-in variable"
+    },
+    "line.all ⇨ 𝑥": {
+        "prefix": "line.all",
+        "body": [
+            "line.all$0"
+        ],
+        "description": "line.all | Built-in variable"
+    },
+    "line.style_arrow_both ⇨ 𝑥": {
+        "prefix": "line.style_arrow_both",
+        "body": [
+            "line.style_arrow_both$0"
+        ],
+        "description": "line.style_arrow_both | Built-in variable"
+    },
+    "line.style_arrow_left ⇨ 𝑥": {
+        "prefix": "line.style_arrow_left",
+        "body": [
+            "line.style_arrow_left$0"
+        ],
+        "description": "line.style_arrow_left | Built-in variable"
+    },
+    "line.style_arrow_right ⇨ 𝑥": {
+        "prefix": "line.style_arrow_right",
+        "body": [
+            "line.style_arrow_right$0"
+        ],
+        "description": "line.style_arrow_right | Built-in variable"
+    },
+    "line.style_dashed ⇨ 𝑥": {
+        "prefix": "line.style_dashed",
+        "body": [
+            "line.style_dashed$0"
+        ],
+        "description": "line.style_dashed | Built-in variable"
+    },
+    "line.style_dotted ⇨ 𝑥": {
+        "prefix": "line.style_dotted",
+        "body": [
+            "line.style_dotted$0"
+        ],
+        "description": "line.style_dotted | Built-in variable"
+    },
+    "line.style_solid ⇨ 𝑥": {
+        "prefix": "line.style_solid",
+        "body": [
+            "line.style_solid$0"
+        ],
+        "description": "line.style_solid | Built-in variable"
+    },
+    "location.abovebar ⇨ 𝑥": {
+        "prefix": "location.abovebar",
+        "body": [
+            "location.abovebar$0"
+        ],
+        "description": "location.abovebar | Built-in variable"
+    },
+    "location.absolute ⇨ 𝑥": {
+        "prefix": "location.absolute",
+        "body": [
+            "location.absolute$0"
+        ],
+        "description": "location.absolute | Built-in variable"
+    },
+    "location.belowbar ⇨ 𝑥": {
+        "prefix": "location.belowbar",
+        "body": [
+            "location.belowbar$0"
+        ],
+        "description": "location.belowbar | Built-in variable"
+    },
+    "location.bottom ⇨ 𝑥": {
+        "prefix": "location.bottom",
+        "body": [
+            "location.bottom$0"
+        ],
+        "description": "location.bottom | Built-in variable"
+    },
+    "location.top ⇨ 𝑥": {
+        "prefix": "location.top",
+        "body": [
+            "location.top$0"
+        ],
+        "description": "location.top | Built-in variable"
+    },
+    "low ⇨ 𝑥": {
+        "prefix": "low",
+        "body": [
+            "low$0"
+        ],
+        "description": "low | Built-in variable"
+    },
+    "math.e ⇨ 𝑥": {
+        "prefix": "math.e",
+        "body": [
+            "math.e$0"
+        ],
+        "description": "math.e | Built-in variable"
+    },
+    "math.phi ⇨ 𝑥": {
+        "prefix": "math.phi",
+        "body": [
+            "math.phi$0"
+        ],
+        "description": "math.phi | Built-in variable"
+    },
+    "math.pi ⇨ 𝑥": {
+        "prefix": "math.pi",
+        "body": [
+            "math.pi$0"
+        ],
+        "description": "math.pi | Built-in variable"
+    },
+    "math.rphi ⇨ 𝑥": {
+        "prefix": "math.rphi",
+        "body": [
+            "math.rphi$0"
+        ],
+        "description": "math.rphi | Built-in variable"
+    },
+    "minute ⇨ 𝑥": {
+        "prefix": "minute",
+        "body": [
+            "minute$0"
+        ],
+        "description": "minute | Built-in variable"
+    },
+    "month ⇨ 𝑥": {
+        "prefix": "month",
+        "body": [
+            "month$0"
+        ],
+        "description": "month | Built-in variable"
+    },
+    "n ⇨ 𝑥": {
+        "prefix": "n",
+        "body": [
+            "n$0"
+        ],
+        "description": "n | Built-in variable"
+    },
+    "na ⇨ 𝑥": {
+        "prefix": "na",
+        "body": [
+            "na$0"
+        ],
+        "description": "na | Built-in variable"
+    },
+    "ohlc4 ⇨ 𝑥": {
+        "prefix": "ohlc4",
+        "body": [
+            "ohlc4$0"
+        ],
+        "description": "ohlc4 | Built-in variable"
+    },
+    "open ⇨ 𝑥": {
+        "prefix": "open",
+        "body": [
+            "open$0"
+        ],
+        "description": "open | Built-in variable"
+    },
+    "order.ascending ⇨ 𝑥": {
+        "prefix": "order.ascending",
+        "body": [
+            "order.ascending$0"
+        ],
+        "description": "order.ascending | Built-in variable"
+    },
+    "order.descending ⇨ 𝑥": {
+        "prefix": "order.descending",
+        "body": [
+            "order.descending$0"
+        ],
+        "description": "order.descending | Built-in variable"
+    },
+    "plot.style_area ⇨ 𝑥": {
+        "prefix": "plot.style_area",
+        "body": [
+            "plot.style_area$0"
+        ],
+        "description": "plot.style_area | Built-in variable"
+    },
+    "plot.style_areabr ⇨ 𝑥": {
+        "prefix": "plot.style_areabr",
+        "body": [
+            "plot.style_areabr$0"
+        ],
+        "description": "plot.style_areabr | Built-in variable"
+    },
+    "plot.style_circles ⇨ 𝑥": {
+        "prefix": "plot.style_circles",
+        "body": [
+            "plot.style_circles$0"
+        ],
+        "description": "plot.style_circles | Built-in variable"
+    },
+    "plot.style_columns ⇨ 𝑥": {
+        "prefix": "plot.style_columns",
+        "body": [
+            "plot.style_columns$0"
+        ],
+        "description": "plot.style_columns | Built-in variable"
+    },
+    "plot.style_cross ⇨ 𝑥": {
+        "prefix": "plot.style_cross",
+        "body": [
+            "plot.style_cross$0"
+        ],
+        "description": "plot.style_cross | Built-in variable"
+    },
+    "plot.style_histogram ⇨ 𝑥": {
+        "prefix": "plot.style_histogram",
+        "body": [
+            "plot.style_histogram$0"
+        ],
+        "description": "plot.style_histogram | Built-in variable"
+    },
+    "plot.style_line ⇨ 𝑥": {
+        "prefix": "plot.style_line",
+        "body": [
+            "plot.style_line$0"
+        ],
+        "description": "plot.style_line | Built-in variable"
+    },
+    "plot.style_linebr ⇨ 𝑥": {
+        "prefix": "plot.style_linebr",
+        "body": [
+            "plot.style_linebr$0"
+        ],
+        "description": "plot.style_linebr | Built-in variable"
+    },
+    "plot.style_stepline ⇨ 𝑥": {
+        "prefix": "plot.style_stepline",
+        "body": [
+            "plot.style_stepline$0"
+        ],
+        "description": "plot.style_stepline | Built-in variable"
+    },
+    "plot.style_stepline_diamond ⇨ 𝑥": {
+        "prefix": "plot.style_stepline_diamond",
+        "body": [
+            "plot.style_stepline_diamond$0"
+        ],
+        "description": "plot.style_stepline_diamond | Built-in variable"
+    },
+    "position.bottom_center ⇨ 𝑥": {
+        "prefix": "position.bottom_center",
+        "body": [
+            "position.bottom_center$0"
+        ],
+        "description": "position.bottom_center | Built-in variable"
+    },
+    "position.bottom_left ⇨ 𝑥": {
+        "prefix": "position.bottom_left",
+        "body": [
+            "position.bottom_left$0"
+        ],
+        "description": "position.bottom_left | Built-in variable"
+    },
+    "position.bottom_right ⇨ 𝑥": {
+        "prefix": "position.bottom_right",
+        "body": [
+            "position.bottom_right$0"
+        ],
+        "description": "position.bottom_right | Built-in variable"
+    },
+    "position.middle_center ⇨ 𝑥": {
+        "prefix": "position.middle_center",
+        "body": [
+            "position.middle_center$0"
+        ],
+        "description": "position.middle_center | Built-in variable"
+    },
+    "position.middle_left ⇨ 𝑥": {
+        "prefix": "position.middle_left",
+        "body": [
+            "position.middle_left$0"
+        ],
+        "description": "position.middle_left | Built-in variable"
+    },
+    "position.middle_right ⇨ 𝑥": {
+        "prefix": "position.middle_right",
+        "body": [
+            "position.middle_right$0"
+        ],
+        "description": "position.middle_right | Built-in variable"
+    },
+    "position.top_center ⇨ 𝑥": {
+        "prefix": "position.top_center",
+        "body": [
+            "position.top_center$0"
+        ],
+        "description": "position.top_center | Built-in variable"
+    },
+    "position.top_left ⇨ 𝑥": {
+        "prefix": "position.top_left",
+        "body": [
+            "position.top_left$0"
+        ],
+        "description": "position.top_left | Built-in variable"
+    },
+    "position.top_right ⇨ 𝑥": {
+        "prefix": "position.top_right",
+        "body": [
+            "position.top_right$0"
+        ],
+        "description": "position.top_right | Built-in variable"
+    },
+    "scale.left ⇨ 𝑥": {
+        "prefix": "scale.left",
+        "body": [
+            "scale.left$0"
+        ],
+        "description": "scale.left | Built-in variable"
+    },
+    "scale.none ⇨ 𝑥": {
+        "prefix": "scale.none",
+        "body": [
+            "scale.none$0"
+        ],
+        "description": "scale.none | Built-in variable"
+    },
+    "scale.right ⇨ 𝑥": {
+        "prefix": "scale.right",
+        "body": [
+            "scale.right$0"
+        ],
+        "description": "scale.right | Built-in variable"
+    },
+    "second ⇨ 𝑥": {
+        "prefix": "second",
+        "body": [
+            "second$0"
+        ],
+        "description": "second | Built-in variable"
+    },
+    "session.extended ⇨ 𝑥": {
+        "prefix": "session.extended",
+        "body": [
+            "session.extended$0"
+        ],
+        "description": "session.extended | Built-in variable"
+    },
+    "session.ismarket ⇨ 𝑥": {
+        "prefix": "session.ismarket",
+        "body": [
+            "session.ismarket$0"
+        ],
+        "description": "session.ismarket | Built-in variable"
+    },
+    "session.ispostmarket ⇨ 𝑥": {
+        "prefix": "session.ispostmarket",
+        "body": [
+            "session.ispostmarket$0"
+        ],
+        "description": "session.ispostmarket | Built-in variable"
+    },
+    "session.ispremarket ⇨ 𝑥": {
+        "prefix": "session.ispremarket",
+        "body": [
+            "session.ispremarket$0"
+        ],
+        "description": "session.ispremarket | Built-in variable"
+    },
+    "session.regular ⇨ 𝑥": {
+        "prefix": "session.regular",
+        "body": [
+            "session.regular$0"
+        ],
+        "description": "session.regular | Built-in variable"
+    },
+    "shape.arrowdown ⇨ 𝑥": {
+        "prefix": "shape.arrowdown",
+        "body": [
+            "shape.arrowdown$0"
+        ],
+        "description": "shape.arrowdown | Built-in variable"
+    },
+    "shape.arrowup ⇨ 𝑥": {
+        "prefix": "shape.arrowup",
+        "body": [
+            "shape.arrowup$0"
+        ],
+        "description": "shape.arrowup | Built-in variable"
+    },
+    "shape.circle ⇨ 𝑥": {
+        "prefix": "shape.circle",
+        "body": [
+            "shape.circle$0"
+        ],
+        "description": "shape.circle | Built-in variable"
+    },
+    "shape.cross ⇨ 𝑥": {
+        "prefix": "shape.cross",
+        "body": [
+            "shape.cross$0"
+        ],
+        "description": "shape.cross | Built-in variable"
+    },
+    "shape.diamond ⇨ 𝑥": {
+        "prefix": "shape.diamond",
+        "body": [
+            "shape.diamond$0"
+        ],
+        "description": "shape.diamond | Built-in variable"
+    },
+    "shape.flag ⇨ 𝑥": {
+        "prefix": "shape.flag",
+        "body": [
+            "shape.flag$0"
+        ],
+        "description": "shape.flag | Built-in variable"
+    },
+    "shape.labeldown ⇨ 𝑥": {
+        "prefix": "shape.labeldown",
+        "body": [
+            "shape.labeldown$0"
+        ],
+        "description": "shape.labeldown | Built-in variable"
+    },
+    "shape.labelup ⇨ 𝑥": {
+        "prefix": "shape.labelup",
+        "body": [
+            "shape.labelup$0"
+        ],
+        "description": "shape.labelup | Built-in variable"
+    },
+    "shape.square ⇨ 𝑥": {
+        "prefix": "shape.square",
+        "body": [
+            "shape.square$0"
+        ],
+        "description": "shape.square | Built-in variable"
+    },
+    "shape.triangledown ⇨ 𝑥": {
+        "prefix": "shape.triangledown",
+        "body": [
+            "shape.triangledown$0"
+        ],
+        "description": "shape.triangledown | Built-in variable"
+    },
+    "shape.triangleup ⇨ 𝑥": {
+        "prefix": "shape.triangleup",
+        "body": [
+            "shape.triangleup$0"
+        ],
+        "description": "shape.triangleup | Built-in variable"
+    },
+    "shape.xcross ⇨ 𝑥": {
+        "prefix": "shape.xcross",
+        "body": [
+            "shape.xcross$0"
+        ],
+        "description": "shape.xcross | Built-in variable"
+    },
+    "size.auto ⇨ 𝑥": {
+        "prefix": "size.auto",
+        "body": [
+            "size.auto$0"
+        ],
+        "description": "size.auto | Built-in variable"
+    },
+    "size.huge ⇨ 𝑥": {
+        "prefix": "size.huge",
+        "body": [
+            "size.huge$0"
+        ],
+        "description": "size.huge | Built-in variable"
+    },
+    "size.large ⇨ 𝑥": {
+        "prefix": "size.large",
+        "body": [
+            "size.large$0"
+        ],
+        "description": "size.large | Built-in variable"
+    },
+    "size.normal ⇨ 𝑥": {
+        "prefix": "size.normal",
+        "body": [
+            "size.normal$0"
+        ],
+        "description": "size.normal | Built-in variable"
+    },
+    "size.small ⇨ 𝑥": {
+        "prefix": "size.small",
+        "body": [
+            "size.small$0"
+        ],
+        "description": "size.small | Built-in variable"
+    },
+    "size.tiny ⇨ 𝑥": {
+        "prefix": "size.tiny",
+        "body": [
+            "size.tiny$0"
+        ],
+        "description": "size.tiny | Built-in variable"
+    },
+    "splits.denominator ⇨ 𝑥": {
+        "prefix": "splits.denominator",
+        "body": [
+            "splits.denominator$0"
+        ],
+        "description": "splits.denominator | Built-in variable"
+    },
+    "splits.numerator ⇨ 𝑥": {
+        "prefix": "splits.numerator",
+        "body": [
+            "splits.numerator$0"
+        ],
+        "description": "splits.numerator | Built-in variable"
+    },
+    "strategy.account_currency ⇨ 𝑥": {
+        "prefix": "strategy.account_currency",
+        "body": [
+            "strategy.account_currency$0"
+        ],
+        "description": "strategy.account_currency | Built-in variable"
+    },
+    "strategy.cash ⇨ 𝑥": {
+        "prefix": "strategy.cash",
+        "body": [
+            "strategy.cash$0"
+        ],
+        "description": "strategy.cash | Built-in variable"
+    },
+    "strategy.closedtrades ⇨ 𝑥": {
+        "prefix": "strategy.closedtrades",
+        "body": [
+            "strategy.closedtrades$0"
+        ],
+        "description": "strategy.closedtrades | Built-in variable"
+    },
+    "strategy.commission.cash_per_contract ⇨ 𝑥": {
+        "prefix": "strategy.commission.cash_per_contract",
+        "body": [
+            "strategy.commission.cash_per_contract$0"
+        ],
+        "description": "strategy.commission.cash_per_contract | Built-in variable"
+    },
+    "strategy.commission.cash_per_order ⇨ 𝑥": {
+        "prefix": "strategy.commission.cash_per_order",
+        "body": [
+            "strategy.commission.cash_per_order$0"
+        ],
+        "description": "strategy.commission.cash_per_order | Built-in variable"
+    },
+    "strategy.commission.percent ⇨ 𝑥": {
+        "prefix": "strategy.commission.percent",
+        "body": [
+            "strategy.commission.percent$0"
+        ],
+        "description": "strategy.commission.percent | Built-in variable"
+    },
+    "strategy.direction.all ⇨ 𝑥": {
+        "prefix": "strategy.direction.all",
+        "body": [
+            "strategy.direction.all$0"
+        ],
+        "description": "strategy.direction.all | Built-in variable"
+    },
+    "strategy.direction.long ⇨ 𝑥": {
+        "prefix": "strategy.direction.long",
+        "body": [
+            "strategy.direction.long$0"
+        ],
+        "description": "strategy.direction.long | Built-in variable"
+    },
+    "strategy.direction.short ⇨ 𝑥": {
+        "prefix": "strategy.direction.short",
+        "body": [
+            "strategy.direction.short$0"
+        ],
+        "description": "strategy.direction.short | Built-in variable"
+    },
+    "strategy.equity ⇨ 𝑥": {
+        "prefix": "strategy.equity",
+        "body": [
+            "strategy.equity$0"
+        ],
+        "description": "strategy.equity | Built-in variable"
+    },
+    "strategy.eventrades ⇨ 𝑥": {
+        "prefix": "strategy.eventrades",
+        "body": [
+            "strategy.eventrades$0"
+        ],
+        "description": "strategy.eventrades | Built-in variable"
+    },
+    "strategy.fixed ⇨ 𝑥": {
+        "prefix": "strategy.fixed",
+        "body": [
+            "strategy.fixed$0"
+        ],
+        "description": "strategy.fixed | Built-in variable"
+    },
+    "strategy.grossloss ⇨ 𝑥": {
+        "prefix": "strategy.grossloss",
+        "body": [
+            "strategy.grossloss$0"
+        ],
+        "description": "strategy.grossloss | Built-in variable"
+    },
+    "strategy.grossprofit ⇨ 𝑥": {
+        "prefix": "strategy.grossprofit",
+        "body": [
+            "strategy.grossprofit$0"
+        ],
+        "description": "strategy.grossprofit | Built-in variable"
+    },
+    "strategy.initial_capital ⇨ 𝑥": {
+        "prefix": "strategy.initial_capital",
+        "body": [
+            "strategy.initial_capital$0"
+        ],
+        "description": "strategy.initial_capital | Built-in variable"
+    },
+    "strategy.long ⇨ 𝑥": {
+        "prefix": "strategy.long",
+        "body": [
+            "strategy.long$0"
+        ],
+        "description": "strategy.long | Built-in variable"
+    },
+    "strategy.losstrades ⇨ 𝑥": {
+        "prefix": "strategy.losstrades",
+        "body": [
+            "strategy.losstrades$0"
+        ],
+        "description": "strategy.losstrades | Built-in variable"
+    },
+    "strategy.max_contracts_held_all ⇨ 𝑥": {
+        "prefix": "strategy.max_contracts_held_all",
+        "body": [
+            "strategy.max_contracts_held_all$0"
+        ],
+        "description": "strategy.max_contracts_held_all | Built-in variable"
+    },
+    "strategy.max_contracts_held_long ⇨ 𝑥": {
+        "prefix": "strategy.max_contracts_held_long",
+        "body": [
+            "strategy.max_contracts_held_long$0"
+        ],
+        "description": "strategy.max_contracts_held_long | Built-in variable"
+    },
+    "strategy.max_contracts_held_short ⇨ 𝑥": {
+        "prefix": "strategy.max_contracts_held_short",
+        "body": [
+            "strategy.max_contracts_held_short$0"
+        ],
+        "description": "strategy.max_contracts_held_short | Built-in variable"
+    },
+    "strategy.max_drawdown ⇨ 𝑥": {
+        "prefix": "strategy.max_drawdown",
+        "body": [
+            "strategy.max_drawdown$0"
+        ],
+        "description": "strategy.max_drawdown | Built-in variable"
+    },
+    "strategy.netprofit ⇨ 𝑥": {
+        "prefix": "strategy.netprofit",
+        "body": [
+            "strategy.netprofit$0"
+        ],
+        "description": "strategy.netprofit | Built-in variable"
+    },
+    "strategy.oca.cancel ⇨ 𝑥": {
+        "prefix": "strategy.oca.cancel",
+        "body": [
+            "strategy.oca.cancel$0"
+        ],
+        "description": "strategy.oca.cancel | Built-in variable"
+    },
+    "strategy.oca.none ⇨ 𝑥": {
+        "prefix": "strategy.oca.none",
+        "body": [
+            "strategy.oca.none$0"
+        ],
+        "description": "strategy.oca.none | Built-in variable"
+    },
+    "strategy.oca.reduce ⇨ 𝑥": {
+        "prefix": "strategy.oca.reduce",
+        "body": [
+            "strategy.oca.reduce$0"
+        ],
+        "description": "strategy.oca.reduce | Built-in variable"
+    },
+    "strategy.openprofit ⇨ 𝑥": {
+        "prefix": "strategy.openprofit",
+        "body": [
+            "strategy.openprofit$0"
+        ],
+        "description": "strategy.openprofit | Built-in variable"
+    },
+    "strategy.opentrades ⇨ 𝑥": {
+        "prefix": "strategy.opentrades",
+        "body": [
+            "strategy.opentrades$0"
+        ],
+        "description": "strategy.opentrades | Built-in variable"
+    },
+    "strategy.percent_of_equity ⇨ 𝑥": {
+        "prefix": "strategy.percent_of_equity",
+        "body": [
+            "strategy.percent_of_equity$0"
+        ],
+        "description": "strategy.percent_of_equity | Built-in variable"
+    },
+    "strategy.position_avg_price ⇨ 𝑥": {
+        "prefix": "strategy.position_avg_price",
+        "body": [
+            "strategy.position_avg_price$0"
+        ],
+        "description": "strategy.position_avg_price | Built-in variable"
+    },
+    "strategy.position_entry_name ⇨ 𝑥": {
+        "prefix": "strategy.position_entry_name",
+        "body": [
+            "strategy.position_entry_name$0"
+        ],
+        "description": "strategy.position_entry_name | Built-in variable"
+    },
+    "strategy.position_size ⇨ 𝑥": {
+        "prefix": "strategy.position_size",
+        "body": [
+            "strategy.position_size$0"
+        ],
+        "description": "strategy.position_size | Built-in variable"
+    },
+    "strategy.short ⇨ 𝑥": {
+        "prefix": "strategy.short",
+        "body": [
+            "strategy.short$0"
+        ],
+        "description": "strategy.short | Built-in variable"
+    },
+    "strategy.wintrades ⇨ 𝑥": {
+        "prefix": "strategy.wintrades",
+        "body": [
+            "strategy.wintrades$0"
+        ],
+        "description": "strategy.wintrades | Built-in variable"
+    },
+    "syminfo.basecurrency ⇨ 𝑥": {
+        "prefix": "syminfo.basecurrency",
+        "body": [
+            "syminfo.basecurrency$0"
+        ],
+        "description": "syminfo.basecurrency | Built-in variable"
+    },
+    "syminfo.currency ⇨ 𝑥": {
+        "prefix": "syminfo.currency",
+        "body": [
+            "syminfo.currency$0"
+        ],
+        "description": "syminfo.currency | Built-in variable"
+    },
+    "syminfo.description ⇨ 𝑥":  {
+        "prefix": "syminfo.description",
+        "body": [
+            "syminfo.description$0 | Built-in variable"
+        ],
+        "description": "syminfo.description | Built-in variable"
+    },
+    "syminfo.mintick ⇨ 𝑥": {
+        "prefix": "syminfo.mintick",
+        "body": [
+            "syminfo.mintick$0"
+        ],
+        "description": "syminfo.mintick | Built-in variable"
+    },
+    "syminfo.pointvalue ⇨ 𝑥": {
+        "prefix": "syminfo.pointvalue",
+        "body": [
+            "syminfo.pointvalue$0"
+        ],
+        "description": "syminfo.pointvalue | Built-in variable"
+    },
+    "syminfo.prefix ⇨ 𝑥": {
+        "prefix": "syminfo.prefix",
+        "body": [
+            "syminfo.prefix$0"
+        ],
+        "description": "syminfo.prefix | Built-in variable"
+    },
+    "syminfo.root ⇨ 𝑥": {
+        "prefix": "syminfo.root",
+        "body": [
+            "syminfo.root$0"
+        ],
+        "description": "syminfo.root | Built-in variable"
+    },
+    "syminfo.session ⇨ 𝑥": {
+        "prefix": "syminfo.session",
+        "body": [
+            "syminfo.session$0"
+        ],
+        "description": "syminfo.session | Built-in variable"
+    },
+    "syminfo.ticker ⇨ 𝑥": {
+        "prefix": "syminfo.ticker",
+        "body": [
+            "syminfo.ticker$0"
+        ],
+        "description": "syminfo.ticker | Built-in variable"
+    },
+    "syminfo.tickerid ⇨ 𝑥": {
+        "prefix": "syminfo.tickerid",
+        "body": [
+            "syminfo.tickerid$0"
+        ],
+        "description": "syminfo.tickerid | Built-in variable"
+    },
+    "syminfo.timezone ⇨ 𝑥": {
+        "prefix": "syminfo.timezone",
+        "body": [
+            "syminfo.timezone$0"
+        ],
+        "description": "syminfo.timezone | Built-in variable"
+    },
+    "syminfo.type ⇨ 𝑥": {
+        "prefix": "syminfo.type",
+        "body": [
+            "syminfo.type$0"
+        ],
+        "description": "syminfo.type | Built-in variable"
+    },
+    "ta.accdist ⇨ 𝑥": {
+        "prefix": "ta.accdist",
+        "body": [
+            "ta.accdist$0"
+        ],
+        "description": "ta.accdist | Built-in variable"
+    },
+    "ta.iii ⇨ 𝑥": {
+        "prefix": "ta.iii",
+        "body": [
+            "ta.iii$0"
+        ],
+        "description": "ta.iii | Built-in variable"
+    },
+    "ta.nvi ⇨ 𝑥": {
+        "prefix": "ta.nvi",
+        "body": [
+            "ta.nvi$0"
+        ],
+        "description": "ta.nvi | Built-in variable"
+    },
+    "ta.obv ⇨ 𝑥": {
+        "prefix": "ta.obv",
+        "body": [
+            "ta.obv$0"
+        ],
+        "description": "ta.obv | Built-in variable"
+    },
+    "ta.pvi ⇨ 𝑥": {
+        "prefix": "ta.pvi",
+        "body": [
+            "ta.pvi$0"
+        ],
+        "description": "ta.pvi | Built-in variable"
+    },
+    "ta.pvt ⇨ 𝑥": {
+        "prefix": "ta.pvt",
+        "body": [
+            "ta.pvt$0"
+        ],
+        "description": "ta.pvt | Built-in variable"
+    },
+    "ta.tr ⇨ 𝑥": {
+        "prefix": "ta.tr",
+        "body": [
+            "ta.tr$0"
+        ],
+        "description": "ta.tr | Built-in variable"
+    },
+    "ta.vwap ⇨ 𝑥": {
+        "prefix": "ta.vwap",
+        "body": [
+            "ta.vwap$0"
+        ],
+        "description": "ta.vwap | Built-in variable"
+    },
+    "ta.wad ⇨ 𝑥": {
+        "prefix": "ta.wad",
+        "body": [
+            "ta.wad$0"
+        ],
+        "description": "ta.wad | Built-in variable"
+    },
+    "ta.wvad ⇨ 𝑥": {
+        "prefix": "ta.wvad",
+        "body": [
+            "ta.wvad$0"
+        ],
+        "description": "ta.wvad | Built-in variable"
+    },
+    "table.all ⇨ 𝑥": {
+        "prefix": "table.all",
+        "body": [
+            "table.all$0"
+        ],
+        "description": "table.all | Built-in variable"
+    },
+    "text.align_bottom ⇨ 𝑥": {
+        "prefix": "text.align_bottom",
+        "body": [
+            "text.align_bottom$0"
+        ],
+        "description": "text.align_bottom | Built-in variable"
+    },
+    "text.align_center ⇨ 𝑥": {
+        "prefix": "text.align_center",
+        "body": [
+            "text.align_center$0"
+        ],
+        "description": "text.align_center | Built-in variable"
+    },
+    "text.align_left ⇨ 𝑥": {
+        "prefix": "text.align_left",
+        "body": [
+            "text.align_left$0"
+        ],
+        "description": "text.align_left | Built-in variable"
+    },
+    "text.align_right ⇨ 𝑥": {
+        "prefix": "text.align_right",
+        "body": [
+            "text.align_right$0"
+        ],
+        "description": "text.align_right | Built-in variable"
+    },
+    "text.align_top ⇨ 𝑥": {
+        "prefix": "text.align_top",
+        "body": [
+            "text.align_top$0"
+        ],
+        "description": "text.align_top | Built-in variable"
+    },
+    "time ⇨ 𝑥": {
+        "prefix": "time",
+        "body": [
+            "time$0"
+        ],
+        "description": "time | Built-in variable"
+    },
+    "time_close ⇨ 𝑥": {
+        "prefix": "time_close",
+        "body": [
+            "time_close$0"
+        ],
+        "description": "time_close | Built-in variable"
+    },
+    "time_tradingday ⇨ 𝑥": {
+        "prefix": "time_tradingday",
+        "body": [
+            "time_tradingday$0"
+        ],
+        "description": "time_tradingday | Built-in variable"
+    },
+    "timeframe.isdaily ⇨ 𝑥": {
+        "prefix": "timeframe.isdaily",
+        "body": [
+            "timeframe.isdaily$0"
+        ],
+        "description": "timeframe.isdaily | Built-in variable"
+    },
+    "timeframe.isdwm ⇨ 𝑥": {
+        "prefix": "timeframe.isdwm",
+        "body": [
+            "timeframe.isdwm$0"
+        ],
+        "description": "timeframe.isdwm | Built-in variable"
+    },
+    "timeframe.isintraday ⇨ 𝑥": {
+        "prefix": "timeframe.isintraday",
+        "body": [
+            "timeframe.isintraday$0"
+        ],
+        "description": "timeframe.isintraday | Built-in variable"
+    },
+    "timeframe.isminutes ⇨ 𝑥": {
+        "prefix": "timeframe.isminutes",
+        "body": [
+            "timeframe.isminutes$0"
+        ],
+        "description": "timeframe.isminutes | Built-in variable"
+    },
+    "timeframe.ismonthly ⇨ 𝑥": {
+        "prefix": "timeframe.ismonthly",
+        "body": [
+            "timeframe.ismonthly$0"
+        ],
+        "description": "timeframe.ismonthly | Built-in variable"
+    },
+    "timeframe.isseconds ⇨ 𝑥": {
+        "prefix": "timeframe.isseconds",
+        "body": [
+            "timeframe.isseconds$0"
+        ],
+        "description": "timeframe.isseconds | Built-in variable"
+    },
+    "timeframe.isweekly ⇨ 𝑥": {
+        "prefix": "timeframe.isweekly",
+        "body": [
+            "timeframe.isweekly$0"
+        ],
+        "description": "timeframe.isweekly | Built-in variable"
+    },
+    "timeframe.multiplier ⇨ 𝑥": {
+        "prefix": "timeframe.multiplier",
+        "body": [
+            "timeframe.multiplier$0"
+        ],
+        "description": "timeframe.multiplier | Built-in variable"
+    },
+    "timeframe.period ⇨ 𝑥": {
+        "prefix": "timeframe.period",
+        "body": [
+            "timeframe.period$0"
+        ],
+        "description": "timeframe.period | Built-in variable"
+    },
+    "timenow ⇨ 𝑥": {
+        "prefix": "timenow",
+        "body": [
+            "timenow$0"
+        ],
+        "description": "timenow | Built-in variable"
+    },
+    "volume ⇨ 𝑥": {
+        "prefix": "volume",
+        "body": [
+            "volume$0"
+        ],
+        "description": "volume | Built-in variable"
+    },
+    "weekofyear ⇨ 𝑥": {
+        "prefix": "weekofyear",
+        "body": [
+            "weekofyear$0"
+        ],
+        "description": "weekofyear | Built-in variable"
+    },
+    "xloc.bar_index ⇨ 𝑥": {
+        "prefix": "xloc.bar_index",
+        "body": [
+            "xloc.bar_index$0"
+        ],
+        "description": "xloc.bar_index | Built-in variable"
+    },
+    "xloc.bar_time ⇨ 𝑥": {
+        "prefix": "xloc.bar_time",
+        "body": [
+            "xloc.bar_time$0"
+        ],
+        "description": "xloc.bar_time | Built-in variable"
+    },
+    "year ⇨ 𝑥": {
+        "prefix": "year",
+        "body": [
+            "year$0"
+        ],
+        "description": "year | Built-in variable"
+    },
+    "yloc.abovebar ⇨ 𝑥": {
+        "prefix": "yloc.abovebar",
+        "body": [
+            "yloc.abovebar$0"
+        ],
+        "description": "yloc.abovebar | Built-in variable"
+    },
+    "yloc.belowbar ⇨ 𝑥": {
+        "prefix": "yloc.belowbar",
+        "body": [
+            "yloc.belowbar$0"
+        ],
+        "description": "yloc.belowbar | Built-in variable"
+    },
+    "yloc.price ⇨ 𝑥": {
+        "prefix": "yloc.price",
+        "body": [
+            "yloc.price$0"
+        ],
+        "description": "yloc.price | Built-in variable"
+    }
+}
