@@ -18683,4 +18683,4 @@ Week number of current bar time in exchange timezone`);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() { }
+export function deactivate() {}

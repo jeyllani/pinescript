@@ -3,7 +3,7 @@
  <h3 align="center">⭐ Syntax Highlighting | Snippets | Hovers ⭐ </h3> </center>
 
 ### **Update**
-* Language References Hovers
+* Language Reference Hovers
 
 
 #### **Realease Info**
@@ -14,17 +14,17 @@
 
 #### **Syntax**
 
-<img src="images/syntax.gif" width="39%" height="39%"> 
+<img src="https://github.com/jeyllani/pinescript/blob/main/images/syntax.gif?raw=true" width="39%" height="39%"> 
 
 ---
 
 #### **Hovers**
 
-<img src="images/hovers.gif" width="100%" height="100%"> 
+<img src="https://github.com/jeyllani/pinescript/blob/main/images/hovers.gif?raw=true" width="100%" height="100%"> 
 
 ---
 
-### **Snippets**
+#### **Snippets**
 
 <img src="https://github.com/jeyllani/pinescript/blob/main/images/ext1.gif?raw=true" width="100%" height="100%">
 
@@ -120,7 +120,7 @@
 ---
 ### Contributions
 
-- If you want to report an error, snippet suggestion, script to add or anything provide a pull request on [github](https://github.com/jeyllani/pinescript)
+- If you want to report an error, snippet suggestion, script to add or anything please provide a [pull request](https://github.com/jeyllani/pinescript/pulls)
 
 ---
 
@@ -137,4 +137,4 @@
 ---
 
 ##### Version 
-*1.0.1*
+*3.0.0*
