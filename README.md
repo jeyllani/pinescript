@@ -118,15 +118,26 @@
 3.   Implementing intellisense autocompletion
 
 ---
+
+
+### **Hover Issue**
+* After udating if the hovers don't work 
+  
+  * 1. Unistall the extension
+  * 2. Open .vscode file from explorer or finder, or execute `open .vscode` in the terminal 
+  * 3. Delete jeylaniB.pinescript folder
+  * 4. Reinstall the extension
+
+---
 ### Contributions
 
-- If you want to report an error, snippet suggestion, script to add or anything please provide a [pull request](https://github.com/jeyllani/pinescript/pulls)
+- If you want to report an error, snippet suggestion, script to add or anything else [pull request](https://github.com/jeyllani/pinescript/pulls)
 
 ---
 
 ### Support Us
 
-- If you find this extension useful and want to support it's developpement **support us**
+- If you find this extension useful and want to support it
   
   * **BTC**  *13tRgbSFSLEgNzdQt21THir8afuqYVi1pA*
   * **ETH**  *0x768d0068989f68ccdabcbae8256e9d7d7a48ff98*
@@ -137,4 +148,4 @@
 ---
 
 ##### Version 
-*3.0.0*
+*1.0.1*

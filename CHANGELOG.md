@@ -9,6 +9,13 @@
 - Corrected few snippets
 - Added snippets under `f` domain
 
+**Hovers Not Working**
+* After udating if the hovers don't work 
+  * 1. Unistall the extension
+  * 2. Open .vscode file from explorer or finder, or execute `open .vscode` in the terminal 
+  * 3. Delete jeylaniB.pinescript extension folder
+  * 4. Reinstall the extension
+
 ---
 
 #### **1.0.0**

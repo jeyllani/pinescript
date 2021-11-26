@@ -34,13 +34,7 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "a.helloWorld",
-				"title": "Hello World"
-			}
-		],
-		"snippets": [
+ 		"snippets": [
 			{
 				"language": "pine",
 				"path": "./snippets/built-in_language_operators.json"
