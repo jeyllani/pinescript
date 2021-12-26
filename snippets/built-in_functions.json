@@ -2032,7 +2032,7 @@
   "body": [
     "ta.alma(series = ${1}, length = ${2}, offset = ${3}, sigma = ${4}${5:, floor = ${6| ,true,false|}}) ${0}"
   ],
-  "description": "ta.highest(series = int|float, length = int, offset  = int|float, sigma = int|float, floor = bool) → series float"
+  "description": "ta.alma(series = int|float, length = int, offset  = int|float, sigma = int|float, floor = bool) → series float"
 },
 
 "Average True Range ⇨ 𝑓": {
@@ -2374,7 +2374,7 @@
 "Standard deviation ⇨ 𝑓": {
   "prefix": "ta.stdev",
   "body": [
-    "ta.stoch(source = ${1}, length = ${2}) ${0}"
+    "ta.stdev(source = ${1}, length = ${2}) ${0}"
   ],
   "description": "ta.stdev(source = int|float, length = int) → series float"
 },

@@ -2,9 +2,10 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	console.log('Pine Extension Installed');
+	console.log('Pine Package Extension Installed');
 
 
+	
 	let pineHover00 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange00;
@@ -28,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		}
 	});
-
+context.subscriptions.push(pineHover00);
 
 	let pineHover02 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
@@ -57,8 +58,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 
-
-	context.subscriptions.push(pineHover00);
 
 	let pineHover01 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
@@ -92,10 +91,36 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText1 = document.lineAt(position.line).text;
 
 			const function1 = new vscode.MarkdownString(``);
-			function1.appendCodeblock("alert(message = string, freq = input string) -> void");
+			function1.appendCodeblock("(function) alert(message, freq) → void");
 			function1.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_alert)*`);
+<hr>
+<hr> 
+  			
+Triggers an alert event when called during the real-time bar and an alert based on alert function events was previously created for the indicator or strategy through the “Create Alert” dialog box. *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_alert)*
+
+<hr>
+`);
+			function1.appendMarkdown(`
+<i>@param</i> <code>message = (series string)</code>  &nbsp; Message sent when the alert triggers  &nbsp; <em>  Required argument </em> <br>
+<i>@param</i> <code>freq    = (input string) </code>  &nbsp; The triggering frequency              &nbsp; <em>  Optional argument </em> 
+
+`);
+
+
+function1.appendMarkdown(`
+<hr>
+
+(example)`);
+
+			function1.appendCodeblock(`//@version=5
+indicator("\`alert()\` example", "", true)
+ma = ta.sma(close, 14)
+xUp = ta.crossover(close, ma)
+if xUp
+    // Trigger the alert the first time a cross occurs during the real-time bar.
+    alert("Price (" + str.tostring(close) + ") crossed over MA (" + str.tostring(ma) +  ").", alert.freq_once_per_bar)
+plot(ma)
+plotchar(xUp, "xUp", "▲", location.top, size = size.tiny)`, `pine`);
 			function1.isTrusted = true;
 			function1.supportHtml = true;
 
@@ -120,10 +145,26 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText2 = document.lineAt(position.line).text;
 
 			const function2 = new vscode.MarkdownString(``);
-			function2.appendCodeblock("alertcondition(condition = bool, title = const string, message = const string) → int|float");
+			function2.appendCodeblock("(function) alertcondition(condition, title, message) → void");
 			function2.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_alertcondition)*`);
+<hr>
+<hr> 
+
+						  
+Creates alert condition, that is available in Create Alert dialog.<br> Please note, that alertcondition does NOT create an alert, it just gives you more options in Create Alert dialog.<br> Also, alertcondition effect is invisible on chart. *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_alertcondition)*
+<hr>
+`);
+			function2.appendMarkdown(`
+<i>@param</i> <code>condition = (series bool)</code> &nbsp; True values mean alert fire, false mean no alert &nbsp; <em> Required argument </em> <br>
+<i>@param</i> <code>title     = (const string)</code> &nbsp; Title of the alert condition 					  &nbsp; <em> Optional argument </em> <br>
+<i>@param</i> <code>message   = (const string)</code> &nbsp; Message to display when alert fires 			  &nbsp; <em> Optional argument </em>
+`);
+
+function2.appendMarkdown(`
+<hr>
+
+(example)`);
+			function2.appendCodeblock(`alertcondition(close >= open, title = 'Alert on Green Bar', message = 'Green Bar!')`, `pine`);
 			function2.isTrusted = true;
 			function2.supportHtml = true;
 
@@ -148,10 +189,42 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText3 = document.lineAt(position.line).text;
 
 			const function3 = new vscode.MarkdownString(``);
-			function3.appendCodeblock("array.avg(id = int[]|float[]) → int|float");
+			function3.appendCodeblock(`(function) array.avg(id) → series float
+		   array.avg(id) → series int
+`);
 			function3.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}avg)*`);
+<hr>
+<hr> 
+
+						  
+The function returns the mean of an array's elements *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}avg)*
+<hr>
+`);
+
+			function3.appendMarkdown(`
+<i>@param</i> <code>id = float[]</code> &nbsp;&nbsp; | &nbsp; An array object<br>
+<i>@param</i> <code>id = int[]</code> &nbsp;&nbsp;  | &nbsp; An array object
+
+<hr>
+`);
+
+function3.appendMarkdown(`
+Returns → <i> Mean of array's elements </i>
+
+`);
+
+
+function3.appendMarkdown(`
+<hr>
+
+(example)`);
+
+			function3.appendCodeblock(`//@version=5
+indicator("array.avg example")
+a = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i])
+plot(array.avg(a))`, `pine`);
 			function3.isTrusted = true;
 			function3.supportHtml = true;
 
@@ -176,10 +249,30 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText4 = document.lineAt(position.line).text;
 
 			const function4 = new vscode.MarkdownString(``);
-			function4.appendCodeblock("array.clear(id = any array type) → void");
+			function4.appendCodeblock("(function) array.clear(id) → void");
 			function4.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}clear)*`);
+<hr>
+<hr> 
+
+						  
+The function removes all elements from an array *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}clear)*
+<hr>
+`);
+			function4.appendMarkdown(`
+<i>@param</i> <code>id = (any array type)</code> | An array object
+
+`);
+			function4.appendMarkdown(`
+<hr>
+
+(example)`);
+			function4.appendCodeblock(`//@version=5
+indicator("array.clear example")
+a = array.new_float(5,high)
+array.clear(a)
+array.push(a, close)
+plot(array.get(a,0))
+plot(array.size(a))`, `pine`);
 			function4.isTrusted = true;
 			function4.supportHtml = true;
 
@@ -204,10 +297,40 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText5 = document.lineAt(position.line).text;
 
 			const function5 = new vscode.MarkdownString(``);
-			function5.appendCodeblock("array.concat(id1 = any array type, id2 = any array type) → id1");
-			function5.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}concat)*`);
+			function5.appendCodeblock("(function) array.concat(id1, id2) → id1");
+
+					function5.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function is used to merge two arrays<br> It pushes all elements from the second array to the first array, and returns the first array *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}concat)*
+<hr>
+`);
+
+function5.appendMarkdown(`
+<i>@param</i> <code>id1 = (any array type)</code> | The first array object<br>
+<i>@param</i> <code>id2 = (any array type)</code> | The second array object
+
+<hr
+`);
+
+function5.appendMarkdown(`
+<hr>
+
+(example)`);
+			function5.appendCodeblock(`//@version=5
+indicator("array.concat example")
+a = array.new_float(0,0)
+b = array.new_float(0,0)
+for i = 0 to 4
+    array.push(a, high[i])
+    array.push(b, low[i])
+c = array.concat(a,b)
+plot(array.size(a))
+plot(array.size(b))
+plot(array.size(c))`, `pine`);
+
 			function5.isTrusted = true;
 			function5.supportHtml = true;
 
@@ -232,10 +355,34 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText6 = document.lineAt(position.line).text;
 
 			const function6 = new vscode.MarkdownString(``);
-			function6.appendCodeblock("array.copy(id = any array type) → array");
+			function6.appendCodeblock("(function) array.copy(id) → array");
 			function6.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}copy)*`);
+<hr>
+<hr> 
+
+						  
+The function creates a copy of an existing array *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}copy)*
+<hr>
+`);
+
+function6.appendMarkdown(`
+<i>@param</i> <code>id1 = (any array type)</code> | An array object
+
+<hr
+`);
+
+function6.appendMarkdown(`
+<hr>
+
+(example)`);
+			function6.appendCodeblock(`//@version=5
+indicator("array.copy example")
+length = 5
+a = array.new_float(length, close)
+b = array.copy(a)
+a := array.new_float(length, open)
+plot(array.sum(a) / length)
+plot(array.sum(b) / length)`, `pine`);
 			function6.isTrusted = true;
 			function6.supportHtml = true;
 
@@ -260,10 +407,36 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText7 = document.lineAt(position.line).text;
 
 			const function7 = new vscode.MarkdownString(``);
-			function7.appendCodeblock("array.covariance(id1 = int[]|float[], id2 = int[]|float[]) → float");
-			function7.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}covariance)*`);
+			function7.appendCodeblock("(function) array.covariance(id1, id2) → series float");
+
+function7.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function returns the covariance of two arrays *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}covariance)*
+<hr>
+`);
+
+function7.appendMarkdown(`
+<i>@param</i> <code>id1 = (int[]/float[])</code> | An array object<br>
+<i>@param</i> <code>id2 = (int[]/float[])</code> | An array object
+
+<hr
+`);
+
+function7.appendMarkdown(`
+<hr>
+
+(example)`);
+			function7.appendCodeblock(`//@version=5
+indicator("array.covariance example")
+a = array.new_float(0)
+b = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i])
+	array.push(a, open[i])
+plot(array.covariance(a, b))`, `pine`);
 			function7.isTrusted = true;
 			function7.supportHtml = true;
 
@@ -288,10 +461,36 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText8 = document.lineAt(position.line).text;
 
 			const function8 = new vscode.MarkdownString(``);
-			function8.appendCodeblock("array.fill(id = any array type, value = series <type of the arrays elements>, index_from = int, index_to = int) → bool[]");
+			function8.appendCodeblock("(function) array.fill(id, value, index_from, index_to) → void");
 			function8.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}fill)*`);
+<hr>
+<hr> 
+
+						  
+The function sets elements of an array to a single value<br>If no index is specified, all elements are set. If only a start index (default 0) is supplied, the elements starting at that index are set<br>If both index parameters are used, the elements from the starting index up to but not including the end index (default na) are set  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}fill)*
+<hr>
+`);
+
+function8.appendMarkdown(`
+<i>@param</i> <code>id = (int[]/float[])</code> | An array object<br>
+<i>@param</i> <code>value = (series \\<type of the array's elements\\>)</code> | Value to fill the array with<br>
+<i>@param</i> <code>index_from = (series int)</code> | Start index, default is 0<br>
+<i>@param</i> <code>index_to = (series int)</code> | End index, default is na. Must be one greater than the index of the last element to set
+
+<hr
+`);
+
+function8.appendMarkdown(`
+<hr>
+
+(example)`);
+			function8.appendCodeblock(`//@version=5
+indicator("array.fill example")
+a = array.new_float(10)
+array.fill(a, close)
+plot(array.sum(a))`, `pine`);
+
+
 			function8.isTrusted = true;
 			function8.supportHtml = true;
 
@@ -316,10 +515,38 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText9 = document.lineAt(position.line).text;
 
 			const function9 = new vscode.MarkdownString(``);
-			function9.appendCodeblock("array.from(arg0 = series of any argument array type, ...) → int|float|bool|color|string|label|line|box|table)[]");
-			function9.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}from)*`);
+			function9.appendCodeblock(`(function) array.from(arg0, arg1, ...) → int[]
+		   array.from(arg0, arg1, ...) → float[]
+		   array.from(arg0, arg1, ...) → bool[]
+		   array.from(arg0, arg1, ...) → string[]
+		   array.from(arg0, arg1, ...) → label[]
+		   array.from(arg0, arg1, ...) → line[]
+		   array.from(arg0, arg1, ...) → color[]
+		   array.from(arg0, arg1, ...) → box[]
+		   array.from(arg0, arg1, ...) → table[]`);
+function9.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function takes a variable number of arguments with one of the types:<br> 	int, float, bool, string, label, line, color, box, table, and returns an array of the corresponding type *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}from)*
+<hr>
+`);
+
+function9.appendMarkdown(`
+<i>@param</i> <code>arg0, arg1, ... = (series int/float/bool/color/string/label/line/box/table)</code> | Array arguments
+
+<hr
+`);
+
+function9.appendMarkdown(`
+<hr>
+
+(example)`);
+			function9.appendCodeblock(`//@version=5
+indicator("array.from_example", overlay = false)
+arr = array.from("Hello", "World!") // arr (string[]) will contain 2 elements: {Hello}, {World!}.
+plot(close)`, `pine`);
 			function9.isTrusted = true;
 			function9.supportHtml = true;
 
@@ -344,10 +571,34 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText10 = document.lineAt(position.line).text;
 
 			const function10 = new vscode.MarkdownString(``);
-			function10.appendCodeblock("array.get(id = any array type, index = int) → series <type of the arrays elements>");
-			function10.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}get)*`);
+			function10.appendCodeblock("(function) array.get(id, index) → series <type of the arrays elements>");
+
+function10.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function returns the value of the element at the specified index *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}get)*
+<hr>
+`);
+
+function10.appendMarkdown(`
+<i>@param</i> <code>id = (any array type)</code> | An array object<br>
+<i>@param</i> <code>index = (series int)</code> | The index of the element whose value is to be returned
+
+<hr
+`);
+
+function10.appendMarkdown(`
+<hr>
+
+(example)`);
+			function10.appendCodeblock(`//@version=5
+indicator("array.get example")
+a = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i] - open[i])
+plot(array.get(a, 9))`, `pine`);
 			function10.isTrusted = true;
 			function10.supportHtml = true;
 
@@ -372,11 +623,37 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText11 = document.lineAt(position.line).text;
 
 			const function11 = new vscode.MarkdownString(``);
-			function11.appendCodeblock("array.includes(id = any array type, value = series <type of the arrays elements>) → series bool");
+			function11.appendCodeblock("(function) array.includes(id, value) → series bool");
+
 			function11.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}includes)*`);
-			function11.isTrusted = true;
+<hr>
+<hr> 
+
+						  
+The function returns true if the value was found in an array, false otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}includes)*
+<hr>
+`);
+
+function11.appendMarkdown(`
+<i>@param</i> <code>id = (any array type)</code> | An array object<br>
+<i>@param</i> <code>value = (series <type of the array's elements>)</code> | The value to search in the array
+
+<hr
+`);
+
+function11.appendMarkdown(`
+<hr>
+
+(example)`);
+			function11.appendCodeblock(`//@version=5
+indicator("array.includes example")
+a = array.new_float(5,high)
+p = close
+if array.includes(a, high)
+	p := open
+plot(p)`, `pine`);
+
+function11.isTrusted = true;
 			function11.supportHtml = true;
 
 			const pattern11 = new RegExp("(array\\.includes)\\(");
@@ -400,10 +677,32 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText12 = document.lineAt(position.line).text;
 
 			const function12 = new vscode.MarkdownString(``);
-			function12.appendCodeblock("array.indexof(id = any array type, value = series <type of the arrays elements>) → int");
+			function12.appendCodeblock("(function) array.indexof(id, value) → series int");
 			function12.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}indexof)*`);
+<hr>
+<hr> 
+
+						  
+The function returns the index of the first occurrence of the value, or -1 if the value is not found *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}indexof)*
+<hr>
+`);
+
+function12.appendMarkdown(`
+<i>@param</i> <code>id = (any array type)</code> | An array object<br>
+<i>@param</i> <code>value = (series <type of the array's elements>)</code> | The value to search in the array
+<hr
+`);
+
+function12.appendMarkdown(`
+<hr>
+
+(example)`);
+			function12.appendCodeblock(`//@version=5
+indicator("array.indexof example")
+a = array.new_float(5,high)
+index = array.indexof(a, high)
+plot(index)`, `pine`);
+
 			function12.isTrusted = true;
 			function12.supportHtml = true;
 
@@ -428,10 +727,33 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText13 = document.lineAt(position.line).text;
 
 			const function13 = new vscode.MarkdownString(``);
-			function13.appendCodeblock("array.insert(id = any array type, index = int, value = series <type of the arrays elements>) → void");
+			function13.appendCodeblock("(function) array.insert(id, index, value) → void");
 			function13.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}insert)*`);
+<hr>
+<hr> 
+
+						  
+The function changes the contents of an array by adding new elements in place *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}insert)*
+<hr>
+`);
+
+function13.appendMarkdown(`
+<i>@param</i> <code>id = (any array type)</code> | An array object<br>
+<i>@param</i> <code>index = (series int)</code> | The index at which to insert the value<br>
+<i>@param</i> <code>value = (series <type of the array's elements>)</code> | The value to add to the array
+<hr
+`);
+
+function13.appendMarkdown(`
+<hr>
+
+(example)`);
+			function13.appendCodeblock(`//@version=5
+indicator("array.insert example")
+a = array.new_float(5, close)
+array.insert(a, 0, open)
+plot(array.get(a, 5))`, `pine`);
+
 			function13.isTrusted = true;
 			function13.supportHtml = true;
 
@@ -456,10 +778,31 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText14 = document.lineAt(position.line).text;
 
 			const function14 = new vscode.MarkdownString(``);
-			function14.appendCodeblock("array.join(id = int[]|float[]|string[], separator = series string) → series string");
+			function14.appendCodeblock("(function) array.join(id, separator) → series string");
 			function14.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}join)*`);
+<hr>
+<hr> 
+
+						  
+The function changes the contents of an array by adding new elements in place *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}join)*
+<hr>
+`);
+
+function14.appendMarkdown(`
+<i>@param</i> <code>id = (int[]/float[]/string[])</code> | An array object<br>
+<i>@param</i> <code>separator = (series int)</code> | The string used to separate each array element
+<hr
+`);
+
+function14.appendMarkdown(`
+<hr>
+
+(example)`);
+			function14.appendCodeblock(`//@version=5
+indicator("array.join example")
+a = array.new_float(5, 5)
+label.new(bar_index, close, array.join(a, ","))`, `pine`);
+
 			function14.isTrusted = true;
 			function14.supportHtml = true;
 
@@ -484,10 +827,28 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText15 = document.lineAt(position.line).text;
 
 			const function15 = new vscode.MarkdownString(``);
-			function15.appendCodeblock("array.lastindexof(id = any array type, value = series <type of the arrays elements>) → int");
-			function15.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}lastindexof)*`);
+			function15.appendCodeblock("(function) array.lastindexof(id, value) → series int");
+
+function15.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function returns the index of the last occurrence of the value, or -1 if the value is not found *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}lastindexof)*
+<hr>
+`);
+
+function15.appendMarkdown(`
+<i>@param</i> <code>id = (int[]/float[]/string[])</code> | An array object<br>
+<i>@param</i> <code>value = (series <type of the array's elements>)</code> | The value to search in the array
+<hr
+`);
+
+function15.appendMarkdown(`
+<hr>
+
+(example)`);
+			function15.appendCodeblock(`//xxxxxxxxxxxxxxxxxxxxxxx)`, `pine`);
 			function15.isTrusted = true;
 			function15.supportHtml = true;
 
@@ -512,10 +873,41 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText16 = document.lineAt(position.line).text;
 
 			const function16 = new vscode.MarkdownString(``);
-			function16.appendCodeblock("array.max(id = int[]|float[]) → series int|float");
-			function16.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}max)*`);
+			function16.appendCodeblock(`(function) array.max(id) → series float
+		   array.max(id) → series int`);
+
+
+function16.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function returns the largest value from a given array. *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}max)*
+<hr>
+`);
+
+function16.appendMarkdown(`
+<i>@param</i> <code>id = (int[]/float[])</code> An array object
+
+<hr>
+`);
+
+function16.appendMarkdown(`
+* → <i> Mean of array's elements </i>
+
+`);
+
+function16.appendMarkdown(`
+<hr>
+
+(example)`);
+			function16.appendCodeblock(`//@version=5
+indicator("array.max example")
+a = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i])
+plot(array.max(a))`, `pine`);
+
 			function16.isTrusted = true;
 			function16.supportHtml = true;
 
@@ -540,10 +932,40 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText17 = document.lineAt(position.line).text;
 
 			const function17 = new vscode.MarkdownString(``);
-			function17.appendCodeblock("array.median(id = int[]|float[]) → series int|float");
+			function17.appendCodeblock(`(function) array.median(id) → series float
+		   array.median(id) → series int`);
 			function17.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}median)*`);
+<hr>
+<hr> 
+
+						  
+The function returns the median of an array's elements *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}median)*
+<hr>
+`);
+
+			function17.appendMarkdown(`
+<i>@param</i> <code>id = (int[]/float[])</code> An array object
+
+<hr>
+`);
+
+			function17.appendMarkdown(`
+→ <i> The median of the array's elements </i>
+
+`);
+
+function17.appendMarkdown(`
+<hr>
+
+(example)`);
+			function17.appendCodeblock(`//@version=5
+indicator("array.median example")
+a = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i])
+plot(array.median(a))`, `pine`);
+
+
 			function17.isTrusted = true;
 			function17.supportHtml = true;
 
@@ -568,10 +990,39 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText18 = document.lineAt(position.line).text;
 
 			const function18 = new vscode.MarkdownString(``);
-			function18.appendCodeblock("array.min(id = int[]|float[]) → series int|float");
+			function18.appendCodeblock(`(function) array.min(id) → series float
+		   array.min(id) → series int`);
+function18.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function returns the lowest value from a given array *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}min)*
+<hr>
+`);
+
 			function18.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}min)*`);
+<i>@param</i> <code>id = (int[]/float[])</code> An array object
+
+<hr>
+`);
+
+			function18.appendMarkdown(`
+→ <i> The lowest value in the array </i>
+
+`);
+
+function18.appendMarkdown(`
+<hr>
+
+(example)`);
+			function18.appendCodeblock(`//@version=5
+indicator("array.min example")
+a = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i])
+plot(array.min(a))`, `pine`);
+
 			function18.isTrusted = true;
 			function18.supportHtml = true;
 
@@ -596,10 +1047,40 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText19 = document.lineAt(position.line).text;
 
 			const function19 = new vscode.MarkdownString(``);
-			function19.appendCodeblock("array.mode(id = int[]|float[]) → series int|float");
+			function19.appendCodeblock(`(function) array.mode(id) → series float
+		   array.mode(id) → series int`);			
+
+function19.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function returns the mode of an array's elements<br>If there are several values with the same frequency, it returns the smallest value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}mode)*
+<hr>
+`);
+
 			function19.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}mode)*`);
+<i>@param</i> <code>id = (int[]/float[])</code> An array object
+
+<hr>
+`);
+
+			function19.appendMarkdown(`
+→ <i> The mode of the array's elements </i>
+
+`);
+
+function19.appendMarkdown(`
+<hr>
+
+(example)`);
+			function19.appendCodeblock(`//@version=5
+indicator("array.mode example")
+a = array.new_float(0)
+for i = 0 to 9
+	array.push(a, close[i])
+plot(array.mode(a))`, `pine`);
+
 			function19.isTrusted = true;
 			function19.supportHtml = true;
 
@@ -624,10 +1105,40 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText20 = document.lineAt(position.line).text;
 
 			const function20 = new vscode.MarkdownString(``);
-			function20.appendCodeblock("array.new_bool(size = bool, initial_value = series bool) → bool[]");
-			function20.appendMarkdown(`
+			function20.appendCodeblock("(function) array.new_bool(size, initial_value) → bool[]");
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_bool)*`);
+
+function20.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function creates a new array object of bool type elements *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_bool)*
+<hr>
+`);
+
+			function20.appendMarkdown(`
+<i>@param</i> <code>size = (series int)           </code> <i> Optional </i> Initial size of an array. The default is 0<br>
+<i>@param</i> <code>initial_value = (series bool) </code> <i> Optional </i> Initial value of all array elements. The default is <code>na</code>
+
+<hr>
+`);
+
+			function20.appendMarkdown(`
+* <i> An array index starts from 0</i>
+
+`);
+
+function20.appendMarkdown(`
+<hr>
+
+(example)`);
+			function20.appendCodeblock(`//@version=5
+indicator("array.new_bool example")
+length = 5
+a = array.new_bool(length, close > open)
+plot(array.get(a, 0) ? close : open)`, `pine`);
+
 			function20.isTrusted = true;
 			function20.supportHtml = true;
 
@@ -652,10 +1163,40 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText21 = document.lineAt(position.line).text;
 
 			const function21 = new vscode.MarkdownString(``);
-			function21.appendCodeblock("array.new_box(size = box, initial_value = series box) → box[]");
+			function21.appendCodeblock("(function) array.new_box(size, initial_value) → box[]");
+
+			
+function21.appendMarkdown(`
+<hr>
+<hr> 
+
+						  
+The function creates a new array object of box type elements *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_box)*
+<hr>
+`);
+
 			function21.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_box)*`);
+<i>@param</i> <code>size = (series int)           </code> <i> Optional </i> Initial size of an array. The default is 0<br>
+<i>@param</i> <code>initial_value = (series bool) </code> <i> Optional </i> Initial value of all array elements. The default is <code>na</code>
+
+<hr>
+`);
+
+			function21.appendMarkdown(`
+* →<i> The ID of an array object which may be used in other array.*() functions</i> <br>
+* <i> An array index starts from 0 </i>
+
+`);
+
+function21.appendMarkdown(`
+<hr>
+
+(example)`);
+			function21.appendCodeblock(`//@version=5
+indicator("array.new_box example")
+box[] boxes = array.new_box()
+array.push(boxes, box.new(time, close, time+2, low))
+plot(1)`, `pine`);
 			function21.isTrusted = true;
 			function21.supportHtml = true;
 
@@ -680,10 +1221,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText22 = document.lineAt(position.line).text;
 
 			const function22 = new vscode.MarkdownString(``);
-			function22.appendCodeblock("array.new_color(size = color, initial_value = series color) → color[]");
+			function22.appendCodeblock("(function) array.new_color(size = color, initial_value = series color) → color[]");
 			function22.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_color)*`);
 			function22.isTrusted = true;
 			function22.supportHtml = true;
 
@@ -708,10 +1249,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText23 = document.lineAt(position.line).text;
 
 			const function23 = new vscode.MarkdownString(``);
-			function23.appendCodeblock("array.new_float(size = float, initial_value = series float) → float[]");
+			function23.appendCodeblock("(function) array.new_float(size = float, initial_value = series float) → float[]");
 			function23.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_float)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_float)*`);
 			function23.isTrusted = true;
 			function23.supportHtml = true;
 
@@ -736,10 +1277,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText24 = document.lineAt(position.line).text;
 
 			const function24 = new vscode.MarkdownString(``);
-			function24.appendCodeblock("array.new_int(size = int, initial_value = series int) → int[]");
+			function24.appendCodeblock("(function) array.new_int(size = int, initial_value = series int) → int[]");
 			function24.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_int)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_int)*`);
 			function24.isTrusted = true;
 			function24.supportHtml = true;
 
@@ -764,10 +1305,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText25 = document.lineAt(position.line).text;
 
 			const function25 = new vscode.MarkdownString(``);
-			function25.appendCodeblock("array.new_label(size = int, initial_value = series label) → label[]");
+			function25.appendCodeblock("(function) array.new_label(size = int, initial_value = series label) → label[]");
 			function25.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_label)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_label)*`);
 			function25.isTrusted = true;
 			function25.supportHtml = true;
 
@@ -792,10 +1333,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText26 = document.lineAt(position.line).text;
 
 			const function26 = new vscode.MarkdownString(``);
-			function26.appendCodeblock("array.new_line(size = int, initial_value = series line) → line[]");
+			function26.appendCodeblock("(function) array.new_line(size = int, initial_value = series line) → line[]");
 			function26.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_line)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_line)*`);
 			function26.isTrusted = true;
 			function26.supportHtml = true;
 
@@ -820,10 +1361,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText27 = document.lineAt(position.line).text;
 
 			const function27 = new vscode.MarkdownString(``);
-			function27.appendCodeblock("array.new_string(size = int, initial_value = series string) → string[]");
+			function27.appendCodeblock("(function) array.new_string(size = int, initial_value = series string) → string[]");
 			function27.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_string)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_string)*`);
 			function27.isTrusted = true;
 			function27.supportHtml = true;
 
@@ -848,10 +1389,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText28 = document.lineAt(position.line).text;
 
 			const function28 = new vscode.MarkdownString(``);
-			function28.appendCodeblock("array.new_table(size = int, initial_value = series table) → table[]");
+			function28.appendCodeblock("(function) array.new_table(size = int, initial_value = series table) → table[]");
 			function28.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_table)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}new_table)*`);
 			function28.isTrusted = true;
 			function28.supportHtml = true;
 
@@ -876,10 +1417,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText29 = document.lineAt(position.line).text;
 
 			const function29 = new vscode.MarkdownString(``);
-			function29.appendCodeblock("array.pop(id = any array type) → series <type of the arrays elements>");
+			function29.appendCodeblock("(function) array.pop(id = any array type) → series <type of the arrays elements>");
 			function29.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}pop)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}pop)*`);
 			function29.isTrusted = true;
 			function29.supportHtml = true;
 
@@ -904,10 +1445,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText30 = document.lineAt(position.line).text;
 
 			const function30 = new vscode.MarkdownString(``);
-			function30.appendCodeblock("array.push(id = any array type, value = <type of the arrays elements>) → series void");
+			function30.appendCodeblock("(function) array.push(id = any array type, value = <type of the arrays elements>) → series void");
 			function30.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}push)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}push)*`);
 			function30.isTrusted = true;
 			function30.supportHtml = true;
 
@@ -932,10 +1473,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText31 = document.lineAt(position.line).text;
 
 			const function31 = new vscode.MarkdownString(``);
-			function31.appendCodeblock("array.range(id = int[]|float[]) → int|float");
+			function31.appendCodeblock("(function) array.range(id = int[]|float[]) → int|float");
 			function31.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}range)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}range)*`);
 			function31.isTrusted = true;
 			function31.supportHtml = true;
 
@@ -960,10 +1501,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText32 = document.lineAt(position.line).text;
 
 			const function32 = new vscode.MarkdownString(``);
-			function32.appendCodeblock("array.remove(id = any array type, index = int) → series <type of the arrays elements>");
+			function32.appendCodeblock("(function) array.remove(id = any array type, index = int) → series <type of the arrays elements>");
 			function32.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}remove)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}remove)*`);
 			function32.isTrusted = true;
 			function32.supportHtml = true;
 
@@ -988,10 +1529,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText33 = document.lineAt(position.line).text;
 
 			const function33 = new vscode.MarkdownString(``);
-			function33.appendCodeblock("array.reverse(id = any array type) → void");
+			function33.appendCodeblock("(function) array.reverse(id = any array type) → void");
 			function33.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}reverse)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}reverse)*`);
 			function33.isTrusted = true;
 			function33.supportHtml = true;
 
@@ -1016,10 +1557,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText34 = document.lineAt(position.line).text;
 
 			const function34 = new vscode.MarkdownString(``);
-			function34.appendCodeblock("array.set(id = any array type, index = int, value = <type of the arrays elements>) → void");
+			function34.appendCodeblock("(function) array.set(id = any array type, index = int, value = <type of the arrays elements>) → void");
 			function34.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}set)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}set)*`);
 			function34.isTrusted = true;
 			function34.supportHtml = true;
 
@@ -1044,10 +1585,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText35 = document.lineAt(position.line).text;
 
 			const function35 = new vscode.MarkdownString(``);
-			function35.appendCodeblock("array.shift(id = any array type) → series <type of the arrays elements>");
+			function35.appendCodeblock("(function) array.shift(id = any array type) → series <type of the arrays elements>");
 			function35.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}shift)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}shift)*`);
 			function35.isTrusted = true;
 			function35.supportHtml = true;
 
@@ -1072,10 +1613,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText36 = document.lineAt(position.line).text;
 
 			const function36 = new vscode.MarkdownString(``);
-			function36.appendCodeblock("array.size(id = any array type) → series int");
+			function36.appendCodeblock("(function) array.size(id = any array type) → series int");
 			function36.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}size)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}size)*`);
 			function36.isTrusted = true;
 			function36.supportHtml = true;
 
@@ -1100,10 +1641,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText37 = document.lineAt(position.line).text;
 
 			const function37 = new vscode.MarkdownString(``);
-			function37.appendCodeblock("array.slice(id = any array type, index_from = int, index_to = int) → int|float");
+			function37.appendCodeblock("(function) array.slice(id = any array type, index_from = int, index_to = int) → int|float");
 			function37.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}slice)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}slice)*`);
 			function37.isTrusted = true;
 			function37.supportHtml = true;
 
@@ -1128,10 +1669,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText38 = document.lineAt(position.line).text;
 
 			const function38 = new vscode.MarkdownString(``);
-			function38.appendCodeblock("array.sort(id = int[]|float[]|string[], order = sort_order) → void");
+			function38.appendCodeblock("(function) array.sort(id = int[]|float[]|string[], order = sort_order) → void");
 			function38.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}sort)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}sort)*`);
 			function38.isTrusted = true;
 			function38.supportHtml = true;
 
@@ -1156,10 +1697,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText39 = document.lineAt(position.line).text;
 
 			const function39 = new vscode.MarkdownString(``);
-			function39.appendCodeblock("array.standardize(id = int[]|float[]) → int[]|float[]");
+			function39.appendCodeblock("(function) array.standardize(id = int[]|float[]) → int[]|float[]");
 			function39.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}standardize)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}standardize)*`);
 			function39.isTrusted = true;
 			function39.supportHtml = true;
 
@@ -1184,10 +1725,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText40 = document.lineAt(position.line).text;
 
 			const function40 = new vscode.MarkdownString(``);
-			function40.appendCodeblock("array.stdev(id = int[]|float[]) → int|float");
+			function40.appendCodeblock("(function) array.stdev(id = int[]|float[]) → int|float");
 			function40.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}stdev)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}stdev)*`);
 			function40.isTrusted = true;
 			function40.supportHtml = true;
 
@@ -1212,10 +1753,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText41 = document.lineAt(position.line).text;
 
 			const function41 = new vscode.MarkdownString(``);
-			function41.appendCodeblock("array.sum(id = int[]|float[]) → int|float");
+			function41.appendCodeblock("(function) array.sum(id = int[]|float[]) → int|float");
 			function41.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}sum)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}sum)*`);
 			function41.isTrusted = true;
 			function41.supportHtml = true;
 
@@ -1240,10 +1781,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText42 = document.lineAt(position.line).text;
 
 			const function42 = new vscode.MarkdownString(``);
-			function42.appendCodeblock("array.unshift(id = any array type, value = type of the arrays elements) → int|float");
+			function42.appendCodeblock("(function) array.unshift(id = any array type, value = type of the arrays elements) → int|float");
 			function42.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}unshift)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}unshift)*`);
 			function42.isTrusted = true;
 			function42.supportHtml = true;
 
@@ -1268,10 +1809,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText43 = document.lineAt(position.line).text;
 
 			const function43 = new vscode.MarkdownString(``);
-			function43.appendCodeblock("array.variance(id = int[]|float[]) → int|float");
+			function43.appendCodeblock("(function) array.variance(id = int[]|float[]) → int|float");
 			function43.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}variance)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_array{dot}variance)*`);
 			function43.isTrusted = true;
 			function43.supportHtml = true;
 
@@ -1296,10 +1837,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText44 = document.lineAt(position.line).text;
 
 			const function44 = new vscode.MarkdownString(``);
-			function44.appendCodeblock("barcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void");
+			function44.appendCodeblock("(function) barcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void");
 			function44.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_barcolor)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_barcolor)*`);
 			function44.isTrusted = true;
 			function44.supportHtml = true;
 
@@ -1321,20 +1862,37 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover45 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange45;
+			let error4501;
+			let error4502;
+			let error4503;
+			let error4504;
 			const hoverLineText45 = document.lineAt(position.line).text;
 
 			const function45 = new vscode.MarkdownString(``);
-			function45.appendCodeblock("bgcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void");
+			function45.appendCodeblock("(function) bgcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void");
 			function45.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_bgcolor)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_bgcolor)*`);
 			function45.isTrusted = true;
 			function45.supportHtml = true;
 
 			const pattern45 = new RegExp("(bgcolor)\\(");
+			const patternError4501 = new RegExp("box\\.set_bgcolor\\(");
+			const patternError4502 = new RegExp('table\\.cell_set_bgcolor\\(');
+			const patternError4503 = new RegExp('table\\.set_bgcolor\\(');
+			const patternError4504 = new RegExp('(\'|\").*(\'|\")');
+
 			if (pattern45.test(hoverLineText45)) {
 				hoverRange45 = document.getWordRangeAtPosition(position, pattern45);
-				if (hoverRange45) {
+				error4501 = document.getWordRangeAtPosition(position, patternError4501);
+				error4502 = document.getWordRangeAtPosition(position, patternError4502);
+				error4503 = document.getWordRangeAtPosition(position, patternError4503);
+				error4504 = document.getWordRangeAtPosition(position, patternError4504);
+
+				if (error4501 || error4502 || error4503 || error4504) {
+					return null;
+				}
+				else if (hoverRange45) {
 					return new vscode.Hover(function45, new vscode.Range(position, position));
 				}
 				else {
@@ -1349,20 +1907,29 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover46 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange46;
+			let error4601;
+
 			const hoverLineText46 = document.lineAt(position.line).text;
 
 			const function47 = new vscode.MarkdownString(``);
-			function47.appendCodeblock("box(x = box) → series box");
+			function47.appendCodeblock("(function) box(x = box) → series box");
 			function47.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box)*`);
 			function47.isTrusted = true;
 			function47.supportHtml = true;
 
 			const pattern47 = new RegExp("(box)\\(");
+			const paternError4701 = new RegExp("array\\.new_box\\(");
+
 			if (pattern47.test(hoverLineText46)) {
 				hoverRange46 = document.getWordRangeAtPosition(position, pattern47);
-				if (hoverRange46) {
+				error4601 = document.getWordRangeAtPosition(position, paternError4701);
+
+				if (error4601){
+					return null;
+				}
+				else if (hoverRange46) {
 					return new vscode.Hover(function47, new vscode.Range(position, position));
 				}
 				else {
@@ -1380,10 +1947,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText47 = document.lineAt(position.line).text;
 
 			const function48 = new vscode.MarkdownString(``);
-			function48.appendCodeblock("box.delete(id = box) → series void");
+			function48.appendCodeblock("(function) box.delete(id = box) → series void");
 			function48.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}delete)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}delete)*`);
 			function48.isTrusted = true;
 			function48.supportHtml = true;
 
@@ -1408,10 +1975,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText48 = document.lineAt(position.line).text;
 
 			const function49 = new vscode.MarkdownString(``);
-			function49.appendCodeblock("box.get_bottom(id = box) → series float");
+			function49.appendCodeblock("(function) box.get_bottom(id = box) → series float");
 			function49.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_bottom)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_bottom)*`);
 			function49.isTrusted = true;
 			function49.supportHtml = true;
 
@@ -1436,10 +2003,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText49 = document.lineAt(position.line).text;
 
 			const function50 = new vscode.MarkdownString(``);
-			function50.appendCodeblock("box.get_left(id = box) → int");
+			function50.appendCodeblock("(function) box.get_left(id = box) → int");
 			function50.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_left)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_left)*`);
 			function50.isTrusted = true;
 			function50.supportHtml = true;
 
@@ -1464,10 +2031,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText50 = document.lineAt(position.line).text;
 
 			const function51 = new vscode.MarkdownString(``);
-			function51.appendCodeblock("box.get_right(id = box) → int");
+			function51.appendCodeblock("(function) box.get_right(id = box) → int");
 			function51.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_right)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_right)*`);
 			function51.isTrusted = true;
 			function51.supportHtml = true;
 
@@ -1492,10 +2059,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText51 = document.lineAt(position.line).text;
 
 			const function52 = new vscode.MarkdownString(``);
-			function52.appendCodeblock("box.get_top(id = box) → float");
+			function52.appendCodeblock("(function) box.get_top(id = box) → float");
 			function52.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_top)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}get_top)*`);
 			function52.isTrusted = true;
 			function52.supportHtml = true;
 
@@ -1520,10 +2087,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText52 = document.lineAt(position.line).text;
 
 			const function53 = new vscode.MarkdownString(``);
-			function53.appendCodeblock("box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)");
+			function53.appendCodeblock("(function) box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)");
 			function53.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}new)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}new)*`);
 			function53.isTrusted = true;
 			function53.supportHtml = true;
 
@@ -1542,33 +2109,6 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(pineHover52);
 
 
-	let pineHover53 = vscode.languages.registerHoverProvider('pine', {
-		provideHover(document, position, token) {
-			let hoverRange53;
-			const hoverLineText53 = document.lineAt(position.line).text;
-
-			const function54 = new vscode.MarkdownString(``);
-			function54.appendCodeblock("box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)");
-			function54.appendMarkdown(`
-		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}new)*`);
-			function54.isTrusted = true;
-			function54.supportHtml = true;
-
-			const pattern54 = new RegExp("(box\\.new)\\(");
-			if (pattern54.test(hoverLineText53)) {
-				hoverRange53 = document.getWordRangeAtPosition(position, pattern54);
-				if (hoverRange53) {
-					return new vscode.Hover(function54, new vscode.Range(position, position));
-				}
-				else {
-					return null;
-				}
-			}
-		}
-	});
-	context.subscriptions.push(pineHover53);
-
 
 	let pineHover54 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
@@ -1576,10 +2116,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText54 = document.lineAt(position.line).text;
 
 			const function55 = new vscode.MarkdownString(``);
-			function55.appendCodeblock("box.set_bgcolor(id = box, color = color) → void");
+			function55.appendCodeblock("(function) box.set_bgcolor(id = box, color = color) → void");
 			function55.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_bgcolor)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_bgcolor)*`);
 			function55.isTrusted = true;
 			function55.supportHtml = true;
 
@@ -1604,10 +2144,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText55 = document.lineAt(position.line).text;
 
 			const function56 = new vscode.MarkdownString(``);
-			function56.appendCodeblock("box.set_border_color(id = box, color = color) → void");
+			function56.appendCodeblock("(function) box.set_border_color(id = box, color = color) → void");
 			function56.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_border_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_border_color)*`);
 			function56.isTrusted = true;
 			function56.supportHtml = true;
 
@@ -1632,10 +2172,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText56 = document.lineAt(position.line).text;
 
 			const function57 = new vscode.MarkdownString(``);
-			function57.appendCodeblock("box.set_border_style(id = box, style = string) → void");
+			function57.appendCodeblock("(function) box.set_border_style(id = box, style = string) → void");
 			function57.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_border_style)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_border_style)*`);
 			function57.isTrusted = true;
 			function57.supportHtml = true;
 
@@ -1660,10 +2200,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText57 = document.lineAt(position.line).text;
 
 			const function58 = new vscode.MarkdownString(``);
-			function58.appendCodeblock("box.set_border_width(id = box, width = int) → void");
+			function58.appendCodeblock("(function) box.set_border_width(id = box, width = int) → void");
 			function58.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_border_width)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_border_width)*`);
 			function58.isTrusted = true;
 			function58.supportHtml = true;
 
@@ -1688,10 +2228,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText58 = document.lineAt(position.line).text;
 
 			const function59 = new vscode.MarkdownString(``);
-			function59.appendCodeblock("box.set_bottom(id = box, bottom = int|float) → void");
+			function59.appendCodeblock("(function) box.set_bottom(id = box, bottom = int|float) → void");
 			function59.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_bottom)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_bottom)*`);
 			function59.isTrusted = true;
 			function59.supportHtml = true;
 
@@ -1716,10 +2256,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText59 = document.lineAt(position.line).text;
 
 			const function60 = new vscode.MarkdownString(``);
-			function60.appendCodeblock("box.set_extend(id = box, extend = string) → void");
+			function60.appendCodeblock("(function) box.set_extend(id = box, extend = string) → void");
 			function60.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_extend)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_extend)*`);
 			function60.isTrusted = true;
 			function60.supportHtml = true;
 
@@ -1744,10 +2284,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText60 = document.lineAt(position.line).text;
 
 			const function61 = new vscode.MarkdownString(``);
-			function61.appendCodeblock("box.set_left(id = box, left = int) → void");
+			function61.appendCodeblock("(function) box.set_left(id = box, left = int) → void");
 			function61.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_left)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_left)*`);
 			function61.isTrusted = true;
 			function61.supportHtml = true;
 
@@ -1772,10 +2312,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText61 = document.lineAt(position.line).text;
 
 			const function62 = new vscode.MarkdownString(``);
-			function62.appendCodeblock("box.set_lefttop(id = box, left = int, top = int|float) → void");
+			function62.appendCodeblock("(function) box.set_lefttop(id = box, left = int, top = int|float) → void");
 			function62.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_lefttop)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_lefttop)*`);
 			function62.isTrusted = true;
 			function62.supportHtml = true;
 
@@ -1800,10 +2340,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText62 = document.lineAt(position.line).text;
 
 			const function63 = new vscode.MarkdownString(``);
-			function63.appendCodeblock("box.set_right(id = box, right = int) → void");
+			function63.appendCodeblock("(function) box.set_right(id = box, right = int) → void");
 			function63.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_right)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_right)*`);
 			function63.isTrusted = true;
 			function63.supportHtml = true;
 
@@ -1828,10 +2368,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText63 = document.lineAt(position.line).text;
 
 			const function64 = new vscode.MarkdownString(``);
-			function64.appendCodeblock("box.set_rightbottom(id = box, right = int, bottom = int|float) → void");
+			function64.appendCodeblock("(function) box.set_rightbottom(id = box, right = int, bottom = int|float) → void");
 			function64.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_rightbottom)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_rightbottom)*`);
 			function64.isTrusted = true;
 			function64.supportHtml = true;
 
@@ -1856,10 +2396,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText64 = document.lineAt(position.line).text;
 
 			const function65 = new vscode.MarkdownString(``);
-			function65.appendCodeblock("box.set_top(id = box, top = int|float) → void");
+			function65.appendCodeblock("(function) box.set_top(id = box, top = int|float) → void");
 			function65.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_top)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_box{dot}set_top)*`);
 			function65.isTrusted = true;
 			function65.supportHtml = true;
 
@@ -1877,6 +2417,86 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	context.subscriptions.push(pineHover64);
 
+	let pineHover53 = vscode.languages.registerHoverProvider('pine', {
+		provideHover(document, position, token) {
+			let hoverRange53;
+			let error5301;
+			let error5302;
+			let error5303;
+			let error5304;
+			let error5305;
+			let error5306;
+			let error5307;
+			let error5308;
+			let error5309;
+			let error5310;
+			let error5311;
+			let error5312;
+			let error5313;
+			let error5314;
+
+			const hoverLineText53 = document.lineAt(position.line).text;
+
+			const function66e = new vscode.MarkdownString(``);
+			function66e.appendCodeblock(`(function) color(x) → const color
+color(x) → input color
+color(x) → simple color
+color(x) → series color`
+);
+			function66e.appendMarkdown(`
+		
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color)*`);
+			function66e.isTrusted = true;
+			function66e.supportHtml = true;
+
+			const pattern66e = new RegExp("(color)\\(");
+			const patternError66e01 = new RegExp("array\\.new_color\\(");
+			const patternError66e02 = new RegExp("barcolor\\(");
+			const patternError66e03 = new RegExp("bgcolor\\(");
+			const patternError66e04 = new RegExp("box\\.set_bgcolor\\(");
+			const patternError66e05 = new RegExp("box\\.set_border_color\\(");
+			const patternError66e06 = new RegExp("input\\.color\\(");
+			const patternError66e07 = new RegExp("label\\.set_color\\(");
+			const patternError66e08 = new RegExp("label\\.set_textcolor\\(");
+			const patternError66e09 = new RegExp("line\\.set_color\\(");
+			const patternError66e10 = new RegExp("table\\.cell_set_bgcolor\\(");
+			const patternError66e11 = new RegExp("table\\.cell_set_text_color\\(");
+			const patternError66e12 = new RegExp("table\\.set_bgcolor\\(");
+			const patternError66e13 = new RegExp("table\\.set_border_color\\(");
+			const patternError66e14 = new RegExp("table\\.set_frame_color\\(");
+
+			if (pattern66e.test(hoverLineText53)) {
+				hoverRange53 = document.getWordRangeAtPosition(position, pattern66e);
+				error5301 = document.getWordRangeAtPosition(position, patternError66e01);
+				error5302 = document.getWordRangeAtPosition(position, patternError66e02);
+				error5303 = document.getWordRangeAtPosition(position, patternError66e03);
+				error5304 = document.getWordRangeAtPosition(position, patternError66e04);
+				error5305 = document.getWordRangeAtPosition(position, patternError66e05);
+				error5306 = document.getWordRangeAtPosition(position, patternError66e06);
+				error5307 = document.getWordRangeAtPosition(position, patternError66e07);
+				error5308 = document.getWordRangeAtPosition(position, patternError66e08);
+				error5309 = document.getWordRangeAtPosition(position, patternError66e09);
+				error5310 = document.getWordRangeAtPosition(position, patternError66e10);
+				error5311 = document.getWordRangeAtPosition(position, patternError66e11);
+				error5312 = document.getWordRangeAtPosition(position, patternError66e12);
+				error5313 = document.getWordRangeAtPosition(position, patternError66e13);
+				error5314 = document.getWordRangeAtPosition(position, patternError66e14);
+
+				if (error5301||error5302||error5303||error5304||error5305||error5306||error5307||error5308||error5309||error5310||error5311||error5312||error5313||error5314){
+					return null;
+				}
+				else if (hoverRange53) {
+					return new vscode.Hover(function66e, new vscode.Range(position, position));
+				}
+				else {
+					return null;
+				}
+			}
+		}
+	});
+	context.subscriptions.push(pineHover53);
+
+
 
 	let pineHover65 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
@@ -1884,10 +2504,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText65 = document.lineAt(position.line).text;
 
 			const function66 = new vscode.MarkdownString(``);
-			function66.appendCodeblock("color.b(color = color) → series|const|input float");
+			function66.appendCodeblock("(function) color.b(color = color) → series|const|input float");
 			function66.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}b)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}b)*`);
 			function66.isTrusted = true;
 			function66.supportHtml = true;
 
@@ -1912,10 +2532,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText66 = document.lineAt(position.line).text;
 
 			const function67 = new vscode.MarkdownString(``);
-			function67.appendCodeblock("color.from_gradient(value = int|float, bottom_value = int|float, top_value = int|float, bottom_color = color, top_color = color) → series color");
+			function67.appendCodeblock("(function) color.from_gradient(value = int|float, bottom_value = int|float, top_value = int|float, bottom_color = color, top_color = color) → series color");
 			function67.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}from_gradient)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}from_gradient)*`);
 			function67.isTrusted = true;
 			function67.supportHtml = true;
 
@@ -1940,10 +2560,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText67 = document.lineAt(position.line).text;
 
 			const function68 = new vscode.MarkdownString(``);
-			function68.appendCodeblock("color.g(color = color) → series|const|input float");
+			function68.appendCodeblock("(function) color.g(color = color) → series|const|input float");
 			function68.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}g)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}g)*`);
 			function68.isTrusted = true;
 			function68.supportHtml = true;
 
@@ -1968,10 +2588,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText68 = document.lineAt(position.line).text;
 
 			const function69 = new vscode.MarkdownString(``);
-			function69.appendCodeblock("color.new(color = color, transp = int|float) → const color");
+			function69.appendCodeblock("(function) color.new(color = color, transp = int|float) → const color");
 			function69.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}new)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}new)*`);
 			function69.isTrusted = true;
 			function69.supportHtml = true;
 
@@ -1996,10 +2616,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText69 = document.lineAt(position.line).text;
 
 			const function70 = new vscode.MarkdownString(``);
-			function70.appendCodeblock("color.r(color = color) → series|const|input float");
+			function70.appendCodeblock("(function) color.r(color = color) → series|const|input float");
 			function70.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}r)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}r)*`);
 			function70.isTrusted = true;
 			function70.supportHtml = true;
 
@@ -2024,10 +2644,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText70 = document.lineAt(position.line).text;
 
 			const function71 = new vscode.MarkdownString(``);
-			function71.appendCodeblock("color.rgb(red = int|float, green = int|float, blue = int|float, transp = int|float) → series|const|input color");
+			function71.appendCodeblock("(function) color.rgb(red = int|float, green = int|float, blue = int|float, transp = int|float) → series|const|input color");
 			function71.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}rgb)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}rgb)*`);
 			function71.isTrusted = true;
 			function71.supportHtml = true;
 
@@ -2052,10 +2672,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText71 = document.lineAt(position.line).text;
 
 			const function72 = new vscode.MarkdownString(``);
-			function72.appendCodeblock("color.t(color = color) → series|const|input float");
+			function72.appendCodeblock("(function) color.t(color = color) → series|const|input float");
 			function72.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}t)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_color{dot}t)*`);
 			function72.isTrusted = true;
 			function72.supportHtml = true;
 
@@ -2080,10 +2700,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText72 = document.lineAt(position.line).text;
 
 			const function73 = new vscode.MarkdownString(``);
-			function73.appendCodeblock("dayofmonth(time = int, timezone = series string) → series int");
+			function73.appendCodeblock("(function) dayofmonth(time = int, timezone = series string) → series int");
 			function73.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_dayofmonth)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_dayofmonth)*`);
 			function73.isTrusted = true;
 			function73.supportHtml = true;
 
@@ -2108,10 +2728,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText73 = document.lineAt(position.line).text;
 
 			const function74 = new vscode.MarkdownString(``);
-			function74.appendCodeblock("dayofweek(time = int, timezone = series string) → series int");
+			function74.appendCodeblock("(function) dayofweek(time = int, timezone = series string) → series int");
 			function74.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_dayofweek)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_dayofweek)*`);
 			function74.isTrusted = true;
 			function74.supportHtml = true;
 
@@ -2133,20 +2753,28 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover74 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange74;
+			let error7401;
 			const hoverLineText74 = document.lineAt(position.line).text;
 
 			const function75 = new vscode.MarkdownString(``);
-			function75.appendCodeblock("fill(hline1 = hline, hline2 = hline, color = color, title = string, editable = bool, fillgaps = bool) → void");
+			function75.appendCodeblock("(function) fill(hline1 = hline, hline2 = hline, color = color, title = string, editable = bool, fillgaps = bool) → void");
 			function75.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_fill)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_fill)*`);
 			function75.isTrusted = true;
 			function75.supportHtml = true;
 
 			const pattern75 = new RegExp("(fill)\\(");
+			const patternError7501 = new RegExp("array\\.fill\\(");
+
 			if (pattern75.test(hoverLineText74)) {
 				hoverRange74 = document.getWordRangeAtPosition(position, pattern75);
-				if (hoverRange74) {
+				error7401 = document.getWordRangeAtPosition(position, patternError7501);
+
+				if (error7401){
+					return null;
+				}
+				else if (hoverRange74) {
 					return new vscode.Hover(function75, new vscode.Range(position, position));
 				}
 				else {
@@ -2164,10 +2792,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText75 = document.lineAt(position.line).text;
 
 			const function76 = new vscode.MarkdownString(``);
-			function76.appendCodeblock("fixnan(source = int|float|bool|color) → series int|float|bool|color");
+			function76.appendCodeblock("(function) fixnan(source = int|float|bool|color) → series int|float|bool|color");
 			function76.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_fixnan)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_fixnan)*`);
 			function76.isTrusted = true;
 			function76.supportHtml = true;
 
@@ -2192,10 +2820,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText76 = document.lineAt(position.line).text;
 
 			const function78 = new vscode.MarkdownString(``);
-			function78.appendCodeblock("hline(price = int|float, title = const string, color = color, linestyle = hline_style, linewidth = int, editable = bool)");
+			function78.appendCodeblock("(function) hline(price = int|float, title = const string, color = color, linestyle = hline_style, linewidth = int, editable = bool)");
 			function78.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_hline)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_hline)*`);
 			function78.isTrusted = true;
 			function78.supportHtml = true;
 
@@ -2220,10 +2848,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText77 = document.lineAt(position.line).text;
 
 			const function79 = new vscode.MarkdownString(``);
-			function79.appendCodeblock("hour(time = int, timezone = string) → series int");
+			function79.appendCodeblock("(function) hour(time = int, timezone = string) → series int");
 			function79.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_hour)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_hour)*`);
 			function79.isTrusted = true;
 			function79.supportHtml = true;
 
@@ -2248,10 +2876,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText78 = document.lineAt(position.line).text;
 
 			const function80 = new vscode.MarkdownString(``);
-			function80.appendCodeblock("input(defval = any, title = string, tooltip = string, inline = string, group = string) → input int|float|bool|string|color");
+			function80.appendCodeblock("(function) input(defval = any, title = string, tooltip = string, inline = string, group = string) → input int|float|bool|string|color");
 			function80.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input)*`);
 			function80.isTrusted = true;
 			function80.supportHtml = true;
 
@@ -2276,10 +2904,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText79 = document.lineAt(position.line).text;
 
 			const function81 = new vscode.MarkdownString(``);
-			function81.appendCodeblock("input.bool(defval = bool, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input bool");
+			function81.appendCodeblock("(function) input.bool(defval = bool, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input bool");
 			function81.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}bool)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}bool)*`);
 			function81.isTrusted = true;
 			function81.supportHtml = true;
 
@@ -2304,10 +2932,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText80 = document.lineAt(position.line).text;
 
 			const function82 = new vscode.MarkdownString(``);
-			function82.appendCodeblock("input.color(defval = const color, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input color");
+			function82.appendCodeblock("(function) input.color(defval = const color, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input color");
 			function82.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}color)*`);
 			function82.isTrusted = true;
 			function82.supportHtml = true;
 
@@ -2332,10 +2960,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText81 = document.lineAt(position.line).text;
 
 			const function83 = new vscode.MarkdownString(``);
-			function83.appendCodeblock("input.float(defval = float, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input float");
+			function83.appendCodeblock("(function) input.float(defval = float, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input float");
 			function83.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}float)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}float)*`);
 			function83.isTrusted = true;
 			function83.supportHtml = true;
 
@@ -2360,10 +2988,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText82 = document.lineAt(position.line).text;
 
 			const function84 = new vscode.MarkdownString(``);
-			function84.appendCodeblock("input.int(defval = int, title = string, minval = int, maxval = int, step = int, tooltip = string, inline = string, group = string, confirm = bool) → input int");
+			function84.appendCodeblock("(function) input.int(defval = int, title = string, minval = int, maxval = int, step = int, tooltip = string, inline = string, group = string, confirm = bool) → input int");
 			function84.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}int)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}int)*`);
 			function84.isTrusted = true;
 			function84.supportHtml = true;
 
@@ -2388,10 +3016,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText83 = document.lineAt(position.line).text;
 
 			const function85 = new vscode.MarkdownString(``);
-			function85.appendCodeblock("input.price(defval = int|float, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input float");
+			function85.appendCodeblock("(function) input.price(defval = int|float, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input float");
 			function85.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}price)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}price)*`);
 			function85.isTrusted = true;
 			function85.supportHtml = true;
 
@@ -2416,10 +3044,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText84 = document.lineAt(position.line).text;
 
 			const function86 = new vscode.MarkdownString(``);
-			function86.appendCodeblock("input.session(defval = string, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input string");
+			function86.appendCodeblock("(function) input.session(defval = string, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input string");
 			function86.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}session)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}session)*`);
 			function86.isTrusted = true;
 			function86.supportHtml = true;
 
@@ -2444,10 +3072,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText85 = document.lineAt(position.line).text;
 
 			const function87 = new vscode.MarkdownString(``);
-			function87.appendCodeblock("input.source(defval = int|float, title = string, tooltip = string, inline = string, group = string) → series float");
+			function87.appendCodeblock("(function) input.source(defval = int|float, title = string, tooltip = string, inline = string, group = string) → series float");
 			function87.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}source)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}source)*`);
 			function87.isTrusted = true;
 			function87.supportHtml = true;
 
@@ -2472,10 +3100,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText86 = document.lineAt(position.line).text;
 
 			const function88 = new vscode.MarkdownString(``);
-			function88.appendCodeblock("input.string(defval = string, title = string, options = string, tooltip = string, inline = string, group = string, confirm = bool) → input string");
+			function88.appendCodeblock("(function) input.string(defval = string, title = string, options = string, tooltip = string, inline = string, group = string, confirm = bool) → input string");
 			function88.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}string)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}string)*`);
 			function88.isTrusted = true;
 			function88.supportHtml = true;
 
@@ -2500,10 +3128,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText87 = document.lineAt(position.line).text;
 
 			const function89 = new vscode.MarkdownString(``);
-			function89.appendCodeblock("input.symbol(defval = string, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input string");
+			function89.appendCodeblock("(function) input.symbol(defval = string, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input string");
 			function89.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}symbol)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}symbol)*`);
 			function89.isTrusted = true;
 			function89.supportHtml = true;
 
@@ -2528,10 +3156,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText88 = document.lineAt(position.line).text;
 
 			const function90 = new vscode.MarkdownString(``);
-			function90.appendCodeblock("input.time(defval = const int, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input int");
+			function90.appendCodeblock("(function) input.time(defval = const int, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input int");
 			function90.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}time)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}time)*`);
 			function90.isTrusted = true;
 			function90.supportHtml = true;
 
@@ -2556,10 +3184,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText89 = document.lineAt(position.line).text;
 
 			const function91 = new vscode.MarkdownString(``);
-			function91.appendCodeblock("input.timeframe(defval = string, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input string");
+			function91.appendCodeblock("(function) input.timeframe(defval = string, title = string, options = tuple, tooltip = string, inline = string, group = string, confirm = bool) → input string");
 			function91.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}timeframe)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_input{dot}timeframe)*`);
 			function91.isTrusted = true;
 			function91.supportHtml = true;
 
@@ -2581,20 +3209,27 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover90 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange90;
+			let error9001;
 			const hoverLineText90 = document.lineAt(position.line).text;
 
 			const function93 = new vscode.MarkdownString(``);
-			function93.appendCodeblock("label(x = label) → label");
+			function93.appendCodeblock("(function) label(x = label) → label");
 			function93.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label)*`);
 			function93.isTrusted = true;
 			function93.supportHtml = true;
 
 			const pattern93 = new RegExp("(label)\\(");
+			const patternError9301 = new RegExp("(array\\.new_label)\\(");
+
 			if (pattern93.test(hoverLineText90)) {
 				hoverRange90 = document.getWordRangeAtPosition(position, pattern93);
-				if (hoverRange90) {
+				error9001 = document.getWordRangeAtPosition(position, patternError9301);
+				if (error9001){
+					return null;
+				}
+				else if (hoverRange90) {
 					return new vscode.Hover(function93, new vscode.Range(position, position));
 				}
 				else {
@@ -2612,10 +3247,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText91 = document.lineAt(position.line).text;
 
 			const function94 = new vscode.MarkdownString(``);
-			function94.appendCodeblock("label.delete(id = label) → void");
+			function94.appendCodeblock("(function) label.delete(id = label) → void");
 			function94.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}delete)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}delete)*`);
 			function94.isTrusted = true;
 			function94.supportHtml = true;
 
@@ -2640,10 +3275,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText92 = document.lineAt(position.line).text;
 
 			const function95 = new vscode.MarkdownString(``);
-			function95.appendCodeblock("label.get_text(id = label) → string");
+			function95.appendCodeblock("(function) label.get_text(id = label) → string");
 			function95.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}get_text)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}get_text)*`);
 			function95.isTrusted = true;
 			function95.supportHtml = true;
 
@@ -2668,10 +3303,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText93 = document.lineAt(position.line).text;
 
 			const function96 = new vscode.MarkdownString(``);
-			function96.appendCodeblock("label.get_x(id = label) → int");
+			function96.appendCodeblock("(function) label.get_x(id = label) → int");
 			function96.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}get_x)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}get_x)*`);
 			function96.isTrusted = true;
 			function96.supportHtml = true;
 
@@ -2696,10 +3331,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText94 = document.lineAt(position.line).text;
 
 			const function97 = new vscode.MarkdownString(``);
-			function97.appendCodeblock("label.get_y(id = label) → float");
+			function97.appendCodeblock("(function) label.get_y(id = label) → float");
 			function97.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}get_y)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}get_y)*`);
 			function97.isTrusted = true;
 			function97.supportHtml = true;
 
@@ -2724,10 +3359,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText95 = document.lineAt(position.line).text;
 
 			const function98 = new vscode.MarkdownString(``);
-			function98.appendCodeblock("label.new(x = int, y = int|float, text = string, xloc = string, yloc = string, color = color, style = string, textcolor = color, size = string , textalign = string, tooltip = string) → series label");
+			function98.appendCodeblock("(function) label.new(x = int, y = int|float, text = string, xloc = string, yloc = string, color = color, style = string, textcolor = color, size = string , textalign = string, tooltip = string) → series label");
 			function98.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}new)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}new)*`);
 			function98.isTrusted = true;
 			function98.supportHtml = true;
 
@@ -2752,10 +3387,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText96 = document.lineAt(position.line).text;
 
 			const function99 = new vscode.MarkdownString(``);
-			function99.appendCodeblock("label.set_color(id = label, color = string) → void");
+			function99.appendCodeblock("(function) label.set_color(id = label, color = string) → void");
 			function99.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_color)*`);
 			function99.isTrusted = true;
 			function99.supportHtml = true;
 
@@ -2780,10 +3415,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText97 = document.lineAt(position.line).text;
 
 			const function100 = new vscode.MarkdownString(``);
-			function100.appendCodeblock("label.set_size(id = label, size = string) → void");
+			function100.appendCodeblock("(function) label.set_size(id = label, size = string) → void");
 			function100.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_size)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_size)*`);
 			function100.isTrusted = true;
 			function100.supportHtml = true;
 
@@ -2808,10 +3443,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText98 = document.lineAt(position.line).text;
 
 			const function101 = new vscode.MarkdownString(``);
-			function101.appendCodeblock("label.set_style(id = label, style = string) → void");
+			function101.appendCodeblock("(function) label.set_style(id = label, style = string) → void");
 			function101.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_style)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_style)*`);
 			function101.isTrusted = true;
 			function101.supportHtml = true;
 
@@ -2836,10 +3471,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText99 = document.lineAt(position.line).text;
 
 			const function102 = new vscode.MarkdownString(``);
-			function102.appendCodeblock("label.set_text(id = label, text = string) → void");
+			function102.appendCodeblock("(function) label.set_text(id = label, text = string) → void");
 			function102.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_text)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_text)*`);
 			function102.isTrusted = true;
 			function102.supportHtml = true;
 
@@ -2864,10 +3499,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText100 = document.lineAt(position.line).text;
 
 			const function103 = new vscode.MarkdownString(``);
-			function103.appendCodeblock("label.set_textalign(id = label, textalign = string) → void");
+			function103.appendCodeblock("(function) label.set_textalign(id = label, textalign = string) → void");
 			function103.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_textalign)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_textalign)*`);
 			function103.isTrusted = true;
 			function103.supportHtml = true;
 
@@ -2892,10 +3527,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText101 = document.lineAt(position.line).text;
 
 			const function104 = new vscode.MarkdownString(``);
-			function104.appendCodeblock("label.set_textcolor(id = label, textcolor = color) → void");
+			function104.appendCodeblock("(function) label.set_textcolor(id = label, textcolor = color) → void");
 			function104.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_textcolor)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_textcolor)*`);
 			function104.isTrusted = true;
 			function104.supportHtml = true;
 
@@ -2920,10 +3555,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText102 = document.lineAt(position.line).text;
 
 			const function105 = new vscode.MarkdownString(``);
-			function105.appendCodeblock("label.set_tooltip(id = label, tooltip = string) → void");
+			function105.appendCodeblock("(function) label.set_tooltip(id = label, tooltip = string) → void");
 			function105.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_tooltip)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_tooltip)*`);
 			function105.isTrusted = true;
 			function105.supportHtml = true;
 
@@ -2948,10 +3583,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText103 = document.lineAt(position.line).text;
 
 			const function106 = new vscode.MarkdownString(``);
-			function106.appendCodeblock("label.set_x(id = label, x = int) → void");
+			function106.appendCodeblock("(function) label.set_x(id = label, x = int) → void");
 			function106.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_x)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_x)*`);
 			function106.isTrusted = true;
 			function106.supportHtml = true;
 
@@ -2976,10 +3611,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText104 = document.lineAt(position.line).text;
 
 			const function107 = new vscode.MarkdownString(``);
-			function107.appendCodeblock("label.set_xloc(id = label, x = int, xloc = string) → void");
+			function107.appendCodeblock("(function) label.set_xloc(id = label, x = int, xloc = string) → void");
 			function107.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_xloc)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_xloc)*`);
 			function107.isTrusted = true;
 			function107.supportHtml = true;
 
@@ -3004,10 +3639,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText105 = document.lineAt(position.line).text;
 
 			const function108 = new vscode.MarkdownString(``);
-			function108.appendCodeblock("label.set_xy(id = label, x = int, y = int|float) → void");
+			function108.appendCodeblock("(function) label.set_xy(id = label, x = int, y = int|float) → void");
 			function108.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_xy)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_xy)*`);
 			function108.isTrusted = true;
 			function108.supportHtml = true;
 
@@ -3032,10 +3667,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText106 = document.lineAt(position.line).text;
 
 			const function109 = new vscode.MarkdownString(``);
-			function109.appendCodeblock("label.set_y(id = label, y = int|float) → void");
+			function109.appendCodeblock("(function) label.set_y(id = label, y = int|float) → void");
 			function109.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_y)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_y)*`);
 			function109.isTrusted = true;
 			function109.supportHtml = true;
 
@@ -3060,10 +3695,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText107 = document.lineAt(position.line).text;
 
 			const function110 = new vscode.MarkdownString(``);
-			function110.appendCodeblock("label.set_yloc(id = label, yloc = string) → void");
+			function110.appendCodeblock("(function) label.set_yloc(id = label, yloc = string) → void");
 			function110.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_yloc)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_label{dot}set_yloc)*`);
 			function110.isTrusted = true;
 			function110.supportHtml = true;
 
@@ -3085,20 +3720,30 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover108 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange108;
+			let error10801;
+			let error10802;
 			const hoverLineText108 = document.lineAt(position.line).text;
 
 			const function111 = new vscode.MarkdownString(``);
-			function111.appendCodeblock("line(id = line) → line  ");
+			function111.appendCodeblock("(function) line(id = line) → line  ");
 			function111.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line)*`);
 			function111.isTrusted = true;
 			function111.supportHtml = true;
 
 			const pattern111 = new RegExp("(line)\\(");
+			const patternError11101 = new RegExp('hline\\(');
+			const patternError11102 = new RegExp('array\\.new_line\\(');
+
 			if (pattern111.test(hoverLineText108)) {
 				hoverRange108 = document.getWordRangeAtPosition(position, pattern111);
-				if (hoverRange108) {
+				error10801 = document.getWordRangeAtPosition(position, patternError11101);
+				error10802 = document.getWordRangeAtPosition(position, patternError11102);
+				if (error10801||error10802){
+					return null;
+				}
+				else if (hoverRange108) {
 					return new vscode.Hover(function111, new vscode.Range(position, position));
 				}
 				else {
@@ -3116,10 +3761,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText109 = document.lineAt(position.line).text;
 
 			const function112 = new vscode.MarkdownString(``);
-			function112.appendCodeblock("library(title = string, overlay = bool) → void");
+			function112.appendCodeblock("(function) library(title = string, overlay = bool) → void");
 			function112.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_library)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_library)*`);
 			function112.isTrusted = true;
 			function112.supportHtml = true;
 
@@ -3144,10 +3789,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText110 = document.lineAt(position.line).text;
 
 			const function113 = new vscode.MarkdownString(``);
-			function113.appendCodeblock("line.delete(id = line) → void");
+			function113.appendCodeblock("(function) line.delete(id = line) → void");
 			function113.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}delete)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}delete)*`);
 			function113.isTrusted = true;
 			function113.supportHtml = true;
 
@@ -3172,10 +3817,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText111 = document.lineAt(position.line).text;
 
 			const function114 = new vscode.MarkdownString(``);
-			function114.appendCodeblock("line.get_price(id = line, x = int) → float");
+			function114.appendCodeblock("(function) line.get_price(id = line, x = int) → float");
 			function114.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_price)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_price)*`);
 			function114.isTrusted = true;
 			function114.supportHtml = true;
 
@@ -3200,10 +3845,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText112 = document.lineAt(position.line).text;
 
 			const function115 = new vscode.MarkdownString(``);
-			function115.appendCodeblock("line.get_x1(id = line) → int");
+			function115.appendCodeblock("(function) line.get_x1(id = line) → int");
 			function115.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_x1)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_x1)*`);
 			function115.isTrusted = true;
 			function115.supportHtml = true;
 
@@ -3228,10 +3873,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText113 = document.lineAt(position.line).text;
 
 			const function116 = new vscode.MarkdownString(``);
-			function116.appendCodeblock("line.get_x2(id = line) → int");
+			function116.appendCodeblock("(function) line.get_x2(id = line) → int");
 			function116.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_x2)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_x2)*`);
 			function116.isTrusted = true;
 			function116.supportHtml = true;
 
@@ -3256,10 +3901,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText114 = document.lineAt(position.line).text;
 
 			const function117 = new vscode.MarkdownString(``);
-			function117.appendCodeblock("line.get_y1(id = line) → float");
+			function117.appendCodeblock("(function) line.get_y1(id = line) → float");
 			function117.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_y1)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_y1)*`);
 			function117.isTrusted = true;
 			function117.supportHtml = true;
 
@@ -3284,10 +3929,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText115 = document.lineAt(position.line).text;
 
 			const function118 = new vscode.MarkdownString(``);
-			function118.appendCodeblock("line.get_y2(id = line) → float");
+			function118.appendCodeblock("(function) line.get_y2(id = line) → float");
 			function118.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_y2)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}get_y2)*`);
 			function118.isTrusted = true;
 			function118.supportHtml = true;
 
@@ -3312,10 +3957,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText116 = document.lineAt(position.line).text;
 
 			const function119 = new vscode.MarkdownString(``);
-			function119.appendCodeblock("line.new(x1 = int, y1 = int|float, x2 = int, y2 = int|float, xloc = string, extend = string, color = series color, style = string, width = series int) → series line");
+			function119.appendCodeblock("(function) line.new(x1 = int, y1 = int|float, x2 = int, y2 = int|float, xloc = string, extend = string, color = series color, style = string, width = series int) → series line");
 			function119.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}new)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}new)*`);
 			function119.isTrusted = true;
 			function119.supportHtml = true;
 
@@ -3340,10 +3985,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText117 = document.lineAt(position.line).text;
 
 			const function120 = new vscode.MarkdownString(``);
-			function120.appendCodeblock("line.set_color(id = line, color = color) → void");
+			function120.appendCodeblock("(function) line.set_color(id = line, color = color) → void");
 			function120.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_color)*`);
 			function120.isTrusted = true;
 			function120.supportHtml = true;
 
@@ -3368,10 +4013,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText118 = document.lineAt(position.line).text;
 
 			const function121 = new vscode.MarkdownString(``);
-			function121.appendCodeblock("line.set_extend(id = line, extend = string) → void");
+			function121.appendCodeblock("(function) line.set_extend(id = line, extend = string) → void");
 			function121.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_extend)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_extend)*`);
 			function121.isTrusted = true;
 			function121.supportHtml = true;
 
@@ -3396,10 +4041,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText119 = document.lineAt(position.line).text;
 
 			const function122 = new vscode.MarkdownString(``);
-			function122.appendCodeblock("line.set_style(id = line, style = string) → void");
+			function122.appendCodeblock("(function) line.set_style(id = line, style = string) → void");
 			function122.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_style)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_style)*`);
 			function122.isTrusted = true;
 			function122.supportHtml = true;
 
@@ -3424,10 +4069,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText120 = document.lineAt(position.line).text;
 
 			const function123 = new vscode.MarkdownString(``);
-			function123.appendCodeblock("line.set_width(id = line, width = int) → void");
+			function123.appendCodeblock("(function) line.set_width(id = line, width = int) → void");
 			function123.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_width)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_width)*`);
 			function123.isTrusted = true;
 			function123.supportHtml = true;
 
@@ -3452,10 +4097,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText121 = document.lineAt(position.line).text;
 
 			const function124 = new vscode.MarkdownString(``);
-			function124.appendCodeblock("line.set_x1(id = line, x = int) → void");
+			function124.appendCodeblock("(function) line.set_x1(id = line, x = int) → void");
 			function124.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_x1)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_x1)*`);
 			function124.isTrusted = true;
 			function124.supportHtml = true;
 
@@ -3479,10 +4124,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText122 = document.lineAt(position.line).text;
 
 			const function125 = new vscode.MarkdownString(``);
-			function125.appendCodeblock("line.set_x2(id = line, x = int) → void");
+			function125.appendCodeblock("(function) line.set_x2(id = line, x = int) → void");
 			function125.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_x2)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_x2)*`);
 			function125.isTrusted = true;
 			function125.supportHtml = true;
 
@@ -3507,10 +4152,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText123 = document.lineAt(position.line).text;
 
 			const function126 = new vscode.MarkdownString(``);
-			function126.appendCodeblock("line.set_y2(id = line, x = int) → void");
+			function126.appendCodeblock("(function) line.set_y2(id = line, x = int) → void");
 			function126.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_y2)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_y2)*`);
 			function126.isTrusted = true;
 			function126.supportHtml = true;
 
@@ -3535,10 +4180,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText124 = document.lineAt(position.line).text;
 
 			const function127 = new vscode.MarkdownString(``);
-			function127.appendCodeblock("line.set_xloc(id = line, x1 = int, x2 = int, xloc = string) → void");
+			function127.appendCodeblock("(function) line.set_xloc(id = line, x1 = int, x2 = int, xloc = string) → void");
 			function127.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_xloc)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_xloc)*`);
 			function127.isTrusted = true;
 			function127.supportHtml = true;
 
@@ -3563,10 +4208,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText125 = document.lineAt(position.line).text;
 
 			const function128 = new vscode.MarkdownString(``);
-			function128.appendCodeblock("line.set_xy1(id = line, x = int, y = int|float) → void");
+			function128.appendCodeblock("(function) line.set_xy1(id = line, x = int, y = int|float) → void");
 			function128.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_xy1)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_xy1)*`);
 			function128.isTrusted = true;
 			function128.supportHtml = true;
 
@@ -3591,10 +4236,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText126 = document.lineAt(position.line).text;
 
 			const function129 = new vscode.MarkdownString(``);
-			function129.appendCodeblock("line.set_xy2(id = line, x = int, y = int|float) → void");
+			function129.appendCodeblock("(function) line.set_xy2(id = line, x = int, y = int|float) → void");
 			function129.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_xy2)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_xy2)*`);
 			function129.isTrusted = true;
 			function129.supportHtml = true;
 
@@ -3619,10 +4264,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText127 = document.lineAt(position.line).text;
 
 			const function130 = new vscode.MarkdownString(``);
-			function130.appendCodeblock("line.set_y1(id = line, y = int|float) → void");
+			function130.appendCodeblock("(function) line.set_y1(id = line, y = int|float) → void");
 			function130.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_y1)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_y1)*`);
 			function130.isTrusted = true;
 			function130.supportHtml = true;
 
@@ -3647,10 +4292,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText128 = document.lineAt(position.line).text;
 
 			const function131 = new vscode.MarkdownString(``);
-			function131.appendCodeblock("line.set_y2(id = line, y = int|float) → void");
+			function131.appendCodeblock("(function) line.set_y2(id = line, y = int|float) → void");
 			function131.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_y2)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_line{dot}set_y2)*`);
 			function131.isTrusted = true;
 			function131.supportHtml = true;
 
@@ -3675,10 +4320,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText129 = document.lineAt(position.line).text;
 
 			const function132 = new vscode.MarkdownString(``);
-			function132.appendCodeblock("math.abs(number = int|float) → simple|input|const|series int|float");
+			function132.appendCodeblock("(function) math.abs(number = int|float) → simple|input|const|series int|float");
 			function132.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}abs)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}abs)*`);
 			function132.isTrusted = true;
 			function132.supportHtml = true;
 
@@ -3703,10 +4348,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText130 = document.lineAt(position.line).text;
 
 			const function133 = new vscode.MarkdownString(``);
-			function133.appendCodeblock("math.acos(angle = int|float) → simple|input|const|series float");
+			function133.appendCodeblock("(function) math.acos(angle = int|float) → simple|input|const|series float");
 			function133.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}acos)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}acos)*`);
 			function133.isTrusted = true;
 			function133.supportHtml = true;
 
@@ -3731,10 +4376,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText131 = document.lineAt(position.line).text;
 
 			const function134 = new vscode.MarkdownString(``);
-			function134.appendCodeblock("math.asin(angle = int|float) → simple|input|const|series float");
+			function134.appendCodeblock("(function) math.asin(angle = int|float) → simple|input|const|series float");
 			function134.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}asin)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}asin)*`);
 			function134.isTrusted = true;
 			function134.supportHtml = true;
 
@@ -3759,10 +4404,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText132 = document.lineAt(position.line).text;
 
 			const function135 = new vscode.MarkdownString(``);
-			function135.appendCodeblock("math.atan(angle = int|float) → simple|input|const|series float");
+			function135.appendCodeblock("(function) math.atan(angle = int|float) → simple|input|const|series float");
 			function135.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}atan)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}atan)*`);
 			function135.isTrusted = true;
 			function135.supportHtml = true;
 
@@ -3787,10 +4432,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText133 = document.lineAt(position.line).text;
 
 			const function136 = new vscode.MarkdownString(``);
-			function136.appendCodeblock("math.avg(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple float");
+			function136.appendCodeblock("(function) math.avg(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple float");
 			function136.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}avg)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}avg)*`);
 			function136.isTrusted = true;
 			function136.supportHtml = true;
 
@@ -3815,10 +4460,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText134 = document.lineAt(position.line).text;
 
 			const function137 = new vscode.MarkdownString(``);
-			function137.appendCodeblock("math.ceil(number = int|float) → simple|input|const|series float");
+			function137.appendCodeblock("(function) math.ceil(number = int|float) → simple|input|const|series float");
 			function137.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}ceil)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}ceil)*`);
 			function137.isTrusted = true;
 			function137.supportHtml = true;
 
@@ -3843,10 +4488,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText135 = document.lineAt(position.line).text;
 
 			const function138 = new vscode.MarkdownString(``);
-			function138.appendCodeblock("math.cos(angle = int|float) → simple|input|const|series float");
+			function138.appendCodeblock("(function) math.cos(angle = int|float) → simple|input|const|series float");
 			function138.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}cos)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}cos)*`);
 			function138.isTrusted = true;
 			function138.supportHtml = true;
 
@@ -3871,10 +4516,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText136 = document.lineAt(position.line).text;
 
 			const function139 = new vscode.MarkdownString(``);
-			function139.appendCodeblock("math.exp  (number = int|float) → simple|input|const|series float");
+			function139.appendCodeblock("(function) math.exp  (number = int|float) → simple|input|const|series float");
 			function139.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}exp  )*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}exp  )*`);
 			function139.isTrusted = true;
 			function139.supportHtml = true;
 
@@ -3899,10 +4544,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText137 = document.lineAt(position.line).text;
 
 			const function140 = new vscode.MarkdownString(``);
-			function140.appendCodeblock("math.floor  (number = int|float) → simple|input|const|series float");
+			function140.appendCodeblock("(function) math.floor  (number = int|float) → simple|input|const|series float");
 			function140.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}floor  )*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}floor  )*`);
 			function140.isTrusted = true;
 			function140.supportHtml = true;
 
@@ -3927,10 +4572,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText138 = document.lineAt(position.line).text;
 
 			const function141 = new vscode.MarkdownString(``);
-			function141.appendCodeblock("math.log  (number = int|float) → simple|input|const|series float");
+			function141.appendCodeblock("(function) math.log  (number = int|float) → simple|input|const|series float");
 			function141.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}log  )*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}log  )*`);
 			function141.isTrusted = true;
 			function141.supportHtml = true;
 
@@ -3955,10 +4600,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText139 = document.lineAt(position.line).text;
 
 			const function142 = new vscode.MarkdownString(``);
-			function142.appendCodeblock("math.log10(number = int|float) → simple|input|const|series float");
+			function142.appendCodeblock("(function) math.log10(number = int|float) → simple|input|const|series float");
 			function142.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}log10)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}log10)*`);
 			function142.isTrusted = true;
 			function142.supportHtml = true;
 
@@ -3983,10 +4628,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText140 = document.lineAt(position.line).text;
 
 			const function143 = new vscode.MarkdownString(``);
-			function143.appendCodeblock("math.max(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple|input|const|series int|float");
+			function143.appendCodeblock("(function) math.max(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple|input|const|series int|float");
 			function143.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}max)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}max)*`);
 			function143.isTrusted = true;
 			function143.supportHtml = true;
 
@@ -4011,10 +4656,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText141 = document.lineAt(position.line).text;
 
 			const function144 = new vscode.MarkdownString(``);
-			function144.appendCodeblock("math.min(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple|input|const|series int|float");
+			function144.appendCodeblock("(function) math.min(number0 = int|float, number1 = int|float, number2 = int|float, ...) → simple|input|const|series int|float");
 			function144.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}min)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}min)*`);
 			function144.isTrusted = true;
 			function144.supportHtml = true;
 
@@ -4039,10 +4684,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText142 = document.lineAt(position.line).text;
 
 			const function145 = new vscode.MarkdownString(``);
-			function145.appendCodeblock("math.pow(base = int|float, exponent = int|float) → series float");
+			function145.appendCodeblock("(function) math.pow(base = int|float, exponent = int|float) → series float");
 			function145.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}pow)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}pow)*`);
 			function145.isTrusted = true;
 			function145.supportHtml = true;
 
@@ -4067,10 +4712,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText143 = document.lineAt(position.line).text;
 
 			const function146 = new vscode.MarkdownString(``);
-			function146.appendCodeblock("math.random(min = int|float, max = int|float, seed = int) → series float");
+			function146.appendCodeblock("(function) math.random(min = int|float, max = int|float, seed = int) → series float");
 			function146.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}random)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}random)*`);
 			function146.isTrusted = true;
 			function146.supportHtml = true;
 
@@ -4095,10 +4740,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText144 = document.lineAt(position.line).text;
 
 			const function147 = new vscode.MarkdownString(``);
-			function147.appendCodeblock("math.round(number = int|float, precision = int) → simple|input|const|series int|float");
+			function147.appendCodeblock("(function) math.round(number = int|float, precision = int) → simple|input|const|series int|float");
 			function147.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}round)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}round)*`);
 			function147.isTrusted = true;
 			function147.supportHtml = true;
 
@@ -4123,10 +4768,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText145 = document.lineAt(position.line).text;
 
 			const function148 = new vscode.MarkdownString(``);
-			function148.appendCodeblock("math.round_to_mintick(number = int|float) → float");
+			function148.appendCodeblock("(function) math.round_to_mintick(number = int|float) → float");
 			function148.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}round_to_mintick)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}round_to_mintick)*`);
 			function148.isTrusted = true;
 			function148.supportHtml = true;
 
@@ -4151,10 +4796,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText146 = document.lineAt(position.line).text;
 
 			const function149 = new vscode.MarkdownString(``);
-			function149.appendCodeblock("math.sign(number = int|float) → simple|input|const|series float");
+			function149.appendCodeblock("(function) math.sign(number = int|float) → simple|input|const|series float");
 			function149.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sign)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sign)*`);
 			function149.isTrusted = true;
 			function149.supportHtml = true;
 
@@ -4179,10 +4824,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText147 = document.lineAt(position.line).text;
 
 			const function150 = new vscode.MarkdownString(``);
-			function150.appendCodeblock("math.sin(angle = int|float)  → simple|input|const|series float");
+			function150.appendCodeblock("(function) math.sin(angle = int|float)  → simple|input|const|series float");
 			function150.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sin)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sin)*`);
 			function150.isTrusted = true;
 			function150.supportHtml = true;
 
@@ -4207,10 +4852,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText148 = document.lineAt(position.line).text;
 
 			const function151 = new vscode.MarkdownString(``);
-			function151.appendCodeblock("math.sqrt(number = int|float) → simple|input|const|series float");
+			function151.appendCodeblock("(function) math.sqrt(number = int|float) → simple|input|const|series float");
 			function151.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sqrt)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sqrt)*`);
 			function151.isTrusted = true;
 			function151.supportHtml = true;
 
@@ -4235,10 +4880,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText149 = document.lineAt(position.line).text;
 
 			const function152 = new vscode.MarkdownString(``);
-			function152.appendCodeblock("math.sum(source = int|float, length = int) → series float");
+			function152.appendCodeblock("(function) math.sum(source = int|float, length = int) → series float");
 			function152.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sum)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}sum)*`);
 			function152.isTrusted = true;
 			function152.supportHtml = true;
 
@@ -4263,10 +4908,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText150 = document.lineAt(position.line).text;
 
 			const function153 = new vscode.MarkdownString(``);
-			function153.appendCodeblock("math.tan(angle = int|float) → series float");
+			function153.appendCodeblock("(function) math.tan(angle = int|float) → series float");
 			function153.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}tan)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}tan)*`);
 			function153.isTrusted = true;
 			function153.supportHtml = true;
 
@@ -4291,10 +4936,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText151 = document.lineAt(position.line).text;
 
 			const function154 = new vscode.MarkdownString(``);
-			function154.appendCodeblock("math.todegrees(radians = int|float) → series float");
+			function154.appendCodeblock("(function) math.todegrees(radians = int|float) → series float");
 			function154.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}todegrees)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}todegrees)*`);
 			function154.isTrusted = true;
 			function154.supportHtml = true;
 
@@ -4319,10 +4964,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText152 = document.lineAt(position.line).text;
 
 			const function155 = new vscode.MarkdownString(``);
-			function155.appendCodeblock("math.toradians(degrees = int|float) → series float");
+			function155.appendCodeblock("(function) math.toradians(degrees = int|float) → series float");
 			function155.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}toradians)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_math{dot}toradians)*`);
 			function155.isTrusted = true;
 			function155.supportHtml = true;
 
@@ -4347,10 +4992,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText153 = document.lineAt(position.line).text;
 
 			const function156 = new vscode.MarkdownString(``);
-			function156.appendCodeblock("max_bars_back(var = int|float|bool|color|label|line, num = litteral int) → void");
+			function156.appendCodeblock("(function) max_bars_back(var = int|float|bool|color|label|line, num = litteral int) → void");
 			function156.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_max_bars_back)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_max_bars_back)*`);
 			function156.isTrusted = true;
 			function156.supportHtml = true;
 
@@ -4375,10 +5020,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText154 = document.lineAt(position.line).text;
 
 			const function157 = new vscode.MarkdownString(``);
-			function157.appendCodeblock("minute(time = int, timezone = string) → series int");
+			function157.appendCodeblock("(function) minute(time = int, timezone = string) → series int");
 			function157.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_minute)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_minute)*`);
 			function157.isTrusted = true;
 			function157.supportHtml = true;
 
@@ -4400,20 +5045,27 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover155 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange155;
+			let error15501;
 			const hoverLineText155 = document.lineAt(position.line).text;
 
 			const function158 = new vscode.MarkdownString(``);
-			function158.appendCodeblock("month(time = int, timezone = string) → series int");
+			function158.appendCodeblock("(function) month(time = int, timezone = string) → series int");
 			function158.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_month)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_month)*`);
 			function158.isTrusted = true;
 			function158.supportHtml = true;
 
 			const pattern158 = new RegExp("(month)\\(");
+			const patternError15801 = new RegExp("(dayofmonth)\\(");
+
 			if (pattern158.test(hoverLineText155)) {
 				hoverRange155 = document.getWordRangeAtPosition(position, pattern158);
-				if (hoverRange155) {
+				error15501 = document.getWordRangeAtPosition(position, patternError15801);
+				if (error15501) {
+					return null;
+				}
+				else if (hoverRange155) {
 					return new vscode.Hover(function158, new vscode.Range(position, position));
 				}
 				else {
@@ -4431,10 +5083,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText156 = document.lineAt(position.line).text;
 
 			const function159 = new vscode.MarkdownString(``);
-			function159.appendCodeblock("na(x) → simple|series bool");
+			function159.appendCodeblock("(function) na(x) → simple|series bool");
 			function159.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_na)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_na)*`);
 			function159.isTrusted = true;
 			function159.supportHtml = true;
 
@@ -4459,10 +5111,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText157 = document.lineAt(position.line).text;
 
 			const function160 = new vscode.MarkdownString(``);
-			function160.appendCodeblock("nz(source = int|float|bool|color, replacement = int|float|bool|color) → int|float|bool|color");
+			function160.appendCodeblock("(function) nz(source = int|float|bool|color, replacement = int|float|bool|color) → int|float|bool|color");
 			function160.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_nz)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_nz)*`);
 			function160.isTrusted = true;
 			function160.supportHtml = true;
 
@@ -4487,10 +5139,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText158 = document.lineAt(position.line).text;
 
 			const function161 = new vscode.MarkdownString(``);
-			function161.appendCodeblock("plot(series = int|float, title = string, color = color, linewidth = input int, trackprice = bool, histbase = int|float, offset = int, join = bool, editable = bool, show_last = int, display = plot_display) → plot");
+			function161.appendCodeblock("(function) plot(series = int|float, title = string, color = color, linewidth = input int, trackprice = bool, histbase = int|float, offset = int, join = bool, editable = bool, show_last = int, display = plot_display) → plot");
 			function161.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_plot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_plot)*`);
 			function161.isTrusted = true;
 			function161.supportHtml = true;
 
@@ -4515,10 +5167,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText159 = document.lineAt(position.line).text;
 
 			const function162 = new vscode.MarkdownString(``);
-			function162.appendCodeblock("plotarrow(series = any, title = string, colorup = color, colordown = color, offset = int, minheight = int, maxheight = int, editable = bool, show_last = int, display = plot_display) → void");
+			function162.appendCodeblock("(function) plotarrow(series = any, title = string, colorup = color, colordown = color, offset = int, minheight = int, maxheight = int, editable = bool, show_last = int, display = plot_display) → void");
 			function162.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_plotarrow)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_plotarrow)*`);
 			function162.isTrusted = true;
 			function162.supportHtml = true;
 
@@ -4543,10 +5195,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText160 = document.lineAt(position.line).text;
 
 			const function163 = new vscode.MarkdownString(``);
-			function163.appendCodeblock("plotbar(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, editable = bool, show_last = input int, display = plot_display) → void");
+			function163.appendCodeblock("(function) plotbar(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, editable = bool, show_last = input int, display = plot_display) → void");
 			function163.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_plotbar)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_plotbar)*`);
 			function163.isTrusted = true;
 			function163.supportHtml = true;
 
@@ -4571,10 +5223,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText161 = document.lineAt(position.line).text;
 
 			const function164 = new vscode.MarkdownString(``);
-			function164.appendCodeblock("plotcandle(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, wickcolor = color, editable = bool, show_last = input int, bordercolor = color, display = plot_display) → void");
+			function164.appendCodeblock("(function) plotcandle(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, wickcolor = color, editable = bool, show_last = input int, bordercolor = color, display = plot_display) → void");
 			function164.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_plotcandle)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_plotcandle)*`);
 			function164.isTrusted = true;
 			function164.supportHtml = true;
 
@@ -4599,10 +5251,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText162 = document.lineAt(position.line).text;
 
 			const function165 = new vscode.MarkdownString(``);
-			function165.appendCodeblock("plotchar(series = bool, title = string, char = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void");
+			function165.appendCodeblock("(function) plotchar(series = bool, title = string, char = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void");
 			function165.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_plotchar)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_plotchar)*`);
 			function165.isTrusted = true;
 			function165.supportHtml = true;
 
@@ -4627,10 +5279,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText163 = document.lineAt(position.line).text;
 
 			const function166 = new vscode.MarkdownString(``);
-			function166.appendCodeblock("plotshape(series = bool, title = string, style = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void");
+			function166.appendCodeblock("(function) plotshape(series = bool, title = string, style = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void");
 			function166.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_plotshape)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_plotshape)*`);
 			function166.isTrusted = true;
 			function166.supportHtml = true;
 
@@ -4655,10 +5307,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText164 = document.lineAt(position.line).text;
 
 			const function167 = new vscode.MarkdownString(``);
-			function167.appendCodeblock("request.dividends(ticker = string, field = string, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float");
+			function167.appendCodeblock("(function) request.dividends(ticker = string, field = string, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float");
 			function167.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}dividends)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}dividends)*`);
 			function167.isTrusted = true;
 			function167.supportHtml = true;
 
@@ -4683,10 +5335,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText165 = document.lineAt(position.line).text;
 
 			const function168 = new vscode.MarkdownString(``);
-			function168.appendCodeblock("request.earnings(ticker = string, field = string, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float");
+			function168.appendCodeblock("(function) request.earnings(ticker = string, field = string, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float");
 			function168.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}earnings)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}earnings)*`);
 			function168.isTrusted = true;
 			function168.supportHtml = true;
 
@@ -4711,10 +5363,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText166 = document.lineAt(position.line).text;
 
 			const function169 = new vscode.MarkdownString(``);
-			function169.appendCodeblock("request.financial(symbol = string, financial_id = string, period = string, gaps = barmerge_gaps, ignore_invalid_symbol = bool, currency = input string) → series float");
+			function169.appendCodeblock("(function) request.financial(symbol = string, financial_id = string, period = string, gaps = barmerge_gaps, ignore_invalid_symbol = bool, currency = input string) → series float");
 			function169.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}financial)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}financial)*`);
 			function169.isTrusted = true;
 			function169.supportHtml = true;
 
@@ -4739,10 +5391,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText167 = document.lineAt(position.line).text;
 
 			const function170 = new vscode.MarkdownString(``);
-			function170.appendCodeblock("request.quandl(ticker = string, gaps = built-in, index = int, ignore_invalid_symbol = bool) → series float");
+			function170.appendCodeblock("(function) request.quandl(ticker = string, gaps = built-in, index = int, ignore_invalid_symbol = bool) → series float");
 			function170.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}quandl)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}quandl)*`);
 			function170.isTrusted = true;
 			function170.supportHtml = true;
 
@@ -4767,10 +5419,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText168 = document.lineAt(position.line).text;
 
 			const function171 = new vscode.MarkdownString(``);
-			function171.appendCodeblock("request.security(symbol = string, timeframe = string, expression = any, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float|int|bool|color");
+			function171.appendCodeblock("(function) request.security(symbol = string, timeframe = string, expression = any, gaps = built-in, lookahead = built-in, ignore_invalid_symbol = bool) → series float|int|bool|color");
 			function171.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}security)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}security)*`);
 			function171.isTrusted = true;
 			function171.supportHtml = true;
 
@@ -4795,10 +5447,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText169 = document.lineAt(position.line).text;
 
 			const function172 = new vscode.MarkdownString(``);
-			function172.appendCodeblock("request.splits(ticker = string, field = string, gaps = const, lookahead = const, ignore_invalid_symbol = bool) → series float");
+			function172.appendCodeblock("(function) request.splits(ticker = string, field = string, gaps = const, lookahead = const, ignore_invalid_symbol = bool) → series float");
 			function172.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}splits)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_request{dot}splits)*`);
 			function172.isTrusted = true;
 			function172.supportHtml = true;
 
@@ -4823,10 +5475,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText170 = document.lineAt(position.line).text;
 
 			const function173 = new vscode.MarkdownString(``);
-			function173.appendCodeblock("runtime.error(message = string) → void");
+			function173.appendCodeblock("(function) runtime.error(message = string) → void");
 			function173.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_runtime{dot}error)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_runtime{dot}error)*`);
 			function173.isTrusted = true;
 			function173.supportHtml = true;
 
@@ -4851,10 +5503,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText171 = document.lineAt(position.line).text;
 
 			const function174 = new vscode.MarkdownString(``);
-			function174.appendCodeblock("second(time = int, timezone = string) → series int");
+			function174.appendCodeblock("(function) second(time = int, timezone = string) → series int");
 			function174.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_second)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_second)*`);
 			function174.isTrusted = true;
 			function174.supportHtml = true;
 
@@ -4879,10 +5531,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText172 = document.lineAt(position.line).text;
 
 			const function175 = new vscode.MarkdownString(``);
-			function175.appendCodeblock("str.format(formatString = string, arg0 = any series, arg1 = any series, ...) → simple string");
+			function175.appendCodeblock("(function) str.format(formatString = string, arg0 = any series, arg1 = any series, ...) → simple string");
 			function175.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}format)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}format)*`);
 			function175.isTrusted = true;
 			function175.supportHtml = true;
 
@@ -4907,10 +5559,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText173 = document.lineAt(position.line).text;
 
 			const function176 = new vscode.MarkdownString(``);
-			function176.appendCodeblock("str.length(string = string) → const int|simple|series");
+			function176.appendCodeblock("(function) str.length(string = string) → const int|simple|series");
 			function176.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}length)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}length)*`);
 			function176.isTrusted = true;
 			function176.supportHtml = true;
 
@@ -4935,10 +5587,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText174 = document.lineAt(position.line).text;
 
 			const function177 = new vscode.MarkdownString(``);
-			function177.appendCodeblock("str.replace_all(source = string, target = string, replacement = string) → series string");
+			function177.appendCodeblock("(function) str.replace_all(source = string, target = string, replacement = string) → series string");
 			function177.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}replace_all)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}replace_all)*`);
 			function177.isTrusted = true;
 			function177.supportHtml = true;
 
@@ -4963,10 +5615,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText175 = document.lineAt(position.line).text;
 
 			const function178 = new vscode.MarkdownString(``);
-			function178.appendCodeblock("str.split(string = string, separator = string) → string[]");
+			function178.appendCodeblock("(function) str.split(string = string, separator = string) → string[]");
 			function178.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}split)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}split)*`);
 			function178.isTrusted = true;
 			function178.supportHtml = true;
 
@@ -4991,10 +5643,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText176 = document.lineAt(position.line).text;
 
 			const function179 = new vscode.MarkdownString(``);
-			function179.appendCodeblock("str.tonumber(string = string) → series float");
+			function179.appendCodeblock("(function) str.tonumber(string = string) → series float");
 			function179.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}tonumber)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}tonumber)*`);
 			function179.isTrusted = true;
 			function179.supportHtml = true;
 
@@ -5019,10 +5671,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText177 = document.lineAt(position.line).text;
 
 			const function180 = new vscode.MarkdownString(``);
-			function180.appendCodeblock("str.tostring(value = any series, format = string) → simple|series string");
+			function180.appendCodeblock("(function) str.tostring(value = any series, format = string) → simple|series string");
 			function180.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}tostring)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_str{dot}tostring)*`);
 			function180.isTrusted = true;
 			function180.supportHtml = true;
 
@@ -5047,10 +5699,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText178 = document.lineAt(position.line).text;
 
 			const function181 = new vscode.MarkdownString(``);
-			function181.appendCodeblock("strategy(title, shorttitle, overlay, format, precision, scale, pyramiding, calc_on_order_fills, calc_on_every_tick, max_bars_back, backtest_fill_limits_assumption, default_qty_type, default_qty_value, initial_capital, currency, slippage, commission_type, commission_value, process_orders_on_close, close_entries_rule, margin_long, margin_short, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void");
+			function181.appendCodeblock("(function) strategy(title, shorttitle, overlay, format, precision, scale, pyramiding, calc_on_order_fills, calc_on_every_tick, max_bars_back, backtest_fill_limits_assumption, default_qty_type, default_qty_value, initial_capital, currency, slippage, commission_type, commission_value, process_orders_on_close, close_entries_rule, margin_long, margin_short, explicit_plot_zorder, max_lines_count, max_labels_count, max_boxes_count) → void");
 			function181.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy)*`);
 			function181.isTrusted = true;
 			function181.supportHtml = true;
 
@@ -5075,10 +5727,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText179 = document.lineAt(position.line).text;
 
 			const function182 = new vscode.MarkdownString(``);
-			function182.appendCodeblock("strategy.cancel(id = string, when = bool) → series void");
+			function182.appendCodeblock("(function) strategy.cancel(id = string, when = bool) → series void");
 			function182.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}cancel)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}cancel)*`);
 			function182.isTrusted = true;
 			function182.supportHtml = true;
 
@@ -5103,10 +5755,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText180 = document.lineAt(position.line).text;
 
 			const function183 = new vscode.MarkdownString(``);
-			function183.appendCodeblock("strategy.cancel_all(when = bool) → series void");
+			function183.appendCodeblock("(function) strategy.cancel_all(when = bool) → series void");
 			function183.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}cancel_all)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}cancel_all)*`);
 			function183.isTrusted = true;
 			function183.supportHtml = true;
 
@@ -5131,10 +5783,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText181 = document.lineAt(position.line).text;
 
 			const function184 = new vscode.MarkdownString(``);
-			function184.appendCodeblock("strategy.close(id = string, when = bool, comment = string, qty = int|float, qty_percent = int|float, alert_message = string) → void");
+			function184.appendCodeblock("(function) strategy.close(id = string, when = bool, comment = string, qty = int|float, qty_percent = int|float, alert_message = string) → void");
 			function184.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}close)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}close)*`);
 			function184.isTrusted = true;
 			function184.supportHtml = true;
 
@@ -5159,10 +5811,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText182 = document.lineAt(position.line).text;
 
 			const function185 = new vscode.MarkdownString(``);
-			function185.appendCodeblock("strategy.close_all(when = bool, comment = string, alert_message = string) → void");
+			function185.appendCodeblock("(function) strategy.close_all(when = bool, comment = string, alert_message = string) → void");
 			function185.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}close_all)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}close_all)*`);
 			function185.isTrusted = true;
 			function185.supportHtml = true;
 
@@ -5187,10 +5839,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText183 = document.lineAt(position.line).text;
 
 			const function186 = new vscode.MarkdownString(``);
-			function186.appendCodeblock("strategy.closedtrades.commission(trade_num = int) → series float");
+			function186.appendCodeblock("(function) strategy.closedtrades.commission(trade_num = int) → series float");
 			function186.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}commission)*`);
 			function186.isTrusted = true;
 			function186.supportHtml = true;
 
@@ -5215,10 +5867,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText184 = document.lineAt(position.line).text;
 
 			const function187 = new vscode.MarkdownString(``);
-			function187.appendCodeblock("strategy.closedtrades.entry_bar_index(trade_num = int) → series int");
+			function187.appendCodeblock("(function) strategy.closedtrades.entry_bar_index(trade_num = int) → series int");
 			function187.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}entry_bar_index)*`);
 			function187.isTrusted = true;
 			function187.supportHtml = true;
 
@@ -5243,10 +5895,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText185 = document.lineAt(position.line).text;
 
 			const function188 = new vscode.MarkdownString(``);
-			function188.appendCodeblock("strategy.closedtrades.entry_price(trade_num = int) → series int");
+			function188.appendCodeblock("(function) strategy.closedtrades.entry_price(trade_num = int) → series int");
 			function188.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}entry_price)*`);
 			function188.isTrusted = true;
 			function188.supportHtml = true;
 
@@ -5271,10 +5923,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText186 = document.lineAt(position.line).text;
 
 			const function189 = new vscode.MarkdownString(``);
-			function189.appendCodeblock("strategy.closedtrades.entry_time(trade_num = int) → series int");
+			function189.appendCodeblock("(function) strategy.closedtrades.entry_time(trade_num = int) → series int");
 			function189.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}entry_time)*`);
 			function189.isTrusted = true;
 			function189.supportHtml = true;
 
@@ -5299,10 +5951,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText187 = document.lineAt(position.line).text;
 
 			const function190 = new vscode.MarkdownString(``);
-			function190.appendCodeblock("strategy.closedtrades.exit_bar_index(trade_num = int) → series int");
+			function190.appendCodeblock("(function) strategy.closedtrades.exit_bar_index(trade_num = int) → series int");
 			function190.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}exit_bar_index)*`);
 			function190.isTrusted = true;
 			function190.supportHtml = true;
 
@@ -5327,10 +5979,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText188 = document.lineAt(position.line).text;
 
 			const function191 = new vscode.MarkdownString(``);
-			function191.appendCodeblock("strategy.closedtrades.exit_price(trade_num = int) → series float");
+			function191.appendCodeblock("(function) strategy.closedtrades.exit_price(trade_num = int) → series float");
 			function191.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}exit_price)*`);
 			function191.isTrusted = true;
 			function191.supportHtml = true;
 
@@ -5355,10 +6007,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText189 = document.lineAt(position.line).text;
 
 			const function192 = new vscode.MarkdownString(``);
-			function192.appendCodeblock("strategy.closedtrades.exit_time(trade_num = int) → series int");
+			function192.appendCodeblock("(function) strategy.closedtrades.exit_time(trade_num = int) → series int");
 			function192.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}exit_time)*`);
 			function192.isTrusted = true;
 			function192.supportHtml = true;
 
@@ -5383,10 +6035,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText190 = document.lineAt(position.line).text;
 
 			const function193 = new vscode.MarkdownString(``);
-			function193.appendCodeblock("strategy.closedtrades.max_drawdown(trade_num = int) → series float");
+			function193.appendCodeblock("(function) strategy.closedtrades.max_drawdown(trade_num = int) → series float");
 			function193.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}max_drawdown)*`);
 			function193.isTrusted = true;
 			function193.supportHtml = true;
 
@@ -5411,10 +6063,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText191 = document.lineAt(position.line).text;
 
 			const function194 = new vscode.MarkdownString(``);
-			function194.appendCodeblock("strategy.closedtrades.max_runup(trade_num = int) → series float");
+			function194.appendCodeblock("(function) strategy.closedtrades.max_runup(trade_num = int) → series float");
 			function194.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}max_runup)*`);
 			function194.isTrusted = true;
 			function194.supportHtml = true;
 
@@ -5439,10 +6091,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText192 = document.lineAt(position.line).text;
 
 			const function195 = new vscode.MarkdownString(``);
-			function195.appendCodeblock("strategy.closedtrades.profit(trade_num = int) → series float");
+			function195.appendCodeblock("(function) strategy.closedtrades.profit(trade_num = int) → series float");
 			function195.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}profit)*`);
 			function195.isTrusted = true;
 			function195.supportHtml = true;
 
@@ -5467,10 +6119,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText193 = document.lineAt(position.line).text;
 
 			const function196 = new vscode.MarkdownString(``);
-			function196.appendCodeblock("strategy.closedtrades.size(trade_num = int) → series float");
+			function196.appendCodeblock("(function) strategy.closedtrades.size(trade_num = int) → series float");
 			function196.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}closedtrades{dot}size)*`);
 			function196.isTrusted = true;
 			function196.supportHtml = true;
 
@@ -5495,10 +6147,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText194 = document.lineAt(position.line).text;
 
 			const function197 = new vscode.MarkdownString(``);
-			function197.appendCodeblock("strategy.convert_to_account(value) → series float");
+			function197.appendCodeblock("(function) strategy.convert_to_account(value) → series float");
 			function197.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}convert_to_accou)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}convert_to_account)*`);
 			function197.isTrusted = true;
 			function197.supportHtml = true;
 
@@ -5523,10 +6175,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText195 = document.lineAt(position.line).text;
 
 			const function198 = new vscode.MarkdownString(``);
-			function198.appendCodeblock("strategy.convert_to_symbol(value = int|float) → series float");
+			function198.appendCodeblock("(function) strategy.convert_to_symbol(value = int|float) → series float");
 			function198.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}convert_to_symbo)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}convert_to_symbol)*`);
 			function198.isTrusted = true;
 			function198.supportHtml = true;
 
@@ -5551,10 +6203,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText196 = document.lineAt(position.line).text;
 
 			const function199 = new vscode.MarkdownString(``);
-			function199.appendCodeblock("strategy.entry(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void");
+			function199.appendCodeblock("(function) strategy.entry(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void");
 			function199.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}entry)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}entry)*`);
 			function199.isTrusted = true;
 			function199.supportHtml = true;
 
@@ -5579,10 +6231,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText197 = document.lineAt(position.line).text;
 
 			const function200 = new vscode.MarkdownString(``);
-			function200.appendCodeblock("strategy.exit(id = string, from_entry = string, qty = int|float, qty_percent = int|float, profit = int|float, limit = int|float, loss = int|float, stop = int|float, trail_price = int|float, trail_points = int|float, trail_offset = int|float, oca_name = string, comment = string, when = bool, alert_message = string) → void");
+			function200.appendCodeblock("(function) strategy.exit(id = string, from_entry = string, qty = int|float, qty_percent = int|float, profit = int|float, limit = int|float, loss = int|float, stop = int|float, trail_price = int|float, trail_points = int|float, trail_offset = int|float, oca_name = string, comment = string, when = bool, alert_message = string) → void");
 			function200.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}exit)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}exit)*`);
 			function200.isTrusted = true;
 			function200.supportHtml = true;
 
@@ -5607,10 +6259,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText198 = document.lineAt(position.line).text;
 
 			const function201 = new vscode.MarkdownString(``);
-			function201.appendCodeblock("strategy.opentrades.commission(trade_num = int) → float");
+			function201.appendCodeblock("(function) strategy.opentrades.commission(trade_num = int) → float");
 			function201.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}c)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}commission)*`);
 			function201.isTrusted = true;
 			function201.supportHtml = true;
 
@@ -5635,10 +6287,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText199 = document.lineAt(position.line).text;
 
 			const function202 = new vscode.MarkdownString(``);
-			function202.appendCodeblock("strategy.opentrades.entry_bar_index(trade_num = int) → float");
+			function202.appendCodeblock("(function) strategy.opentrades.entry_bar_index(trade_num = int) → float");
 			function202.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}e)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}entry_bar_index)*`);
 			function202.isTrusted = true;
 			function202.supportHtml = true;
 
@@ -5663,10 +6315,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText200 = document.lineAt(position.line).text;
 
 			const function203 = new vscode.MarkdownString(``);
-			function203.appendCodeblock("strategy.opentrades.entry_price(trade_num = int) → float");
+			function203.appendCodeblock("(function) strategy.opentrades.entry_price(trade_num = int) → float");
 			function203.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}e)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}entry_price)*`);
 			function203.isTrusted = true;
 			function203.supportHtml = true;
 
@@ -5691,10 +6343,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText201 = document.lineAt(position.line).text;
 
 			const function204 = new vscode.MarkdownString(``);
-			function204.appendCodeblock("strategy.opentrades.entry_time(trade_num = int) → float");
+			function204.appendCodeblock("(function) strategy.opentrades.entry_time(trade_num = int) → float");
 			function204.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}e)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}entry_time)*`);
 			function204.isTrusted = true;
 			function204.supportHtml = true;
 
@@ -5719,10 +6371,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText202 = document.lineAt(position.line).text;
 
 			const function205 = new vscode.MarkdownString(``);
-			function205.appendCodeblock("strategy.opentrades.max_drawdown(trade_num = int) → float");
+			function205.appendCodeblock("(function) strategy.opentrades.max_drawdown(trade_num = int) → float");
 			function205.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}m)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}max_drawdown)*`);
 			function205.isTrusted = true;
 			function205.supportHtml = true;
 
@@ -5747,10 +6399,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText203 = document.lineAt(position.line).text;
 
 			const function206 = new vscode.MarkdownString(``);
-			function206.appendCodeblock("strategy.opentrades.max_runup(trade_num = int) → float");
+			function206.appendCodeblock("(function) strategy.opentrades.max_runup(trade_num = int) → float");
 			function206.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}m)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}max_runup)*`);
 			function206.isTrusted = true;
 			function206.supportHtml = true;
 
@@ -5775,10 +6427,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText204 = document.lineAt(position.line).text;
 
 			const function207 = new vscode.MarkdownString(``);
-			function207.appendCodeblock("strategy.opentrades.profit(trade_num = int) → float");
+			function207.appendCodeblock("(function) strategy.opentrades.profit(trade_num = int) → float");
 			function207.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}p)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}profit)*`);
 			function207.isTrusted = true;
 			function207.supportHtml = true;
 
@@ -5803,10 +6455,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText205 = document.lineAt(position.line).text;
 
 			const function208 = new vscode.MarkdownString(``);
-			function208.appendCodeblock("strategy.opentrades.size(trade_num = int) → float");
+			function208.appendCodeblock("(function) strategy.opentrades.size(trade_num = int) → float");
 			function208.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}s)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}opentrades{dot}size)*`);
 			function208.isTrusted = true;
 			function208.supportHtml = true;
 
@@ -5831,10 +6483,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText206 = document.lineAt(position.line).text;
 
 			const function209 = new vscode.MarkdownString(``);
-			function209.appendCodeblock("strategy.order(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void");
+			function209.appendCodeblock("(function) strategy.order(id = string, direction = const built-in, qty = int|float, limit = int|float, stop = int|float, oca_name = string, oca_type = string, comment = string, when = bool, alert_message = string) → void");
 			function209.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}order)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}order)*`);
 			function209.isTrusted = true;
 			function209.supportHtml = true;
 
@@ -5859,10 +6511,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText207 = document.lineAt(position.line).text;
 
 			const function210 = new vscode.MarkdownString(``);
-			function210.appendCodeblock("strategy.risk.allow_entry_in(value = string) → void");
+			function210.appendCodeblock("(function) strategy.risk.allow_entry_in(value = string) → void");
 			function210.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}allow_e)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}allow_entry_in)*`);
 			function210.isTrusted = true;
 			function210.supportHtml = true;
 
@@ -5887,10 +6539,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText208 = document.lineAt(position.line).text;
 
 			const function211 = new vscode.MarkdownString(``);
-			function211.appendCodeblock("strategy.risk.max_cons_loss_days(count = int, alert_message = string) → series void");
+			function211.appendCodeblock("(function) strategy.risk.max_cons_loss_days(count = int, alert_message = string) → series void");
 			function211.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_con)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_cons_loss_days)*`);
 			function211.isTrusted = true;
 			function211.supportHtml = true;
 
@@ -5915,10 +6567,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText209 = document.lineAt(position.line).text;
 
 			const function212 = new vscode.MarkdownString(``);
-			function212.appendCodeblock("strategy.risk.max_drawdown(count = int, type = string, alert_message = string) → series void");
+			function212.appendCodeblock("(function) strategy.risk.max_drawdown(count = int, type = string, alert_message = string) → series void");
 			function212.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_dra)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_drawdown)*`);
 			function212.isTrusted = true;
 			function212.supportHtml = true;
 
@@ -5943,14 +6595,14 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText210 = document.lineAt(position.line).text;
 
 			const function213 = new vscode.MarkdownString(``);
-			function213.appendCodeblock("strategy.risk.max_intraday_loss(count = int, alert_message = string) → series void");
+			function213.appendCodeblock("(function) strategy.risk.max_intraday_filled_orders(count, alert_message) → void");
 			function213.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_int)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_intraday_filled_orders)*`);
 			function213.isTrusted = true;
 			function213.supportHtml = true;
 
-			const pattern213 = new RegExp("(strategy\\.risk\\.max_intraday_loss)\\(");
+			const pattern213 = new RegExp("(strategy\\.risk\\.max_intraday_filled_orders)\\(");
 			if (pattern213.test(hoverLineText210)) {
 				hoverRange210 = document.getWordRangeAtPosition(position, pattern213);
 				if (hoverRange210) {
@@ -5971,10 +6623,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText211 = document.lineAt(position.line).text;
 
 			const function214 = new vscode.MarkdownString(``);
-			function214.appendCodeblock("strategy.risk.max_intraday_loss(value = int|float, type = string, alert_message = string) → series void");
+			function214.appendCodeblock("(function) strategy.risk.max_intraday_loss(value = int|float, type = string, alert_message = string) → series void");
 			function214.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_int)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_intraday_loss)*`);
 			function214.isTrusted = true;
 			function214.supportHtml = true;
 
@@ -5999,10 +6651,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText212 = document.lineAt(position.line).text;
 
 			const function215 = new vscode.MarkdownString(``);
-			function215.appendCodeblock("strategy.risk.max_position_size(contracts = int|float) → void");
+			function215.appendCodeblock("(function) strategy.risk.max_position_size(contracts = int|float) → void");
 			function215.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_pos)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_strategy{dot}risk{dot}max_position_size)*`);
 			function215.isTrusted = true;
 			function215.supportHtml = true;
 
@@ -6024,19 +6676,35 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover213 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange213;
+			let error21301;
+			let error21302;
+			let error21303;
 			const hoverLineText213 = document.lineAt(position.line).text;
 
 			const function216 = new vscode.MarkdownString(``);
-			function216.appendCodeblock("string(x) → const|input|simple|series string");
+			function216.appendCodeblock("(function) string(x) → const|input|simple|series string");
 			function216.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_string)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_string)*`);
 			function216.isTrusted = true;
 			function216.supportHtml = true;
 
 			const pattern216 = new RegExp("(string)\\(");
+			const patternError21601 = new RegExp("(input\\.string)\\(");
+			const patternError21602 = new RegExp("(str\\.tostring)\\(");
+			const patternError21603 = new RegExp("(array\\.new_string)\\(");
+
 			if (pattern216.test(hoverLineText213)) {
+
 				hoverRange213 = document.getWordRangeAtPosition(position, pattern216);
+				error21301 = document.getWordRangeAtPosition(position, patternError21601);
+				error21302 = document.getWordRangeAtPosition(position, patternError21602);
+				error21303 = document.getWordRangeAtPosition(position, patternError21603);
+
+
+				if (error21301||error21302||error21303){
+					return null;
+				}
 				if (hoverRange213) {
 					return new vscode.Hover(function216, new vscode.Range(position, position));
 				}
@@ -6049,24 +6717,26 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(pineHover213);
 
 
-	let pineHover214 = vscode.languages.registerHoverProvider('pine', {
+	let pineHover214a = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
-			let hoverRange214;
-			const hoverLineText214 = document.lineAt(position.line).text;
+			let hoverRange214a;
+			const hoverLineText214a = document.lineAt(position.line).text;
 
-			const function217 = new vscode.MarkdownString(``);
-			function217.appendCodeblock("ta.highest(series = int|float, length = int, offset  = int|float, sigma = int|float, floor = bool) → series float");
-			function217.appendMarkdown(`
+			const function217a = new vscode.MarkdownString(``);
+			function217a.appendCodeblock(`(function) ta.alma(series = int|float, length = int, offset  = int|float, sigma = int|float) → series float
+ta.alma(series = int|float, length = int, offset  = int|float, sigma = int|float, floor = bool) → series float
+			`);
+			function217a.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}highest)*`);
-			function217.isTrusted = true;
-			function217.supportHtml = true;
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}alma)*`);
+			function217a.isTrusted = true;
+			function217a.supportHtml = true;
 
-			const pattern217 = new RegExp("(ta\\.highest)\\(");
-			if (pattern217.test(hoverLineText214)) {
-				hoverRange214 = document.getWordRangeAtPosition(position, pattern217);
-				if (hoverRange214) {
-					return new vscode.Hover(function217, new vscode.Range(position, position));
+			const pattern217a = new RegExp("(ta\\.alma)\\(");
+			if (pattern217a.test(hoverLineText214a)) {
+				hoverRange214a = document.getWordRangeAtPosition(position, pattern217a);
+				if (hoverRange214a) {
+					return new vscode.Hover(function217a, new vscode.Range(position, position));
 				}
 				else {
 					return null;
@@ -6074,7 +6744,11 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		}
 	});
-	context.subscriptions.push(pineHover214);
+	context.subscriptions.push(pineHover214a);
+
+
+
+
 
 
 	let pineHover215 = vscode.languages.registerHoverProvider('pine', {
@@ -6083,10 +6757,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText215 = document.lineAt(position.line).text;
 
 			const function218 = new vscode.MarkdownString(``);
-			function218.appendCodeblock("ta.atr(length = int) → series float");
+			function218.appendCodeblock("(function) ta.atr(length = int) → series float");
 			function218.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}atr)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}atr)*`);
 			function218.isTrusted = true;
 			function218.supportHtml = true;
 
@@ -6111,10 +6785,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText216 = document.lineAt(position.line).text;
 
 			const function219 = new vscode.MarkdownString(``);
-			function219.appendCodeblock("ta.barssince(condition = bool) → series int");
+			function219.appendCodeblock("(function) ta.barssince(condition = bool) → series int");
 			function219.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}barssince)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}barssince)*`);
 			function219.isTrusted = true;
 			function219.supportHtml = true;
 
@@ -6139,10 +6813,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText217 = document.lineAt(position.line).text;
 
 			const function220 = new vscode.MarkdownString(``);
-			function220.appendCodeblock("ta.bb(series = int|float, length = int, mult = int|float) → [series float, series float, series float]");
+			function220.appendCodeblock("(function) ta.bb(series = int|float, length = int, mult = int|float) → [series float, series float, series float]");
 			function220.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}bb)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}bb)*`);
 			function220.isTrusted = true;
 			function220.supportHtml = true;
 
@@ -6167,10 +6841,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText218 = document.lineAt(position.line).text;
 
 			const function221 = new vscode.MarkdownString(``);
-			function221.appendCodeblock("ta.bbw(series = int|float, length = int, mult = int|float) → series float");
+			function221.appendCodeblock("(function) ta.bbw(series = int|float, length = int, mult = int|float) → series float");
 			function221.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}bbw)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}bbw)*`);
 			function221.isTrusted = true;
 			function221.supportHtml = true;
 
@@ -6195,10 +6869,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText219 = document.lineAt(position.line).text;
 
 			const function222 = new vscode.MarkdownString(``);
-			function222.appendCodeblock("ta.cci(source = int|float, length = int) → series float");
+			function222.appendCodeblock("(function) ta.cci(source = int|float, length = int) → series float");
 			function222.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cci)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cci)*`);
 			function222.isTrusted = true;
 			function222.supportHtml = true;
 
@@ -6223,10 +6897,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText220 = document.lineAt(position.line).text;
 
 			const function223 = new vscode.MarkdownString(``);
-			function223.appendCodeblock("ta.change(source = int|float, length = int) → series float");
+			function223.appendCodeblock("(function) ta.change(source = int|float, length = int) → series float");
 			function223.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}change)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}change)*`);
 			function223.isTrusted = true;
 			function223.supportHtml = true;
 
@@ -6251,10 +6925,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText221 = document.lineAt(position.line).text;
 
 			const function224 = new vscode.MarkdownString(``);
-			function224.appendCodeblock("ta.cmo(source = int|float, length = int) → series float");
+			function224.appendCodeblock("(function) ta.cmo(source = int|float, length = int) → series float");
 			function224.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cmo)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cmo)*`);
 			function224.isTrusted = true;
 			function224.supportHtml = true;
 
@@ -6279,10 +6953,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText222 = document.lineAt(position.line).text;
 
 			const function225 = new vscode.MarkdownString(``);
-			function225.appendCodeblock("ta.cog(source = int|float, length = int) → series float");
+			function225.appendCodeblock("(function) ta.cog(source = int|float, length = int) → series float");
 			function225.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cog)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cog)*`);
 			function225.isTrusted = true;
 			function225.supportHtml = true;
 
@@ -6307,10 +6981,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText223 = document.lineAt(position.line).text;
 
 			const function226 = new vscode.MarkdownString(``);
-			function226.appendCodeblock("ta.correlation(source1 = int|float, source2 = int|float, length = int) → series float");
+			function226.appendCodeblock("(function) ta.correlation(source1 = int|float, source2 = int|float, length = int) → series float");
 			function226.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}correlation)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}correlation)*`);
 			function226.isTrusted = true;
 			function226.supportHtml = true;
 
@@ -6335,10 +7009,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText224 = document.lineAt(position.line).text;
 
 			const function227 = new vscode.MarkdownString(``);
-			function227.appendCodeblock("ta.cross(source1 = int|float, source2 = int|float) → series bool");
+			function227.appendCodeblock("(function) ta.cross(source1 = int|float, source2 = int|float) → series bool");
 			function227.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cross)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cross)*`);
 			function227.isTrusted = true;
 			function227.supportHtml = true;
 
@@ -6363,10 +7037,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText225 = document.lineAt(position.line).text;
 
 			const function228 = new vscode.MarkdownString(``);
-			function228.appendCodeblock("ta.crossover(source1 = int|float, source2 = int|float) → series bool");
+			function228.appendCodeblock("(function) ta.crossover(source1 = int|float, source2 = int|float) → series bool");
 			function228.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}crossover)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}crossover)*`);
 			function228.isTrusted = true;
 			function228.supportHtml = true;
 
@@ -6391,10 +7065,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText226 = document.lineAt(position.line).text;
 
 			const function229 = new vscode.MarkdownString(``);
-			function229.appendCodeblock("ta.crossunder(source1 = int|float, source2 = int|float) → series bool");
+			function229.appendCodeblock("(function) ta.crossunder(source1 = int|float, source2 = int|float) → series bool");
 			function229.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}crossunder)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}crossunder)*`);
 			function229.isTrusted = true;
 			function229.supportHtml = true;
 
@@ -6419,10 +7093,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText227 = document.lineAt(position.line).text;
 
 			const function230 = new vscode.MarkdownString(``);
-			function230.appendCodeblock("ta.cum(source = int|float) → series float");
+			function230.appendCodeblock("(function) ta.cum(source = int|float) → series float");
 			function230.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cum)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}cum)*`);
 			function230.isTrusted = true;
 			function230.supportHtml = true;
 
@@ -6447,10 +7121,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText228 = document.lineAt(position.line).text;
 
 			const function231 = new vscode.MarkdownString(``);
-			function231.appendCodeblock("ta.dev(source = int|float, length = int) → series float");
+			function231.appendCodeblock("(function) ta.dev(source = int|float, length = int) → series float");
 			function231.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}dev)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}dev)*`);
 			function231.isTrusted = true;
 			function231.supportHtml = true;
 
@@ -6475,10 +7149,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText229 = document.lineAt(position.line).text;
 
 			const function232 = new vscode.MarkdownString(``);
-			function232.appendCodeblock("ta.dmi(diLength = int, adxSmoothing = int) → [series float, series float, series float]");
+			function232.appendCodeblock("(function) ta.dmi(diLength = int, adxSmoothing = int) → [series float, series float, series float]");
 			function232.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}dmi)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}dmi)*`);
 			function232.isTrusted = true;
 			function232.supportHtml = true;
 
@@ -6503,10 +7177,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText230 = document.lineAt(position.line).text;
 
 			const function233 = new vscode.MarkdownString(``);
-			function233.appendCodeblock("ta.ema(source = int|float, length = int) → series float");
+			function233.appendCodeblock("(function) ta.ema(source = int|float, length = int) → series float");
 			function233.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}ema)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}ema)*`);
 			function233.isTrusted = true;
 			function233.supportHtml = true;
 
@@ -6531,10 +7205,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText231 = document.lineAt(position.line).text;
 
 			const function234 = new vscode.MarkdownString(``);
-			function234.appendCodeblock("ta.falling(source = int|float, length = int) → series bool");
+			function234.appendCodeblock("(function) ta.falling(source = int|float, length = int) → series bool");
 			function234.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}falling)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}falling)*`);
 			function234.isTrusted = true;
 			function234.supportHtml = true;
 
@@ -6559,10 +7233,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText232 = document.lineAt(position.line).text;
 
 			const function235 = new vscode.MarkdownString(``);
-			function235.appendCodeblock("ta.highest(source = int|float, length = int) → series float");
+			function235.appendCodeblock("(function) ta.highest(source = int|float, length = int) → series float");
 			function235.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}highest)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}highest)*`);
 			function235.isTrusted = true;
 			function235.supportHtml = true;
 
@@ -6587,10 +7261,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText233 = document.lineAt(position.line).text;
 
 			const function236 = new vscode.MarkdownString(``);
-			function236.appendCodeblock("ta.highestbars(source = int|float, length = int) → series int");
+			function236.appendCodeblock("(function) ta.highestbars(source = int|float, length = int) → series int");
 			function236.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}highestbars)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}highestbars)*`);
 			function236.isTrusted = true;
 			function236.supportHtml = true;
 
@@ -6615,10 +7289,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText234 = document.lineAt(position.line).text;
 
 			const function237 = new vscode.MarkdownString(``);
-			function237.appendCodeblock("ta.hma(source = int|float, length = int) → series float");
+			function237.appendCodeblock("(function) ta.hma(source = int|float, length = int) → series float");
 			function237.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}hma)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}hma)*`);
 			function237.isTrusted = true;
 			function237.supportHtml = true;
 
@@ -6643,10 +7317,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText235 = document.lineAt(position.line).text;
 
 			const function238 = new vscode.MarkdownString(``);
-			function238.appendCodeblock("ta.kc(series = int|float, length = int, mult = int|float, useTrueRange = bool) → [series float, series float, series float]");
+			function238.appendCodeblock("(function) ta.kc(series = int|float, length = int, mult = int|float, useTrueRange = bool) → [series float, series float, series float]");
 			function238.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}kc)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}kc)*`);
 			function238.isTrusted = true;
 			function238.supportHtml = true;
 
@@ -6671,10 +7345,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText236 = document.lineAt(position.line).text;
 
 			const function239 = new vscode.MarkdownString(``);
-			function239.appendCodeblock("ta.kcw(series = int|float, length = int, mult = int|float, useTrueRange = bool) → series float");
+			function239.appendCodeblock("(function) ta.kcw(series = int|float, length = int, mult = int|float, useTrueRange = bool) → series float");
 			function239.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}kcw)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}kcw)*`);
 			function239.isTrusted = true;
 			function239.supportHtml = true;
 
@@ -6699,10 +7373,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText237 = document.lineAt(position.line).text;
 
 			const function240 = new vscode.MarkdownString(``);
-			function240.appendCodeblock("ta.linreg(source = int|float, length = int, offset = int) → series float");
+			function240.appendCodeblock("(function) ta.linreg(source = int|float, length = int, offset = int) → series float");
 			function240.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}linreg)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}linreg)*`);
 			function240.isTrusted = true;
 			function240.supportHtml = true;
 
@@ -6727,10 +7401,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText238 = document.lineAt(position.line).text;
 
 			const function241 = new vscode.MarkdownString(``);
-			function241.appendCodeblock("ta.lowest(source = int|float, length = int) → series float");
+			function241.appendCodeblock("(function) ta.lowest(source = int|float, length = int) → series float");
 			function241.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}lowest)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}lowest)*`);
 			function241.isTrusted = true;
 			function241.supportHtml = true;
 
@@ -6755,10 +7429,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText239 = document.lineAt(position.line).text;
 
 			const function242 = new vscode.MarkdownString(``);
-			function242.appendCodeblock("ta.lowestbars(source = int|float, length = int) → series int");
+			function242.appendCodeblock("(function) ta.lowestbars(source = int|float, length = int) → series int");
 			function242.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}lowestbars)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}lowestbars)*`);
 			function242.isTrusted = true;
 			function242.supportHtml = true;
 
@@ -6783,10 +7457,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText240 = document.lineAt(position.line).text;
 
 			const function243 = new vscode.MarkdownString(``);
-			function243.appendCodeblock("ta.macd(source = int|float, fastlen = int, slowlen = int, siglen = int) → [series float, series float, series float]");
+			function243.appendCodeblock("(function) ta.macd(source = int|float, fastlen = int, slowlen = int, siglen = int) → [series float, series float, series float]");
 			function243.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}macd)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}macd)*`);
 			function243.isTrusted = true;
 			function243.supportHtml = true;
 
@@ -6811,10 +7485,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText241 = document.lineAt(position.line).text;
 
 			const function244 = new vscode.MarkdownString(``);
-			function244.appendCodeblock("ta.median(source = int|float, length = int) → series int|float");
+			function244.appendCodeblock("(function) ta.median(source = int|float, length = int) → series int|float");
 			function244.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}median)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}median)*`);
 			function244.isTrusted = true;
 			function244.supportHtml = true;
 
@@ -6839,10 +7513,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText242 = document.lineAt(position.line).text;
 
 			const function245 = new vscode.MarkdownString(``);
-			function245.appendCodeblock("ta.mfi(source = int|float, length = int) → series float");
+			function245.appendCodeblock("(function) ta.mfi(source = int|float, length = int) → series float");
 			function245.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}mfi)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}mfi)*`);
 			function245.isTrusted = true;
 			function245.supportHtml = true;
 
@@ -6867,10 +7541,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText243 = document.lineAt(position.line).text;
 
 			const function246 = new vscode.MarkdownString(``);
-			function246.appendCodeblock("ta.mode(source = int|float, length = int) → series int|float");
+			function246.appendCodeblock("(function) ta.mode(source = int|float, length = int) → series int|float");
 			function246.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}mode)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}mode)*`);
 			function246.isTrusted = true;
 			function246.supportHtml = true;
 
@@ -6895,10 +7569,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText244 = document.lineAt(position.line).text;
 
 			const function247 = new vscode.MarkdownString(``);
-			function247.appendCodeblock("ta.mom(source = int|float, length = int) → series float");
+			function247.appendCodeblock("(function) ta.mom(source = int|float, length = int) → series float");
 			function247.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}mom)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}mom)*`);
 			function247.isTrusted = true;
 			function247.supportHtml = true;
 
@@ -6923,10 +7597,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText245 = document.lineAt(position.line).text;
 
 			const function248 = new vscode.MarkdownString(``);
-			function248.appendCodeblock("ta.percentile_linear_interpolation(source = int|float, length = int, percentage = int|float) → series float");
+			function248.appendCodeblock("(function) ta.percentile_linear_interpolation(source = int|float, length = int, percentage = int|float) → series float");
 			function248.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}percentile_linear_inte)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}percentile_linear_inte)*`);
 			function248.isTrusted = true;
 			function248.supportHtml = true;
 
@@ -6951,10 +7625,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText246 = document.lineAt(position.line).text;
 
 			const function249 = new vscode.MarkdownString(``);
-			function249.appendCodeblock("ta.percentile_nearest_rank(source = int|float, length = int, percentage = int|float) → series float");
+			function249.appendCodeblock("(function) ta.percentile_nearest_rank(source = int|float, length = int, percentage = int|float) → series float");
 			function249.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}percentile_nearest_ran)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}percentile_nearest_ran)*`);
 			function249.isTrusted = true;
 			function249.supportHtml = true;
 
@@ -6979,10 +7653,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText247 = document.lineAt(position.line).text;
 
 			const function250 = new vscode.MarkdownString(``);
-			function250.appendCodeblock("ta.percentrank(source = int|float, length = int) → series float");
+			function250.appendCodeblock("(function) ta.percentrank(source = int|float, length = int) → series float");
 			function250.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}percentrank)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}percentrank)*`);
 			function250.isTrusted = true;
 			function250.supportHtml = true;
 
@@ -7007,10 +7681,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText248 = document.lineAt(position.line).text;
 
 			const function251 = new vscode.MarkdownString(``);
-			function251.appendCodeblock("ta.pivothigh(source = int|float, leftbars = int|float, rightbars = int|float) → series float");
+			function251.appendCodeblock("(function) ta.pivothigh(source = int|float, leftbars = int|float, rightbars = int|float) → series float");
 			function251.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}pivothigh)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}pivothigh)*`);
 			function251.isTrusted = true;
 			function251.supportHtml = true;
 
@@ -7035,10 +7709,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText249 = document.lineAt(position.line).text;
 
 			const function252 = new vscode.MarkdownString(``);
-			function252.appendCodeblock("ta.pivotlow(source = int|float, leftbars = int|float, rightbars = int|float) → series float");
+			function252.appendCodeblock("(function) ta.pivotlow(source = int|float, leftbars = int|float, rightbars = int|float) → series float");
 			function252.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}pivotlow)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}pivotlow)*`);
 			function252.isTrusted = true;
 			function252.supportHtml = true;
 
@@ -7063,10 +7737,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText250 = document.lineAt(position.line).text;
 
 			const function253 = new vscode.MarkdownString(``);
-			function253.appendCodeblock("ta.range(source = int|float, length = int) → series int|float");
+			function253.appendCodeblock("(function) ta.range(source = int|float, length = int) → series int|float");
 			function253.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}range)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}range)*`);
 			function253.isTrusted = true;
 			function253.supportHtml = true;
 
@@ -7091,10 +7765,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText251 = document.lineAt(position.line).text;
 
 			const function254 = new vscode.MarkdownString(``);
-			function254.appendCodeblock("ta.rising(source = int|float, length = int) → series bool");
+			function254.appendCodeblock("(function) ta.rising(source = int|float, length = int) → series bool");
 			function254.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}rising)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}rising)*`);
 			function254.isTrusted = true;
 			function254.supportHtml = true;
 
@@ -7119,10 +7793,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText252 = document.lineAt(position.line).text;
 
 			const function255 = new vscode.MarkdownString(``);
-			function255.appendCodeblock("ta.rma(source = int|float, length = int) → series float");
+			function255.appendCodeblock("(function) ta.rma(source = int|float, length = int) → series float");
 			function255.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}rma)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}rma)*`);
 			function255.isTrusted = true;
 			function255.supportHtml = true;
 
@@ -7147,10 +7821,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText253 = document.lineAt(position.line).text;
 
 			const function256 = new vscode.MarkdownString(``);
-			function256.appendCodeblock("ta.roc(source = int|float, length = int) → series float");
+			function256.appendCodeblock("(function) ta.roc(source = int|float, length = int) → series float");
 			function256.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}roc)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}roc)*`);
 			function256.isTrusted = true;
 			function256.supportHtml = true;
 
@@ -7175,10 +7849,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText254 = document.lineAt(position.line).text;
 
 			const function257 = new vscode.MarkdownString(``);
-			function257.appendCodeblock("ta.rsi(source = int|float, length = int) → series float");
+			function257.appendCodeblock("(function) ta.rsi(source = int|float, length = int) → series float");
 			function257.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}rsi)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}rsi)*`);
 			function257.isTrusted = true;
 			function257.supportHtml = true;
 
@@ -7203,10 +7877,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText255 = document.lineAt(position.line).text;
 
 			const function258 = new vscode.MarkdownString(``);
-			function258.appendCodeblock("ta.sar(start = int|float, inc = int|float, max = int|float) → series float");
+			function258.appendCodeblock("(function) ta.sar(start = int|float, inc = int|float, max = int|float) → series float");
 			function258.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}sar)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}sar)*`);
 			function258.isTrusted = true;
 			function258.supportHtml = true;
 
@@ -7231,10 +7905,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText256 = document.lineAt(position.line).text;
 
 			const function259 = new vscode.MarkdownString(``);
-			function259.appendCodeblock("ta.sma(source = int|float, length = int) → series float");
+			function259.appendCodeblock("(function) ta.sma(source = int|float, length = int) → series float");
 			function259.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}sma)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}sma)*`);
 			function259.isTrusted = true;
 			function259.supportHtml = true;
 
@@ -7259,10 +7933,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText257 = document.lineAt(position.line).text;
 
 			const function260 = new vscode.MarkdownString(``);
-			function260.appendCodeblock("ta.stdev(source = int|float, length = int) → series float");
+			function260.appendCodeblock("(function) ta.stdev(source = int|float, length = int) → series float");
 			function260.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}stdev)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}stdev)*`);
 			function260.isTrusted = true;
 			function260.supportHtml = true;
 
@@ -7287,10 +7961,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText258 = document.lineAt(position.line).text;
 
 			const function261 = new vscode.MarkdownString(``);
-			function261.appendCodeblock("ta.stoch(source = int|float, high = int|float, low = int|float, length = int) → series float");
+			function261.appendCodeblock("(function) ta.stoch(source = int|float, high = int|float, low = int|float, length = int) → series float");
 			function261.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}stoch)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}stoch)*`);
 			function261.isTrusted = true;
 			function261.supportHtml = true;
 
@@ -7315,10 +7989,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText259 = document.lineAt(position.line).text;
 
 			const function262 = new vscode.MarkdownString(``);
-			function262.appendCodeblock("ta.supertrend(factor = int|float, atrPeriod = int) → [series float, series float]");
+			function262.appendCodeblock("(function) ta.supertrend(factor = int|float, atrPeriod = int) → [series float, series float]");
 			function262.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}supertrend)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}supertrend)*`);
 			function262.isTrusted = true;
 			function262.supportHtml = true;
 
@@ -7343,10 +8017,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText260 = document.lineAt(position.line).text;
 
 			const function263 = new vscode.MarkdownString(``);
-			function263.appendCodeblock("ta.swma(source = int|float) → series float");
+			function263.appendCodeblock("(function) ta.swma(source = int|float) → series float");
 			function263.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}swma)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}swma)*`);
 			function263.isTrusted = true;
 			function263.supportHtml = true;
 
@@ -7371,10 +8045,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText261 = document.lineAt(position.line).text;
 
 			const function264 = new vscode.MarkdownString(``);
-			function264.appendCodeblock("ta.tr(handle_na = bool) → series float");
+			function264.appendCodeblock("(function) ta.tr(handle_na = bool) → series float");
 			function264.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}tr)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}tr)*`);
 			function264.isTrusted = true;
 			function264.supportHtml = true;
 
@@ -7399,10 +8073,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText262 = document.lineAt(position.line).text;
 
 			const function265 = new vscode.MarkdownString(``);
-			function265.appendCodeblock("ta.tsi(source = int|float, short_length = int, long_length = int) → series float");
+			function265.appendCodeblock("(function) ta.tsi(source = int|float, short_length = int, long_length = int) → series float");
 			function265.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}tsi)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}tsi)*`);
 			function265.isTrusted = true;
 			function265.supportHtml = true;
 
@@ -7427,10 +8101,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText263 = document.lineAt(position.line).text;
 
 			const function266 = new vscode.MarkdownString(``);
-			function266.appendCodeblock("ta.valuewhen(condition = bool, source = int|float, occurrence = int) → series int|float");
+			function266.appendCodeblock("(function) ta.valuewhen(condition = bool, source = int|float, occurrence = int) → series int|float");
 			function266.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}valuewhen)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}valuewhen)*`);
 			function266.isTrusted = true;
 			function266.supportHtml = true;
 
@@ -7455,10 +8129,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText264 = document.lineAt(position.line).text;
 
 			const function267 = new vscode.MarkdownString(``);
-			function267.appendCodeblock("ta.variance(source = int|float, length = int) → series float");
+			function267.appendCodeblock("(function) ta.variance(source = int|float, length = int) → series float");
 			function267.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}variance)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}variance)*`);
 			function267.isTrusted = true;
 			function267.supportHtml = true;
 
@@ -7483,10 +8157,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText265 = document.lineAt(position.line).text;
 
 			const function268 = new vscode.MarkdownString(``);
-			function268.appendCodeblock("ta.vwap(source = int|float) → series float");
+			function268.appendCodeblock("(function) ta.vwap(source = int|float) → series float");
 			function268.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}vwap)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}vwap)*`);
 			function268.isTrusted = true;
 			function268.supportHtml = true;
 
@@ -7511,10 +8185,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText266 = document.lineAt(position.line).text;
 
 			const function269 = new vscode.MarkdownString(``);
-			function269.appendCodeblock("ta.vwma(source = int|float, length = int) → series float");
+			function269.appendCodeblock("(function) ta.vwma(source = int|float, length = int) → series float");
 			function269.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}vwma)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}vwma)*`);
 			function269.isTrusted = true;
 			function269.supportHtml = true;
 
@@ -7539,10 +8213,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText267 = document.lineAt(position.line).text;
 
 			const function270 = new vscode.MarkdownString(``);
-			function270.appendCodeblock("ta.wma(source = int|float, length = int) → series float");
+			function270.appendCodeblock("(function) ta.wma(source = int|float, length = int) → series float");
 			function270.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}wma)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}wma)*`);
 			function270.isTrusted = true;
 			function270.supportHtml = true;
 
@@ -7567,10 +8241,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText268 = document.lineAt(position.line).text;
 
 			const function271 = new vscode.MarkdownString(``);
-			function271.appendCodeblock("ta.wpr(length = int) → series float");
+			function271.appendCodeblock("(function) ta.wpr(length = int) → series float");
 			function271.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}wpr)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ta{dot}wpr)*`);
 			function271.isTrusted = true;
 			function271.supportHtml = true;
 
@@ -7592,20 +8266,27 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover269 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange269;
+			let error26901;
 			const hoverLineText269 = document.lineAt(position.line).text;
 
 			const function272 = new vscode.MarkdownString(``);
-			function272.appendCodeblock("table(x = table) → series table");
+			function272.appendCodeblock("(function) table(x = table) → series table");
 			function272.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table)*`);
 			function272.isTrusted = true;
 			function272.supportHtml = true;
 
 			const pattern272 = new RegExp("(table)\\(");
+			const patternError27201 = new RegExp("(array\\.new_table)\\(");
+
 			if (pattern272.test(hoverLineText269)) {
 				hoverRange269 = document.getWordRangeAtPosition(position, pattern272);
-				if (hoverRange269) {
+				error26901 = document.getWordRangeAtPosition(position, patternError27201);
+				if (error26901){
+					return null;
+				}
+				else if (hoverRange269) {
 					return new vscode.Hover(function272, new vscode.Range(position, position));
 				}
 				else {
@@ -7623,10 +8304,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText270 = document.lineAt(position.line).text;
 
 			const function273 = new vscode.MarkdownString(``);
-			function273.appendCodeblock("table.cell(table_id = table, column = int, row = int, text = string, width = int|float, height = int|float, text_color = color, text_halign = string, text_valign = string, text_size = string, bgcolor = color) → void");
+			function273.appendCodeblock("(function) table.cell(table_id = table, column = int, row = int, text = string, width = int|float, height = int|float, text_color = color, text_halign = string, text_valign = string, text_size = string, bgcolor = color) → void");
 			function273.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell)*`);
 			function273.isTrusted = true;
 			function273.supportHtml = true;
 
@@ -7651,10 +8332,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText271 = document.lineAt(position.line).text;
 
 			const function274 = new vscode.MarkdownString(``);
-			function274.appendCodeblock("table.cell_set_bgcolor(table_id = table, column = int, row = int, bgcolor = color) → void");
+			function274.appendCodeblock("(function) table.cell_set_bgcolor(table_id = table, column = int, row = int, bgcolor = color) → void");
 			function274.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_bgcolor)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_bgcolor)*`);
 			function274.isTrusted = true;
 			function274.supportHtml = true;
 
@@ -7679,10 +8360,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText272 = document.lineAt(position.line).text;
 
 			const function275 = new vscode.MarkdownString(``);
-			function275.appendCodeblock("table.cell_set_height(table_id = table, column = int, row = int, height = int|float) → void");
+			function275.appendCodeblock("(function) table.cell_set_height(table_id = table, column = int, row = int, height = int|float) → void");
 			function275.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_height)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_height)*`);
 			function275.isTrusted = true;
 			function275.supportHtml = true;
 
@@ -7707,10 +8388,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText273 = document.lineAt(position.line).text;
 
 			const function276 = new vscode.MarkdownString(``);
-			function276.appendCodeblock("table.cell_set_text(table_id = table, column = int, row = int, text = string) → void");
+			function276.appendCodeblock("(function) table.cell_set_text(table_id = table, column = int, row = int, text = string) → void");
 			function276.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text)*`);
 			function276.isTrusted = true;
 			function276.supportHtml = true;
 
@@ -7735,10 +8416,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText274 = document.lineAt(position.line).text;
 
 			const function277 = new vscode.MarkdownString(``);
-			function277.appendCodeblock("table.cell_set_text_color(table_id = table, column = int, row = int, text_color = color) → void");
+			function277.appendCodeblock("(function) table.cell_set_text_color(table_id = table, column = int, row = int, text_color = color) → void");
 			function277.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_color)*`);
 			function277.isTrusted = true;
 			function277.supportHtml = true;
 
@@ -7763,10 +8444,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText275 = document.lineAt(position.line).text;
 
 			const function278 = new vscode.MarkdownString(``);
-			function278.appendCodeblock("table.cell_set_text_halign(table_id = table, column = int, row = int, text_halign = string) → void");
+			function278.appendCodeblock("(function) table.cell_set_text_halign(table_id = table, column = int, row = int, text_halign = string) → void");
 			function278.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_halig)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_halig)*`);
 			function278.isTrusted = true;
 			function278.supportHtml = true;
 
@@ -7791,10 +8472,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText276 = document.lineAt(position.line).text;
 
 			const function279 = new vscode.MarkdownString(``);
-			function279.appendCodeblock("table.cell_set_text_size(table_id = table, column = int, row = int, text_size = string) → void");
+			function279.appendCodeblock("(function) table.cell_set_text_size(table_id = table, column = int, row = int, text_size = string) → void");
 			function279.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_size)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_size)*`);
 			function279.isTrusted = true;
 			function279.supportHtml = true;
 
@@ -7819,10 +8500,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText277 = document.lineAt(position.line).text;
 
 			const function280 = new vscode.MarkdownString(``);
-			function280.appendCodeblock("table.cell_set_text_valign(table_id = table, column = int, row = int, text_valign = string) → void");
+			function280.appendCodeblock("(function) table.cell_set_text_valign(table_id = table, column = int, row = int, text_valign = string) → void");
 			function280.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_valig)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_text_valig)*`);
 			function280.isTrusted = true;
 			function280.supportHtml = true;
 
@@ -7847,10 +8528,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText278 = document.lineAt(position.line).text;
 
 			const function281 = new vscode.MarkdownString(``);
-			function281.appendCodeblock("table.cell_set_width(table_id = table, column = int, row = int, width = int|float) → void");
+			function281.appendCodeblock("(function) table.cell_set_width(table_id = table, column = int, row = int, width = int|float) → void");
 			function281.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_width)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}cell_set_width)*`);
 			function281.isTrusted = true;
 			function281.supportHtml = true;
 
@@ -7875,10 +8556,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText279 = document.lineAt(position.line).text;
 
 			const function282 = new vscode.MarkdownString(``);
-			function282.appendCodeblock("table.clear(table_id = table, start_column = int, start_row = int, end_column = int, end_row = int) → void");
+			function282.appendCodeblock("(function) table.clear(table_id = table, start_column = int, start_row = int, end_column = int, end_row = int) → void");
 			function282.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}clear)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}clear)*`);
 			function282.isTrusted = true;
 			function282.supportHtml = true;
 
@@ -7903,10 +8584,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText280 = document.lineAt(position.line).text;
 
 			const function283 = new vscode.MarkdownString(``);
-			function283.appendCodeblock("table.delete(table_id = table) → void");
+			function283.appendCodeblock("(function) table.delete(table_id = table) → void");
 			function283.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}delete)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}delete)*`);
 			function283.isTrusted = true;
 			function283.supportHtml = true;
 
@@ -7931,10 +8612,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText281 = document.lineAt(position.line).text;
 
 			const function284 = new vscode.MarkdownString(``);
-			function284.appendCodeblock("table.new(position = int, columns = int, rows = int, bgcolor = color, frame_color = color, frame_width = int, border_color = color, border_width = int) → series table");
+			function284.appendCodeblock("(function) table.new(position = int, columns = int, rows = int, bgcolor = color, frame_color = color, frame_width = int, border_color = color, border_width = int) → series table");
 			function284.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}new)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}new)*`);
 			function284.isTrusted = true;
 			function284.supportHtml = true;
 
@@ -7959,10 +8640,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText282 = document.lineAt(position.line).text;
 
 			const function285 = new vscode.MarkdownString(``);
-			function285.appendCodeblock("table.set_bgcolor(table_id = table, bgcolor = color) → void");
+			function285.appendCodeblock("(function) table.set_bgcolor(table_id = table, bgcolor = color) → void");
 			function285.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_bgcolor)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_bgcolor)*`);
 			function285.isTrusted = true;
 			function285.supportHtml = true;
 
@@ -7987,10 +8668,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText283 = document.lineAt(position.line).text;
 
 			const function286 = new vscode.MarkdownString(``);
-			function286.appendCodeblock("table.set_border_color(table_id = table, border_color = color) → void");
+			function286.appendCodeblock("(function) table.set_border_color(table_id = table, border_color = color) → void");
 			function286.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_border_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_border_color)*`);
 			function286.isTrusted = true;
 			function286.supportHtml = true;
 
@@ -8015,10 +8696,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText284 = document.lineAt(position.line).text;
 
 			const function287 = new vscode.MarkdownString(``);
-			function287.appendCodeblock("table.set_border_width(table_id = table, border_width = int) → void");
+			function287.appendCodeblock("(function) table.set_border_width(table_id = table, border_width = int) → void");
 			function287.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_border_width)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_border_width)*`);
 			function287.isTrusted = true;
 			function287.supportHtml = true;
 
@@ -8043,10 +8724,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText285 = document.lineAt(position.line).text;
 
 			const function288 = new vscode.MarkdownString(``);
-			function288.appendCodeblock("table.set_frame_color(table_id = table, frame_color = color) → void");
+			function288.appendCodeblock("(function) table.set_frame_color(table_id = table, frame_color = color) → void");
 			function288.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_frame_color)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_frame_color)*`);
 			function288.isTrusted = true;
 			function288.supportHtml = true;
 
@@ -8071,10 +8752,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText286 = document.lineAt(position.line).text;
 
 			const function289 = new vscode.MarkdownString(``);
-			function289.appendCodeblock("table.set_frame_width(table_id = table, frame_width = int) → void");
+			function289.appendCodeblock("(function) table.set_frame_width(table_id = table, frame_width = int) → void");
 			function289.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_frame_width)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_frame_width)*`);
 			function289.isTrusted = true;
 			function289.supportHtml = true;
 
@@ -8099,10 +8780,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText287 = document.lineAt(position.line).text;
 
 			const function290 = new vscode.MarkdownString(``);
-			function290.appendCodeblock("table.set_position(table_id = table, position = string) → void");
+			function290.appendCodeblock("(function) table.set_position(table_id = table, position = string) → void");
 			function290.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_position)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_table{dot}set_position)*`);
 			function290.isTrusted = true;
 			function290.supportHtml = true;
 
@@ -8127,10 +8808,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText288 = document.lineAt(position.line).text;
 
 			const function291 = new vscode.MarkdownString(``);
-			function291.appendCodeblock("ticker.heikinashi(symbol = simple string) → simple string");
+			function291.appendCodeblock("(function) ticker.heikinashi(symbol = simple string) → simple string");
 			function291.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}heikinashi)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}heikinashi)*`);
 			function291.isTrusted = true;
 			function291.supportHtml = true;
 
@@ -8155,10 +8836,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText289 = document.lineAt(position.line).text;
 
 			const function292 = new vscode.MarkdownString(``);
-			function292.appendCodeblock("ticker.kagi(symbol = string, reversal = int|float) → simple string");
+			function292.appendCodeblock("(function) ticker.kagi(symbol = string, reversal = int|float) → simple string");
 			function292.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}kagi)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}kagi)*`);
 			function292.isTrusted = true;
 			function292.supportHtml = true;
 
@@ -8183,10 +8864,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText290 = document.lineAt(position.line).text;
 
 			const function293 = new vscode.MarkdownString(``);
-			function293.appendCodeblock("ticker.linebreak(symbol = string, number_of_lines = int) → simple string");
+			function293.appendCodeblock("(function) ticker.linebreak(symbol = string, number_of_lines = int) → simple string");
 			function293.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}linebreak)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}linebreak)*`);
 			function293.isTrusted = true;
 			function293.supportHtml = true;
 
@@ -8211,10 +8892,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText291 = document.lineAt(position.line).text;
 
 			const function294 = new vscode.MarkdownString(``);
-			function294.appendCodeblock("ticker.modify(tickerid = string, session = string, adjustment = string) → simple string");
+			function294.appendCodeblock("(function) ticker.modify(tickerid = string, session = string, adjustment = string) → simple string");
 			function294.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}modify)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}modify)*`);
 			function294.isTrusted = true;
 			function294.supportHtml = true;
 
@@ -8239,10 +8920,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText292 = document.lineAt(position.line).text;
 
 			const function295 = new vscode.MarkdownString(``);
-			function295.appendCodeblock("ticker.new(prefix = string, ticker = string, session = string, adjustment = string) → simple string");
+			function295.appendCodeblock("(function) ticker.new(prefix = string, ticker = string, session = string, adjustment = string) → simple string");
 			function295.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}new)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}new)*`);
 			function295.isTrusted = true;
 			function295.supportHtml = true;
 
@@ -8267,10 +8948,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText293 = document.lineAt(position.line).text;
 
 			const function296 = new vscode.MarkdownString(``);
-			function296.appendCodeblock("ticker.pointfigure(symbol = string, source = string, style = string, param = int|float, reversal = int) → simple string");
+			function296.appendCodeblock("(function) ticker.pointfigure(symbol = string, source = string, style = string, param = int|float, reversal = int) → simple string");
 			function296.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}pointfigure)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}pointfigure)*`);
 			function296.isTrusted = true;
 			function296.supportHtml = true;
 
@@ -8295,10 +8976,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText294 = document.lineAt(position.line).text;
 
 			const function297 = new vscode.MarkdownString(``);
-			function297.appendCodeblock("ticker.renko(symbol = string, style = string, param = int|float) → simple string");
+			function297.appendCodeblock("(function) ticker.renko(symbol = string, style = string, param = int|float) → simple string");
 			function297.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}renko)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_ticker{dot}renko)*`);
 			function297.isTrusted = true;
 			function297.supportHtml = true;
 
@@ -8320,20 +9001,30 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover295 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange295;
+			let error29501;
+			let error29502;
 			const hoverLineText295 = document.lineAt(position.line).text;
 
 			const function298 = new vscode.MarkdownString(``);
-			function298.appendCodeblock("time(timeframe = string, timezone = series string) → series int");
+			function298.appendCodeblock("(function) time(timeframe = string, timezone = series string) → series int");
 			function298.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_time)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_time)*`);
 			function298.isTrusted = true;
 			function298.supportHtml = true;
 
 			const pattern298 = new RegExp("(time)\\(");
+			const patternError29801 = new RegExp("(input\\.time)\\(");
+			const patternError29802 = new RegExp("strategy\\.opentrades\\.entry_time\\(");
+
 			if (pattern298.test(hoverLineText295)) {
 				hoverRange295 = document.getWordRangeAtPosition(position, pattern298);
-				if (hoverRange295) {
+				error29501 = document.getWordRangeAtPosition(position, patternError29801);
+				error29502 = document.getWordRangeAtPosition(position, patternError29802);
+				if (error29501||error29502){
+					return null;
+				}
+				else if (hoverRange295) {
 					return new vscode.Hover(function298, new vscode.Range(position, position));
 				}
 				else {
@@ -8351,10 +9042,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText296 = document.lineAt(position.line).text;
 
 			const function299 = new vscode.MarkdownString(``);
-			function299.appendCodeblock("time_close(timeframe = string, timezone = series string) → series int");
+			function299.appendCodeblock("(function) time_close(timeframe = string, timezone = series string) → series int");
 			function299.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_time_close)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_time_close)*`);
 			function299.isTrusted = true;
 			function299.supportHtml = true;
 
@@ -8379,10 +9070,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText297 = document.lineAt(position.line).text;
 
 			const function300 = new vscode.MarkdownString(``);
-			function300.appendCodeblock("timestamp(timezone = string, year = int, month = int, day = int, hour = int, minute = int, second = int) → simple int");
+			function300.appendCodeblock("(function) timestamp(timezone = string, year = int, month = int, day = int, hour = int, minute = int, second = int) → simple int");
 			function300.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_timestamp)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_timestamp)*`);
 			function300.isTrusted = true;
 			function300.supportHtml = true;
 
@@ -8407,10 +9098,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const hoverLineText298 = document.lineAt(position.line).text;
 
 			const function301 = new vscode.MarkdownString(``);
-			function301.appendCodeblock("weekofyear(time = int, timezone = series string) → series int");
+			function301.appendCodeblock("(function) weekofyear(time = int, timezone = series string) → series int");
 			function301.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_weekofyear)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_weekofyear)*`);
 			function301.isTrusted = true;
 			function301.supportHtml = true;
 
@@ -8431,20 +9122,26 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover299 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange299;
+			let error29901;
 			const hoverLineText299 = document.lineAt(position.line).text;
 
 			const function302 = new vscode.MarkdownString(``);
-			function302.appendCodeblock("year(time = int, timezone = series string) → series int");
+			function302.appendCodeblock("(function) year(time = int, timezone = series string) → series int");
 			function302.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_year)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_year)*`);
 			function302.isTrusted = true;
 			function302.supportHtml = true;
 
 			const pattern302 = new RegExp("(year)\\(");
+			const patternError30201 = new RegExp("(weekofyear)\\(");
 			if (pattern302.test(hoverLineText299)) {
 				hoverRange299 = document.getWordRangeAtPosition(position, pattern302);
-				if (hoverRange299) {
+				error29901 = document.getWordRangeAtPosition(position, patternError30201);
+				if (error29901){
+					return null;
+				}
+				else if (hoverRange299) {
 					return new vscode.Hover(function302, new vscode.Range(position, position));
 				}
 				else {
@@ -8460,20 +9157,30 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover300 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange300;
+			let error30001;
+			let error30002;	
 			const hoverLineText300 = document.lineAt(position.line).text;
 
 			const function46 = new vscode.MarkdownString(``);
-			function46.appendCodeblock("bool(x = int) → simple|input|const|series int");
+			function46.appendCodeblock("(function) bool(x = int) → simple|input|const|series int");
 			function46.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_bool)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_bool)*`);
 			function46.isTrusted = true;
 			function46.supportHtml = true;
 
 			const pattern46 = new RegExp("(bool)\\(");
+			const patternError4601 = new RegExp("array\\.new_bool\\(");
+			const patternError4602 = new RegExp("input\\.bool\\(");
+
 			if (pattern46.test(hoverLineText300)) {
 				hoverRange300 = document.getWordRangeAtPosition(position, pattern46);
-				if (hoverRange300) {
+				error30001 = document.getWordRangeAtPosition(position, patternError4601);
+				error30002 = document.getWordRangeAtPosition(position, patternError4602);
+				if (error30001||error30002){
+					return null;
+				}
+				else if (hoverRange300) {
 					return new vscode.Hover(function46, new vscode.Range(position, position));
 				}
 				else {
@@ -8488,20 +9195,30 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover301 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange301;
+			let error30101;
+			let error30102;
 			const hoverLineText301 = document.lineAt(position.line).text;
 
 			const function77 = new vscode.MarkdownString(``);
-			function77.appendCodeblock("float(x = any) → simple|input|const|series float");
+			function77.appendCodeblock("(function) float(x = any) → simple|input|const|series float");
 			function77.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_float)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_float)*`);
 			function77.isTrusted = true;
 			function77.supportHtml = true;
 
 			const pattern77 = new RegExp("(float)\\(");
+			const patternError7701 = new RegExp("(input\\.float)\\(");
+			const patternError7702 = new RegExp("(array\\.new_float)\\(");
+
 			if (pattern77.test(hoverLineText301)) {
 				hoverRange301 = document.getWordRangeAtPosition(position, pattern77);
-				if (hoverRange301) {
+				error30101 = document.getWordRangeAtPosition(position, patternError7701);
+				error30102 = document.getWordRangeAtPosition(position, patternError7702);
+				if (error30101||error30102){
+					return null;
+				}
+				else if (hoverRange301) {
 					return new vscode.Hover(function77, new vscode.Range(position, position));
 				}
 				else {
@@ -8514,20 +9231,33 @@ export function activate(context: vscode.ExtensionContext) {
 	let pineHover302 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange302;
+			let error30201;
+			let error30202;
+
 			const hoverLineText302 = document.lineAt(position.line).text;
 
 			const function92 = new vscode.MarkdownString(``);
-			function92.appendCodeblock("int(x = int) → simple|input|const|series int");
+			function92.appendCodeblock("(function) int(x = int) → simple|input|const|series int");
 			function92.appendMarkdown(`
 		
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#fun_int)*`);
+*[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#fun_int)*`);
 			function92.isTrusted = true;
 			function92.supportHtml = true;
 
 			const pattern92 = new RegExp("(int)\\(");
+			const patternError9201 = new RegExp('input\\.int\\(');
+			const patternError9202 = new RegExp('array\\.new_int\\(');
+
 			if (pattern92.test(hoverLineText302)) {
+
 				hoverRange302 = document.getWordRangeAtPosition(position, pattern92);
-				if (hoverRange302) {
+				error30201 = document.getWordRangeAtPosition(position, patternError9201);
+				error30202 = document.getWordRangeAtPosition(position, patternError9202);
+
+				if (error30201||error30202){
+					return null;
+				}
+				else if (hoverRange302) {
 					return new vscode.Hover(function92, new vscode.Range(position, position));
 				}
 				else {
@@ -8557,15 +9287,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 			const variable1 = new vscode.MarkdownString(``);
-			variable1.appendCodeblock(`adjustment.dividends`);
+			variable1.appendCodeblock(`(variable) adjustment.dividends)`);
 			variable1.appendMarkdown(`
-Constant for dividends adjustment type (dividends adjustment is applied)`);
+<hr>
+
+Constant for dividends adjustment type (dividends adjustment is applied *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_adjustment{dot}dividends)*)`);
 			variable1.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable1.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_adjustment{dot}dividends)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable1.isTrusted = true;
 			variable1.supportHtml = true;
 
@@ -8592,15 +9324,17 @@ Constant for dividends adjustment type (dividends adjustment is applied)`);
 
 
 			const variable2 = new vscode.MarkdownString(``);
-			variable2.appendCodeblock(`adjustment.none`);
+			variable2.appendCodeblock(`(variable) adjustment.none`);
 			variable2.appendMarkdown(`
-Constant for none adjustment type (no adjustment is applied)`);
+<hr>
+
+Constant for none adjustment type (no adjustment is applied *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_adjustment{dot}none)*)`);
 			variable2.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string</i></span`);
-			variable2.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_adjustment{dot}none)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</i></span</code>`);
+			
 			variable2.isTrusted = true;
 			variable2.supportHtml = true;
 
@@ -8627,15 +9361,17 @@ Constant for none adjustment type (no adjustment is applied)`);
 
 
 			const variable3 = new vscode.MarkdownString(``);
-			variable3.appendCodeblock(`adjustment.splits`);
+			variable3.appendCodeblock(`(variable) adjustment.splits`);
 			variable3.appendMarkdown(`
-Constant for splits adjustment type (splits adjustment is applied)`);
+<hr>
+
+Constant for splits adjustment type (splits adjustment is applied *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_adjustment{dot}splits)*)`);
 			variable3.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable3.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_adjustment{dot}splits)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable3.isTrusted = true;
 			variable3.supportHtml = true;
 
@@ -8662,15 +9398,17 @@ Constant for splits adjustment type (splits adjustment is applied)`);
 
 
 			const variable4 = new vscode.MarkdownString(``);
-			variable4.appendCodeblock(`alert.freq_all`);
+			variable4.appendCodeblock(`(variable) alert.freq_all`);
 			variable4.appendMarkdown(`
-All function calls trigger the alert`);
+<hr>
+
+All function calls trigger the alert *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_alert{dot}freq_all)*`);
 			variable4.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable4.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_alert{dot}freq_all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable4.isTrusted = true;
 			variable4.supportHtml = true;
 
@@ -8697,15 +9435,17 @@ All function calls trigger the alert`);
 
 
 			const variable5 = new vscode.MarkdownString(``);
-			variable5.appendCodeblock(`alert.freq_once_per_bar`);
+			variable5.appendCodeblock(`(variable) alert.freq_once_per_bar`);
 			variable5.appendMarkdown(`
-The first function call during the bar triggers the alert`);
+<hr>
+
+The first function call during the bar triggers the alert *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_alert{dot}freq_once_per_bar)*`);
 			variable5.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable5.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_alert{dot}freq_once_per_bar)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable5.isTrusted = true;
 			variable5.supportHtml = true;
 
@@ -8732,15 +9472,17 @@ The first function call during the bar triggers the alert`);
 
 
 			const variable6 = new vscode.MarkdownString(``);
-			variable6.appendCodeblock(`alert.freq_once_per_bar_close`);
+			variable6.appendCodeblock(`(variable) alert.freq_once_per_bar_close`);
 			variable6.appendMarkdown(`
-The function call triggers the alert only when it occurs during the last script iteration of the real-time bar, when it closes`);
+<hr>
+
+The function call triggers the alert only when it occurs during the last script iteration of the real-time bar, when it closes *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_alert{dot}freq_once_per_bar_close)*`);
 			variable6.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable6.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_alert{dot}freq_once_per_bar_close)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable6.isTrusted = true;
 			variable6.supportHtml = true;
 
@@ -8769,15 +9511,17 @@ The function call triggers the alert only when it occurs during the last script 
 
 
 			const variable8 = new vscode.MarkdownString(``);
-			variable8.appendCodeblock(`barmerge.gaps_off`);
+			variable8.appendCodeblock(`(variable) barmerge.gaps_off`);
 			variable8.appendMarkdown(`
-Merge strategy for requested data. Data is merged continuously without gaps, all the gaps are filled with the previous nearest existing value`);
+<hr>
+
+Merge strategy for requested data. Data is merged continuously without gaps, all the gaps are filled with the previous nearest existing value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}gaps_off)*`);
 			variable8.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>barmerge_gaps`);
-			variable8.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}gaps_off)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>barmerge_gaps</code>`);
+			
 			variable8.isTrusted = true;
 			variable8.supportHtml = true;
 
@@ -8804,15 +9548,17 @@ Merge strategy for requested data. Data is merged continuously without gaps, all
 
 
 			const variable9 = new vscode.MarkdownString(``);
-			variable9.appendCodeblock(`barmerge.gaps_on`);
+			variable9.appendCodeblock(`(variable) barmerge.gaps_on`);
 			variable9.appendMarkdown(`
-Merge strategy for requested data. Data is merged with possible gaps (na values)`);
+<hr>
+
+Merge strategy for requested data. Data is merged with possible gaps (na values *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}gaps_on)*)`);
 			variable9.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>barmerge_gaps`);
-			variable9.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}gaps_on)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>barmerge_gaps</code>`);
+			
 			variable9.isTrusted = true;
 			variable9.supportHtml = true;
 
@@ -8839,15 +9585,17 @@ Merge strategy for requested data. Data is merged with possible gaps (na values)
 
 
 			const variable10 = new vscode.MarkdownString(``);
-			variable10.appendCodeblock(`barmerge.lookahead_off`);
+			variable10.appendCodeblock(`(variable) barmerge.lookahead_off`);
 			variable10.appendMarkdown(`
-Merge strategy for the requested data position. Requested barset is merged with current barset in the order of sorting bars by their close time. This merge strategy disables effect of getting data from "future" on calculation on history`);
+<hr>
+
+Merge strategy for the requested data position. Requested barset is merged with current barset in the order of sorting bars by their close time. This merge strategy disables effect of getting data from "future" on calculation on history *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}lookahead_off)*`);
 			variable10.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>barmerge_lookahead`);
-			variable10.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}lookahead_off)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>barmerge_lookahead</code>`);
+			
 			variable10.isTrusted = true;
 			variable10.supportHtml = true;
 
@@ -8874,15 +9622,17 @@ Merge strategy for the requested data position. Requested barset is merged with 
 
 
 			const variable11 = new vscode.MarkdownString(``);
-			variable11.appendCodeblock(`barmerge.lookahead_on`);
+			variable11.appendCodeblock(`(variable) barmerge.lookahead_on`);
 			variable11.appendMarkdown(`
-Merge strategy for the requested data position. Requested barset is merged with current barset in the order of sorting bars by their opening time. This merge strategy can lead to undesirable effect of getting data from "future" on calculation on history. This is unacceptable in backtesting strategies, but can be useful in indicators`);
+<hr>
+
+Merge strategy for the requested data position. Requested barset is merged with current barset in the order of sorting bars by their opening time. This merge strategy can lead to undesirable effect of getting data from "future" on calculation on history. This is unacceptable in backtesting strategies, but can be useful in indicators *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}lookahead_on)*`);
 			variable11.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>barmerge_lookahead`);
-			variable11.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barmerge{dot}lookahead_on)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>barmerge_lookahead</code>`);
+			
 			variable11.isTrusted = true;
 			variable11.supportHtml = true;
 
@@ -8909,15 +9659,17 @@ Merge strategy for the requested data position. Requested barset is merged with 
 
 
 			const variable12 = new vscode.MarkdownString(``);
-			variable12.appendCodeblock(`barstate.isconfirmed`);
+			variable12.appendCodeblock(`(variable) barstate.isconfirmed`);
 			variable12.appendMarkdown(`
-Returns true if the script is calculating the last (closing) update of the current bar. The next script calculation will be on the new bar data`);
+<hr>
+
+Returns true if the script is calculating the last (closing) update of the current bar. The next script calculation will be on the new bar data *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isconfirmed)*`);
 			variable12.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable12.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isconfirmed)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable12.isTrusted = true;
 			variable12.supportHtml = true;
 
@@ -8944,15 +9696,17 @@ Returns true if the script is calculating the last (closing) update of the curre
 
 
 			const variable13 = new vscode.MarkdownString(``);
-			variable13.appendCodeblock(`barstate.isfirst`);
+			variable13.appendCodeblock(`(variable) barstate.isfirst`);
 			variable13.appendMarkdown(`
-Returns true if current bar is first bar in barset, true otherwise`);
+<hr>
+
+Returns true if current bar is first bar in barset, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isfirst)*`);
 			variable13.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable13.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isfirst)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable13.isTrusted = true;
 			variable13.supportHtml = true;
 
@@ -8979,15 +9733,17 @@ Returns true if current bar is first bar in barset, true otherwise`);
 
 
 			const variable14 = new vscode.MarkdownString(``);
-			variable14.appendCodeblock(`barstate.ishistory`);
+			variable14.appendCodeblock(`(variable) barstate.ishistory`);
 			variable14.appendMarkdown(`
-Returns true if current bar is a historical bar, true otherwise`);
+<hr>
+
+Returns true if current bar is a historical bar, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}ishistory)*`);
 			variable14.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable14.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}ishistory)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable14.isTrusted = true;
 			variable14.supportHtml = true;
 
@@ -9014,15 +9770,17 @@ Returns true if current bar is a historical bar, true otherwise`);
 
 
 			const variable15 = new vscode.MarkdownString(``);
-			variable15.appendCodeblock(`barstate.islast`);
+			variable15.appendCodeblock(`(variable) barstate.islast`);
 			variable15.appendMarkdown(`
-Returns true if current bar is the last bar in barset, true otherwise. This condition is true for all real-time bars in barset`);
+<hr>
+
+Returns true if current bar is the last bar in barset, true otherwise. This condition is true for all real-time bars in barset *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}islast)*`);
 			variable15.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable15.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}islast)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable15.isTrusted = true;
 			variable15.supportHtml = true;
 
@@ -9049,15 +9807,17 @@ Returns true if current bar is the last bar in barset, true otherwise. This cond
 
 
 			const variable16 = new vscode.MarkdownString(``);
-			variable16.appendCodeblock(`barstate.islastconfirmedhistory`);
+			variable16.appendCodeblock(`(variable) barstate.islastconfirmedhistory`);
 			variable16.appendMarkdown(`
-Returns true if script is executing on the dataset's last bar when market is closed, or script is executing on the bar immediately preceding the real-time bar, if market is open. Returns true otherwise`);
+<hr>
+
+Returns true if script is executing on the dataset's last bar when market is closed, or script is executing on the bar immediately preceding the real-time bar, if market is open. Returns true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}islastconfirmedhistory)*`);
 			variable16.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable16.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}islastconfirmedhistory)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable16.isTrusted = true;
 			variable16.supportHtml = true;
 
@@ -9084,15 +9844,17 @@ Returns true if script is executing on the dataset's last bar when market is clo
 
 
 			const variable17 = new vscode.MarkdownString(``);
-			variable17.appendCodeblock(`barstate.isnew`);
+			variable17.appendCodeblock(`(variable) barstate.isnew`);
 			variable17.appendMarkdown(`
-Returns true if script is currently calculating on new bar, true otherwise. This variable is true when calculating on historical bars or on first update of a newly generated real-time bar`);
+<hr>
+
+Returns true if script is currently calculating on new bar, true otherwise. This variable is true when calculating on historical bars or on first update of a newly generated real-time bar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isnew)*`);
 			variable17.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable17.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isnew)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable17.isTrusted = true;
 			variable17.supportHtml = true;
 
@@ -9119,15 +9881,17 @@ Returns true if script is currently calculating on new bar, true otherwise. This
 
 
 			const variable18 = new vscode.MarkdownString(``);
-			variable18.appendCodeblock(`barstate.isrealtime`);
+			variable18.appendCodeblock(`(variable) barstate.isrealtime`);
 			variable18.appendMarkdown(`
-Returns true if current bar is a real-time bar, true otherwise`);
+<hr>
+
+Returns true if current bar is a real-time bar, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isrealtime)*`);
 			variable18.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable18.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_barstate{dot}isrealtime)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable18.isTrusted = true;
 			variable18.supportHtml = true;
 
@@ -9154,15 +9918,17 @@ Returns true if current bar is a real-time bar, true otherwise`);
 
 
 			const variable19 = new vscode.MarkdownString(``);
-			variable19.appendCodeblock(`box.all`);
+			variable19.appendCodeblock(`(variable) box.all`);
 			variable19.appendMarkdown(`
-Returns an array filled with all the current boxes drawn by the script`);
+<hr>
+
+Returns an array filled with all the current boxes drawn by the script *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_box{dot}all)*`);
 			variable19.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>box[]`);
-			variable19.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_box{dot}all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>box</code>[]`);
+			
 			variable19.isTrusted = true;
 			variable19.supportHtml = true;
 
@@ -9185,26 +9951,36 @@ Returns an array filled with all the current boxes drawn by the script`);
 	let pineHover321 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange321;
+			let error32101;
 			const hoverLineText321 = document.lineAt(position.line).text;
 
 
 			const variable20 = new vscode.MarkdownString(``);
-			variable20.appendCodeblock(`close`);
+			variable20.appendCodeblock(`(variable) close`);
 			variable20.appendMarkdown(`
-Close price of the current bar when it has closed, or last traded price of a yet incomplete, realtime bar`);
+<hr>
+
+Close price of the current bar when it has closed, or last traded price of a yet incomplete, realtime bar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_close)*`);
 			variable20.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable20.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_close)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable20.isTrusted = true;
 			variable20.supportHtml = true;
 
 			const patternVariable20 = new RegExp(`\\b(close)\\b`);
+
+			const patternVariableError2001 = new RegExp(`strategy\\.close\\(`);
+
 			if (patternVariable20.test(hoverLineText321)) {
 				hoverRange321 = document.getWordRangeAtPosition(position, patternVariable20);
-				if (hoverRange321) {
+				error32101 = document.getWordRangeAtPosition(position, patternVariableError2001);
+				if (error32101) {
+					return null;
+				}
+				else if (hoverRange321) {
 					return new vscode.Hover(variable20, new vscode.Range(position, position));
 				}
 				else {
@@ -9224,15 +10000,17 @@ Close price of the current bar when it has closed, or last traded price of a yet
 
 
 			const variable21 = new vscode.MarkdownString(``);
-			variable21.appendCodeblock(`color.aqua`);
+			variable21.appendCodeblock(`(variable) color.aqua`);
 			variable21.appendMarkdown(`
-Is a named constant for #00BCD4 color`);
+<hr>
+
+Is a named constant for #00BCD4 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}aqua)*`);
 			variable21.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable21.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}aqua)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable21.isTrusted = true;
 			variable21.supportHtml = true;
 
@@ -9259,15 +10037,17 @@ Is a named constant for #00BCD4 color`);
 
 
 			const variable22 = new vscode.MarkdownString(``);
-			variable22.appendCodeblock(`color.black`);
+			variable22.appendCodeblock(`(variable) color.black`);
 			variable22.appendMarkdown(`
-Is a named constant for #363A45 color`);
+<hr>
+
+Is a named constant for #363A45 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}black)*`);
 			variable22.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable22.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}black)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable22.isTrusted = true;
 			variable22.supportHtml = true;
 
@@ -9294,15 +10074,17 @@ Is a named constant for #363A45 color`);
 
 
 			const variable23 = new vscode.MarkdownString(``);
-			variable23.appendCodeblock(`color.blue`);
+			variable23.appendCodeblock(`(variable) color.blue`);
 			variable23.appendMarkdown(`
-Is a named constant for #2196F3 color`);
+<hr>
+
+Is a named constant for #2196F3 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}blue)*`);
 			variable23.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable23.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}blue)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable23.isTrusted = true;
 			variable23.supportHtml = true;
 
@@ -9329,15 +10111,17 @@ Is a named constant for #2196F3 color`);
 
 
 			const variable24 = new vscode.MarkdownString(``);
-			variable24.appendCodeblock(`color.fuchsia`);
+			variable24.appendCodeblock(`(variable) color.fuchsia`);
 			variable24.appendMarkdown(`
-Is a named constant for #E040FB color`);
+<hr>
+
+Is a named constant for #E040FB color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}fuchsia)*`);
 			variable24.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable24.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}fuchsia)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable24.isTrusted = true;
 			variable24.supportHtml = true;
 
@@ -9364,15 +10148,17 @@ Is a named constant for #E040FB color`);
 
 
 			const variable25 = new vscode.MarkdownString(``);
-			variable25.appendCodeblock(`color.gray`);
+			variable25.appendCodeblock(`(variable) color.gray`);
 			variable25.appendMarkdown(`
-Is a named constant for #787B86 color`);
+<hr>
+
+Is a named constant for #787B86 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}gray)*`);
 			variable25.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable25.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}gray)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable25.isTrusted = true;
 			variable25.supportHtml = true;
 
@@ -9399,15 +10185,17 @@ Is a named constant for #787B86 color`);
 
 
 			const variable26 = new vscode.MarkdownString(``);
-			variable26.appendCodeblock(`color.green`);
+			variable26.appendCodeblock(`(variable) color.green`);
 			variable26.appendMarkdown(`
-Is a named constant for #4CAF50 color`);
+<hr>
+
+Is a named constant for #4CAF50 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}green)*`);
 			variable26.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable26.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}green)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable26.isTrusted = true;
 			variable26.supportHtml = true;
 
@@ -9434,15 +10222,17 @@ Is a named constant for #4CAF50 color`);
 
 
 			const variable27 = new vscode.MarkdownString(``);
-			variable27.appendCodeblock(`color.lime`);
+			variable27.appendCodeblock(`(variable) color.lime`);
 			variable27.appendMarkdown(`
-Is a named constant for #00E676 color`);
+<hr>
+
+Is a named constant for #00E676 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}lime)*`);
 			variable27.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable27.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}lime)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable27.isTrusted = true;
 			variable27.supportHtml = true;
 
@@ -9469,15 +10259,17 @@ Is a named constant for #00E676 color`);
 
 
 			const variable28 = new vscode.MarkdownString(``);
-			variable28.appendCodeblock(`color.maroon`);
+			variable28.appendCodeblock(`(variable) color.maroon`);
 			variable28.appendMarkdown(`
-Is a named constant for #880E4F color`);
+<hr>
+
+Is a named constant for #880E4F color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}maroon)*`);
 			variable28.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable28.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}maroon)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable28.isTrusted = true;
 			variable28.supportHtml = true;
 
@@ -9504,15 +10296,17 @@ Is a named constant for #880E4F color`);
 
 
 			const variable29 = new vscode.MarkdownString(``);
-			variable29.appendCodeblock(`color.navy`);
+			variable29.appendCodeblock(`(variable) color.navy`);
 			variable29.appendMarkdown(`
-Is a named constant for #311B92 color`);
+<hr>
+
+Is a named constant for #311B92 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}navy)*`);
 			variable29.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable29.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}navy)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable29.isTrusted = true;
 			variable29.supportHtml = true;
 
@@ -9539,15 +10333,17 @@ Is a named constant for #311B92 color`);
 
 
 			const variable30 = new vscode.MarkdownString(``);
-			variable30.appendCodeblock(`color.olive`);
+			variable30.appendCodeblock(`(variable) color.olive`);
 			variable30.appendMarkdown(`
-Is a named constant for #808000 color`);
+<hr>
+
+Is a named constant for #808000 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}olive)*`);
 			variable30.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable30.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}olive)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable30.isTrusted = true;
 			variable30.supportHtml = true;
 
@@ -9574,15 +10370,17 @@ Is a named constant for #808000 color`);
 
 
 			const variable31 = new vscode.MarkdownString(``);
-			variable31.appendCodeblock(`color.orange`);
+			variable31.appendCodeblock(`(variable) color.orange`);
 			variable31.appendMarkdown(`
-Is a named constant for #FF9800 color`);
+<hr>
+
+Is a named constant for #FF9800 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}orange)*`);
 			variable31.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable31.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}orange)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable31.isTrusted = true;
 			variable31.supportHtml = true;
 
@@ -9609,15 +10407,17 @@ Is a named constant for #FF9800 color`);
 
 
 			const variable32 = new vscode.MarkdownString(``);
-			variable32.appendCodeblock(`color.purple`);
+			variable32.appendCodeblock(`(variable) color.purple`);
 			variable32.appendMarkdown(`
-Is a named constant for #9C27B0 color`);
+<hr>
+
+Is a named constant for #9C27B0 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}purple)*`);
 			variable32.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable32.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}purple)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable32.isTrusted = true;
 			variable32.supportHtml = true;
 
@@ -9644,15 +10444,17 @@ Is a named constant for #9C27B0 color`);
 
 
 			const variable33 = new vscode.MarkdownString(``);
-			variable33.appendCodeblock(`color.red`);
+			variable33.appendCodeblock(`(variable) color.red`);
 			variable33.appendMarkdown(`
-Is a named constant for #FF5252 color`);
+<hr>
+
+Is a named constant for #FF5252 color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}red)*`);
 			variable33.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable33.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}red)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable33.isTrusted = true;
 			variable33.supportHtml = true;
 
@@ -9679,15 +10481,17 @@ Is a named constant for #FF5252 color`);
 
 
 			const variable34 = new vscode.MarkdownString(``);
-			variable34.appendCodeblock(`color.silver`);
+			variable34.appendCodeblock(`(variable) color.silver`);
 			variable34.appendMarkdown(`
-Is a named constant for #B2B5BE color`);
+<hr>
+
+Is a named constant for #B2B5BE color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}silver)*`);
 			variable34.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable34.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}silver)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable34.isTrusted = true;
 			variable34.supportHtml = true;
 
@@ -9714,15 +10518,17 @@ Is a named constant for #B2B5BE color`);
 
 
 			const variable35 = new vscode.MarkdownString(``);
-			variable35.appendCodeblock(`color.teal`);
+			variable35.appendCodeblock(`(variable) color.teal`);
 			variable35.appendMarkdown(`
-Is a named constant for #00897B color`);
+<hr>
+
+Is a named constant for #00897B color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}teal)*`);
 			variable35.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable35.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}teal)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable35.isTrusted = true;
 			variable35.supportHtml = true;
 
@@ -9749,15 +10555,17 @@ Is a named constant for #00897B color`);
 
 
 			const variable36 = new vscode.MarkdownString(``);
-			variable36.appendCodeblock(`color.white`);
+			variable36.appendCodeblock(`(variable) color.white`);
 			variable36.appendMarkdown(`
-Is a named constant for #FFFFFF color`);
+<hr>
+
+Is a named constant for #FFFFFF color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}white)*`);
 			variable36.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable36.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}white)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable36.isTrusted = true;
 			variable36.supportHtml = true;
 
@@ -9784,15 +10592,17 @@ Is a named constant for #FFFFFF color`);
 
 
 			const variable37 = new vscode.MarkdownString(``);
-			variable37.appendCodeblock(`color.yellow`);
+			variable37.appendCodeblock(`(variable) color.yellow`);
 			variable37.appendMarkdown(`
-Is a named constant for #FFEB3B color`);
+<hr>
+
+Is a named constant for #FFEB3B color *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}yellow)*`);
 			variable37.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const color`);
-			variable37.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_color{dot}yellow)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const color</code>`);
+			
 			variable37.isTrusted = true;
 			variable37.supportHtml = true;
 
@@ -9819,15 +10629,17 @@ Is a named constant for #FFEB3B color`);
 
 
 			const variable38 = new vscode.MarkdownString(``);
-			variable38.appendCodeblock(`currency.AUD`);
+			variable38.appendCodeblock(`(variable) currency.AUD`);
 			variable38.appendMarkdown(`
-Australian dollar`);
+<hr>
+
+Australian dollar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}AUD)*`);
 			variable38.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable38.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}AUD)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable38.isTrusted = true;
 			variable38.supportHtml = true;
 
@@ -9854,15 +10666,17 @@ Australian dollar`);
 
 
 			const variable39 = new vscode.MarkdownString(``);
-			variable39.appendCodeblock(`currency.CAD`);
+			variable39.appendCodeblock(`(variable) currency.CAD`);
 			variable39.appendMarkdown(`
-Canadian dollar`);
+<hr>
+
+Canadian dollar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}CAD)*`);
 			variable39.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable39.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}CAD)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable39.isTrusted = true;
 			variable39.supportHtml = true;
 
@@ -9889,15 +10703,17 @@ Canadian dollar`);
 
 
 			const variable40 = new vscode.MarkdownString(``);
-			variable40.appendCodeblock(`currency.CHF`);
+			variable40.appendCodeblock(`(variable) currency.CHF`);
 			variable40.appendMarkdown(`
-Swiss franc`);
+<hr>
+
+Swiss franc *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}CHF)*`);
 			variable40.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable40.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}CHF)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable40.isTrusted = true;
 			variable40.supportHtml = true;
 
@@ -9924,15 +10740,17 @@ Swiss franc`);
 
 
 			const variable41 = new vscode.MarkdownString(``);
-			variable41.appendCodeblock(`currency.EUR`);
+			variable41.appendCodeblock(`(variable) currency.EUR`);
 			variable41.appendMarkdown(`
-Euro`);
+<hr>
+
+Euro *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}EUR)*`);
 			variable41.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable41.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}EUR)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable41.isTrusted = true;
 			variable41.supportHtml = true;
 
@@ -9959,15 +10777,17 @@ Euro`);
 
 
 			const variable42 = new vscode.MarkdownString(``);
-			variable42.appendCodeblock(`currency.GBP`);
+			variable42.appendCodeblock(`(variable) currency.GBP`);
 			variable42.appendMarkdown(`
-Pound sterling`);
+<hr>
+
+Pound sterling *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}GBP)*`);
 			variable42.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable42.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}GBP)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable42.isTrusted = true;
 			variable42.supportHtml = true;
 
@@ -9994,15 +10814,17 @@ Pound sterling`);
 
 
 			const variable43 = new vscode.MarkdownString(``);
-			variable43.appendCodeblock(`currency.HKD`);
+			variable43.appendCodeblock(`(variable) currency.HKD`);
 			variable43.appendMarkdown(`
-Hong Kong dollar`);
+<hr>
+
+Hong Kong dollar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}HKD)*`);
 			variable43.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable43.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}HKD)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable43.isTrusted = true;
 			variable43.supportHtml = true;
 
@@ -10029,15 +10851,17 @@ Hong Kong dollar`);
 
 
 			const variable44 = new vscode.MarkdownString(``);
-			variable44.appendCodeblock(`currency.JPY`);
+			variable44.appendCodeblock(`(variable) currency.JPY`);
 			variable44.appendMarkdown(`
-Japanese yen`);
+<hr>
+
+Japanese yen *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}JPY)*`);
 			variable44.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable44.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}JPY)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable44.isTrusted = true;
 			variable44.supportHtml = true;
 
@@ -10064,15 +10888,17 @@ Japanese yen`);
 
 
 			const variable45 = new vscode.MarkdownString(``);
-			variable45.appendCodeblock(`currency.NOK`);
+			variable45.appendCodeblock(`(variable) currency.NOK`);
 			variable45.appendMarkdown(`
-Norwegian krone`);
+<hr>
+
+Norwegian krone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}NOK)*`);
 			variable45.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable45.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}NOK)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable45.isTrusted = true;
 			variable45.supportHtml = true;
 
@@ -10099,15 +10925,17 @@ Norwegian krone`);
 
 
 			const variable46 = new vscode.MarkdownString(``);
-			variable46.appendCodeblock(`currency.NONE`);
+			variable46.appendCodeblock(`(variable) currency.NONE`);
 			variable46.appendMarkdown(`
-Unspecified currency`);
+<hr>
+
+Unspecified currency *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}NONE)*`);
 			variable46.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable46.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}NONE)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable46.isTrusted = true;
 			variable46.supportHtml = true;
 
@@ -10134,15 +10962,17 @@ Unspecified currency`);
 
 
 			const variable47 = new vscode.MarkdownString(``);
-			variable47.appendCodeblock(`currency.NZD`);
+			variable47.appendCodeblock(`(variable) currency.NZD`);
 			variable47.appendMarkdown(`
-New Zealand dollar`);
+<hr>
+
+New Zealand dollar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}NZD)*`);
 			variable47.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable47.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}NZD)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable47.isTrusted = true;
 			variable47.supportHtml = true;
 
@@ -10169,15 +10999,17 @@ New Zealand dollar`);
 
 
 			const variable48 = new vscode.MarkdownString(``);
-			variable48.appendCodeblock(`currency.RUB`);
+			variable48.appendCodeblock(`(variable) currency.RUB`);
 			variable48.appendMarkdown(`
-Russian ruble`);
+<hr>
+
+Russian ruble *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}RUB)*`);
 			variable48.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable48.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}RUB)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable48.isTrusted = true;
 			variable48.supportHtml = true;
 
@@ -10204,15 +11036,17 @@ Russian ruble`);
 
 
 			const variable49 = new vscode.MarkdownString(``);
-			variable49.appendCodeblock(`currency.SEK`);
+			variable49.appendCodeblock(`(variable) currency.SEK`);
 			variable49.appendMarkdown(`
-Swedish krona`);
+<hr>
+
+Swedish krona *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}SEK)*`);
 			variable49.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable49.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}SEK)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable49.isTrusted = true;
 			variable49.supportHtml = true;
 
@@ -10239,15 +11073,17 @@ Swedish krona`);
 
 
 			const variable50 = new vscode.MarkdownString(``);
-			variable50.appendCodeblock(`currency.SGD`);
+			variable50.appendCodeblock(`(variable) currency.SGD`);
 			variable50.appendMarkdown(`
-Singapore dollar`);
+<hr>
+
+Singapore dollar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}SGD)*`);
 			variable50.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable50.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}SGD)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable50.isTrusted = true;
 			variable50.supportHtml = true;
 
@@ -10274,15 +11110,17 @@ Singapore dollar`);
 
 
 			const variable51 = new vscode.MarkdownString(``);
-			variable51.appendCodeblock(`currency.TRY`);
+			variable51.appendCodeblock(`(variable) currency.TRY`);
 			variable51.appendMarkdown(`
-Turkish lira`);
+<hr>
+
+Turkish lira *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}TRY)*`);
 			variable51.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable51.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}TRY)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable51.isTrusted = true;
 			variable51.supportHtml = true;
 
@@ -10309,15 +11147,17 @@ Turkish lira`);
 
 
 			const variable52 = new vscode.MarkdownString(``);
-			variable52.appendCodeblock(`currency.USD`);
+			variable52.appendCodeblock(`(variable) currency.USD`);
 			variable52.appendMarkdown(`
-United States dollar`);
+<hr>
+
+United States dollar *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}USD)*`);
 			variable52.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable52.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}USD)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable52.isTrusted = true;
 			variable52.supportHtml = true;
 
@@ -10344,15 +11184,17 @@ United States dollar`);
 
 
 			const variable53 = new vscode.MarkdownString(``);
-			variable53.appendCodeblock(`currency.ZAR`);
+			variable53.appendCodeblock(`(variable) currency.ZAR`);
 			variable53.appendMarkdown(`
-South African rand`);
+<hr>
+
+South African rand *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}ZAR)*`);
 			variable53.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable53.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_currency{dot}ZAR)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable53.isTrusted = true;
 			variable53.supportHtml = true;
 
@@ -10375,26 +11217,35 @@ South African rand`);
 	let pineHover355 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange355;
+			let error35501;
 			const hoverLineText355 = document.lineAt(position.line).text;
 
 
 			const variable54 = new vscode.MarkdownString(``);
-			variable54.appendCodeblock(`dayofmonth`);
+			variable54.appendCodeblock(`(variable) dayofmonth`);
 			variable54.appendMarkdown(`
-Date of current bar time in exchange timezone`);
+<hr>
+
+Date of current bar time in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofmonth)*`);
 			variable54.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable54.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofmonth)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable54.isTrusted = true;
 			variable54.supportHtml = true;
 
 			const patternVariable54 = new RegExp(`\\b(dayofmonth)\\b`);
+			const patternVariableError5401 = new RegExp(`dayofmonth\\(`);
+
 			if (patternVariable54.test(hoverLineText355)) {
 				hoverRange355 = document.getWordRangeAtPosition(position, patternVariable54);
-				if (hoverRange355) {
+				error35501 = document.getWordRangeAtPosition(position, patternVariableError5401);
+				if (error35501){
+					return null;
+				}
+				else if (hoverRange355) {
 					return new vscode.Hover(variable54, new vscode.Range(position, position));
 				}
 				else {
@@ -10410,26 +11261,57 @@ Date of current bar time in exchange timezone`);
 	let pineHover356 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange356;
+			let error35601;
+			let error35602;
+			let error35603;
+			let error35604;
+			let error35605;
+			let error35606;
+			let error35607;
+			let error35608;
 			const hoverLineText356 = document.lineAt(position.line).text;
 
 
 			const variable55 = new vscode.MarkdownString(``);
-			variable55.appendCodeblock(`dayofweek`);
+			variable55.appendCodeblock(`(variable) dayofweek`);
 			variable55.appendMarkdown(`
-Day of week for current bar time in exchange timezone`);
+<hr>
+
+Day of week for current bar time in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek)*`);
 			variable55.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable55.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable55.isTrusted = true;
 			variable55.supportHtml = true;
 
 			const patternVariable55 = new RegExp(`\\b(dayofweek)\\b`);
+			const patternVariableError5501 = new RegExp(`dayofweek\\(`);
+			const patternVariableError5502 = new RegExp(`dayofweek\\.friday`);
+			const patternVariableError5503 = new RegExp(`dayofweek\\.monday`);
+			const patternVariableError5504 = new RegExp(`dayofweek\\.saturday`);
+			const patternVariableError5505 = new RegExp(`dayofweek\\.sunday`);
+			const patternVariableError5506 = new RegExp(`dayofweek\\.thursday`);
+			const patternVariableError5507 = new RegExp(`dayofweek\\.tuesday`);
+			const patternVariableError5508 = new RegExp(`dayofweek\\.wednesday`);
+
+
 			if (patternVariable55.test(hoverLineText356)) {
 				hoverRange356 = document.getWordRangeAtPosition(position, patternVariable55);
-				if (hoverRange356) {
+				error35601 = document.getWordRangeAtPosition(position, patternVariableError5501);
+				error35602 = document.getWordRangeAtPosition(position, patternVariableError5502);
+				error35603 = document.getWordRangeAtPosition(position, patternVariableError5503);
+				error35604 = document.getWordRangeAtPosition(position, patternVariableError5504);
+				error35605 = document.getWordRangeAtPosition(position, patternVariableError5505);
+				error35606 = document.getWordRangeAtPosition(position, patternVariableError5506);
+				error35607 = document.getWordRangeAtPosition(position, patternVariableError5507);
+				error35608 = document.getWordRangeAtPosition(position, patternVariableError5508);
+				if (error35601||error35602||error35603||error35604||error35605||error35606||error35607||error35608) {
+					return null;
+				}
+				else if (hoverRange356) {
 					return new vscode.Hover(variable55, new vscode.Range(position, position));
 				}
 				else {
@@ -10449,15 +11331,17 @@ Day of week for current bar time in exchange timezone`);
 
 
 			const variable56 = new vscode.MarkdownString(``);
-			variable56.appendCodeblock(`dayofweek.friday`);
+			variable56.appendCodeblock(`(variable) dayofweek.friday`);
 			variable56.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}friday)*`);
 			variable56.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable56.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}friday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable56.isTrusted = true;
 			variable56.supportHtml = true;
 
@@ -10484,15 +11368,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable57 = new vscode.MarkdownString(``);
-			variable57.appendCodeblock(`dayofweek.monday`);
+			variable57.appendCodeblock(`(variable) dayofweek.monday`);
 			variable57.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}monday)*`);
 			variable57.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable57.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}monday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable57.isTrusted = true;
 			variable57.supportHtml = true;
 
@@ -10519,15 +11405,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable58 = new vscode.MarkdownString(``);
-			variable58.appendCodeblock(`dayofweek.saturday`);
+			variable58.appendCodeblock(`(variable) dayofweek.saturday`);
 			variable58.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}saturday)*`);
 			variable58.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable58.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}saturday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable58.isTrusted = true;
 			variable58.supportHtml = true;
 
@@ -10554,15 +11442,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable59 = new vscode.MarkdownString(``);
-			variable59.appendCodeblock(`dayofweek.sunday`);
+			variable59.appendCodeblock(`(variable) dayofweek.sunday`);
 			variable59.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}sunday)*`);
 			variable59.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable59.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}sunday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable59.isTrusted = true;
 			variable59.supportHtml = true;
 
@@ -10589,15 +11479,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable60 = new vscode.MarkdownString(``);
-			variable60.appendCodeblock(`dayofweek.thursday`);
+			variable60.appendCodeblock(`(variable) dayofweek.thursday`);
 			variable60.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}thursday)*`);
 			variable60.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable60.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}thursday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable60.isTrusted = true;
 			variable60.supportHtml = true;
 
@@ -10624,15 +11516,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable61 = new vscode.MarkdownString(``);
-			variable61.appendCodeblock(`dayofweek.tuesday`);
+			variable61.appendCodeblock(`(variable) dayofweek.tuesday`);
 			variable61.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}tuesday)*`);
 			variable61.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable61.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}tuesday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable61.isTrusted = true;
 			variable61.supportHtml = true;
 
@@ -10659,15 +11553,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable62 = new vscode.MarkdownString(``);
-			variable62.appendCodeblock(`dayofweek.wednesday`);
+			variable62.appendCodeblock(`(variable) dayofweek.wednesday`);
 			variable62.appendMarkdown(`
-Is a named constant for return value of dayofweek function and value of dayofweek variable`);
+<hr>
+
+Is a named constant for return value of dayofweek function and value of dayofweek variable *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}wednesday)*`);
 			variable62.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const int`);
-			variable62.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dayofweek{dot}wednesday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const int</code>`);
+			
 			variable62.isTrusted = true;
 			variable62.supportHtml = true;
 
@@ -10694,14 +11590,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable63 = new vscode.MarkdownString(``);
-			variable63.appendCodeblock(`display.all`);
-			variable63.appendMarkdown(`A named constant that specifies where the plot is displayed. Display everywhere`);
+			variable63.appendCodeblock(`(variable) display.all`);
+			variable63.appendMarkdown(`
+<hr>
+
+A named constant that specifies where the plot is displayed. Display everywhere *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_display{dot}all)*`);
 			variable63.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_display`);
-			variable63.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_display{dot}all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_display</code>`);
+			
 			variable63.isTrusted = true;
 			variable63.supportHtml = true;
 
@@ -10728,14 +11627,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable64 = new vscode.MarkdownString(``);
-			variable64.appendCodeblock(`display.none`);
-			variable64.appendMarkdown(`A named constant that specifies where the plot is displayed. Display nowhere. Available in alert template message`);
+			variable64.appendCodeblock(`(variable) display.none`);
+			variable64.appendMarkdown(`
+<hr>
+
+A named constant that specifies where the plot is displayed. Display nowhere. Available in alert template message *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_display{dot}none)*`);
 			variable64.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_display`);
-			variable64.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_display{dot}none)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_display</code>`);
+			
 			variable64.isTrusted = true;
 			variable64.supportHtml = true;
 
@@ -10762,14 +11664,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable65 = new vscode.MarkdownString(``);
-			variable65.appendCodeblock(`dividends.gross`);
-			variable65.appendMarkdown(`A named constant for the request.dividends function. Is used to request the dividends return on a stock before deductions`);
+			variable65.appendCodeblock(`(variable) dividends.gross`);
+			variable65.appendMarkdown(`
+<hr>
+
+A named constant for the request.dividends function. Is used to request the dividends return on a stock before deductions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dividends{dot}gross)*`);
 			variable65.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable65.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dividends{dot}gross)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable65.isTrusted = true;
 			variable65.supportHtml = true;
 
@@ -10796,14 +11701,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable66 = new vscode.MarkdownString(``);
-			variable66.appendCodeblock(`dividends.net`);
-			variable66.appendMarkdown(`A named constant for the request.dividends function. Is used to request the dividends return on a stock after deductions`);
+			variable66.appendCodeblock(`(variable) dividends.net`);
+			variable66.appendMarkdown(`
+<hr>
+
+A named constant for the request.dividends function. Is used to request the dividends return on a stock after deductions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_dividends{dot}net)*`);
 			variable66.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable66.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_dividends{dot}net)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable66.isTrusted = true;
 			variable66.supportHtml = true;
 
@@ -10830,14 +11738,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable67 = new vscode.MarkdownString(``);
-			variable67.appendCodeblock(`earnings.actual`);
-			variable67.appendMarkdown(`A named constant for the request.earnings function. Is used to request the earnings value as it was reported`);
+			variable67.appendCodeblock(`(variable) earnings.actual`);
+			variable67.appendMarkdown(`
+<hr>
+
+A named constant for the request.earnings function. Is used to request the earnings value as it was reported *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_earnings{dot}actual)*`);
 			variable67.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable67.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_earnings{dot}actual)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable67.isTrusted = true;
 			variable67.supportHtml = true;
 
@@ -10864,14 +11775,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable68 = new vscode.MarkdownString(``);
-			variable68.appendCodeblock(`earnings.estimate`);
-			variable68.appendMarkdown(`A named constant for the request.earnings function. Is used to request the estimated earnings value`);
+			variable68.appendCodeblock(`(variable) earnings.estimate`);
+			variable68.appendMarkdown(`
+<hr>
+
+A named constant for the request.earnings function. Is used to request the estimated earnings value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_earnings{dot}estimate)*`);
 			variable68.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable68.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_earnings{dot}estimate)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable68.isTrusted = true;
 			variable68.supportHtml = true;
 
@@ -10898,14 +11812,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable69 = new vscode.MarkdownString(``);
-			variable69.appendCodeblock(`earnings.standardized`);
-			variable69.appendMarkdown(`A named constant for the request.earnings function. Is used to request the standardized earnings value`);
+			variable69.appendCodeblock(`(variable) earnings.standardized`);
+			variable69.appendMarkdown(`
+<hr>
+
+A named constant for the request.earnings function. Is used to request the standardized earnings value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_earnings{dot}standardized)*`);
 			variable69.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable69.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_earnings{dot}standardized)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable69.isTrusted = true;
 			variable69.supportHtml = true;
 
@@ -10932,14 +11849,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable70 = new vscode.MarkdownString(``);
-			variable70.appendCodeblock(`extend.both`);
-			variable70.appendMarkdown(`A named constant for line.new and line.set_extend functions`);
+			variable70.appendCodeblock(`(variable) extend.both`);
+			variable70.appendMarkdown(`
+<hr>
+
+A named constant for line.new and line.set_extend functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}both)*`);
 			variable70.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable70.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}both)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable70.isTrusted = true;
 			variable70.supportHtml = true;
 
@@ -10966,14 +11886,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable71 = new vscode.MarkdownString(``);
-			variable71.appendCodeblock(`extend.left`);
-			variable71.appendMarkdown(`A named constant for line.new and line.set_extend functions`);
+			variable71.appendCodeblock(`(variable) extend.left`);
+			variable71.appendMarkdown(`
+<hr>
+
+A named constant for line.new and line.set_extend functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}left)*`);
 			variable71.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable71.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable71.isTrusted = true;
 			variable71.supportHtml = true;
 
@@ -11000,14 +11923,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable72 = new vscode.MarkdownString(``);
-			variable72.appendCodeblock(`extend.none`);
-			variable72.appendMarkdown(`A named constant for line.new and line.set_extend functions`);
+			variable72.appendCodeblock(`(variable) extend.none`);
+			variable72.appendMarkdown(`
+<hr>
+
+A named constant for line.new and line.set_extend functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}none)*`);
 			variable72.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable72.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}none)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable72.isTrusted = true;
 			variable72.supportHtml = true;
 
@@ -11034,14 +11960,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable73 = new vscode.MarkdownString(``);
-			variable73.appendCodeblock(`extend.right`);
-			variable73.appendMarkdown(`A named constant for line.new and line.set_extend functions`);
+			variable73.appendCodeblock(`(variable) extend.right`);
+			variable73.appendMarkdown(`
+<hr>
+
+A named constant for line.new and line.set_extend functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}right)*`);
 			variable73.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable73.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_extend{dot}right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable73.isTrusted = true;
 			variable73.supportHtml = true;
 
@@ -11068,15 +11997,17 @@ Is a named constant for return value of dayofweek function and value of dayofwee
 
 
 			const variable74 = new vscode.MarkdownString(``);
-			variable74.appendCodeblock(`format.inherit`);
+			variable74.appendCodeblock(`(variable) format.inherit`);
 			variable74.appendMarkdown(`
-Is a named constant for selecting the formatting of the script output values from the parent series in the indicator function`);
+<hr>
+
+Is a named constant for selecting the formatting of the script output values from the parent series in the indicator function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}inherit)*`);
 			variable74.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable74.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}inherit)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable74.isTrusted = true;
 			variable74.supportHtml = true;
 
@@ -11103,15 +12034,17 @@ Is a named constant for selecting the formatting of the script output values fro
 
 
 			const variable75 = new vscode.MarkdownString(``);
-			variable75.appendCodeblock(`format.mintick`);
+			variable75.appendCodeblock(`(variable) format.mintick`);
 			variable75.appendMarkdown(`
-Is a named constant to use with the str.tostring function. Passing a number to str.tostring with this argument rounds the number to the nearest value that can be divided by syminfo.mintick, without the remainder, with ties rounding up, and returns the string version of said value with trailing zeroes`);
+<hr>
+
+Is a named constant to use with the str.tostring function. Passing a number to str.tostring with this argument rounds the number to the nearest value that can be divided by syminfo.mintick, without the remainder, with ties rounding up, and returns the string version of said value with trailing zeroes *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}mintick)*`);
 			variable75.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable75.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}mintick)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable75.isTrusted = true;
 			variable75.supportHtml = true;
 
@@ -11138,15 +12071,17 @@ Is a named constant to use with the str.tostring function. Passing a number to s
 
 
 			const variable76 = new vscode.MarkdownString(``);
-			variable76.appendCodeblock(`format.percent`);
+			variable76.appendCodeblock(`(variable) format.percent`);
 			variable76.appendMarkdown(`
-Is a named constant for selecting the formatting of the script output values as a percentage in the indicator function. It adds a percent sign after values`);
+<hr>
+
+Is a named constant for selecting the formatting of the script output values as a percentage in the indicator function. It adds a percent sign after values *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}percent)*`);
 			variable76.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable76.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}percent)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable76.isTrusted = true;
 			variable76.supportHtml = true;
 
@@ -11173,15 +12108,17 @@ Is a named constant for selecting the formatting of the script output values as 
 
 
 			const variable77 = new vscode.MarkdownString(``);
-			variable77.appendCodeblock(`format.price`);
+			variable77.appendCodeblock(`(variable) format.price`);
 			variable77.appendMarkdown(`
-Is a named constant for selecting the formatting of the script output values as prices in the indicator function`);
+<hr>
+
+Is a named constant for selecting the formatting of the script output values as prices in the indicator function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}price)*`);
 			variable77.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable77.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}price)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable77.isTrusted = true;
 			variable77.supportHtml = true;
 
@@ -11208,15 +12145,17 @@ Is a named constant for selecting the formatting of the script output values as 
 
 
 			const variable78 = new vscode.MarkdownString(``);
-			variable78.appendCodeblock(`format.volume`);
+			variable78.appendCodeblock(`(variable) format.volume`);
 			variable78.appendMarkdown(`
-Is a named constant for selecting the formatting of the script output values as volume in the indicator function, e.g. '5183' will be formatted as '5.183K'`);
+<hr>
+
+Is a named constant for selecting the formatting of the script output values as volume in the indicator function, e.g. '5183' will be formatted as '5.183K *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}volume)*'`);
 			variable78.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable78.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_format{dot}volume)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable78.isTrusted = true;
 			variable78.supportHtml = true;
 
@@ -11243,15 +12182,17 @@ Is a named constant for selecting the formatting of the script output values as 
 
 
 			const variable79 = new vscode.MarkdownString(``);
-			variable79.appendCodeblock(`high`);
+			variable79.appendCodeblock(`(variable) high`);
 			variable79.appendMarkdown(`
-Current high price`);
+<hr>
+
+Current high price *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_high)*`);
 			variable79.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable79.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_high)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable79.isTrusted = true;
 			variable79.supportHtml = true;
 
@@ -11278,15 +12219,17 @@ Current high price`);
 
 
 			const variable80 = new vscode.MarkdownString(``);
-			variable80.appendCodeblock(`hl2`);
+			variable80.appendCodeblock(`(variable) hl2`);
 			variable80.appendMarkdown(`
-Is a shortcut for (high + low)/`);
+<hr>
+
+Is a shortcut for (high + low *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_hl2)*)/`);
 			variable80.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable80.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_hl2)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable80.isTrusted = true;
 			variable80.supportHtml = true;
 
@@ -11313,15 +12256,17 @@ Is a shortcut for (high + low)/`);
 
 
 			const variable81 = new vscode.MarkdownString(``);
-			variable81.appendCodeblock(`hlc3`);
+			variable81.appendCodeblock(`(variable) hlc3`);
 			variable81.appendMarkdown(`
-Is a shortcut for (high + low + close)/`);
+<hr>
+
+Is a shortcut for (high + low + close *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_hlc3)*)/`);
 			variable81.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable81.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_hlc3)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable81.isTrusted = true;
 			variable81.supportHtml = true;
 
@@ -11348,15 +12293,17 @@ Is a shortcut for (high + low + close)/`);
 
 
 			const variable82 = new vscode.MarkdownString(``);
-			variable82.appendCodeblock(`hline.style_dashed`);
+			variable82.appendCodeblock(`(variable) hline.style_dashed`);
 			variable82.appendMarkdown(`
-Is a named constant for dashed linestyle of hline function`);
+<hr>
+
+Is a named constant for dashed linestyle of hline function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_hline{dot}style_dashed)*`);
 			variable82.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>hline_style`);
-			variable82.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_hline{dot}style_dashed)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>hline_style</code>`);
+			
 			variable82.isTrusted = true;
 			variable82.supportHtml = true;
 
@@ -11383,15 +12330,17 @@ Is a named constant for dashed linestyle of hline function`);
 
 
 			const variable83 = new vscode.MarkdownString(``);
-			variable83.appendCodeblock(`hline.style_dotted`);
+			variable83.appendCodeblock(`(variable) hline.style_dotted`);
 			variable83.appendMarkdown(`
-Is a named constant for dotted linestyle of hline function`);
+<hr>
+
+Is a named constant for dotted linestyle of hline function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_hline{dot}style_dotted)*`);
 			variable83.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>hline_style`);
-			variable83.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_hline{dot}style_dotted)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>hline_style</code>`);
+			
 			variable83.isTrusted = true;
 			variable83.supportHtml = true;
 
@@ -11418,15 +12367,17 @@ Is a named constant for dotted linestyle of hline function`);
 
 
 			const variable84 = new vscode.MarkdownString(``);
-			variable84.appendCodeblock(`hline.style_solid`);
+			variable84.appendCodeblock(`(variable) hline.style_solid`);
 			variable84.appendMarkdown(`
-Is a named constant for solid linestyle of hline function`);
+<hr>
+
+Is a named constant for solid linestyle of hline function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_hline{dot}style_solid)*`);
 			variable84.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>hline_style`);
-			variable84.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_hline{dot}style_solid)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>hline_style</code>`);
+			
 			variable84.isTrusted = true;
 			variable84.supportHtml = true;
 
@@ -11453,15 +12404,17 @@ Is a named constant for solid linestyle of hline function`);
 
 
 			const variable85 = new vscode.MarkdownString(``);
-			variable85.appendCodeblock(`hour`);
+			variable85.appendCodeblock(`(variable) hour`);
 			variable85.appendMarkdown(`
-Current bar hour in exchange timezone`);
+<hr>
+
+Current bar hour in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_hour)*`);
 			variable85.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable85.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_hour)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable85.isTrusted = true;
 			variable85.supportHtml = true;
 
@@ -11488,15 +12441,17 @@ Current bar hour in exchange timezone`);
 
 
 			const variable86 = new vscode.MarkdownString(``);
-			variable86.appendCodeblock(`label.all`);
+			variable86.appendCodeblock(`(variable) label.all`);
 			variable86.appendMarkdown(`
-Returns an array filled with all the current labels drawn by the script`);
+<hr>
+
+Returns an array filled with all the current labels drawn by the script *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}all)*`);
 			variable86.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>label[]`);
-			variable86.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>label</code>[]`);
+			
 			variable86.isTrusted = true;
 			variable86.supportHtml = true;
 
@@ -11523,15 +12478,17 @@ Returns an array filled with all the current labels drawn by the script`);
 
 
 			const variable87 = new vscode.MarkdownString(``);
-			variable87.appendCodeblock(`label.style_arrowdown`);
+			variable87.appendCodeblock(`(variable) label.style_arrowdown`);
 			variable87.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_arrowdown)*`);
 			variable87.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable87.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_arrowdown)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable87.isTrusted = true;
 			variable87.supportHtml = true;
 
@@ -11558,15 +12515,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable88 = new vscode.MarkdownString(``);
-			variable88.appendCodeblock(`label.style_arrowup`);
+			variable88.appendCodeblock(`(variable) label.style_arrowup`);
 			variable88.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_arrowup)*`);
 			variable88.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable88.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_arrowup)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable88.isTrusted = true;
 			variable88.supportHtml = true;
 
@@ -11593,15 +12552,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable89 = new vscode.MarkdownString(``);
-			variable89.appendCodeblock(`label.style_circle`);
+			variable89.appendCodeblock(`(variable) label.style_circle`);
 			variable89.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_circle)*`);
 			variable89.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable89.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_circle)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable89.isTrusted = true;
 			variable89.supportHtml = true;
 
@@ -11628,15 +12589,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable90 = new vscode.MarkdownString(``);
-			variable90.appendCodeblock(`label.style_cross`);
+			variable90.appendCodeblock(`(variable) label.style_cross`);
 			variable90.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_cross)*`);
 			variable90.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable90.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_cross)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable90.isTrusted = true;
 			variable90.supportHtml = true;
 
@@ -11663,15 +12626,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable91 = new vscode.MarkdownString(``);
-			variable91.appendCodeblock(`label.style_diamond`);
+			variable91.appendCodeblock(`(variable) label.style_diamond`);
 			variable91.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_diamond)*`);
 			variable91.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable91.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_diamond)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable91.isTrusted = true;
 			variable91.supportHtml = true;
 
@@ -11698,15 +12663,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable92 = new vscode.MarkdownString(``);
-			variable92.appendCodeblock(`label.style_flag`);
+			variable92.appendCodeblock(`(variable) label.style_flag`);
 			variable92.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_flag)*`);
 			variable92.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable92.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_flag)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable92.isTrusted = true;
 			variable92.supportHtml = true;
 
@@ -11733,15 +12700,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable93 = new vscode.MarkdownString(``);
-			variable93.appendCodeblock(`label.style_label_center`);
+			variable93.appendCodeblock(`(variable) label.style_label_center`);
 			variable93.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_center)*`);
 			variable93.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable93.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_center)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable93.isTrusted = true;
 			variable93.supportHtml = true;
 
@@ -11768,15 +12737,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable94 = new vscode.MarkdownString(``);
-			variable94.appendCodeblock(`label.style_label_down`);
+			variable94.appendCodeblock(`(variable) label.style_label_down`);
 			variable94.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_down)*`);
 			variable94.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable94.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_down)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable94.isTrusted = true;
 			variable94.supportHtml = true;
 
@@ -11803,15 +12774,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable95 = new vscode.MarkdownString(``);
-			variable95.appendCodeblock(`label.style_label_left`);
+			variable95.appendCodeblock(`(variable) label.style_label_left`);
 			variable95.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_left)*`);
 			variable95.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable95.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable95.isTrusted = true;
 			variable95.supportHtml = true;
 
@@ -11838,15 +12811,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable96 = new vscode.MarkdownString(``);
-			variable96.appendCodeblock(`label.style_label_lower_left`);
+			variable96.appendCodeblock(`(variable) label.style_label_lower_left`);
 			variable96.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_lower_left)*`);
 			variable96.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable96.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_lower_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable96.isTrusted = true;
 			variable96.supportHtml = true;
 
@@ -11873,15 +12848,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable97 = new vscode.MarkdownString(``);
-			variable97.appendCodeblock(`label.style_label_lower_right`);
+			variable97.appendCodeblock(`(variable) label.style_label_lower_right`);
 			variable97.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_lower_right)*`);
 			variable97.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable97.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_lower_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable97.isTrusted = true;
 			variable97.supportHtml = true;
 
@@ -11908,15 +12885,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable98 = new vscode.MarkdownString(``);
-			variable98.appendCodeblock(`label.style_label_right`);
+			variable98.appendCodeblock(`(variable) label.style_label_right`);
 			variable98.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_right)*`);
 			variable98.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable98.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable98.isTrusted = true;
 			variable98.supportHtml = true;
 
@@ -11943,15 +12922,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable99 = new vscode.MarkdownString(``);
-			variable99.appendCodeblock(`label.style_label_up`);
+			variable99.appendCodeblock(`(variable) label.style_label_up`);
 			variable99.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_up)*`);
 			variable99.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable99.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_up)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable99.isTrusted = true;
 			variable99.supportHtml = true;
 
@@ -11978,15 +12959,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable100 = new vscode.MarkdownString(``);
-			variable100.appendCodeblock(`label.style_label_upper_left`);
+			variable100.appendCodeblock(`(variable) label.style_label_upper_left`);
 			variable100.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_upper_left)*`);
 			variable100.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable100.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_upper_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable100.isTrusted = true;
 			variable100.supportHtml = true;
 
@@ -12013,15 +12996,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable101 = new vscode.MarkdownString(``);
-			variable101.appendCodeblock(`label.style_label_upper_right`);
+			variable101.appendCodeblock(`(variable) label.style_label_upper_right`);
 			variable101.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_upper_right)*`);
 			variable101.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable101.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_label_upper_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable101.isTrusted = true;
 			variable101.supportHtml = true;
 
@@ -12048,15 +13033,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable102 = new vscode.MarkdownString(``);
-			variable102.appendCodeblock(`label.style_none`);
+			variable102.appendCodeblock(`(variable) label.style_none`);
 			variable102.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_none)*`);
 			variable102.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable102.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_none)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable102.isTrusted = true;
 			variable102.supportHtml = true;
 
@@ -12083,15 +13070,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable103 = new vscode.MarkdownString(``);
-			variable103.appendCodeblock(`label.style_square`);
+			variable103.appendCodeblock(`(variable) label.style_square`);
 			variable103.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_square)*`);
 			variable103.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable103.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_square)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable103.isTrusted = true;
 			variable103.supportHtml = true;
 
@@ -12118,15 +13107,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable104 = new vscode.MarkdownString(``);
-			variable104.appendCodeblock(`label.style_triangledown`);
+			variable104.appendCodeblock(`(variable) label.style_triangledown`);
 			variable104.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_triangledown)*`);
 			variable104.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable104.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_triangledown)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable104.isTrusted = true;
 			variable104.supportHtml = true;
 
@@ -12153,15 +13144,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable105 = new vscode.MarkdownString(``);
-			variable105.appendCodeblock(`label.style_triangleup`);
+			variable105.appendCodeblock(`(variable) label.style_triangleup`);
 			variable105.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_triangleup)*`);
 			variable105.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable105.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_triangleup)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable105.isTrusted = true;
 			variable105.supportHtml = true;
 
@@ -12188,15 +13181,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable106 = new vscode.MarkdownString(``);
-			variable106.appendCodeblock(`label.style_xcross`);
+			variable106.appendCodeblock(`(variable) label.style_xcross`);
 			variable106.appendMarkdown(`
-Label style for label.new and label.set_style functions`);
+<hr>
+
+Label style for label.new and label.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_xcross)*`);
 			variable106.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable106.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_label{dot}style_xcross)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable106.isTrusted = true;
 			variable106.supportHtml = true;
 
@@ -12223,15 +13218,17 @@ Label style for label.new and label.set_style functions`);
 
 
 			const variable107 = new vscode.MarkdownString(``);
-			variable107.appendCodeblock(`line.all`);
+			variable107.appendCodeblock(`(variable) line.all`);
 			variable107.appendMarkdown(`
-Returns an array filled with all the current lines drawn by the script`);
+<hr>
+
+Returns an array filled with all the current lines drawn by the script *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}all)*`);
 			variable107.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>line[]`);
-			variable107.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>line</code>[]`);
+			
 			variable107.isTrusted = true;
 			variable107.supportHtml = true;
 
@@ -12258,15 +13255,17 @@ Returns an array filled with all the current lines drawn by the script`);
 
 
 			const variable108 = new vscode.MarkdownString(``);
-			variable108.appendCodeblock(`line.style_arrow_both`);
+			variable108.appendCodeblock(`(variable) line.style_arrow_both`);
 			variable108.appendMarkdown(`
-Line style for line.new and line.set_style functions. Solid line with arrows on both points`);
+<hr>
+
+Line style for line.new and line.set_style functions. Solid line with arrows on both points *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_arrow_both)*`);
 			variable108.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable108.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_arrow_both)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable108.isTrusted = true;
 			variable108.supportHtml = true;
 
@@ -12293,15 +13292,17 @@ Line style for line.new and line.set_style functions. Solid line with arrows on 
 
 
 			const variable109 = new vscode.MarkdownString(``);
-			variable109.appendCodeblock(`line.style_arrow_left`);
+			variable109.appendCodeblock(`(variable) line.style_arrow_left`);
 			variable109.appendMarkdown(`
-Line style for line.new and line.set_style functions. Solid line with arrow on the first point`);
+<hr>
+
+Line style for line.new and line.set_style functions. Solid line with arrow on the first point *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_arrow_left)*`);
 			variable109.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable109.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_arrow_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable109.isTrusted = true;
 			variable109.supportHtml = true;
 
@@ -12328,15 +13329,17 @@ Line style for line.new and line.set_style functions. Solid line with arrow on t
 
 
 			const variable110 = new vscode.MarkdownString(``);
-			variable110.appendCodeblock(`line.style_arrow_right`);
+			variable110.appendCodeblock(`(variable) line.style_arrow_right`);
 			variable110.appendMarkdown(`
-Line style for line.new and line.set_style functions. Solid line with arrow on the second point`);
+<hr>
+
+Line style for line.new and line.set_style functions. Solid line with arrow on the second point *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_arrow_right)*`);
 			variable110.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable110.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_arrow_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable110.isTrusted = true;
 			variable110.supportHtml = true;
 
@@ -12363,15 +13366,17 @@ Line style for line.new and line.set_style functions. Solid line with arrow on t
 
 
 			const variable111 = new vscode.MarkdownString(``);
-			variable111.appendCodeblock(`line.style_dashed`);
+			variable111.appendCodeblock(`(variable) line.style_dashed`);
 			variable111.appendMarkdown(`
-Line style for line.new and line.set_style functions`);
+<hr>
+
+Line style for line.new and line.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_dashed)*`);
 			variable111.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable111.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_dashed)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable111.isTrusted = true;
 			variable111.supportHtml = true;
 
@@ -12398,15 +13403,17 @@ Line style for line.new and line.set_style functions`);
 
 
 			const variable112 = new vscode.MarkdownString(``);
-			variable112.appendCodeblock(`line.style_dotted`);
+			variable112.appendCodeblock(`(variable) line.style_dotted`);
 			variable112.appendMarkdown(`
-Line style for line.new and line.set_style functions`);
+<hr>
+
+Line style for line.new and line.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_dotted)*`);
 			variable112.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable112.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_dotted)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable112.isTrusted = true;
 			variable112.supportHtml = true;
 
@@ -12433,15 +13440,17 @@ Line style for line.new and line.set_style functions`);
 
 
 			const variable113 = new vscode.MarkdownString(``);
-			variable113.appendCodeblock(`line.style_solid`);
+			variable113.appendCodeblock(`(variable) line.style_solid`);
 			variable113.appendMarkdown(`
-Line style for line.new and line.set_style functions`);
+<hr>
+
+Line style for line.new and line.set_style functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_solid)*`);
 			variable113.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable113.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_line{dot}style_solid)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable113.isTrusted = true;
 			variable113.supportHtml = true;
 
@@ -12468,15 +13477,17 @@ Line style for line.new and line.set_style functions`);
 
 
 			const variable114 = new vscode.MarkdownString(``);
-			variable114.appendCodeblock(`location.abovebar`);
+			variable114.appendCodeblock(`(variable) location.abovebar`);
 			variable114.appendMarkdown(`
-Location value for plotshape, plotchar functions. Shape is plotted above main series bars`);
+<hr>
+
+Location value for plotshape, plotchar functions. Shape is plotted above main series bars *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}abovebar)*`);
 			variable114.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable114.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}abovebar)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable114.isTrusted = true;
 			variable114.supportHtml = true;
 
@@ -12503,15 +13514,17 @@ Location value for plotshape, plotchar functions. Shape is plotted above main se
 
 
 			const variable115 = new vscode.MarkdownString(``);
-			variable115.appendCodeblock(`location.absolute`);
+			variable115.appendCodeblock(`(variable) location.absolute`);
 			variable115.appendMarkdown(`
-Location value for plotshape, plotchar functions. Shape is plotted on chart using indicator value as a price coordinate`);
+<hr>
+
+Location value for plotshape, plotchar functions. Shape is plotted on chart using indicator value as a price coordinate *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}absolute)*`);
 			variable115.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable115.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}absolute)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable115.isTrusted = true;
 			variable115.supportHtml = true;
 
@@ -12538,15 +13551,17 @@ Location value for plotshape, plotchar functions. Shape is plotted on chart usin
 
 
 			const variable116 = new vscode.MarkdownString(``);
-			variable116.appendCodeblock(`location.belowbar`);
+			variable116.appendCodeblock(`(variable) location.belowbar`);
 			variable116.appendMarkdown(`
-Location value for plotshape, plotchar functions. Shape is plotted below main series bars`);
+<hr>
+
+Location value for plotshape, plotchar functions. Shape is plotted below main series bars *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}belowbar)*`);
 			variable116.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable116.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}belowbar)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable116.isTrusted = true;
 			variable116.supportHtml = true;
 
@@ -12573,15 +13588,17 @@ Location value for plotshape, plotchar functions. Shape is plotted below main se
 
 
 			const variable117 = new vscode.MarkdownString(``);
-			variable117.appendCodeblock(`location.bottom`);
+			variable117.appendCodeblock(`(variable) location.bottom`);
 			variable117.appendMarkdown(`
-Location value for plotshape, plotchar functions. Shape is plotted near the bottom chart border`);
+<hr>
+
+Location value for plotshape, plotchar functions. Shape is plotted near the bottom chart border *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}bottom)*`);
 			variable117.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable117.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}bottom)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable117.isTrusted = true;
 			variable117.supportHtml = true;
 
@@ -12608,15 +13625,17 @@ Location value for plotshape, plotchar functions. Shape is plotted near the bott
 
 
 			const variable118 = new vscode.MarkdownString(``);
-			variable118.appendCodeblock(`location.top`);
+			variable118.appendCodeblock(`(variable) location.top`);
 			variable118.appendMarkdown(`
-Location value for plotshape, plotchar functions. Shape is plotted near the top chart border`);
+<hr>
+
+Location value for plotshape, plotchar functions. Shape is plotted near the top chart border *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}top)*`);
 			variable118.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable118.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_location{dot}top)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable118.isTrusted = true;
 			variable118.supportHtml = true;
 
@@ -12643,15 +13662,17 @@ Location value for plotshape, plotchar functions. Shape is plotted near the top 
 
 
 			const variable119 = new vscode.MarkdownString(``);
-			variable119.appendCodeblock(`low`);
+			variable119.appendCodeblock(`(variable) low`);
 			variable119.appendMarkdown(`
-Current low price`);
+<hr>
+
+Current low price *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_low)*`);
 			variable119.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable119.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_low)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable119.isTrusted = true;
 			variable119.supportHtml = true;
 
@@ -12678,15 +13699,17 @@ Current low price`);
 
 
 			const variable120 = new vscode.MarkdownString(``);
-			variable120.appendCodeblock(`math.e`);
+			variable120.appendCodeblock(`(variable) math.e`);
 			variable120.appendMarkdown(`
-Is a named constant for Euler's number. It is equal to 2.7182818284590452`);
+<hr>
+
+Is a named constant for Euler's number. It is equal to 2.7182818284590452 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}e)*`);
 			variable120.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const float`);
-			variable120.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}e)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const float</code>`);
+			
 			variable120.isTrusted = true;
 			variable120.supportHtml = true;
 
@@ -12713,15 +13736,17 @@ Is a named constant for Euler's number. It is equal to 2.7182818284590452`);
 
 
 			const variable121 = new vscode.MarkdownString(``);
-			variable121.appendCodeblock(`math.phi`);
+			variable121.appendCodeblock(`(variable) math.phi`);
 			variable121.appendMarkdown(`
-Is a named constant for the golden ratio. It is equal to 1.6180339887498948`);
+<hr>
+
+Is a named constant for the golden ratio. It is equal to 1.6180339887498948 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}phi)*`);
 			variable121.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const float`);
-			variable121.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}phi)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const float</code>`);
+			
 			variable121.isTrusted = true;
 			variable121.supportHtml = true;
 
@@ -12748,15 +13773,17 @@ Is a named constant for the golden ratio. It is equal to 1.6180339887498948`);
 
 
 			const variable122 = new vscode.MarkdownString(``);
-			variable122.appendCodeblock(`math.pi`);
+			variable122.appendCodeblock(`(variable) math.pi`);
 			variable122.appendMarkdown(`
-Is a named constant for Archimedes' constant. It is equal to 3.1415926535897932`);
+<hr>
+
+Is a named constant for Archimedes' constant. It is equal to 3.1415926535897932 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}pi)*`);
 			variable122.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const float`);
-			variable122.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}pi)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const float</code>`);
+			
 			variable122.isTrusted = true;
 			variable122.supportHtml = true;
 
@@ -12783,15 +13810,17 @@ Is a named constant for Archimedes' constant. It is equal to 3.1415926535897932`
 
 
 			const variable123 = new vscode.MarkdownString(``);
-			variable123.appendCodeblock(`math.rphi`);
+			variable123.appendCodeblock(`(variable) math.rphi`);
 			variable123.appendMarkdown(`
-Is a named constant for the golden ratio conjugate. It is equal to 0.6180339887498948`);
+<hr>
+
+Is a named constant for the golden ratio conjugate. It is equal to 0.6180339887498948 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}rphi)*`);
 			variable123.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const float`);
-			variable123.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_math{dot}rphi)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const float</code>`);
+			
 			variable123.isTrusted = true;
 			variable123.supportHtml = true;
 
@@ -12814,26 +13843,34 @@ Is a named constant for the golden ratio conjugate. It is equal to 0.61803398874
 	let pineHover425 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange425;
+			let error42501;
 			const hoverLineText425 = document.lineAt(position.line).text;
 
 
 			const variable124 = new vscode.MarkdownString(``);
-			variable124.appendCodeblock(`minute`);
+			variable124.appendCodeblock(`(variable) minute`);
 			variable124.appendMarkdown(`
-Current bar minute in exchange timezone`);
+<hr>
+
+Current bar minute in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_minute)*`);
 			variable124.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable124.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_minute)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable124.isTrusted = true;
 			variable124.supportHtml = true;
 
 			const patternVariable124 = new RegExp(`\\b(minute)\\b`);
+			const patternVariableError12401 = new RegExp(`minute\\(`);
 			if (patternVariable124.test(hoverLineText425)) {
 				hoverRange425 = document.getWordRangeAtPosition(position, patternVariable124);
-				if (hoverRange425) {
+				error42501 = document.getWordRangeAtPosition(position, patternVariableError12401);
+				if (error42501) {
+					return null;
+				}
+				else if (hoverRange425) {
 					return new vscode.Hover(variable124, new vscode.Range(position, position));
 				}
 				else {
@@ -12849,25 +13886,33 @@ Current bar minute in exchange timezone`);
 	let pineHover426 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange426;
+			let error42601;
 			const hoverLineText426 = document.lineAt(position.line).text;
 
 
 			const variable125 = new vscode.MarkdownString(``);
-			variable125.appendCodeblock(`month`);
+			variable125.appendCodeblock(`(variable) month`);
 			variable125.appendMarkdown(`
-Current bar month in exchange timezone`);
+<hr>
+
+Current bar month in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_month)*`);
 			variable125.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable125.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_month)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable125.isTrusted = true;
 			variable125.supportHtml = true;
 
 			const patternVariable125 = new RegExp(`\\b(month)\\b`);
+			const patternVariableError12501 = new RegExp(`month\\(`);
 			if (patternVariable125.test(hoverLineText426)) {
 				hoverRange426 = document.getWordRangeAtPosition(position, patternVariable125);
+				error42601 = document.getWordRangeAtPosition(position, patternVariableError12501);
+				if (error42601) {
+					return null;
+				}
 				if (hoverRange426) {
 					return new vscode.Hover(variable125, new vscode.Range(position, position));
 				}
@@ -12884,26 +13929,34 @@ Current bar month in exchange timezone`);
 	let pineHover427 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange427;
+			let error42701;
 			const hoverLineText427 = document.lineAt(position.line).text;
 
 
 			const variable126 = new vscode.MarkdownString(``);
-			variable126.appendCodeblock(`na`);
+			variable126.appendCodeblock(`(variable) na`);
 			variable126.appendMarkdown(`
-Double.NaN value (Not a Number)`);
+<hr>
+
+Double.NaN value (Not a Number *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_na)*)`);
 			variable126.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple na`);
-			variable126.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_na)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple na</code>`);
+			
 			variable126.isTrusted = true;
 			variable126.supportHtml = true;
 
 			const patternVariable126 = new RegExp(`\\b(na)\\b`);
+			const patternVariableError12601 = new RegExp(`na\\(`);
 			if (patternVariable126.test(hoverLineText427)) {
 				hoverRange427 = document.getWordRangeAtPosition(position, patternVariable126);
-				if (hoverRange427) {
+				error42701 = document.getWordRangeAtPosition(position, patternVariableError12601);
+				if (error42701) {
+					return null;
+				}
+				else if (hoverRange427) {
 					return new vscode.Hover(variable126, new vscode.Range(position, position));
 				}
 				else {
@@ -12923,15 +13976,17 @@ Double.NaN value (Not a Number)`);
 
 
 			const variable127 = new vscode.MarkdownString(``);
-			variable127.appendCodeblock(`ohlc4`);
+			variable127.appendCodeblock(`(variable) ohlc4`);
 			variable127.appendMarkdown(`
-Is a shortcut for (open + high + low + close)/`);
+<hr>
+
+Is a shortcut for (open + high + low + close *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ohlc4)*)/`);
 			variable127.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable127.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ohlc4)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable127.isTrusted = true;
 			variable127.supportHtml = true;
 
@@ -12958,15 +14013,17 @@ Is a shortcut for (open + high + low + close)/`);
 
 
 			const variable128 = new vscode.MarkdownString(``);
-			variable128.appendCodeblock(`open`);
+			variable128.appendCodeblock(`(variable) open`);
 			variable128.appendMarkdown(`
-Current open price`);
+<hr>
+
+Current open price *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_open)*`);
 			variable128.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable128.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_open)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable128.isTrusted = true;
 			variable128.supportHtml = true;
 
@@ -12993,15 +14050,17 @@ Current open price`);
 
 
 			const variable129 = new vscode.MarkdownString(``);
-			variable129.appendCodeblock(`order.ascending`);
+			variable129.appendCodeblock(`(variable) order.ascending`);
 			variable129.appendMarkdown(`
-Determines the sort order of the array from the smallest to the largest value`);
+<hr>
+
+Determines the sort order of the array from the smallest to the largest value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_order{dot}ascending)*`);
 			variable129.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>sort_order`);
-			variable129.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_order{dot}ascending)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>sort_order</code>`);
+			
 			variable129.isTrusted = true;
 			variable129.supportHtml = true;
 
@@ -13028,15 +14087,17 @@ Determines the sort order of the array from the smallest to the largest value`);
 
 
 			const variable130 = new vscode.MarkdownString(``);
-			variable130.appendCodeblock(`order.descending`);
+			variable130.appendCodeblock(`(variable) order.descending`);
 			variable130.appendMarkdown(`
-Determines the sort order of the array from the largest to the smallest value`);
+<hr>
+
+Determines the sort order of the array from the largest to the smallest value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_order{dot}descending)*`);
 			variable130.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>sort_order`);
-			variable130.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_order{dot}descending)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>sort_order</code>`);
+			
 			variable130.isTrusted = true;
 			variable130.supportHtml = true;
 
@@ -13063,14 +14124,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable131 = new vscode.MarkdownString(``);
-			variable131.appendCodeblock(`plot.style_area`);
-			variable131.appendMarkdown(`A named constant for the 'Area' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable131.appendCodeblock(`(variable) plot.style_area`);
+			variable131.appendMarkdown(`
+<hr>
+
+A named constant for the 'Area' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_area)*`);
 			variable131.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable131.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_area)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable131.isTrusted = true;
 			variable131.supportHtml = true;
 
@@ -13097,14 +14161,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable132 = new vscode.MarkdownString(``);
-			variable132.appendCodeblock(`plot.style_areabr`);
-			variable132.appendMarkdown(`A named constant for the 'Area With Breaks' style, to be used as an argument for the "style" parameter in the plot function. Similar to plot.style_area, except the gaps in the data are not filled`);
+			variable132.appendCodeblock(`(variable) plot.style_areabr`);
+			variable132.appendMarkdown(`
+<hr>
+
+A named constant for the 'Area With Breaks' style, to be used as an argument for the "style" parameter in the plot function. Similar to plot.style_area, except the gaps in the data are not filled *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_areabr)*`);
 			variable132.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable132.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_areabr)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable132.isTrusted = true;
 			variable132.supportHtml = true;
 
@@ -13131,14 +14198,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable133 = new vscode.MarkdownString(``);
-			variable133.appendCodeblock(`plot.style_circles`);
-			variable133.appendMarkdown(`A named constant for the 'Circles' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable133.appendCodeblock(`(variable) plot.style_circles`);
+			variable133.appendMarkdown(`
+<hr>
+
+A named constant for the 'Circles' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_circles)*`);
 			variable133.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable133.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_circles)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable133.isTrusted = true;
 			variable133.supportHtml = true;
 
@@ -13165,14 +14235,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable134 = new vscode.MarkdownString(``);
-			variable134.appendCodeblock(`plot.style_columns`);
-			variable134.appendMarkdown(`A named constant for the 'Columns' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable134.appendCodeblock(`(variable) plot.style_columns`);
+			variable134.appendMarkdown(`
+<hr>
+
+A named constant for the 'Columns' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_columns)*`);
 			variable134.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable134.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_columns)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable134.isTrusted = true;
 			variable134.supportHtml = true;
 
@@ -13199,14 +14272,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable135 = new vscode.MarkdownString(``);
-			variable135.appendCodeblock(`plot.style_cross`);
-			variable135.appendMarkdown(`A named constant for the 'Cross' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable135.appendCodeblock(`(variable) plot.style_cross`);
+			variable135.appendMarkdown(`
+<hr>
+
+A named constant for the 'Cross' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_cross)*`);
 			variable135.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable135.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_cross)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable135.isTrusted = true;
 			variable135.supportHtml = true;
 
@@ -13233,14 +14309,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable136 = new vscode.MarkdownString(``);
-			variable136.appendCodeblock(`plot.style_histogram`);
-			variable136.appendMarkdown(`A named constant for the 'Histogram' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable136.appendCodeblock(`(variable) plot.style_histogram`);
+			variable136.appendMarkdown(`
+<hr>
+
+A named constant for the 'Histogram' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_histogram)*`);
 			variable136.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable136.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_histogram)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable136.isTrusted = true;
 			variable136.supportHtml = true;
 
@@ -13267,14 +14346,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable137 = new vscode.MarkdownString(``);
-			variable137.appendCodeblock(`plot.style_line`);
-			variable137.appendMarkdown(`A named constant for the 'Line' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable137.appendCodeblock(`(variable) plot.style_line`);
+			variable137.appendMarkdown(`
+<hr>
+
+A named constant for the 'Line' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_line)*`);
 			variable137.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable137.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_line)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable137.isTrusted = true;
 			variable137.supportHtml = true;
 
@@ -13301,14 +14383,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable138 = new vscode.MarkdownString(``);
-			variable138.appendCodeblock(`plot.style_linebr`);
-			variable138.appendMarkdown(`A named constant for the 'Line With Breaks' style, to be used as an argument for the "style" parameter in the plot function. Similar to plot.style_line, except the gaps in the data are not filled`);
+			variable138.appendCodeblock(`(variable) plot.style_linebr`);
+			variable138.appendMarkdown(`
+<hr>
+
+A named constant for the 'Line With Breaks' style, to be used as an argument for the "style" parameter in the plot function. Similar to plot.style_line, except the gaps in the data are not filled *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_linebr)*`);
 			variable138.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable138.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_linebr)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable138.isTrusted = true;
 			variable138.supportHtml = true;
 
@@ -13335,14 +14420,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable139 = new vscode.MarkdownString(``);
-			variable139.appendCodeblock(`plot.style_stepline`);
-			variable139.appendMarkdown(`A named constant for the 'Step Line' style, to be used as an argument for the "style" parameter in the plot function`);
+			variable139.appendCodeblock(`(variable) plot.style_stepline`);
+			variable139.appendMarkdown(`
+<hr>
+
+A named constant for the 'Step Line' style, to be used as an argument for the "style" parameter in the plot function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_stepline)*`);
 			variable139.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable139.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_stepline)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable139.isTrusted = true;
 			variable139.supportHtml = true;
 
@@ -13369,14 +14457,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable140 = new vscode.MarkdownString(``);
-			variable140.appendCodeblock(`plot.style_stepline_diamond`);
-			variable140.appendMarkdown(`A named constant for the 'Step Line With Diamonds' style, to be used as an argument for the "style" parameter in the plot function. Similar to plot.style_stepline, except the data changes are also marked with the Diamond shapes`);
+			variable140.appendCodeblock(`(variable) plot.style_stepline_diamond`);
+			variable140.appendMarkdown(`
+<hr>
+
+A named constant for the 'Step Line With Diamonds' style, to be used as an argument for the "style" parameter in the plot function. Similar to plot.style_stepline, except the data changes are also marked with the Diamond shapes *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_stepline_diamond)*`);
 			variable140.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>plot_style`);
-			variable140.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_plot{dot}style_stepline_diamond)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>plot_style</code>`);
+			
 			variable140.isTrusted = true;
 			variable140.supportHtml = true;
 
@@ -13403,15 +14494,17 @@ Determines the sort order of the array from the largest to the smallest value`);
 
 
 			const variable141 = new vscode.MarkdownString(``);
-			variable141.appendCodeblock(`position.bottom_center`);
+			variable141.appendCodeblock(`(variable) position.bottom_center`);
 			variable141.appendMarkdown(`
-Binds the table to the bottom edge in the center`);
+<hr>
+
+Binds the table to the bottom edge in the center *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}bottom_center)*`);
 			variable141.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable141.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}bottom_center)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable141.isTrusted = true;
 			variable141.supportHtml = true;
 
@@ -13438,15 +14531,17 @@ Binds the table to the bottom edge in the center`);
 
 
 			const variable142 = new vscode.MarkdownString(``);
-			variable142.appendCodeblock(`position.bottom_left`);
+			variable142.appendCodeblock(`(variable) position.bottom_left`);
 			variable142.appendMarkdown(`
-Binds the table to the bottom left of the screen`);
+<hr>
+
+Binds the table to the bottom left of the screen *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}bottom_left)*`);
 			variable142.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable142.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}bottom_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable142.isTrusted = true;
 			variable142.supportHtml = true;
 
@@ -13473,15 +14568,17 @@ Binds the table to the bottom left of the screen`);
 
 
 			const variable143 = new vscode.MarkdownString(``);
-			variable143.appendCodeblock(`position.bottom_right`);
+			variable143.appendCodeblock(`(variable) position.bottom_right`);
 			variable143.appendMarkdown(`
-Binds the table to the bottom right of the screen`);
+<hr>
+
+Binds the table to the bottom right of the screen *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}bottom_right)*`);
 			variable143.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable143.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}bottom_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable143.isTrusted = true;
 			variable143.supportHtml = true;
 
@@ -13508,15 +14605,17 @@ Binds the table to the bottom right of the screen`);
 
 
 			const variable144 = new vscode.MarkdownString(``);
-			variable144.appendCodeblock(`position.middle_center`);
+			variable144.appendCodeblock(`(variable) position.middle_center`);
 			variable144.appendMarkdown(`
-Binds the table to the center of the screen`);
+<hr>
+
+Binds the table to the center of the screen *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}middle_center)*`);
 			variable144.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable144.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}middle_center)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable144.isTrusted = true;
 			variable144.supportHtml = true;
 
@@ -13543,15 +14642,17 @@ Binds the table to the center of the screen`);
 
 
 			const variable145 = new vscode.MarkdownString(``);
-			variable145.appendCodeblock(`position.middle_left`);
+			variable145.appendCodeblock(`(variable) position.middle_left`);
 			variable145.appendMarkdown(`
-Binds the table to the left side of the screen`);
+<hr>
+
+Binds the table to the left side of the screen *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}middle_left)*`);
 			variable145.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable145.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}middle_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable145.isTrusted = true;
 			variable145.supportHtml = true;
 
@@ -13578,15 +14679,17 @@ Binds the table to the left side of the screen`);
 
 
 			const variable146 = new vscode.MarkdownString(``);
-			variable146.appendCodeblock(`position.middle_right`);
+			variable146.appendCodeblock(`(variable) position.middle_right`);
 			variable146.appendMarkdown(`
-Binds the table to the right side of the screen`);
+<hr>
+
+Binds the table to the right side of the screen *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}middle_right)*`);
 			variable146.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable146.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}middle_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable146.isTrusted = true;
 			variable146.supportHtml = true;
 
@@ -13613,15 +14716,17 @@ Binds the table to the right side of the screen`);
 
 
 			const variable147 = new vscode.MarkdownString(``);
-			variable147.appendCodeblock(`position.top_center`);
+			variable147.appendCodeblock(`(variable) position.top_center`);
 			variable147.appendMarkdown(`
-Binds the table to the top edge in the center`);
+<hr>
+
+Binds the table to the top edge in the center *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}top_center)*`);
 			variable147.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable147.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}top_center)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable147.isTrusted = true;
 			variable147.supportHtml = true;
 
@@ -13648,15 +14753,17 @@ Binds the table to the top edge in the center`);
 
 
 			const variable148 = new vscode.MarkdownString(``);
-			variable148.appendCodeblock(`position.top_left`);
+			variable148.appendCodeblock(`(variable) position.top_left`);
 			variable148.appendMarkdown(`
-Binds the table to the upper-left edge`);
+<hr>
+
+Binds the table to the upper-left edge *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}top_left)*`);
 			variable148.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable148.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}top_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable148.isTrusted = true;
 			variable148.supportHtml = true;
 
@@ -13683,15 +14790,17 @@ Binds the table to the upper-left edge`);
 
 
 			const variable149 = new vscode.MarkdownString(``);
-			variable149.appendCodeblock(`position.top_right`);
+			variable149.appendCodeblock(`(variable) position.top_right`);
 			variable149.appendMarkdown(`
-Binds the table to the upper-right edge`);
+<hr>
+
+Binds the table to the upper-right edge *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}top_right)*`);
 			variable149.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable149.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_position{dot}top_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable149.isTrusted = true;
 			variable149.supportHtml = true;
 
@@ -13718,15 +14827,17 @@ Binds the table to the upper-right edge`);
 
 
 			const variable150 = new vscode.MarkdownString(``);
-			variable150.appendCodeblock(`scale.left`);
+			variable150.appendCodeblock(`(variable) scale.left`);
 			variable150.appendMarkdown(`
-Scale value for indicator function. Indicator is added to the left price scale`);
+<hr>
+
+Scale value for indicator function. Indicator is added to the left price scale *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_scale{dot}left)*`);
 			variable150.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>scale_type`);
-			variable150.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_scale{dot}left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>scale_type</code>`);
+			
 			variable150.isTrusted = true;
 			variable150.supportHtml = true;
 
@@ -13753,15 +14864,17 @@ Scale value for indicator function. Indicator is added to the left price scale`)
 
 
 			const variable151 = new vscode.MarkdownString(``);
-			variable151.appendCodeblock(`scale.none`);
+			variable151.appendCodeblock(`(variable) scale.none`);
 			variable151.appendMarkdown(`
-Scale value for indicator function. Indicator is added in 'No Scale' mode. Can be used only with 'overlay=true'`);
+<hr>
+
+Scale value for indicator function. Indicator is added in 'No Scale' mode. Can be used only with 'overlay=true *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_scale{dot}none)*'`);
 			variable151.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>scale_type`);
-			variable151.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_scale{dot}none)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>scale_type</code>`);
+			
 			variable151.isTrusted = true;
 			variable151.supportHtml = true;
 
@@ -13788,15 +14901,17 @@ Scale value for indicator function. Indicator is added in 'No Scale' mode. Can b
 
 
 			const variable152 = new vscode.MarkdownString(``);
-			variable152.appendCodeblock(`scale.right`);
+			variable152.appendCodeblock(`(variable) scale.right`);
 			variable152.appendMarkdown(`
-Scale value for indicator function. Indicator is added to the right price scale`);
+<hr>
+
+Scale value for indicator function. Indicator is added to the right price scale *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_scale{dot}right)*`);
 			variable152.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>scale_type`);
-			variable152.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_scale{dot}right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>scale_type</code>`);
+			
 			variable152.isTrusted = true;
 			variable152.supportHtml = true;
 
@@ -13819,26 +14934,34 @@ Scale value for indicator function. Indicator is added to the right price scale`
 	let pineHover454 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange454;
+			let error45401;
 			const hoverLineText454 = document.lineAt(position.line).text;
 
 
 			const variable153 = new vscode.MarkdownString(``);
-			variable153.appendCodeblock(`second`);
+			variable153.appendCodeblock(`(variable) second`);
 			variable153.appendMarkdown(`
-Current bar second in exchange timezone`);
+<hr>
+
+Current bar second in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_second)*`);
 			variable153.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable153.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_second)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable153.isTrusted = true;
 			variable153.supportHtml = true;
 
 			const patternVariable153 = new RegExp(`\\b(second)\\b`);
+			const patternVariableError15301 = new RegExp(`second\\(`);
 			if (patternVariable153.test(hoverLineText454)) {
 				hoverRange454 = document.getWordRangeAtPosition(position, patternVariable153);
-				if (hoverRange454) {
+				error45401 = document.getWordRangeAtPosition(position, patternVariableError15301);
+				if (error45401) {
+					return null;
+				}
+				else if (hoverRange454) {
 					return new vscode.Hover(variable153, new vscode.Range(position, position));
 				}
 				else {
@@ -13858,15 +14981,17 @@ Current bar second in exchange timezone`);
 
 
 			const variable154 = new vscode.MarkdownString(``);
-			variable154.appendCodeblock(`session.extended`);
+			variable154.appendCodeblock(`(variable) session.extended`);
 			variable154.appendMarkdown(`
-Constant for extended session type (with extended hours data)`);
+<hr>
+
+Constant for extended session type (with extended hours data *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}extended)*)`);
 			variable154.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable154.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}extended)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable154.isTrusted = true;
 			variable154.supportHtml = true;
 
@@ -13893,15 +15018,17 @@ Constant for extended session type (with extended hours data)`);
 
 
 			const variable155 = new vscode.MarkdownString(``);
-			variable155.appendCodeblock(`session.ismarket`);
+			variable155.appendCodeblock(`(variable) session.ismarket`);
 			variable155.appendMarkdown(`
-Returns true if the current bar is a part of the regular trading hours (i.e. market hours), true otherwis`);
+<hr>
+
+Returns true if the current bar is a part of the regular trading hours (i.e. market hours), true otherwis *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}ismarket)*`);
 			variable155.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable155.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}ismarket)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable155.isTrusted = true;
 			variable155.supportHtml = true;
 
@@ -13928,15 +15055,17 @@ Returns true if the current bar is a part of the regular trading hours (i.e. mar
 
 
 			const variable156 = new vscode.MarkdownString(``);
-			variable156.appendCodeblock(`session.ispostmarket`);
+			variable156.appendCodeblock(`(variable) session.ispostmarket`);
 			variable156.appendMarkdown(`
-Returns true if the current bar is a part of the post-market, true otherwise. On non-intraday charts always returns true`);
+<hr>
+
+Returns true if the current bar is a part of the post-market, true otherwise. On non-intraday charts always returns true *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}ispostmarket)*`);
 			variable156.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable156.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}ispostmarket)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable156.isTrusted = true;
 			variable156.supportHtml = true;
 
@@ -13963,15 +15092,17 @@ Returns true if the current bar is a part of the post-market, true otherwise. On
 
 
 			const variable157 = new vscode.MarkdownString(``);
-			variable157.appendCodeblock(`session.ispremarket`);
+			variable157.appendCodeblock(`(variable) session.ispremarket`);
 			variable157.appendMarkdown(`
-Returns true if the current bar is a part of the pre-market, true otherwise. On non-intraday charts always returns true`);
+<hr>
+
+Returns true if the current bar is a part of the pre-market, true otherwise. On non-intraday charts always returns true *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}ispremarket)*`);
 			variable157.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series bool`);
-			variable157.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}ispremarket)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series bool</code>`);
+			
 			variable157.isTrusted = true;
 			variable157.supportHtml = true;
 
@@ -13998,15 +15129,17 @@ Returns true if the current bar is a part of the pre-market, true otherwise. On 
 
 
 			const variable158 = new vscode.MarkdownString(``);
-			variable158.appendCodeblock(`session.regular`);
+			variable158.appendCodeblock(`(variable) session.regular`);
 			variable158.appendMarkdown(`
-Constant for regular session type (no extended hours data)`);
+<hr>
+
+Constant for regular session type (no extended hours data *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}regular)*)`);
 			variable158.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable158.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_session{dot}regular)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable158.isTrusted = true;
 			variable158.supportHtml = true;
 
@@ -14033,15 +15166,17 @@ Constant for regular session type (no extended hours data)`);
 
 
 			const variable159 = new vscode.MarkdownString(``);
-			variable159.appendCodeblock(`shape.arrowdown`);
+			variable159.appendCodeblock(`(variable) shape.arrowdown`);
 			variable159.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}arrowdown)*`);
 			variable159.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable159.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}arrowdown)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable159.isTrusted = true;
 			variable159.supportHtml = true;
 
@@ -14068,15 +15203,17 @@ Shape style for plotshape function`);
 
 
 			const variable160 = new vscode.MarkdownString(``);
-			variable160.appendCodeblock(`shape.arrowup`);
+			variable160.appendCodeblock(`(variable) shape.arrowup`);
 			variable160.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}arrowup)*`);
 			variable160.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable160.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}arrowup)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable160.isTrusted = true;
 			variable160.supportHtml = true;
 
@@ -14103,15 +15240,17 @@ Shape style for plotshape function`);
 
 
 			const variable161 = new vscode.MarkdownString(``);
-			variable161.appendCodeblock(`shape.circle`);
+			variable161.appendCodeblock(`(variable) shape.circle`);
 			variable161.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}circle)*`);
 			variable161.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable161.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}circle)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable161.isTrusted = true;
 			variable161.supportHtml = true;
 
@@ -14138,15 +15277,17 @@ Shape style for plotshape function`);
 
 
 			const variable162 = new vscode.MarkdownString(``);
-			variable162.appendCodeblock(`shape.cross`);
+			variable162.appendCodeblock(`(variable) shape.cross`);
 			variable162.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}cross)*`);
 			variable162.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable162.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}cross)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable162.isTrusted = true;
 			variable162.supportHtml = true;
 
@@ -14173,15 +15314,17 @@ Shape style for plotshape function`);
 
 
 			const variable163 = new vscode.MarkdownString(``);
-			variable163.appendCodeblock(`shape.diamond`);
+			variable163.appendCodeblock(`(variable) shape.diamond`);
 			variable163.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}diamond)*`);
 			variable163.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable163.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}diamond)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable163.isTrusted = true;
 			variable163.supportHtml = true;
 
@@ -14208,15 +15351,17 @@ Shape style for plotshape function`);
 
 
 			const variable164 = new vscode.MarkdownString(``);
-			variable164.appendCodeblock(`shape.flag`);
+			variable164.appendCodeblock(`(variable) shape.flag`);
 			variable164.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}flag)*`);
 			variable164.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable164.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}flag)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable164.isTrusted = true;
 			variable164.supportHtml = true;
 
@@ -14243,15 +15388,17 @@ Shape style for plotshape function`);
 
 
 			const variable165 = new vscode.MarkdownString(``);
-			variable165.appendCodeblock(`shape.labeldown`);
+			variable165.appendCodeblock(`(variable) shape.labeldown`);
 			variable165.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}labeldown)*`);
 			variable165.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable165.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}labeldown)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable165.isTrusted = true;
 			variable165.supportHtml = true;
 
@@ -14278,15 +15425,17 @@ Shape style for plotshape function`);
 
 
 			const variable166 = new vscode.MarkdownString(``);
-			variable166.appendCodeblock(`shape.labelup`);
+			variable166.appendCodeblock(`(variable) shape.labelup`);
 			variable166.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}labelup)*`);
 			variable166.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable166.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}labelup)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable166.isTrusted = true;
 			variable166.supportHtml = true;
 
@@ -14313,15 +15462,17 @@ Shape style for plotshape function`);
 
 
 			const variable167 = new vscode.MarkdownString(``);
-			variable167.appendCodeblock(`shape.square`);
+			variable167.appendCodeblock(`(variable) shape.square`);
 			variable167.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}square)*`);
 			variable167.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable167.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}square)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable167.isTrusted = true;
 			variable167.supportHtml = true;
 
@@ -14348,15 +15499,17 @@ Shape style for plotshape function`);
 
 
 			const variable168 = new vscode.MarkdownString(``);
-			variable168.appendCodeblock(`shape.triangledown`);
+			variable168.appendCodeblock(`(variable) shape.triangledown`);
 			variable168.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}triangledown)*`);
 			variable168.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable168.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}triangledown)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable168.isTrusted = true;
 			variable168.supportHtml = true;
 
@@ -14383,15 +15536,17 @@ Shape style for plotshape function`);
 
 
 			const variable169 = new vscode.MarkdownString(``);
-			variable169.appendCodeblock(`shape.triangleup`);
+			variable169.appendCodeblock(`(variable) shape.triangleup`);
 			variable169.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}triangleup)*`);
 			variable169.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable169.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}triangleup)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable169.isTrusted = true;
 			variable169.supportHtml = true;
 
@@ -14418,15 +15573,17 @@ Shape style for plotshape function`);
 
 
 			const variable170 = new vscode.MarkdownString(``);
-			variable170.appendCodeblock(`shape.xcross`);
+			variable170.appendCodeblock(`(variable) shape.xcross`);
 			variable170.appendMarkdown(`
-Shape style for plotshape function`);
+<hr>
+
+Shape style for plotshape function *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}xcross)*`);
 			variable170.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable170.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_shape{dot}xcross)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable170.isTrusted = true;
 			variable170.supportHtml = true;
 
@@ -14453,15 +15610,17 @@ Shape style for plotshape function`);
 
 
 			const variable171 = new vscode.MarkdownString(``);
-			variable171.appendCodeblock(`size.auto`);
+			variable171.appendCodeblock(`(variable) size.auto`);
 			variable171.appendMarkdown(`
-Size value for plotshape, plotchar functions. The size of the shape automatically adapts to the size of the bars`);
+<hr>
+
+Size value for plotshape, plotchar functions. The size of the shape automatically adapts to the size of the bars *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}auto)*`);
 			variable171.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable171.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}auto)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable171.isTrusted = true;
 			variable171.supportHtml = true;
 
@@ -14488,15 +15647,17 @@ Size value for plotshape, plotchar functions. The size of the shape automaticall
 
 
 			const variable172 = new vscode.MarkdownString(``);
-			variable172.appendCodeblock(`size.huge`);
+			variable172.appendCodeblock(`(variable) size.huge`);
 			variable172.appendMarkdown(`
-Size value for plotshape, plotchar functions. The size of the shape constantly huge`);
+<hr>
+
+Size value for plotshape, plotchar functions. The size of the shape constantly huge *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}huge)*`);
 			variable172.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable172.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}huge)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable172.isTrusted = true;
 			variable172.supportHtml = true;
 
@@ -14523,15 +15684,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly h
 
 
 			const variable173 = new vscode.MarkdownString(``);
-			variable173.appendCodeblock(`size.large`);
+			variable173.appendCodeblock(`(variable) size.large`);
 			variable173.appendMarkdown(`
-Size value for plotshape, plotchar functions. The size of the shape constantly large`);
+<hr>
+
+Size value for plotshape, plotchar functions. The size of the shape constantly large *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}large)*`);
 			variable173.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable173.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}large)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable173.isTrusted = true;
 			variable173.supportHtml = true;
 
@@ -14558,15 +15721,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly l
 
 
 			const variable174 = new vscode.MarkdownString(``);
-			variable174.appendCodeblock(`size.normal`);
+			variable174.appendCodeblock(`(variable) size.normal`);
 			variable174.appendMarkdown(`
-Size value for plotshape, plotchar functions. The size of the shape constantly normal`);
+<hr>
+
+Size value for plotshape, plotchar functions. The size of the shape constantly normal *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}normal)*`);
 			variable174.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable174.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}normal)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable174.isTrusted = true;
 			variable174.supportHtml = true;
 
@@ -14593,15 +15758,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly n
 
 
 			const variable175 = new vscode.MarkdownString(``);
-			variable175.appendCodeblock(`size.small`);
+			variable175.appendCodeblock(`(variable) size.small`);
 			variable175.appendMarkdown(`
-Size value for plotshape, plotchar functions. The size of the shape constantly small`);
+<hr>
+
+Size value for plotshape, plotchar functions. The size of the shape constantly small *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}small)*`);
 			variable175.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable175.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}small)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable175.isTrusted = true;
 			variable175.supportHtml = true;
 
@@ -14628,15 +15795,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly s
 
 
 			const variable176 = new vscode.MarkdownString(``);
-			variable176.appendCodeblock(`size.tiny`);
+			variable176.appendCodeblock(`(variable) size.tiny`);
 			variable176.appendMarkdown(`
-Size value for plotshape, plotchar functions. The size of the shape constantly tiny`);
+<hr>
+
+Size value for plotshape, plotchar functions. The size of the shape constantly tiny *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}tiny)*`);
 			variable176.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable176.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_size{dot}tiny)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable176.isTrusted = true;
 			variable176.supportHtml = true;
 
@@ -14663,14 +15832,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly t
 
 
 			const variable177 = new vscode.MarkdownString(``);
-			variable177.appendCodeblock(`splits.denominator`);
-			variable177.appendMarkdown(`A named constant for the request.splits function. Is used to request the denominator (the number below the line in a fraction) of a splits`);
+			variable177.appendCodeblock(`(variable) splits.denominator`);
+			variable177.appendMarkdown(`
+<hr>
+
+A named constant for the request.splits function. Is used to request the denominator (the number below the line in a fraction) of a splits *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_splits{dot}denominator)*`);
 			variable177.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable177.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_splits{dot}denominator)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable177.isTrusted = true;
 			variable177.supportHtml = true;
 
@@ -14697,14 +15869,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly t
 
 
 			const variable178 = new vscode.MarkdownString(``);
-			variable178.appendCodeblock(`splits.numerator`);
-			variable178.appendMarkdown(`A named constant for the request.splits function. Is used to request the numerator (the number above the line in a fraction) of a splits`);
+			variable178.appendCodeblock(`(variable) splits.numerator`);
+			variable178.appendMarkdown(`
+<hr>
+
+A named constant for the request.splits function. Is used to request the numerator (the number above the line in a fraction) of a splits *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_splits{dot}numerator)*`);
 			variable178.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable178.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_splits{dot}numerator)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable178.isTrusted = true;
 			variable178.supportHtml = true;
 
@@ -14731,15 +15906,17 @@ Size value for plotshape, plotchar functions. The size of the shape constantly t
 
 
 			const variable179 = new vscode.MarkdownString(``);
-			variable179.appendCodeblock(`strategy.account_currency`);
+			variable179.appendCodeblock(`(variable) strategy.account_currency`);
 			variable179.appendMarkdown(`
-Returns the currency used to calculate results, which can be set in the strategy's properties`);
+<hr>
+
+Returns the currency used to calculate results, which can be set in the strategy's properties *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}account_currency)*`);
 			variable179.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable179.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}account_currency)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable179.isTrusted = true;
 			variable179.supportHtml = true;
 
@@ -14766,15 +15943,17 @@ Returns the currency used to calculate results, which can be set in the strategy
 
 
 			const variable180 = new vscode.MarkdownString(``);
-			variable180.appendCodeblock(`strategy.cash`);
+			variable180.appendCodeblock(`(variable) strategy.cash`);
 			variable180.appendMarkdown(`
-If the number of contracts/shares/lots/units to buy/sell is not specified for strategy.entry or strategy.order commands (or 'NaN' is specified), then strategy will calculate the quantity to buy/sell at close of current bar using the amount of money specified in the 'default_qty_value'`);
+<hr>
+
+If the number of contracts/shares/lots/units to buy/sell is not specified for strategy.entry or strategy.order commands (or 'NaN' is specified), then strategy will calculate the quantity to buy/sell at close of current bar using the amount of money specified in the 'default_qty_value *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}cash)*'`);
 			variable180.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable180.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}cash)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable180.isTrusted = true;
 			variable180.supportHtml = true;
 
@@ -14797,26 +15976,68 @@ If the number of contracts/shares/lots/units to buy/sell is not specified for st
 	let pineHover482 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange482;
+			let error48201;
+			let error48202;
+			let error48203;
+			let error48204;
+			let error48205;
+			let error48206;
+			let error48207;
+			let error48208;
+			let error48209;
+			let error48210;
+			let error48211;
 			const hoverLineText482 = document.lineAt(position.line).text;
 
 
 			const variable181 = new vscode.MarkdownString(``);
-			variable181.appendCodeblock(`strategy.closedtrades`);
+			variable181.appendCodeblock(`(variable) strategy.closedtrades`);
 			variable181.appendMarkdown(`
-Number of trades, which were closed for the whole trading interval`);
+<hr>
+
+Number of trades, which were closed for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}closedtrades)*`);
 			variable181.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable181.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}closedtrades)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable181.isTrusted = true;
 			variable181.supportHtml = true;
 
 			const patternVariable181 = new RegExp(`\\b(strategy\\.closedtrades)\\b`);
+			const patternVariableError18101 = new RegExp(`strategy\\.closedtrades\\.commission`);
+			const patternVariableError18102 = new RegExp(`strategy\\.closedtrades\\.entry_bar_index`);
+			const patternVariableError18103 = new RegExp(`strategy\\.closedtrades\\.entry_price`);
+			const patternVariableError18104 = new RegExp(`strategy\\.closedtrades\\.entry_time`);
+			const patternVariableError18105 = new RegExp(`strategy\\.closedtrades\\.exit_bar_index`);
+			const patternVariableError18106 = new RegExp(`strategy\\.closedtrades\\.exit_price`);
+			const patternVariableError18107 = new RegExp(`strategy\\.closedtrades\\.exit_time`);
+			const patternVariableError18108 = new RegExp(`strategy\\.closedtrades\\.max_drawdown`);
+			const patternVariableError18109 = new RegExp(`strategy\\.closedtrades\\.max_runup`);
+			const patternVariableError18110 = new RegExp(`strategy\\.closedtrades\\.profit`);
+			const patternVariableError18111 = new RegExp(`strategy\\.closedtrades\\.size`);
+
+
 			if (patternVariable181.test(hoverLineText482)) {
 				hoverRange482 = document.getWordRangeAtPosition(position, patternVariable181);
-				if (hoverRange482) {
+
+				error48201 = document.getWordRangeAtPosition(position, patternVariableError18101);
+				error48202 = document.getWordRangeAtPosition(position, patternVariableError18102);
+				error48203 = document.getWordRangeAtPosition(position, patternVariableError18103);
+				error48204 = document.getWordRangeAtPosition(position, patternVariableError18104);
+				error48205 = document.getWordRangeAtPosition(position, patternVariableError18105);
+				error48206 = document.getWordRangeAtPosition(position, patternVariableError18106);
+				error48207 = document.getWordRangeAtPosition(position, patternVariableError18107);
+				error48208 = document.getWordRangeAtPosition(position, patternVariableError18108);
+				error48209 = document.getWordRangeAtPosition(position, patternVariableError18109);
+				error48210 = document.getWordRangeAtPosition(position, patternVariableError18110);
+				error48211 = document.getWordRangeAtPosition(position, patternVariableError18111);
+			
+				if (error48201||error48202||error48203||error48204||error48205||error48206||error48207||error48208||error48209||error48210||error48211){
+					return null;
+				}
+				else if (hoverRange482) {
 					return new vscode.Hover(variable181, new vscode.Range(position, position));
 				}
 				else {
@@ -14836,15 +16057,17 @@ Number of trades, which were closed for the whole trading interval`);
 
 
 			const variable182 = new vscode.MarkdownString(``);
-			variable182.appendCodeblock(`strategy.commission.cash_per_contract`);
+			variable182.appendCodeblock(`(variable) strategy.commission.cash_per_contract`);
 			variable182.appendMarkdown(`
-Commission type for an order. Money displayed in the account currency per contract`);
+<hr>
+
+Commission type for an order. Money displayed in the account currency per contract *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}commission{dot}cash_per_contract)*`);
 			variable182.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable182.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}commission{dot}cash_per_contract)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable182.isTrusted = true;
 			variable182.supportHtml = true;
 
@@ -14871,15 +16094,17 @@ Commission type for an order. Money displayed in the account currency per contra
 
 
 			const variable183 = new vscode.MarkdownString(``);
-			variable183.appendCodeblock(`strategy.commission.cash_per_order`);
+			variable183.appendCodeblock(`(variable) strategy.commission.cash_per_order`);
 			variable183.appendMarkdown(`
-Commission type for an order. Money displayed in the account currency per order`);
+<hr>
+
+Commission type for an order. Money displayed in the account currency per order *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}commission{dot}cash_per_order)*`);
 			variable183.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable183.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}commission{dot}cash_per_order)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable183.isTrusted = true;
 			variable183.supportHtml = true;
 
@@ -14906,15 +16131,17 @@ Commission type for an order. Money displayed in the account currency per order`
 
 
 			const variable184 = new vscode.MarkdownString(``);
-			variable184.appendCodeblock(`strategy.commission.percent`);
+			variable184.appendCodeblock(`(variable) strategy.commission.percent`);
 			variable184.appendMarkdown(`
-Commission type for an order. A percentage of the cash volume of order`);
+<hr>
+
+Commission type for an order. A percentage of the cash volume of order *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}commission{dot}percent)*`);
 			variable184.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable184.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}commission{dot}percent)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable184.isTrusted = true;
 			variable184.supportHtml = true;
 
@@ -14941,15 +16168,17 @@ Commission type for an order. A percentage of the cash volume of order`);
 
 
 			const variable185 = new vscode.MarkdownString(``);
-			variable185.appendCodeblock(`strategy.direction.all`);
+			variable185.appendCodeblock(`(variable) strategy.direction.all`);
 			variable185.appendMarkdown(`
-It allows strategy to open both long and short positions`);
+<hr>
+
+It allows strategy to open both long and short positions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}direction{dot}all)*`);
 			variable185.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable185.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}direction{dot}all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable185.isTrusted = true;
 			variable185.supportHtml = true;
 
@@ -14976,15 +16205,17 @@ It allows strategy to open both long and short positions`);
 
 
 			const variable186 = new vscode.MarkdownString(``);
-			variable186.appendCodeblock(`strategy.direction.long`);
+			variable186.appendCodeblock(`(variable) strategy.direction.long`);
 			variable186.appendMarkdown(`
-It allows strategy to open only long positions`);
+<hr>
+
+It allows strategy to open only long positions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}direction{dot}long)*`);
 			variable186.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable186.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}direction{dot}long)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable186.isTrusted = true;
 			variable186.supportHtml = true;
 
@@ -15011,15 +16242,17 @@ It allows strategy to open only long positions`);
 
 
 			const variable187 = new vscode.MarkdownString(``);
-			variable187.appendCodeblock(`strategy.direction.short`);
+			variable187.appendCodeblock(`(variable) strategy.direction.short`);
 			variable187.appendMarkdown(`
-It allows strategy to open only short positions`);
+<hr>
+
+It allows strategy to open only short positions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}direction{dot}short)*`);
 			variable187.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable187.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}direction{dot}short)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable187.isTrusted = true;
 			variable187.supportHtml = true;
 
@@ -15046,15 +16279,17 @@ It allows strategy to open only short positions`);
 
 
 			const variable188 = new vscode.MarkdownString(``);
-			variable188.appendCodeblock(`strategy.equity`);
+			variable188.appendCodeblock(`(variable) strategy.equity`);
 			variable188.appendMarkdown(`
-Current equity (strategy.initial_capital + strategy.netprofit + strategy.openprofit)`);
+<hr>
+
+Current equity (strategy.initial_capital + strategy.netprofit + strategy.openprofit *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}equity)*)`);
 			variable188.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable188.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}equity)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable188.isTrusted = true;
 			variable188.supportHtml = true;
 
@@ -15081,15 +16316,17 @@ Current equity (strategy.initial_capital + strategy.netprofit + strategy.openpro
 
 
 			const variable189 = new vscode.MarkdownString(``);
-			variable189.appendCodeblock(`strategy.eventrades`);
+			variable189.appendCodeblock(`(variable) strategy.eventrades`);
 			variable189.appendMarkdown(`
-Number of breakeven trades for the whole trading interval`);
+<hr>
+
+Number of breakeven trades for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}eventrades)*`);
 			variable189.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable189.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}eventrades)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable189.isTrusted = true;
 			variable189.supportHtml = true;
 
@@ -15116,15 +16353,17 @@ Number of breakeven trades for the whole trading interval`);
 
 
 			const variable190 = new vscode.MarkdownString(``);
-			variable190.appendCodeblock(`strategy.fixed`);
+			variable190.appendCodeblock(`(variable) strategy.fixed`);
 			variable190.appendMarkdown(`
-If the number of contracts/shares/lots/units to buy/sell is not specified for strategy.entry or strategy.order commands (or 'NaN' is specified), then the 'default_qty_value' is used to define the quantity`);
+<hr>
+
+If the number of contracts/shares/lots/units to buy/sell is not specified for strategy.entry or strategy.order commands (or 'NaN' is specified), then the 'default_qty_value' is used to define the quantity *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}fixed)*`);
 			variable190.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable190.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}fixed)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable190.isTrusted = true;
 			variable190.supportHtml = true;
 
@@ -15151,15 +16390,17 @@ If the number of contracts/shares/lots/units to buy/sell is not specified for st
 
 
 			const variable191 = new vscode.MarkdownString(``);
-			variable191.appendCodeblock(`strategy.grossloss`);
+			variable191.appendCodeblock(`(variable) strategy.grossloss`);
 			variable191.appendMarkdown(`
-Total currency value of all completed losing trades`);
+<hr>
+
+Total currency value of all completed losing trades *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}grossloss)*`);
 			variable191.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable191.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}grossloss)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable191.isTrusted = true;
 			variable191.supportHtml = true;
 
@@ -15186,15 +16427,17 @@ Total currency value of all completed losing trades`);
 
 
 			const variable192 = new vscode.MarkdownString(``);
-			variable192.appendCodeblock(`strategy.grossprofit`);
+			variable192.appendCodeblock(`(variable) strategy.grossprofit`);
 			variable192.appendMarkdown(`
-Total currency value of all completed winning trades`);
+<hr>
+
+Total currency value of all completed winning trades *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}grossprofit)*`);
 			variable192.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable192.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}grossprofit)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable192.isTrusted = true;
 			variable192.supportHtml = true;
 
@@ -15221,15 +16464,17 @@ Total currency value of all completed winning trades`);
 
 
 			const variable193 = new vscode.MarkdownString(``);
-			variable193.appendCodeblock(`strategy.initial_capital`);
+			variable193.appendCodeblock(`(variable) strategy.initial_capital`);
 			variable193.appendMarkdown(`
-The amount of initial capital set in the strategy properties`);
+<hr>
+
+The amount of initial capital set in the strategy properties *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}initial_capital)*`);
 			variable193.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable193.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}initial_capital)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable193.isTrusted = true;
 			variable193.supportHtml = true;
 
@@ -15256,15 +16501,17 @@ The amount of initial capital set in the strategy properties`);
 
 
 			const variable194 = new vscode.MarkdownString(``);
-			variable194.appendCodeblock(`strategy.long`);
+			variable194.appendCodeblock(`(variable) strategy.long`);
 			variable194.appendMarkdown(`
-Long position entry`);
+<hr>
+
+Long position entry *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}long)*`);
 			variable194.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>strategy_direction`);
-			variable194.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}long)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>strategy_direction</code>`);
+			
 			variable194.isTrusted = true;
 			variable194.supportHtml = true;
 
@@ -15291,15 +16538,17 @@ Long position entry`);
 
 
 			const variable195 = new vscode.MarkdownString(``);
-			variable195.appendCodeblock(`strategy.losstrades`);
+			variable195.appendCodeblock(`(variable) strategy.losstrades`);
 			variable195.appendMarkdown(`
-Number of unprofitable trades for the whole trading interval`);
+<hr>
+
+Number of unprofitable trades for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}losstrades)*`);
 			variable195.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable195.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}losstrades)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable195.isTrusted = true;
 			variable195.supportHtml = true;
 
@@ -15326,15 +16575,17 @@ Number of unprofitable trades for the whole trading interval`);
 
 
 			const variable196 = new vscode.MarkdownString(``);
-			variable196.appendCodeblock(`strategy.max_contracts_held_all`);
+			variable196.appendCodeblock(`(variable) strategy.max_contracts_held_all`);
 			variable196.appendMarkdown(`
-Maximum number of contracts/shares/lots/units in one trade for the whole trading interval`);
+<hr>
+
+Maximum number of contracts/shares/lots/units in one trade for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_contracts_held_all)*`);
 			variable196.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable196.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_contracts_held_all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable196.isTrusted = true;
 			variable196.supportHtml = true;
 
@@ -15361,15 +16612,17 @@ Maximum number of contracts/shares/lots/units in one trade for the whole trading
 
 
 			const variable197 = new vscode.MarkdownString(``);
-			variable197.appendCodeblock(`strategy.max_contracts_held_long`);
+			variable197.appendCodeblock(`(variable) strategy.max_contracts_held_long`);
 			variable197.appendMarkdown(`
-Maximum number of contracts/shares/lots/units in one long trade for the whole trading interval`);
+<hr>
+
+Maximum number of contracts/shares/lots/units in one long trade for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_contracts_held_long)*`);
 			variable197.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable197.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_contracts_held_long)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable197.isTrusted = true;
 			variable197.supportHtml = true;
 
@@ -15396,15 +16649,17 @@ Maximum number of contracts/shares/lots/units in one long trade for the whole tr
 
 
 			const variable198 = new vscode.MarkdownString(``);
-			variable198.appendCodeblock(`strategy.max_contracts_held_short`);
+			variable198.appendCodeblock(`(variable) strategy.max_contracts_held_short`);
 			variable198.appendMarkdown(`
-Maximum number of contracts/shares/lots/units in one short trade for the whole trading interval`);
+<hr>
+
+Maximum number of contracts/shares/lots/units in one short trade for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_contracts_held_short)*`);
 			variable198.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable198.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_contracts_held_short)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable198.isTrusted = true;
 			variable198.supportHtml = true;
 
@@ -15431,15 +16686,17 @@ Maximum number of contracts/shares/lots/units in one short trade for the whole t
 
 
 			const variable199 = new vscode.MarkdownString(``);
-			variable199.appendCodeblock(`strategy.max_drawdown`);
+			variable199.appendCodeblock(`(variable) strategy.max_drawdown`);
 			variable199.appendMarkdown(`
-Maximum equity drawdown value for the whole trading interval`);
+<hr>
+
+Maximum equity drawdown value for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_drawdown)*`);
 			variable199.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable199.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}max_drawdown)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable199.isTrusted = true;
 			variable199.supportHtml = true;
 
@@ -15466,15 +16723,17 @@ Maximum equity drawdown value for the whole trading interval`);
 
 
 			const variable200 = new vscode.MarkdownString(``);
-			variable200.appendCodeblock(`strategy.netprofit`);
+			variable200.appendCodeblock(`(variable) strategy.netprofit`);
 			variable200.appendMarkdown(`
-Total currency value of all completed trades`);
+<hr>
+
+Total currency value of all completed trades *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}netprofit)*`);
 			variable200.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable200.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}netprofit)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable200.isTrusted = true;
 			variable200.supportHtml = true;
 
@@ -15501,15 +16760,17 @@ Total currency value of all completed trades`);
 
 
 			const variable201 = new vscode.MarkdownString(``);
-			variable201.appendCodeblock(`strategy.oca.cancel`);
+			variable201.appendCodeblock(`(variable) strategy.oca.cancel`);
 			variable201.appendMarkdown(`
-OCA type value for strategy's functions. The parameter determines that an order should belong to an OCO group, where as soon as an order is filled, all other orders of the same group are cancelled. Note: if more than 1 guaranteed-to-be-executed orders of the same OCA group are placed at once, all those orders are filled`);
+<hr>
+
+OCA type value for strategy's functions. The parameter determines that an order should belong to an OCO group, where as soon as an order is filled, all other orders of the same group are cancelled. Note: if more than 1 guaranteed-to-be-executed orders of the same OCA group are placed at once, all those orders are filled *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}oca{dot}cancel)*`);
 			variable201.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable201.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}oca{dot}cancel)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable201.isTrusted = true;
 			variable201.supportHtml = true;
 
@@ -15536,15 +16797,17 @@ OCA type value for strategy's functions. The parameter determines that an order 
 
 
 			const variable202 = new vscode.MarkdownString(``);
-			variable202.appendCodeblock(`strategy.oca.none`);
+			variable202.appendCodeblock(`(variable) strategy.oca.none`);
 			variable202.appendMarkdown(`
-OCA type value for strategy's functions. The parameter determines that an order should not belong to any particular OCO group`);
+<hr>
+
+OCA type value for strategy's functions. The parameter determines that an order should not belong to any particular OCO group *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}oca{dot}none)*`);
 			variable202.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable202.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}oca{dot}none)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable202.isTrusted = true;
 			variable202.supportHtml = true;
 
@@ -15571,15 +16834,17 @@ OCA type value for strategy's functions. The parameter determines that an order 
 
 
 			const variable203 = new vscode.MarkdownString(``);
-			variable203.appendCodeblock(`strategy.oca.reduce`);
+			variable203.appendCodeblock(`(variable) strategy.oca.reduce`);
 			variable203.appendMarkdown(`
-OCA type value for strategy's functions. The parameter determines that an order should belong to an OCO group, where if X number of contracts of an order is filled, number of contracts for each other order of the same OCO group is decreased by X. Note: if more than 1 guaranteed-to-be-executed orders of the same OCA group are placed at once, all those orders are filled`);
+<hr>
+
+OCA type value for strategy's functions. The parameter determines that an order should belong to an OCO group, where if X number of contracts of an order is filled, number of contracts for each other order of the same OCO group is decreased by X. Note: if more than 1 guaranteed-to-be-executed orders of the same OCA group are placed at once, all those orders are filled *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}oca{dot}reduce)*`);
 			variable203.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable203.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}oca{dot}reduce)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable203.isTrusted = true;
 			variable203.supportHtml = true;
 
@@ -15606,15 +16871,17 @@ OCA type value for strategy's functions. The parameter determines that an order 
 
 
 			const variable204 = new vscode.MarkdownString(``);
-			variable204.appendCodeblock(`strategy.openprofit`);
+			variable204.appendCodeblock(`(variable) strategy.openprofit`);
 			variable204.appendMarkdown(`
-Current unrealized profit or loss for the open position`);
+<hr>
+
+Current unrealized profit or loss for the open position *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}openprofit)*`);
 			variable204.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable204.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}openprofit)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable204.isTrusted = true;
 			variable204.supportHtml = true;
 
@@ -15637,26 +16904,57 @@ Current unrealized profit or loss for the open position`);
 	let pineHover506 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange506;
+			let error50601;
+			let error50602;
+			let error50603;
+			let error50604;
+			let error50605;
+			let error50606;
+			let error50607;
+			let error50608;
 			const hoverLineText506 = document.lineAt(position.line).text;
 
 
 			const variable205 = new vscode.MarkdownString(``);
-			variable205.appendCodeblock(`strategy.opentrades`);
+			variable205.appendCodeblock(`(variable) strategy.opentrades`);
 			variable205.appendMarkdown(`
-Number of market position entries, which were not closed and remain opened. If there is no open market position, 0 is returned`);
+<hr>
+
+Number of market position entries, which were not closed and remain opened. If there is no open market position, 0 is returned *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}opentrades)*`);
 			variable205.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable205.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}opentrades)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable205.isTrusted = true;
 			variable205.supportHtml = true;
 
 			const patternVariable205 = new RegExp(`\\b(strategy\\.opentrades)\\b`);
+			const patternVariableError20501 = new RegExp(`strategy\\.opentrades\\.commission`);
+			const patternVariableError20502 = new RegExp(`strategy\\.opentrades\\.entry_bar_index`);
+			const patternVariableError20503 = new RegExp(`strategy\\.opentrades\\.entry_price`);
+			const patternVariableError20504 = new RegExp(`strategy\\.opentrades\\.entry_time`);
+			const patternVariableError20505 = new RegExp(`strategy\\.opentrades\\.max_drawdown`);
+			const patternVariableError20506 = new RegExp(`strategy\\.opentrades\\.max_runup`);
+			const patternVariableError20507 = new RegExp(`strategy\\.opentrades\\.profit`);
+			const patternVariableError20508 = new RegExp(`strategy\\.opentrades\\.size`);
+
 			if (patternVariable205.test(hoverLineText506)) {
 				hoverRange506 = document.getWordRangeAtPosition(position, patternVariable205);
-				if (hoverRange506) {
+				error50601 = document.getWordRangeAtPosition(position, patternVariableError20501);
+				error50602 = document.getWordRangeAtPosition(position, patternVariableError20502);
+				error50603 = document.getWordRangeAtPosition(position, patternVariableError20503);
+				error50604 = document.getWordRangeAtPosition(position, patternVariableError20504);
+				error50605 = document.getWordRangeAtPosition(position, patternVariableError20505);
+				error50606 = document.getWordRangeAtPosition(position, patternVariableError20506);
+				error50607 = document.getWordRangeAtPosition(position, patternVariableError20507);
+				error50608 = document.getWordRangeAtPosition(position, patternVariableError20508);
+
+				if (error50601||error50602||error50603||error50604||error50605||error50606||error50607||error50608){
+					return null;
+				}
+				else if (hoverRange506) {
 					return new vscode.Hover(variable205, new vscode.Range(position, position));
 				}
 				else {
@@ -15676,15 +16974,17 @@ Number of market position entries, which were not closed and remain opened. If t
 
 
 			const variable206 = new vscode.MarkdownString(``);
-			variable206.appendCodeblock(`strategy.percent_of_equity`);
+			variable206.appendCodeblock(`(variable) strategy.percent_of_equity`);
 			variable206.appendMarkdown(`
-If the number of contracts/shares/lots/units to buy/sell is not specified for strategy.entry or strategy.order commands (or 'NaN' is specified), then strategy will calculate the quantity to buy/sell at close of current bar using the amount of money specified by the 'default_qty_value' in % from current strategy.equity (in the range from 0 to 100)`);
+<hr>
+
+If the number of contracts/shares/lots/units to buy/sell is not specified for strategy.entry or strategy.order commands (or 'NaN' is specified), then strategy will calculate the quantity to buy/sell at close of current bar using the amount of money specified by the 'default_qty_value' in % from current strategy.equity (in the range from 0 to 100 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}percent_of_equity)*)`);
 			variable206.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable206.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}percent_of_equity)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable206.isTrusted = true;
 			variable206.supportHtml = true;
 
@@ -15711,15 +17011,17 @@ If the number of contracts/shares/lots/units to buy/sell is not specified for st
 
 
 			const variable207 = new vscode.MarkdownString(``);
-			variable207.appendCodeblock(`strategy.position_avg_price`);
+			variable207.appendCodeblock(`(variable) strategy.position_avg_price`);
 			variable207.appendMarkdown(`
-Average entry price of current market position. If the market position is flat, 'NaN' is returned`);
+<hr>
+
+Average entry price of current market position. If the market position is flat, 'NaN' is returned *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}position_avg_price)*`);
 			variable207.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable207.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}position_avg_price)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable207.isTrusted = true;
 			variable207.supportHtml = true;
 
@@ -15746,15 +17048,17 @@ Average entry price of current market position. If the market position is flat, 
 
 
 			const variable208 = new vscode.MarkdownString(``);
-			variable208.appendCodeblock(`strategy.position_entry_name`);
+			variable208.appendCodeblock(`(variable) strategy.position_entry_name`);
 			variable208.appendMarkdown(`
-Name of the order that initially opened current market position`);
+<hr>
+
+Name of the order that initially opened current market position *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}position_entry_name)*`);
 			variable208.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable208.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}position_entry_name)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable208.isTrusted = true;
 			variable208.supportHtml = true;
 
@@ -15781,15 +17085,17 @@ Name of the order that initially opened current market position`);
 
 
 			const variable209 = new vscode.MarkdownString(``);
-			variable209.appendCodeblock(`strategy.position_size`);
+			variable209.appendCodeblock(`(variable) strategy.position_size`);
 			variable209.appendMarkdown(`
-Direction and size of the current market position. If the value is > 0, the market position is long. If the value is < 0, the market position is short. The absolute value is the number of contracts/shares/lots/units in trade (position size)`);
+<hr>
+
+Direction and size of the current market position. If the value is > 0, the market position is long. If the value is < 0, the market position is short. The absolute value is the number of contracts/shares/lots/units in trade (position size *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}position_size)*)`);
 			variable209.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable209.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}position_size)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable209.isTrusted = true;
 			variable209.supportHtml = true;
 
@@ -15816,15 +17122,17 @@ Direction and size of the current market position. If the value is > 0, the mark
 
 
 			const variable210 = new vscode.MarkdownString(``);
-			variable210.appendCodeblock(`strategy.short`);
+			variable210.appendCodeblock(`(variable) strategy.short`);
 			variable210.appendMarkdown(`
-Short position entry`);
+<hr>
+
+Short position entry *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}short)*`);
 			variable210.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>strategy_direction`);
-			variable210.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}short)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>strategy_direction</code>`);
+			
 			variable210.isTrusted = true;
 			variable210.supportHtml = true;
 
@@ -15851,15 +17159,17 @@ Short position entry`);
 
 
 			const variable211 = new vscode.MarkdownString(``);
-			variable211.appendCodeblock(`strategy.wintrades`);
+			variable211.appendCodeblock(`(variable) strategy.wintrades`);
 			variable211.appendMarkdown(`
-Number of profitable trades for the whole trading interval`);
+<hr>
+
+Number of profitable trades for the whole trading interval *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}wintrades)*`);
 			variable211.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable211.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_strategy{dot}wintrades)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable211.isTrusted = true;
 			variable211.supportHtml = true;
 
@@ -15886,15 +17196,17 @@ Number of profitable trades for the whole trading interval`);
 
 
 			const variable212 = new vscode.MarkdownString(``);
-			variable212.appendCodeblock(`syminfo.basecurrency`);
+			variable212.appendCodeblock(`(variable) syminfo.basecurrency`);
 			variable212.appendMarkdown(`
-Base currency for the symbol. For the symbol 'BTCUSD' returns 'BTC'`);
+<hr>
+
+Base currency for the symbol. For the symbol 'BTCUSD' returns 'BTC *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}basecurrency)*'`);
 			variable212.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable212.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}basecurrency)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable212.isTrusted = true;
 			variable212.supportHtml = true;
 
@@ -15921,15 +17233,17 @@ Base currency for the symbol. For the symbol 'BTCUSD' returns 'BTC'`);
 
 
 			const variable213 = new vscode.MarkdownString(``);
-			variable213.appendCodeblock(`syminfo.currency`);
+			variable213.appendCodeblock(`(variable) syminfo.currency`);
 			variable213.appendMarkdown(`
-Currency for the current symbol. Returns currency code: 'USD', 'EUR', etc`);
+<hr>
+
+Currency for the current symbol. Returns currency code: 'USD', 'EUR', etc *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}currency)*`);
 			variable213.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable213.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}currency)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable213.isTrusted = true;
 			variable213.supportHtml = true;
 
@@ -15956,15 +17270,17 @@ Currency for the current symbol. Returns currency code: 'USD', 'EUR', etc`);
 
 
 			const variable214 = new vscode.MarkdownString(``);
-			variable214.appendCodeblock(`syminfo.description`);
+			variable214.appendCodeblock(`(variable) syminfo.description`);
 			variable214.appendMarkdown(`
-Description for the current symbol`);
+<hr>
+
+Description for the current symbol *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}description)*`);
 			variable214.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable214.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}description)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable214.isTrusted = true;
 			variable214.supportHtml = true;
 
@@ -15991,15 +17307,17 @@ Description for the current symbol`);
 
 
 			const variable215 = new vscode.MarkdownString(``);
-			variable215.appendCodeblock(`syminfo.mintick`);
+			variable215.appendCodeblock(`(variable) syminfo.mintick`);
 			variable215.appendMarkdown(`
-Min tick value for the current symbol`);
+<hr>
+
+Min tick value for the current symbol *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}mintick)*`);
 			variable215.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple float`);
-			variable215.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}mintick)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple float</code>`);
+			
 			variable215.isTrusted = true;
 			variable215.supportHtml = true;
 
@@ -16026,15 +17344,17 @@ Min tick value for the current symbol`);
 
 
 			const variable216 = new vscode.MarkdownString(``);
-			variable216.appendCodeblock(`syminfo.pointvalue`);
+			variable216.appendCodeblock(`(variable) syminfo.pointvalue`);
 			variable216.appendMarkdown(`
-Point value for the current symbol`);
+<hr>
+
+Point value for the current symbol *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}pointvalue)*`);
 			variable216.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple float`);
-			variable216.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}pointvalue)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple float</code>`);
+			
 			variable216.isTrusted = true;
 			variable216.supportHtml = true;
 
@@ -16061,15 +17381,17 @@ Point value for the current symbol`);
 
 
 			const variable217 = new vscode.MarkdownString(``);
-			variable217.appendCodeblock(`syminfo.prefix`);
+			variable217.appendCodeblock(`(variable) syminfo.prefix`);
 			variable217.appendMarkdown(`
-Prefix of current symbol name (i.e. for 'CME_EOD:TICKER' prefix is 'CME_EOD')`);
+<hr>
+
+Prefix of current symbol name (i.e. for 'CME_EOD:TICKER' prefix is 'CME_EOD *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}prefix)*')`);
 			variable217.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable217.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}prefix)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable217.isTrusted = true;
 			variable217.supportHtml = true;
 
@@ -16096,15 +17418,17 @@ Prefix of current symbol name (i.e. for 'CME_EOD:TICKER' prefix is 'CME_EOD')`);
 
 
 			const variable218 = new vscode.MarkdownString(``);
-			variable218.appendCodeblock(`syminfo.root`);
+			variable218.appendCodeblock(`(variable) syminfo.root`);
 			variable218.appendMarkdown(`
-Root for derivatives like futures contract. For other symbols returns the same value as syminfo.ticker`);
+<hr>
+
+Root for derivatives like futures contract. For other symbols returns the same value as syminfo.ticker *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}root)*`);
 			variable218.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable218.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}root)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable218.isTrusted = true;
 			variable218.supportHtml = true;
 
@@ -16131,15 +17455,17 @@ Root for derivatives like futures contract. For other symbols returns the same v
 
 
 			const variable219 = new vscode.MarkdownString(``);
-			variable219.appendCodeblock(`syminfo.session`);
+			variable219.appendCodeblock(`(variable) syminfo.session`);
 			variable219.appendMarkdown(`
-Session type of the chart main series. Possible values are session.regular, session.extended`);
+<hr>
+
+Session type of the chart main series. Possible values are session.regular, session.extended *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}session)*`);
 			variable219.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable219.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}session)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable219.isTrusted = true;
 			variable219.supportHtml = true;
 
@@ -16166,15 +17492,17 @@ Session type of the chart main series. Possible values are session.regular, sess
 
 
 			const variable220 = new vscode.MarkdownString(``);
-			variable220.appendCodeblock(`syminfo.ticker`);
+			variable220.appendCodeblock(`(variable) syminfo.ticker`);
 			variable220.appendMarkdown(`
-Symbol name without exchange prefix, e.g. 'MSFT'`);
+<hr>
+
+Symbol name without exchange prefix, e.g. 'MSFT *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}ticker)*'`);
 			variable220.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable220.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}ticker)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable220.isTrusted = true;
 			variable220.supportHtml = true;
 
@@ -16201,15 +17529,17 @@ Symbol name without exchange prefix, e.g. 'MSFT'`);
 
 
 			const variable221 = new vscode.MarkdownString(``);
-			variable221.appendCodeblock(`syminfo.tickerid`);
+			variable221.appendCodeblock(`(variable) syminfo.tickerid`);
 			variable221.appendMarkdown(`
-Symbol name with exchange prefix, e.g. 'BATS:MSFT', 'NASDAQ:MSFT'`);
+<hr>
+
+Symbol name with exchange prefix, e.g. 'BATS:MSFT', 'NASDAQ:MSFT *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}tickerid)*'`);
 			variable221.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable221.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}tickerid)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable221.isTrusted = true;
 			variable221.supportHtml = true;
 
@@ -16236,15 +17566,17 @@ Symbol name with exchange prefix, e.g. 'BATS:MSFT', 'NASDAQ:MSFT'`);
 
 
 			const variable222 = new vscode.MarkdownString(``);
-			variable222.appendCodeblock(`syminfo.timezone`);
+			variable222.appendCodeblock(`(variable) syminfo.timezone`);
 			variable222.appendMarkdown(`
-Timezone of the exchange of the chart main series. Possible values see in timestamp`);
+<hr>
+
+Timezone of the exchange of the chart main series. Possible values see in timestamp *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}timezone)*`);
 			variable222.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable222.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}timezone)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable222.isTrusted = true;
 			variable222.supportHtml = true;
 
@@ -16271,15 +17603,17 @@ Timezone of the exchange of the chart main series. Possible values see in timest
 
 
 			const variable223 = new vscode.MarkdownString(``);
-			variable223.appendCodeblock(`syminfo.type`);
+			variable223.appendCodeblock(`(variable) syminfo.type`);
 			variable223.appendMarkdown(`
-Type of the current symbol. Possible values are stock, futures, index, forex, crypto, fund, dr`);
+<hr>
+
+Type of the current symbol. Possible values are stock, futures, index, forex, crypto, fund, dr *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}type)*`);
 			variable223.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable223.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_syminfo{dot}type)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable223.isTrusted = true;
 			variable223.supportHtml = true;
 
@@ -16306,15 +17640,17 @@ Type of the current symbol. Possible values are stock, futures, index, forex, cr
 
 
 			const variable224 = new vscode.MarkdownString(``);
-			variable224.appendCodeblock(`ta.accdist`);
+			variable224.appendCodeblock(`(variable) ta.accdist`);
 			variable224.appendMarkdown(`
-Accumulation/distribution index`);
+<hr>
+
+Accumulation/distribution index *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}accdist)*`);
 			variable224.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable224.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}accdist)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable224.isTrusted = true;
 			variable224.supportHtml = true;
 
@@ -16341,15 +17677,17 @@ Accumulation/distribution index`);
 
 
 			const variable225 = new vscode.MarkdownString(``);
-			variable225.appendCodeblock(`ta.iii`);
+			variable225.appendCodeblock(`(variable) ta.iii`);
 			variable225.appendMarkdown(`
-Intraday Intensity Index`);
+<hr>
+
+Intraday Intensity Index *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}iii)*`);
 			variable225.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable225.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}iii)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable225.isTrusted = true;
 			variable225.supportHtml = true;
 
@@ -16376,15 +17714,17 @@ Intraday Intensity Index`);
 
 
 			const variable226 = new vscode.MarkdownString(``);
-			variable226.appendCodeblock(`ta.nvi`);
+			variable226.appendCodeblock(`(variable) ta.nvi`);
 			variable226.appendMarkdown(`
-Negative Volume Index`);
+<hr>
+
+Negative Volume Index *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}nvi)*`);
 			variable226.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable226.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}nvi)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable226.isTrusted = true;
 			variable226.supportHtml = true;
 
@@ -16411,15 +17751,17 @@ Negative Volume Index`);
 
 
 			const variable227 = new vscode.MarkdownString(``);
-			variable227.appendCodeblock(`ta.obv`);
+			variable227.appendCodeblock(`(variable) ta.obv`);
 			variable227.appendMarkdown(`
-On Balance Volume`);
+<hr>
+
+On Balance Volume *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}obv)*`);
 			variable227.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable227.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}obv)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable227.isTrusted = true;
 			variable227.supportHtml = true;
 
@@ -16446,15 +17788,17 @@ On Balance Volume`);
 
 
 			const variable228 = new vscode.MarkdownString(``);
-			variable228.appendCodeblock(`ta.pvi`);
+			variable228.appendCodeblock(`(variable) ta.pvi`);
 			variable228.appendMarkdown(`
-Positive Volume Index`);
+<hr>
+
+Positive Volume Index *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}pvi)*`);
 			variable228.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable228.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}pvi)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable228.isTrusted = true;
 			variable228.supportHtml = true;
 
@@ -16481,15 +17825,17 @@ Positive Volume Index`);
 
 
 			const variable229 = new vscode.MarkdownString(``);
-			variable229.appendCodeblock(`ta.pvt`);
+			variable229.appendCodeblock(`(variable) ta.pvt`);
 			variable229.appendMarkdown(`
-Price-Volume Trend`);
+<hr>
+
+Price-Volume Trend *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}pvt)*`);
 			variable229.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable229.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}pvt)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable229.isTrusted = true;
 			variable229.supportHtml = true;
 
@@ -16512,26 +17858,35 @@ Price-Volume Trend`);
 	let pineHover531 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange531;
+			let error53101;
 			const hoverLineText531 = document.lineAt(position.line).text;
 
 
 			const variable230 = new vscode.MarkdownString(``);
-			variable230.appendCodeblock(`ta.tr`);
+			variable230.appendCodeblock(`(variable) ta.tr`);
 			variable230.appendMarkdown(`
-True range. Same as tr(true). It is max(high - low, abs(high - close[1]), abs(low - close[1])`);
+<hr>
+
+True range. Same as tr(true). It is max(high - low, abs(high - close[1]), abs(low - close[1 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}tr)*])`);
 			variable230.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable230.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}tr)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable230.isTrusted = true;
 			variable230.supportHtml = true;
 
-			const patternVariable230 = new RegExp(`\\b(ta\\.tr)\\b`);
+			const patternVariable230 = new RegExp(`ta\\.tr`);
+			const patternVariableError23001 = new RegExp(`ta\\.tr\\(`);
+
 			if (patternVariable230.test(hoverLineText531)) {
 				hoverRange531 = document.getWordRangeAtPosition(position, patternVariable230);
-				if (hoverRange531) {
+				error53101 = document.getWordRangeAtPosition(position, patternVariableError23001);
+				if (error53101) {
+					return null;
+				}
+				else if (hoverRange531) {
 					return new vscode.Hover(variable230, new vscode.Range(position, position));
 				}
 				else {
@@ -16547,26 +17902,35 @@ True range. Same as tr(true). It is max(high - low, abs(high - close[1]), abs(lo
 	let pineHover532 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange532;
+			let error53201;
 			const hoverLineText532 = document.lineAt(position.line).text;
 
 
 			const variable231 = new vscode.MarkdownString(``);
-			variable231.appendCodeblock(`ta.vwap`);
+			variable231.appendCodeblock(`(variable) ta.vwap`);
 			variable231.appendMarkdown(`
-Volume-weighted average price. It uses hlc3 as a source series`);
+<hr>
+
+Volume-weighted average price. It uses hlc3 as a source series *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}vwap)*`);
 			variable231.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable231.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}vwap)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable231.isTrusted = true;
 			variable231.supportHtml = true;
 
 			const patternVariable231 = new RegExp(`\\b(ta\\.vwap)\\b`);
+			const patternVariableError23101 = new RegExp(`ta\\.vwap\\(`);
+
 			if (patternVariable231.test(hoverLineText532)) {
 				hoverRange532 = document.getWordRangeAtPosition(position, patternVariable231);
-				if (hoverRange532) {
+				error53201 = document.getWordRangeAtPosition(position, patternVariableError23101);
+				if (error53201) {
+					return null;
+				}
+				else if (hoverRange532) {
 					return new vscode.Hover(variable231, new vscode.Range(position, position));
 				}
 				else {
@@ -16586,15 +17950,17 @@ Volume-weighted average price. It uses hlc3 as a source series`);
 
 
 			const variable232 = new vscode.MarkdownString(``);
-			variable232.appendCodeblock(`ta.wad`);
+			variable232.appendCodeblock(`(variable) ta.wad`);
 			variable232.appendMarkdown(`
-Williams Accumulation/Distribution`);
+<hr>
+
+Williams Accumulation/Distribution *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}wad)*`);
 			variable232.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable232.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}wad)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable232.isTrusted = true;
 			variable232.supportHtml = true;
 
@@ -16621,15 +17987,17 @@ Williams Accumulation/Distribution`);
 
 
 			const variable233 = new vscode.MarkdownString(``);
-			variable233.appendCodeblock(`ta.wvad`);
+			variable233.appendCodeblock(`(variable) ta.wvad`);
 			variable233.appendMarkdown(`
-Williams Variable Accumulation/Distribution`);
+<hr>
+
+Williams Variable Accumulation/Distribution *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}wvad)*`);
 			variable233.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable233.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_ta{dot}wvad)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable233.isTrusted = true;
 			variable233.supportHtml = true;
 
@@ -16656,15 +18024,17 @@ Williams Variable Accumulation/Distribution`);
 
 
 			const variable234 = new vscode.MarkdownString(``);
-			variable234.appendCodeblock(`table.all`);
+			variable234.appendCodeblock(`(variable) table.all`);
 			variable234.appendMarkdown(`
-Returns an array filled with all the current tables drawn by the script`);
+<hr>
+
+Returns an array filled with all the current tables drawn by the script *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_table{dot}all)*`);
 			variable234.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>table[]`);
-			variable234.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_table{dot}all)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>table</code>[]`);
+			
 			variable234.isTrusted = true;
 			variable234.supportHtml = true;
 
@@ -16691,15 +18061,17 @@ Returns an array filled with all the current tables drawn by the script`);
 
 
 			const variable235 = new vscode.MarkdownString(``);
-			variable235.appendCodeblock(`text.align_bottom`);
+			variable235.appendCodeblock(`(variable) text.align_bottom`);
 			variable235.appendMarkdown(`
-Vertical text alignment for table.cell and table.cell_set_text_valign functions`);
+<hr>
+
+Vertical text alignment for table.cell and table.cell_set_text_valign functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_bottom)*`);
 			variable235.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable235.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_bottom)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable235.isTrusted = true;
 			variable235.supportHtml = true;
 
@@ -16726,15 +18098,17 @@ Vertical text alignment for table.cell and table.cell_set_text_valign functions`
 
 
 			const variable236 = new vscode.MarkdownString(``);
-			variable236.appendCodeblock(`text.align_center`);
+			variable236.appendCodeblock(`(variable) text.align_center`);
 			variable236.appendMarkdown(`
-Label text alignment for label.new and label.set_textalign functions`);
+<hr>
+
+Label text alignment for label.new and label.set_textalign functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_center)*`);
 			variable236.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable236.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_center)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable236.isTrusted = true;
 			variable236.supportHtml = true;
 
@@ -16761,15 +18135,17 @@ Label text alignment for label.new and label.set_textalign functions`);
 
 
 			const variable237 = new vscode.MarkdownString(``);
-			variable237.appendCodeblock(`text.align_left`);
+			variable237.appendCodeblock(`(variable) text.align_left`);
 			variable237.appendMarkdown(`
-Label text alignment for label.new and label.set_textalign functions`);
+<hr>
+
+Label text alignment for label.new and label.set_textalign functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_left)*`);
 			variable237.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable237.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_left)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable237.isTrusted = true;
 			variable237.supportHtml = true;
 
@@ -16796,15 +18172,17 @@ Label text alignment for label.new and label.set_textalign functions`);
 
 
 			const variable238 = new vscode.MarkdownString(``);
-			variable238.appendCodeblock(`text.align_right`);
+			variable238.appendCodeblock(`(variable) text.align_right`);
 			variable238.appendMarkdown(`
-Label text alignment for label.new and label.set_textalign functions`);
+<hr>
+
+Label text alignment for label.new and label.set_textalign functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_right)*`);
 			variable238.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable238.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_right)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable238.isTrusted = true;
 			variable238.supportHtml = true;
 
@@ -16831,15 +18209,17 @@ Label text alignment for label.new and label.set_textalign functions`);
 
 
 			const variable239 = new vscode.MarkdownString(``);
-			variable239.appendCodeblock(`text.align_top`);
+			variable239.appendCodeblock(`(variable) text.align_top`);
 			variable239.appendMarkdown(`
-Vertical text alignment for table.cell and table.cell_set_text_valign functions`);
+<hr>
+
+Vertical text alignment for table.cell and table.cell_set_text_valign functions *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_top)*`);
 			variable239.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable239.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_text{dot}align_top)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable239.isTrusted = true;
 			variable239.supportHtml = true;
 
@@ -16862,26 +18242,36 @@ Vertical text alignment for table.cell and table.cell_set_text_valign functions`
 	let pineHover541 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange541;
+			let error54101;
 			const hoverLineText541 = document.lineAt(position.line).text;
 
 
 			const variable240 = new vscode.MarkdownString(``);
-			variable240.appendCodeblock(`(time)`);
+			variable240.appendCodeblock(`(variable) time`);
 			variable240.appendMarkdown(`
-Current bar time in UNIX format. It is the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970`);
+<hr>
+
+Current bar time in UNIX format. It is the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_time)*`);
 			variable240.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable240.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_time)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable240.isTrusted = true;
 			variable240.supportHtml = true;
 
 			const patternVariable240 = new RegExp(`\\b(time)\\b`);
+			const patternVariableError24001 = new RegExp(`time\\(`);
+
 			if (patternVariable240.test(hoverLineText541)) {
 				hoverRange541 = document.getWordRangeAtPosition(position, patternVariable240);
-				if (hoverRange541) {
+				error54101 = document.getWordRangeAtPosition(position, patternVariableError24001);
+
+				if (error54101) {
+					return null;
+				}
+				else if (hoverRange541) {
 					return new vscode.Hover(variable240, new vscode.Range(position, position));
 				}
 				else {
@@ -16897,26 +18287,38 @@ Current bar time in UNIX format. It is the number of milliseconds that have elap
 	let pineHover542 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange542;
+			let error54201;
+
 			const hoverLineText542 = document.lineAt(position.line).text;
 
 
 			const variable241 = new vscode.MarkdownString(``);
-			variable241.appendCodeblock(`time_close`);
+			variable241.appendCodeblock(`(variable) time_close`);
 			variable241.appendMarkdown(`
-Current bar close time in UNIX format. It is the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970. On price-based charts this variable value is na`);
+<hr>
+
+Current bar close time in UNIX format. It is the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970. On price-based charts this variable value is na *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_time_close)*`);
 			variable241.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable241.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_time_close)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable241.isTrusted = true;
 			variable241.supportHtml = true;
 
-			const patternVariable241 = new RegExp(`\\b(time_close)\\b`);
+			const patternVariable241 = new RegExp(`time_close`);
+			const patternVariableError24101 = new RegExp(`time_close\\(`);
+
 			if (patternVariable241.test(hoverLineText542)) {
+
 				hoverRange542 = document.getWordRangeAtPosition(position, patternVariable241);
-				if (hoverRange542) {
+				error54201 = document.getWordRangeAtPosition(position, patternVariableError24101);
+				
+				if (error54201) {
+					return null;
+				}
+				else if (hoverRange542) {
 					return new vscode.Hover(variable241, new vscode.Range(position, position));
 				}
 				else {
@@ -16936,15 +18338,17 @@ Current bar close time in UNIX format. It is the number of milliseconds that hav
 
 
 			const variable242 = new vscode.MarkdownString(``);
-			variable242.appendCodeblock(`time_tradingday`);
+			variable242.appendCodeblock(`(variable) time_tradingday`);
 			variable242.appendMarkdown(`
-The beginning time of the trading day the current bar belongs to, in UNIX format (the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970)`);
+<hr>
+
+The beginning time of the trading day the current bar belongs to, in UNIX format (the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_time_tradingday)*)`);
 			variable242.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable242.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_time_tradingday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable242.isTrusted = true;
 			variable242.supportHtml = true;
 
@@ -16971,15 +18375,17 @@ The beginning time of the trading day the current bar belongs to, in UNIX format
 
 
 			const variable243 = new vscode.MarkdownString(``);
-			variable243.appendCodeblock(`timeframe.isdaily`);
+			variable243.appendCodeblock(`(variable) timeframe.isdaily`);
 			variable243.appendMarkdown(`
-Returns true if current resolution is a daily resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is a daily resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isdaily)*`);
 			variable243.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable243.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isdaily)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable243.isTrusted = true;
 			variable243.supportHtml = true;
 
@@ -17006,15 +18412,17 @@ Returns true if current resolution is a daily resolution, true otherwise`);
 
 
 			const variable244 = new vscode.MarkdownString(``);
-			variable244.appendCodeblock(`timeframe.isdwm`);
+			variable244.appendCodeblock(`(variable) timeframe.isdwm`);
 			variable244.appendMarkdown(`
-Returns true if current resolution is a daily or weekly or monthly resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is a daily or weekly or monthly resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isdwm)*`);
 			variable244.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable244.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isdwm)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable244.isTrusted = true;
 			variable244.supportHtml = true;
 
@@ -17041,15 +18449,17 @@ Returns true if current resolution is a daily or weekly or monthly resolution, t
 
 
 			const variable245 = new vscode.MarkdownString(``);
-			variable245.appendCodeblock(`timeframe.isintraday`);
+			variable245.appendCodeblock(`(variable) timeframe.isintraday`);
 			variable245.appendMarkdown(`
-Returns true if current resolution is an intraday (minutes or seconds) resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is an intraday (minutes or seconds) resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isintraday)*`);
 			variable245.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable245.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isintraday)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable245.isTrusted = true;
 			variable245.supportHtml = true;
 
@@ -17076,15 +18486,17 @@ Returns true if current resolution is an intraday (minutes or seconds) resolutio
 
 
 			const variable246 = new vscode.MarkdownString(``);
-			variable246.appendCodeblock(`timeframe.isminutes`);
+			variable246.appendCodeblock(`(variable) timeframe.isminutes`);
 			variable246.appendMarkdown(`
-Returns true if current resolution is a minutes resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is a minutes resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isminutes)*`);
 			variable246.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable246.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isminutes)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable246.isTrusted = true;
 			variable246.supportHtml = true;
 
@@ -17111,15 +18523,17 @@ Returns true if current resolution is a minutes resolution, true otherwise`);
 
 
 			const variable247 = new vscode.MarkdownString(``);
-			variable247.appendCodeblock(`timeframe.ismonthly`);
+			variable247.appendCodeblock(`(variable) timeframe.ismonthly`);
 			variable247.appendMarkdown(`
-Returns true if current resolution is a monthly resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is a monthly resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}ismonthly)*`);
 			variable247.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable247.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}ismonthly)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable247.isTrusted = true;
 			variable247.supportHtml = true;
 
@@ -17146,15 +18560,17 @@ Returns true if current resolution is a monthly resolution, true otherwise`);
 
 
 			const variable248 = new vscode.MarkdownString(``);
-			variable248.appendCodeblock(`timeframe.isseconds`);
+			variable248.appendCodeblock(`(variable) timeframe.isseconds`);
 			variable248.appendMarkdown(`
-Returns true if current resolution is a seconds resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is a seconds resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isseconds)*`);
 			variable248.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable248.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isseconds)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable248.isTrusted = true;
 			variable248.supportHtml = true;
 
@@ -17181,15 +18597,17 @@ Returns true if current resolution is a seconds resolution, true otherwise`);
 
 
 			const variable249 = new vscode.MarkdownString(``);
-			variable249.appendCodeblock(`timeframe.isweekly`);
+			variable249.appendCodeblock(`(variable) timeframe.isweekly`);
 			variable249.appendMarkdown(`
-Returns true if current resolution is a weekly resolution, true otherwise`);
+<hr>
+
+Returns true if current resolution is a weekly resolution, true otherwise *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isweekly)*`);
 			variable249.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple bool`);
-			variable249.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}isweekly)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple bool</code>`);
+			
 			variable249.isTrusted = true;
 			variable249.supportHtml = true;
 
@@ -17216,15 +18634,17 @@ Returns true if current resolution is a weekly resolution, true otherwise`);
 
 
 			const variable250 = new vscode.MarkdownString(``);
-			variable250.appendCodeblock(`timeframe.multiplier`);
+			variable250.appendCodeblock(`(variable) timeframe.multiplier`);
 			variable250.appendMarkdown(`
-Multiplier of resolution, e.g. '60' - 60, 'D' - 1, '5D' - 5, '12M' - 12`);
+<hr>
+
+Multiplier of resolution, e.g. '60' - 60, 'D' - 1, '5D' - 5, '12M' - 12 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}multiplier)*`);
 			variable250.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple int`);
-			variable250.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}multiplier)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple int</code>`);
+			
 			variable250.isTrusted = true;
 			variable250.supportHtml = true;
 
@@ -17251,15 +18671,17 @@ Multiplier of resolution, e.g. '60' - 60, 'D' - 1, '5D' - 5, '12M' - 12`);
 
 
 			const variable251 = new vscode.MarkdownString(``);
-			variable251.appendCodeblock(`timeframe.period`);
+			variable251.appendCodeblock(`(variable) timeframe.period`);
 			variable251.appendMarkdown(`
-Resolution, e.g. '60' - 60 minutes, 'D' - daily, 'W' - weekly, 'M' - monthly, '5D' - 5 days, '12M' - one year, '3M' - one quarter`);
+<hr>
+
+Resolution, e.g. '60' - 60 minutes, 'D' - daily, 'W' - weekly, 'M' - monthly, '5D' - 5 days, '12M' - one year, '3M' - one quarter *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}period)*`);
 			variable251.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>simple string`);
-			variable251.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timeframe{dot}period)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>simple string</code>`);
+			
 			variable251.isTrusted = true;
 			variable251.supportHtml = true;
 
@@ -17286,15 +18708,17 @@ Resolution, e.g. '60' - 60 minutes, 'D' - daily, 'W' - weekly, 'M' - monthly, '5
 
 
 			const variable252 = new vscode.MarkdownString(``);
-			variable252.appendCodeblock(`timenow`);
+			variable252.appendCodeblock(`(variable) timenow`);
 			variable252.appendMarkdown(`
-Current time in UNIX format. It is the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970`);
+<hr>
+
+Current time in UNIX format. It is the number of milliseconds that have elapsed since 00:00:00 UTC, 1 January 1970 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_timenow)*`);
 			variable252.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable252.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_timenow)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable252.isTrusted = true;
 			variable252.supportHtml = true;
 
@@ -17317,26 +18741,34 @@ Current time in UNIX format. It is the number of milliseconds that have elapsed 
 	let pineHover554 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange554;
+			let error554;
 			const hoverLineText554 = document.lineAt(position.line).text;
 
 
 			const variable253 = new vscode.MarkdownString(``);
-			variable253.appendCodeblock(`volume`);
+			variable253.appendCodeblock(`(variable) volume`);
 			variable253.appendMarkdown(`
-Current bar volume`);
+<hr>
+
+Current bar volume *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_volume)*`);
 			variable253.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series float`);
-			variable253.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_volume)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series float</code>`);
+			
 			variable253.isTrusted = true;
 			variable253.supportHtml = true;
 
 			const patternVariable253 = new RegExp(`\\b(volume)\\b`);
+			const patternVariableError25301 = new RegExp(`format\\.volume`);
 			if (patternVariable253.test(hoverLineText554)) {
 				hoverRange554 = document.getWordRangeAtPosition(position, patternVariable253);
-				if (hoverRange554) {
+				error554 = document.getWordRangeAtPosition(position, patternVariableError25301);
+				if (error554) {
+					return null;
+				}
+				else if (hoverRange554) {
 					return new vscode.Hover(variable253, new vscode.Range(position, position));
 				}
 				else {
@@ -17352,26 +18784,36 @@ Current bar volume`);
 	let pineHover555 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange555;
+			let error55501;
 			const hoverLineText555 = document.lineAt(position.line).text;
 
 
 			const variable254 = new vscode.MarkdownString(``);
-			variable254.appendCodeblock(`weekofyear`);
+			variable254.appendCodeblock(`(variable) weekofyear`);
 			variable254.appendMarkdown(`
-Week number of current bar time in exchange timezone`);
+<hr>
+
+Week number of current bar time in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_weekofyear)*`);
 			variable254.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable254.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_weekofyear)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable254.isTrusted = true;
 			variable254.supportHtml = true;
 
 			const patternVariable254 = new RegExp(`\\b(weekofyear)\\b`);
+			const patternVariableError25401 = new RegExp(`weekofyear\\(`);
+
 			if (patternVariable254.test(hoverLineText555)) {
+
 				hoverRange555 = document.getWordRangeAtPosition(position, patternVariable254);
-				if (hoverRange555) {
+				error55501 = document.getWordRangeAtPosition(position, patternVariableError25401);
+				if (error55501) {
+					return null;
+				}
+				else if (hoverRange555) {
 					return new vscode.Hover(variable254, new vscode.Range(position, position));
 				}
 				else {
@@ -17391,14 +18833,17 @@ Week number of current bar time in exchange timezone`);
 
 
 			const variable255 = new vscode.MarkdownString(``);
-			variable255.appendCodeblock(`xloc.bar_index`);
-			variable255.appendMarkdown(`A named constant that specifies the algorithm of interpretation of x-value in functions line.new and label.new. If xloc = xloc.bar_index, value of x is a bar index`);
+			variable255.appendCodeblock(`(variable) xloc.bar_index`);
+			variable255.appendMarkdown(`
+<hr>
+
+A named constant that specifies the algorithm of interpretation of x-value in functions line.new and label.new. If xloc = xloc.bar_index, value of x is a bar index *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_xloc{dot}bar_index)*`);
 			variable255.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable255.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_xloc{dot}bar_index)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable255.isTrusted = true;
 			variable255.supportHtml = true;
 
@@ -17425,14 +18870,17 @@ Week number of current bar time in exchange timezone`);
 
 
 			const variable256 = new vscode.MarkdownString(``);
-			variable256.appendCodeblock(`xloc.bar_time`);
-			variable256.appendMarkdown(`A named constant that specifies the algorithm of interpretation of x-value in functions line.new and label.new. If xloc = xloc.bar_time, value of x is a bar UNIX time`);
+			variable256.appendCodeblock(`(variable) xloc.bar_time`);
+			variable256.appendMarkdown(`
+<hr>
+
+A named constant that specifies the algorithm of interpretation of x-value in functions line.new and label.new. If xloc = xloc.bar_time, value of x is a bar UNIX time *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_xloc{dot}bar_time)*`);
 			variable256.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable256.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_xloc{dot}bar_time)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable256.isTrusted = true;
 			variable256.supportHtml = true;
 
@@ -17455,25 +18903,34 @@ Week number of current bar time in exchange timezone`);
 	let pineHover558 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange558;
+			let error55801;
 			const hoverLineText558 = document.lineAt(position.line).text;
 
 
 			const variable257 = new vscode.MarkdownString(``);
-			variable257.appendCodeblock(`year`);
-			variable257.appendMarkdown(`Current bar year in exchange timezone`);
+			variable257.appendCodeblock(`(variable) year`);
+			variable257.appendMarkdown(`
+<hr>
+
+t bar year in exchange timezone *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_year)*`);
 			variable257.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable257.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_year)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable257.isTrusted = true;
 			variable257.supportHtml = true;
 
 			const patternVariable257 = new RegExp(`\\b(year)\\b`);
+			const patternVariableError25701 = new RegExp(`year\\(`);
 			if (patternVariable257.test(hoverLineText558)) {
 				hoverRange558 = document.getWordRangeAtPosition(position, patternVariable257);
-				if (hoverRange558) {
+				error55801 = document.getWordRangeAtPosition(position, patternVariableError25701);
+				if (error55801) {
+					return null;
+				}
+				else if (hoverRange558) {
 					return new vscode.Hover(variable257, new vscode.Range(position, position));
 				}
 				else {
@@ -17493,14 +18950,17 @@ Week number of current bar time in exchange timezone`);
 
 
 			const variable258 = new vscode.MarkdownString(``);
-			variable258.appendCodeblock(`yloc.abovebar`);
-			variable258.appendMarkdown(`A named constant that specifies the algorithm of interpretation of y-value in function label.new`);
+			variable258.appendCodeblock(`(variable) yloc.abovebar`);
+			variable258.appendMarkdown(`
+<hr>
+
+A named constant that specifies the algorithm of interpretation of y-value in function label.new *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_yloc{dot}abovebar)*`);
 			variable258.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable258.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_yloc{dot}abovebar)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable258.isTrusted = true;
 			variable258.supportHtml = true;
 
@@ -17527,14 +18987,17 @@ Week number of current bar time in exchange timezone`);
 
 
 			const variable259 = new vscode.MarkdownString(``);
-			variable259.appendCodeblock(`yloc.belowbar`);
-			variable259.appendMarkdown(`A named constant that specifies the algorithm of interpretation of y-value in function label.new`);
+			variable259.appendCodeblock(`(variable) yloc.belowbar`);
+			variable259.appendMarkdown(`
+<hr>
+
+A named constant that specifies the algorithm of interpretation of y-value in function label.new *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_yloc{dot}belowbar)*`);
 			variable259.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable259.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_yloc{dot}belowbar)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable259.isTrusted = true;
 			variable259.supportHtml = true;
 
@@ -17561,14 +19024,17 @@ Week number of current bar time in exchange timezone`);
 
 
 			const variable260 = new vscode.MarkdownString(``);
-			variable260.appendCodeblock(`yloc.price`);
-			variable260.appendMarkdown(`A named constant that specifies the algorithm of interpretation of y-value in function label.new`);
+			variable260.appendCodeblock(`(variable) yloc.price`);
+			variable260.appendMarkdown(`
+<hr>
+
+A named constant that specifies the algorithm of interpretation of y-value in function label.new *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_yloc{dot}price)*`);
 			variable260.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>const string`);
-			variable260.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_yloc{dot}price)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>const string</code>`);
+			
 			variable260.isTrusted = true;
 			variable260.supportHtml = true;
 
@@ -17589,25 +19055,37 @@ Week number of current bar time in exchange timezone`);
 	let pineHover562 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange562;
+			let error56201;
+			let error56202;
 			const hoverLineText562 = document.lineAt(position.line).text;
 
 
 			const variable7 = new vscode.MarkdownString(``);
-			variable7.appendCodeblock(`bar_index`);
-			variable7.appendMarkdown(`Current bar index. Numbering is zero-based, index of the first bar is 0`);
+			variable7.appendCodeblock(`(variable) bar_index`);
+			variable7.appendMarkdown(`
+<hr>
+
+t bar index. Numbering is zero-based, index of the first bar is 0 *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#var_bar_index)*`);
 			variable7.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><b>TYPE</b></span><span style="color:#e5b453;background-color:#ffffff00;">&nbsp;&nbsp;<i>series int`);
-			variable7.appendMarkdown(`
-
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#var_bar_index)*`);
+<hr>
+			
+(type)&nbsp;&nbsp;<code>series int</code>`);
+			
 			variable7.isTrusted = true;
 			variable7.supportHtml = true;
 
-			const patternVariable7 = new RegExp(`\\bbar_index\\b`);
+			const patternVariable7 = new RegExp(`bar_index`);
+			const patternVariableError701 = new RegExp(`xloc\\.bar_index`);
+			const patternVariableError702 = new RegExp(`strategy\\.opentrades\\.entry_bar_index\\(`);
 			if (patternVariable7.test(hoverLineText562)) {
 				hoverRange562 = document.getWordRangeAtPosition(position, patternVariable7);
-				if (hoverRange562) {
+				error56201 = document.getWordRangeAtPosition(position, patternVariableError701);
+				error56202 = document.getWordRangeAtPosition(position, patternVariableError702);
+				if (error56201||error56202){
+					return null;
+				}
+				else if (hoverRange562) {
 					return new vscode.Hover(variable7, new vscode.Range(position, position));
 				}
 				else {
@@ -17631,10 +19109,9 @@ Week number of current bar time in exchange timezone`);
 			operator1.appendCodeblock(`!=`);
 			operator1.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator1.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_!=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_!=)*`);
 			operator1.isTrusted = true;
 			operator1.supportHtml = true;
 
@@ -17664,10 +19141,9 @@ Week number of current bar time in exchange timezone`);
 			operator3.appendCodeblock(`%=`);
 			operator3.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator3.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{percent}=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{percent}=)*`);
 			operator3.isTrusted = true;
 			operator3.supportHtml = true;
 
@@ -17689,6 +19165,7 @@ Week number of current bar time in exchange timezone`);
 	let pineHover565 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange565;
+			let error56501;
 			const hoverLineText565 = document.lineAt(position.line).text;
 
 
@@ -17696,17 +19173,21 @@ Week number of current bar time in exchange timezone`);
 			operator2.appendCodeblock(`%`);
 			operator2.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator2.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{percent})*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{percent})*`);
 			operator2.isTrusted = true;
 			operator2.supportHtml = true;
 
 			const patternOperator2 = new RegExp(`(%)`);
+			const patternOperatorError201 = new RegExp(`(%=)`);
 			if (patternOperator2.test(hoverLineText565)) {
 				hoverRange565 = document.getWordRangeAtPosition(position, patternOperator2);
-				if (hoverRange565) {
+				error56501 = document.getWordRangeAtPosition(position, patternOperatorError201);
+				if (error56501) {
+					return null;
+				}
+				else if (hoverRange565) {
 					return new vscode.Hover(operator2, new vscode.Range(position, position));
 				}
 				else {
@@ -17728,10 +19209,9 @@ Week number of current bar time in exchange timezone`);
 			operator5.appendCodeblock(`*=`);
 			operator5.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator5.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{star}=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{star}=)*`);
 			operator5.isTrusted = true;
 			operator5.supportHtml = true;
 
@@ -17754,6 +19234,7 @@ Week number of current bar time in exchange timezone`);
 	let pineHover567 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange567;
+			let error56701;
 			const hoverLineText567 = document.lineAt(position.line).text;
 
 
@@ -17761,16 +19242,20 @@ Week number of current bar time in exchange timezone`);
 			operator4.appendCodeblock(`*`);
 			operator4.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator4.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{star})*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{star})*`);
 			operator4.isTrusted = true;
 			operator4.supportHtml = true;
 
 			const patternOperator4 = new RegExp(`\\*`);
+			const patternOperatorError401 = new RegExp(`\\*=`);
 			if (patternOperator4.test(hoverLineText567)) {
 				hoverRange567 = document.getWordRangeAtPosition(position, patternOperator4);
+				error56701 = document.getWordRangeAtPosition(position, patternOperatorError401);
+				if (error56701){
+					return null;
+				}
 				if (hoverRange567) {
 					return new vscode.Hover(operator4, new vscode.Range(position, position));
 				}
@@ -17793,10 +19278,9 @@ Week number of current bar time in exchange timezone`);
 			operator7.appendCodeblock(`+=`);
 			operator7.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator7.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{plus}=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{plus}=)*`);
 			operator7.isTrusted = true;
 			operator7.supportHtml = true;
 
@@ -17818,6 +19302,7 @@ Week number of current bar time in exchange timezone`);
 	let pineHover569 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange569;
+			let error56901;
 			const hoverLineText569 = document.lineAt(position.line).text;
 
 
@@ -17825,17 +19310,21 @@ Week number of current bar time in exchange timezone`);
 			operator6.appendCodeblock(`+`);
 			operator6.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator6.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{plus})*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{plus})*`);
 			operator6.isTrusted = true;
 			operator6.supportHtml = true;
 
 			const patternOperator6 = new RegExp(`(\\+)`);
+			const patternOperatorError601 = new RegExp(`(\\+=)`);
 			if (patternOperator6.test(hoverLineText569)) {
 				hoverRange569 = document.getWordRangeAtPosition(position, patternOperator6);
-				if (hoverRange569) {
+				error56901 = document.getWordRangeAtPosition(position, patternOperatorError601);
+				if (error56901) {
+					return null;
+				}
+				else if (hoverRange569) {
 					return new vscode.Hover(operator6, new vscode.Range(position, position));
 				}
 				else {
@@ -17856,10 +19345,9 @@ Week number of current bar time in exchange timezone`);
 			operator9.appendCodeblock(`-=`);
 			operator9.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator9.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{minus}=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{minus}=)*`);
 			operator9.isTrusted = true;
 			operator9.supportHtml = true;
 
@@ -17880,6 +19368,10 @@ Week number of current bar time in exchange timezone`);
 	let pineHover571 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange571;
+			let error57101;
+			let error57102;
+			
+
 			const hoverLineText571 = document.lineAt(position.line).text;
 
 
@@ -17887,17 +19379,30 @@ Week number of current bar time in exchange timezone`);
 			operator8.appendCodeblock(`-`);
 			operator8.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator8.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{minus})*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{minus})*`);
 			operator8.isTrusted = true;
 			operator8.supportHtml = true;
 
 			const patternOperator8 = new RegExp(`(-)`);
+			const patternOperatorError801 = new RegExp(`(-=)`);
+			const patternOperatorError802 = new RegExp(`(-){2,}`);
+			const undifinedOperator01 = new vscode.MarkdownString(`undifined`);
+
+
 			if (patternOperator8.test(hoverLineText571)) {
 				hoverRange571 = document.getWordRangeAtPosition(position, patternOperator8);
-				if (hoverRange571) {
+				error57101 = document.getWordRangeAtPosition(position, patternOperatorError801);
+				error57102 = document.getWordRangeAtPosition(position, patternOperatorError802);
+
+				if (error57101) {
+					return null;
+				}
+				else if (error57102){
+					return new vscode.Hover(undifinedOperator01, new vscode.Range(position, position));
+				}
+				else if (hoverRange571) {
 					return new vscode.Hover(operator8, new vscode.Range(position, position));
 				}
 				else {
@@ -17920,10 +19425,9 @@ Week number of current bar time in exchange timezone`);
 			operator11.appendCodeblock(`/=`);
 			operator11.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator11.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{slash}=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{slash}=)*`);
 			operator11.isTrusted = true;
 			operator11.supportHtml = true;
 
@@ -17944,6 +19448,8 @@ Week number of current bar time in exchange timezone`);
 	let pineHover573 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange573;
+			let error57301;
+			let error57302;
 			const hoverLineText573 = document.lineAt(position.line).text;
 
 
@@ -17951,17 +19457,23 @@ Week number of current bar time in exchange timezone`);
 			operator10.appendCodeblock(`/`);
 			operator10.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator10.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{slash})*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{slash})*`);
 			operator10.isTrusted = true;
 			operator10.supportHtml = true;
 
 			const patternOperator10 = new RegExp(`(\\/)`);
+			const patternOperatorError1001 = new RegExp(`(\\/=)`);
+			const patternOperatorError1002 = new RegExp(`((\\/\\/)|(\\/\\/.*))`);
 			if (patternOperator10.test(hoverLineText573)) {
 				hoverRange573 = document.getWordRangeAtPosition(position, patternOperator10);
-				if (hoverRange573) {
+				error57301 = document.getWordRangeAtPosition(position, patternOperatorError1001);
+				error57302 = document.getWordRangeAtPosition(position, patternOperatorError1002);
+				if (error57301||error57302){
+					return null;
+				}
+				else if (hoverRange573) {
 					return new vscode.Hover(operator10, new vscode.Range(position, position));
 				}
 				else {
@@ -17983,10 +19495,9 @@ Week number of current bar time in exchange timezone`);
 			operator13.appendCodeblock(`<=`);
 			operator13.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator13.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_<=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_<=)*`);
 			operator13.isTrusted = true;
 			operator13.supportHtml = true;
 
@@ -18009,6 +19520,7 @@ Week number of current bar time in exchange timezone`);
 	let pineHover575 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange575;
+			let error57501;
 			const hoverLineText575 = document.lineAt(position.line).text;
 
 
@@ -18016,17 +19528,21 @@ Week number of current bar time in exchange timezone`);
 			operator12.appendCodeblock(`<`);
 			operator12.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator12.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_<)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_<)*`);
 			operator12.isTrusted = true;
 			operator12.supportHtml = true;
 
 			const patternOperator12 = new RegExp(`(<)`);
+			const patternOperatorError1201 = new RegExp(`(<=)`);
 			if (patternOperator12.test(hoverLineText575)) {
 				hoverRange575 = document.getWordRangeAtPosition(position, patternOperator12);
-				if (hoverRange575) {
+				error57501 = document.getWordRangeAtPosition(position, patternOperatorError1201);
+				if (error57501) {
+					return null;
+				}
+				else if (hoverRange575) {
 					return new vscode.Hover(operator12, new vscode.Range(position, position));
 				}
 				else {
@@ -18048,10 +19564,9 @@ Week number of current bar time in exchange timezone`);
 			operator14.appendCodeblock(`==`);
 			operator14.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator14.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_==)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_==)*`);
 			operator14.isTrusted = true;
 			operator14.supportHtml = true;
 
@@ -18082,10 +19597,9 @@ Week number of current bar time in exchange timezone`);
 			operator15.appendCodeblock(`=>`);
 			operator15.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator15.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_=>)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_=>)*`);
 			operator15.isTrusted = true;
 			operator15.supportHtml = true;
 
@@ -18113,10 +19627,9 @@ Week number of current bar time in exchange timezone`);
 			operator17.appendCodeblock(`>=`);
 			operator17.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator17.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_>=)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_>=)*`);
 			operator17.isTrusted = true;
 			operator17.supportHtml = true;
 
@@ -18138,6 +19651,8 @@ Week number of current bar time in exchange timezone`);
 	let pineHover580 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange580;
+			let error58001;
+			let error58002;
 			const hoverLineText580 = document.lineAt(position.line).text;
 
 
@@ -18145,17 +19660,24 @@ Week number of current bar time in exchange timezone`);
 			operator16.appendCodeblock(`>`);
 			operator16.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator16.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_>)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_>)*`);
 			operator16.isTrusted = true;
 			operator16.supportHtml = true;
 
 			const patternOperator16 = new RegExp(`(>)`);
+			const patternOperatorError1601 = new RegExp(`(>=)`);
+			const patternOperatorError1602 = new RegExp(`(=>)`);
+
 			if (patternOperator16.test(hoverLineText580)) {
 				hoverRange580 = document.getWordRangeAtPosition(position, patternOperator16);
-				if (hoverRange580) {
+				error58001 = document.getWordRangeAtPosition(position, patternOperatorError1601);
+				error58002 = document.getWordRangeAtPosition(position, patternOperatorError1602);
+				if (error58001||error58002) {
+					return null;
+				}
+				else if (hoverRange580) {
 					return new vscode.Hover(operator16, new vscode.Range(position, position));
 				}
 				else {
@@ -18176,14 +19698,13 @@ Week number of current bar time in exchange timezone`);
 			operator18.appendCodeblock(`?:`);
 			operator18.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator18.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_{question}{colon})*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_{question}{colon})*`);
 			operator18.isTrusted = true;
 			operator18.supportHtml = true;
 
-			const patternOperator18 = new RegExp(`((\\?)|((\\?).*(:).*)|((\\?).*(:).*))`);
+			const patternOperator18 = new RegExp(`.*\\?.*(:).*`);
 			if (patternOperator18.test(hoverLineText581)) {
 				hoverRange581 = document.getWordRangeAtPosition(position, patternOperator18);
 				if (hoverRange581) {
@@ -18207,14 +19728,13 @@ Week number of current bar time in exchange timezone`);
 			operator19.appendCodeblock(`[]`);
 			operator19.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator19.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_[])*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_[])*`);
 			operator19.isTrusted = true;
 			operator19.supportHtml = true;
 
-			const patternOperator19 = new RegExp(`((\\[|\\]))`);
+			const patternOperator19 = new RegExp(`(\\[).*(\\])`);
 			if (patternOperator19.test(hoverLineText582)) {
 				hoverRange582 = document.getWordRangeAtPosition(position, patternOperator19);
 				if (hoverRange582) {
@@ -18239,10 +19759,9 @@ Week number of current bar time in exchange timezone`);
 			operator20.appendCodeblock(`and`);
 			operator20.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator20.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_and)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_and)*`);
 			operator20.isTrusted = true;
 			operator20.supportHtml = true;
 
@@ -18271,10 +19790,9 @@ Week number of current bar time in exchange timezone`);
 			operator21.appendCodeblock(`export`);
 			operator21.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator21.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_export)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_export)*`);
 			operator21.isTrusted = true;
 			operator21.supportHtml = true;
 
@@ -18298,24 +19816,32 @@ Week number of current bar time in exchange timezone`);
 	let pineHover587 = vscode.languages.registerHoverProvider('pine', {
 		provideHover(document, position, token) {
 			let hoverRange587;
+			let error58701;
 			const hoverLineText587 = document.lineAt(position.line).text;
 
 
 			const operator22 = new vscode.MarkdownString(``);
-			operator22.appendCodeblock(`for`);
+			operator22.appendCodeblock(`[var_declaration =] for counter = from_num to to_num [by step_num]
+  statements | continue | break
+  return_expression
+			`);
 			operator22.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator22.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_for)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_for)*`);
 			operator22.isTrusted = true;
 			operator22.supportHtml = true;
 
 			const patternOperator22 = RegExp(`\\bfor\\b`);
+			const patternOperatorError2201 = RegExp('(for)\\s*(\\w+)\\s*(in)');
 			if (patternOperator22.test(hoverLineText587)) {
 				hoverRange587 = document.getWordRangeAtPosition(position, patternOperator22);
-				if (hoverRange587) {
+				error58701 = document.getWordRangeAtPosition(position, patternOperatorError2201);
+				if (error58701) {
+					return null;
+				}
+				else if (hoverRange587) {
 					return new vscode.Hover(operator22, new vscode.Range(position, position));
 				}
 				else {
@@ -18325,6 +19851,46 @@ Week number of current bar time in exchange timezone`);
 		}
 	});
 	context.subscriptions.push(pineHover587);
+
+
+	
+	let pineHover587b = vscode.languages.registerHoverProvider('pine', {
+		provideHover(document, position, token) {
+			let hoverRange587b;
+			let error587b01;
+			const hoverLineText587b = document.lineAt(position.line).text;
+
+
+			const operator22b = new vscode.MarkdownString(``);
+			operator22b.appendCodeblock(`[var_declaration =] for array_element in array_id
+  statements | continue | break
+  return_expression`);
+			operator22b.appendMarkdown(`
+
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_for{dot}{dot}{dot}in)*`);
+			operator22b.isTrusted = true;
+			operator22b.supportHtml = true;
+
+			const patternOperator22b = RegExp(`(for)\\s*(\\w+)\\s*(in)`);
+			const patternOperatorError22b01 = RegExp(`(for)(\\w+)`);
+			if (patternOperator22b.test(hoverLineText587b)) {
+				hoverRange587b = document.getWordRangeAtPosition(position, patternOperator22b);
+				error587b01 = document.getWordRangeAtPosition(position, patternOperatorError22b01);
+				if (error587b01) {
+					return null;
+				}
+				else if (hoverRange587b) {
+					return new vscode.Hover(operator22b, new vscode.Range(position, position));
+				}
+				else {
+					return null;
+				}
+			}
+		}
+	});
+	context.subscriptions.push(pineHover587b);
 
 
 
@@ -18338,10 +19904,9 @@ Week number of current bar time in exchange timezone`);
 			operator24.appendCodeblock(`if`);
 			operator24.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator24.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_if)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_if)*`);
 			operator24.isTrusted = true;
 			operator24.supportHtml = true;
 
@@ -18372,10 +19937,9 @@ Week number of current bar time in exchange timezone`);
 			operator25.appendCodeblock(`import`);
 			operator25.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator25.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_import)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_import)*`);
 			operator25.isTrusted = true;
 			operator25.supportHtml = true;
 
@@ -18404,10 +19968,9 @@ Week number of current bar time in exchange timezone`);
 			operator26.appendCodeblock(`not`);
 			operator26.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator26.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_not)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_not)*`);
 			operator26.isTrusted = true;
 			operator26.supportHtml = true;
 
@@ -18436,10 +19999,9 @@ Week number of current bar time in exchange timezone`);
 			operator27.appendCodeblock(`or`);
 			operator27.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator27.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_or)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_or)*`);
 			operator27.isTrusted = true;
 			operator27.supportHtml = true;
 
@@ -18468,10 +20030,9 @@ Week number of current bar time in exchange timezone`);
 			operator28.appendCodeblock(`series`);
 			operator28.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator28.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_series)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_series)*`);
 			operator28.isTrusted = true;
 			operator28.supportHtml = true;
 
@@ -18500,10 +20061,9 @@ Week number of current bar time in exchange timezone`);
 			operator29.appendCodeblock(`simple`);
 			operator29.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator29.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_simple)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_simple)*`);
 			operator29.isTrusted = true;
 			operator29.supportHtml = true;
 
@@ -18532,10 +20092,9 @@ Week number of current bar time in exchange timezone`);
 			operator30.appendCodeblock(`switch`);
 			operator30.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator30.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_switch)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_switch)*`);
 			operator30.isTrusted = true;
 			operator30.supportHtml = true;
 
@@ -18564,10 +20123,9 @@ Week number of current bar time in exchange timezone`);
 			operator31.appendCodeblock(`var`);
 			operator31.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator31.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_var)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_var)*`);
 			operator31.isTrusted = true;
 			operator31.supportHtml = true;
 
@@ -18596,10 +20154,9 @@ Week number of current bar time in exchange timezone`);
 			operator32.appendCodeblock(`varip`);
 			operator32.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator32.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_varip)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_varip)*`);
 			operator32.isTrusted = true;
 			operator32.supportHtml = true;
 
@@ -18628,10 +20185,9 @@ Week number of current bar time in exchange timezone`);
 			operator33.appendCodeblock(`while`);
 			operator33.appendMarkdown(`
 
-<span style="color:#C66BAA;background-color:#ffffff00;"><i>Operator</i></span>`);
-			operator33.appendMarkdown(`
-            
-*[Jump to reference manual](https://www.tradingview.com/pine-script-reference/v5/#op_while)*`);
+<hr>
+			
+<code>Operator</code>  *[![#](https://github.com/jeyllani/pinescript/blob/main/images/smtb.png?raw=true)](https://www.tradingview.com/pine-script-reference/v5/#op_while)*`);
 			operator33.isTrusted = true;
 			operator33.supportHtml = true;
 
@@ -18684,3 +20240,7 @@ Week number of current bar time in exchange timezone`);
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+function activeTextEditor(activeTextEditor: any) {
+	throw new Error('Function not implemented.');
+}
+
