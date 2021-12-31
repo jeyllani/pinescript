@@ -1,4 +1,9 @@
 node_modules/
-
+snippets/
+images/
+CHANGELOG.md
+package-lock.json
+package.json
+README.md
 
 
