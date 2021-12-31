@@ -1,4 +1,13 @@
 node_modules/
-
+.eslintrc.json
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+.vscodeignore
+dist/extension.js
+dist/extension.js.map
+tsconfig.json
+webpack.config.js
 
 
