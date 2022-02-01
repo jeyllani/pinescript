@@ -1,18 +1,17 @@
 
 # Snippet's Prefix's
 
-- [Snippet's Prefix's](#snippets-prefixs)
-  - [Functions `𝑓`](#functions-𝑓)
-  - [Built-In Variables `𝑥`](#built-in-variables-𝑥)
-  - [Built-In Scripts `𝑓𝑥`](#built-in-scripts-𝑓𝑥)
-  - [Operators `⟗`](#operators-)
-  - [Comments `//`](#comments-)
-  - [Added Functions | scripts `Ⓕ | 𝑓𝑥`](#added-functions--scripts---𝑓𝑥)
-  - [Unicode `U`](#unicode-u)
-  - [Parameters | Words `𝑥`](#parameters--words-𝑥)
+  - [Functions](#functions)
+  - [Built-In_Variables](#built-in_variables)
+  - [Built-In_Scripts](#built-in_scripts)
+  - [Operators](#operators)
+  - [Comments](#comments)
+  - [Added_Functions_|_scripts](#added_functions__scripts)
+  - [Unicode](#unicode)
+  - [Parameters_|_Words](#parameters__words)
   - [Extra](#extra)
 
-## Functions `𝑓`
+## Functions
 |                                                            |
 |                          ---                               |
 |   `alert`                                                  |
@@ -324,7 +323,7 @@
 
 -----
 
-## Built-In Variables `𝑥`
+## Built-In_Variables
 
 |                                                |
 |                     ---                        |
@@ -578,9 +577,8 @@
 |   `yloc.belowbar`                              |
 |   `yloc.price`                                 |
 
---------------------------------------------------
+## Built-In_Scripts
 
-## Built-In Scripts `𝑓𝑥`
 |                                                           |
 |                           ---                             |
 |   `s.alma \| script.arnaud.legoux.moving.average`         |
@@ -598,7 +596,7 @@
 |   `s.chopindex \| script.choppiness.index`                |
 |   `s.cci \| script.commodity.channel.index`               |
 
-## Operators `⟗`
+## Operators
 
 |              |
 |     ---      |
@@ -634,7 +632,7 @@
 |   `varip`    |
 |   `while`    |
 
-## Comments `//`
+## Comments
 
 |                                            |
 |                    ---                     |
@@ -654,7 +652,7 @@
 |   `// \| // @function`                     |
 |   `// \| // @returns`                      |
 
-## Added Functions | scripts `Ⓕ | 𝑓𝑥`
+## Added_Functions_|_scripts
 
 |                     |
 |         ---         |
@@ -665,7 +663,7 @@
 |   `f.bb`            |
 |   `f.stoploss`      |
 
-## Unicode `U`
+## Unicode
 
 |                     |
 |         ---         |
@@ -673,7 +671,7 @@
 |   `unicode.info`    |
 |   `unicode.symbol`  |
 
-## Parameters | Words `𝑥`
+## Parameters_|_Words
 
 |                                       |
 |                  ---                  |
