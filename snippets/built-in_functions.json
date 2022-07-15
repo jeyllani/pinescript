@@ -172,7 +172,7 @@
 "Creates a new array object of color ⇨ 𝑓": {
   "prefix": "array.new_color",
   "body": [
-    "array.new_color(size = $1, initial_value = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
+    "array.new_color(size = $1, initial_value = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
   ],
   "description": "array.new_color(size = color, initial_value = series color) → color[]"
 },
@@ -348,7 +348,7 @@
 "Color of bars ⇨ 𝑓": {
   "prefix": "barcolor",
   "body": [
-    "barcolor(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${3:, offset = ${4}}${5:, editable = ${6| ,true,false|}}${7:, bottom = ${8}}${9:, show_last = ${10}}${11:, title = \"${12}\"})",
+    "barcolor(color = color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${3:, offset = ${4}}${5:, editable = ${6| ,true,false|}}${7:, bottom = ${8}}${9:, show_last = ${10}}${11:, title = \"${12}\"})",
     "$0"
   ],
   "description": "barcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void"
@@ -357,7 +357,7 @@
 "Fill background of bars with specified color ⇨ 𝑓": {
   "prefix": "bgcolor",
   "body": [
-    "bgcolor(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${3:, offset = ${4}}${5:, editable = ${6| ,true,false|}}${7:, bottom = ${8}}${9:, show_last = ${10}}${11:, title = \"${12}\"})",
+    "bgcolor(color = color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})${3:, offset = ${4}}${5:, editable = ${6| ,true,false|}}${7:, bottom = ${8}}${9:, show_last = ${10}}${11:, title = \"${12}\"})",
     "$0"
   ],
   "description": "bgcolor(color = color, offset = int, editable = bool, show_last = input int, title = string) → void"
@@ -428,32 +428,32 @@
     " top          = ${2}, ",
     " right        = ${3}, ",
     " bottom       = ${4}${5:, ",
-    " border_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, ",
-    " transp       = ${7:0})}${8:, ",
+    " border_color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, ", 
+    " transp = ${7:0})}${8:, ",
     " border_width = ${9}}${10:, ",
     " border_style = ${11| ,line.style_solid,line.style_dotted,line.style_dashed|}}${12:, ",
     " extend       = ${13| ,extend.none,extend.right,extend.left,extend.both|}}${14:, ",
     " xloc         = ${15| ,xloc.bar_index,xloc.bar_time|}}${16:, ",
-    " bgcolor      = color.new(color = ${17| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${18:0})}",
+    " bgcolor      = color.new(color = ${17| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${18:0})}",
     " )",
     "$0"
   ],
-  "description": "box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)"
+  "description": "box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = color)"
 },
 
 "New Box Object ⇨ 𝑓": {
   "prefix": "box.new",
   "body": [
-    "box.new(left = ${1}, top = ${2}, right = ${3}, bottom = ${4}${5:, border_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})}${8:, border_width = ${9}}${10:, border_style = ${11| ,line.style_solid,line.style_dotted,line.style_dashed|}}${12:, extend = ${13| ,extend.none,extend.right,extend.left,extend.both|}}${14:, xloc = ${15| ,xloc.bar_index,xloc.bar_time|}}${16:, bgcolor = color.new(color = ${17| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${18:0})})",
+    "box.new(left = ${1}, top = ${2}, right = ${3}, bottom = ${4}${5:, border_color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})}${8:, border_width = ${9}}${10:, border_style = ${11| ,line.style_solid,line.style_dotted,line.style_dashed|}}${12:, extend = ${13| ,extend.none,extend.right,extend.left,extend.both|}}${14:, xloc = ${15| ,xloc.bar_index,xloc.bar_time|}}${16:, bgcolor = color.new(color = ${17| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|},${18:0})})",
     "$0"
   ],
-  "description": "box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = string)"
+  "description": "box.new(left = int, top = int|float, right = int, bottom = int|float, border_color = color, border_width = int, border_style = string, extend = string, xloc = string, bgcolor = color)"
 },
 
 "background color of the box ⇨ 𝑓": {
   "prefix": "box.set_bgcolor",
   "body": [
-    "box.set_bgcolor(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
+    "box.set_bgcolor(id = $1, color = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
   ],
   "description": "box.set_bgcolor(id = box, color = color) → void"
 },
@@ -461,7 +461,7 @@
 "Border color of the box ⇨ 𝑓": {
   "prefix": "box.set_border_color",
   "body": [
-    "box.set_border_color(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
+    "box.set_border_color(id = $1, color = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) $0"
   ],
   "description": "box.set_border_color(id = box, color = color) → void"
 },
@@ -541,7 +541,7 @@
 "Value of the color's blue component ⇨ 𝑓": {
   "prefix": "color.b",
   "body": [
-    "color.b(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+    "color.b(color = color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
   ],
   "description": "color.b(color = color) → series|const|input float"
 },
@@ -549,7 +549,7 @@
 "Linear gradient between bottom_color to top_color ⇨ 𝑓": {
   "prefix": "color.from_gradient",
   "body": [
-    "color.from_gradient(value = ${1}, bottom_value = ${2}, top_value = ${3}, bottom_color = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}), top_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})) $0"
+    "color.from_gradient(value = ${1}, bottom_value = ${2}, top_value = ${3}, bottom_color = color.new(color = ${4| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}), top_color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})) $0"
   ],
   "description": "color.from_gradient(value = int|float, bottom_value = int|float, top_value = int|float, bottom_color = color, top_color = color) → series color"
 },
@@ -557,7 +557,7 @@
 "Value of the color's green component ⇨ 𝑓": {
   "prefix": "color.g",
   "body": [
-    "color.g(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+    "color.g(color = color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
   ],
   "description": "color.g(color = color) → series|const|input float"
 },
@@ -565,7 +565,7 @@
 "Color with specified transparency. ⇨ 𝑓": {
   "prefix": "color.new",
   "body": [
-    "color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0}) $0"
+    "color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0}) $0"
   ],
   "description": "color.new(color = color, transp = int|float) → const color"
 },
@@ -573,7 +573,7 @@
 "Value of the color's red component ⇨ 𝑓": {
   "prefix": "color.r",
   "body": [
-    "color.r(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+    "color.r(color = color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
   ],
   "description": "color.r(color = color) → series|const|input float"
 },
@@ -589,7 +589,7 @@
 "Retrieves the color's transparency ⇨ 𝑓": {
   "prefix": "color.t",
   "body": [
-    "color.t(color = color.new(color = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
+    "color.t(color = color.new(color = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${2:0})) $0"
   ],
   "description": "color.t(color = color) → series|const|input float"
 },
@@ -613,7 +613,7 @@
 "Fills background between two hlines ⇨ 𝑓": {
   "prefix": "fill.hline",
   "body": [
-    "fill(hline1 = ${1}, hline2 = ${2}, color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), title = \"${5}\"${6:, editable = ${7| ,true,false|}}${8:, fillgaps = ${9| ,true,false|}})",
+    "fill(hline1 = ${1}, hline2 = ${2}, color = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), title = \"${5}\"${6:, editable = ${7| ,true,false|}}${8:, fillgaps = ${9| ,true,false|}})",
     "$0"
   ],
   "description": "fill(hline1 = hline, hline2 = hline, color = color, title = string, editable = bool, fillgaps = bool) → void"
@@ -622,7 +622,7 @@
 "Fills background between two plots ⇨ 𝑓": {
   "prefix": "fill.plot",
   "body": [
-    "fill(plot1 = ${1}, plot2 = ${2}, color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), title = \"${5}\"${6:, editable = ${7| ,true,false|}}${8:, show_last = ${9}}${10:, fillgaps = ${11| ,true,false|}})",
+    "fill(plot1 = ${1}, plot2 = ${2}, color = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), title = \"${5}\"${6:, editable = ${7| ,true,false|}}${8:, show_last = ${9}}${10:, fillgaps = ${11| ,true,false|}})",
     "$0"
   ],
   "description": "fill(plot1 = plot, plot2 = plot, color = color, title = string, editable = bool, show_last = input int, fillgaps = bool) → void"
@@ -647,7 +647,7 @@
 "Renders a horizontal line at a given fixed price level ⇨ 𝑓": {
   "prefix": "hline",
   "body": [
-    "hline(price = ${1}, title = \"${2}\", color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:, linestyle = ${6| ,hline.style_solid,hline.style_dotted,hline.style_dashed|}}${7:, linewidth = ${8}}${9:, editable = ${10| ,true,false|}})",
+    "hline(price = ${1}, title = \"${2}\", color = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:, linestyle = ${6| ,hline.style_solid,hline.style_dotted,hline.style_dashed|}}${7:, linewidth = ${8}}${9:, editable = ${10| ,true,false|}})",
     "$0"
   ],
   "description": "hline(price = int|float, title = const string, color = color, linestyle = hline_style, linewidth = int, editable = bool)"
@@ -682,7 +682,7 @@
 "Color input ⇨ 𝑓": {
   "prefix": "input.color",
   "body": [
-    "input.color(defval = ${1| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, title = \"${2}\"${3:,${4: tooltip = ${5:\"${6}\"}}${7:, inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\"}${9:, group = ${10| ,\"🔵 Colors 🔵\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${11:, confirm = ${12| ,false,true|}}}) $0"
+    "input.color(defval = ${1| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, title = \"${2}\"${3:,${4: tooltip = ${5:\"${6}\"}}${7:, inline = \"${8| ,01,02,03,04,05,06,07,08,09,10|}\"}${9:, group = ${10| ,\"🔵 Colors 🔵\",\"🟣 Backtesting Start 🟢\",\"🟣 Backtesting End ❎\",\"🟢 Entry 🟢\",\"❎ Exit ❎\",\"⛔ Exit ⛔\",\"💬 Comments 💬\",\"🎨 Drawings 🎨\",\"🟤 Length 🟤\",\"🟢 Long 🟢\",\"⚪ Options ⚪\",\"⏱ Session ⏱\",\"🟠 Settings 🟠\",\"🔴 Short 🔴\",\"🌲 Source 🌲\",\"🔶 Statistics 🔶\",\"🟤 Strategy 🟤\",\"🔱 Symbol 🔱\",\"⏱ Timeframe ⏱\",\"🌲  🌲\",\"⛔  ⛔\",\"💬  💬\",\"🎨  🎨\",\"⏱  ⏱\",\"🔴  🔴\",\"🟠  🟠\",\"🟡  🟡\",\"🟢  🟢\",\"🔵  🔵\",\"🟣  🟣\",\"🟤  🟤\",\"⚫  ⚫\",\"⚪  ⚪\",\"🟥  🟥\",\"🟧  🟧\",\"🟨  🟨\",\"🟩  🟩\",\"🟦  🟦\",\"🟪  🟪\",\"🟫  🟫\",\"⬛  ⬛\",\"⬜  ⬜\",\"🔶  🔶\",\"🔷  🔷\",\"🔸  🔸\",\"🔹  🔹\",\"🔺  🔺\",\"🔻  🔻\",\"💠  💠\",\"🔱  🔱\",\"🔘  🔘\",\"🔳  🔳\",\"🔲  🔲\",\"🏁  🏁\",\"🚩  🚩\",\"🎌  🎌\",\"🏴  🏴\",\"🏳️‍🌈  🏳️‍🌈\",\"🏴‍☠️  🏴‍☠️\",\"📍  📍\",\"📌  📌\",\"📊  📊\",\"📉  📉\",\"📈  📈\",\"🌎  🌎\",\"🌐  🌐\",\"🧭  🧭\",\"🌋  🌋\",\"🚀  🚀\",\"⌛  ⌛\",\"🌑  🌑\",\"🌗  🌗\",\"🌕  🌕\",\"🌙  🌙\",\"⭐  ⭐\",\"🌟  🌟\",\"🌞  🌞\",\"🪐  🪐\",\"🌈  🌈\",\"🌀  🌀\",\"🧨  🧨\",\"🎈  🎈\",\"🔊  🔊\",\"📢  📢\",\"📣  📣\",\"📯  📯\",\"🔔  🔔\",\"🔋  🔋\",\"🔍  🔍\",\"💾  💾\",\"💰  💰\",\"💴  💴\",\"💸  💸\",\"📐  📐\",\"📏  📏\",\"🔒  🔒\",\"🔓  🔓\",\"🔑  🔑\",\"🔐  🔐\",\"🔨  🔨\",\"⛓  ⛓\",\"🧲  🧲\",\"📡  📡\",\"🩸  🩸\",\"🗿  🗿\",\"🛂  🛂\",\"⛔  ⛔\",\"🚫  🚫\",\"☢  ☢\",\"☣  ☣\",\"▶  ▶\",\"⏯  ⏯\",\"🔂  🔂\",\"🔀  🔀\",\"📶  📶\",\"🔅  🔅\",\"✖  ✖\",\"➕  ➕\",\"➖  ➖\",\"➗  ➗\",\"💲  💲\",\"💱  💱\",\"♻  ♻\",\"📛  📛\",\"🔰  🔰\",\"⭕  ⭕\",\"✅  ✅\",\"✔  ✔\",\"❌  ❌\",\"❎  ❎\",\"➰  ➰\",\"™  ™\",\"#️⃣  #️⃣\",\"*️⃣  *️⃣\",\"0️⃣  0️⃣\",\"1️⃣  1️⃣\",\"2️⃣  2️⃣\",\"3️⃣  3️⃣\",\"4️⃣  4️⃣\",\"5️⃣  5️⃣\",\"6️⃣  6️⃣\",\"7️⃣  7️⃣\",\"8️⃣  8️⃣\",\"9️⃣  9️⃣\",\"🔟  🔟\",\"🅰  🅰\",\"🆎  🆎\",\"🅱  🅱\",\"🆑  🆑\",\"🆗  🆗\",\"🆙  🆙\"|}}${11:, confirm = ${12| ,false,true|}}}) $0"
   ],
   "description": "input.color(defval = const color, title = string, tooltip = string, inline = string, group = string, confirm = bool) → input color"
 },
@@ -832,7 +832,7 @@
 "New label Object ⇨ 𝑓": {
   "prefix": "label.new",
   "body": [
-    "label.new(x = ${1| ,bar_index|}, y = ${2| ,na,open,high,low,close,hl2,hlc3,ohlc4|}, text = ${3:\"${4}\"}${5:, xloc = ${6| ,xloc.bar_index,xloc.bar_time|}}${7:, yloc = ${8| ,yloc.price,yloc.abovebar,yloc.belowbar|}}${9:, color = color.new(color = ${10| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${11:0})}, style = ${12| ,label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond|}${13:, textcolor = color.new(color = ${14| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${15:0})}${16:, size = ${17| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${18:, textalign = ${19| ,text.align_left,text.align_center,text.align_right|}}${20:, tooltip = ${21:\"${22}\"}})",
+    "label.new(x = ${1| ,bar_index|}, y = ${2| ,na,open,high,low,close,hl2,hlc3,ohlc4|}, text = ${3:\"${4}\"}${5:, xloc = ${6| ,xloc.bar_index,xloc.bar_time|}}${7:, yloc = ${8| ,yloc.price,yloc.abovebar,yloc.belowbar|}}${9:, color = color.new(color = ${10| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${11:0})}, style = ${12| ,label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond|}${13:, textcolor = color.new(color = ${14| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${15:0})}${16:, size = ${17| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${18:, textalign = ${19| ,text.align_left,text.align_center,text.align_right|}}${20:, tooltip = ${21:\"${22}\"}})",
     "$0"
   ],
   "description": "label.new(x = int, y = int|float, text = string, xloc = string, yloc = string, color = color, style = string, textcolor = color, size = string , textalign = string, tooltip = string) → series label"
@@ -847,9 +847,9 @@
     " text         = ${3:\"${4}\"}${5:,",
     " xloc         = ${6| ,xloc.bar_index,xloc.bar_time|}}${7:,",
     " yloc         = ${8| ,yloc.price,yloc.abovebar,yloc.belowbar|}}${9:,",
-    " color        = color.new(color = ${10| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${11:0})},",
+    " color        = color.new(color = ${10| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${11:0})},",
     " style        = ${12| ,label.style_none,label.style_xcross,label.style_cross,label.style_triangleup,label.style_triangledown,label.style_flag,label.style_circle,label.style_arrowup,label.style_arrowdown,label.style_label_up,label.style_label_down,label.style_label_left,label.style_label_right,label.style_label_lower_left,label.style_label_lower_right,label.style_label_upper_left,label.style_label_upper_right,label.style_label_center,label.style_square,label.style_diamond|}${13:,",
-    " textcolor    = color.new(color = ${14| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${15:0})}${16:,",
+    " textcolor    = color.new(color = ${14| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${15:0})}${16:,",
     " size         = ${17| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${18:,",
     " textalign    = ${19| ,text.align_left,text.align_center,text.align_right|}}${20:,",
     " tooltip      = ${21:\"${22}\"} }",
@@ -862,7 +862,7 @@
 "Sets label border and arrow color ⇨ 𝑓": {
   "prefix": "label.set_color",
   "body": [
-    "label.set_color(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0}))",
+    "label.set_color(id = $1, color = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0}))",
     "$0"
   ],
   "description": "label.set_color(id = label, color = string) → void"
@@ -907,7 +907,7 @@
 "Sets color of the label text ⇨ 𝑓": {
   "prefix": "label.set_textcolor",
   "body": [
-    "label.set_textcolor(id = $1, textcolor = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})",
+    "label.set_textcolor(id = $1, textcolor = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})",
     "$0"
   ],
   "description": "label.set_textcolor(id = label, textcolor = color) → void"
@@ -1034,7 +1034,7 @@
 "Creates new line object ⇨ 𝑓": {
   "prefix": "line.new",
   "body": [
-    "line.new(x1 = $1, y1 = $2, x2 = $3, y2 = $4, xloc = ${5| ,xloc.bar_index,xloc.bar_time|}, extend = ${6| ,extend.none,extend.right,extend.left,extend.both|}, color = color.new(color = ${7| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${8:0}), style = ${9| ,line.style_solidline,line.style_dottedline,line.style_dashedline,line.style_arrow_leftline,line.style_arrow_rightline,line.style_arrow_bothline|}, width = $10) $0"
+    "line.new(x1 = $1, y1 = $2, x2 = $3, y2 = $4, xloc = ${5| ,xloc.bar_index,xloc.bar_time|}, extend = ${6| ,extend.none,extend.right,extend.left,extend.both|}, color = color.new(color = ${7| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${8:0}), style = ${9| ,line.style_solidline,line.style_dottedline,line.style_dashedline,line.style_arrow_leftline,line.style_arrow_rightline,line.style_arrow_bothline|}, width = $10) $0"
   ],
   "description": "line.new(x1 = int, y1 = int|float, x2 = int, y2 = int|float, xloc = string, extend = string, color = series color, style = string, width = series int) → series line"
 },
@@ -1042,7 +1042,7 @@
 "Sets the line color ⇨ 𝑓": {
   "prefix": "line.set_color",
   "body": [
-    "line.set_color(id = $1, color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = $3) $0"
+    "line.set_color(id = $1, color = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = $3) $0"
   ],
   "description": "line.set_color(id = line, color = color) → void"
 },
@@ -1319,6 +1319,482 @@
   "description": "math.toradians(degrees = int|float) → series float"
 },
 
+
+"Creates a new matrix object. Must be of type (int). ⇨ 𝑓":  {
+  "prefix": "matrix.new_int",
+  "body":[
+  "matrix.new_int(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_int(rows, columns, initial_value) → any[]"
+},                      
+                    
+"Creates a new matrix object. Must be of type (float). ⇨ 𝑓":  {
+  "prefix": "matrix.new_float",
+  "body":[
+  "matrix.new_float(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_float(rows, columns, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (bool). ⇨ 𝑓":  {
+  "prefix": "matrix.new_bool",
+  "body":[
+  "matrix.new_bool(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_bool(rows, columns, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (string). ⇨ 𝑓":  {
+  "prefix": "matrix.new_string",
+  "body":[
+  "matrix.new_string(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_string(rows, columns, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (color). ⇨ 𝑓":  {
+  "prefix": "matrix.new_color",
+  "body":[
+  "matrix.new_color(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_color(rows, columns, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (line). ⇨ 𝑓":  {
+  "prefix": "matrix.new_line",
+  "body":[
+  "matrix.new_line(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_line, co, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (label). ⇨ 𝑓":  {
+  "prefix": "matrix.new_label",
+  "body":[
+  "matrix.new_label(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_label(rows, columns, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (box). ⇨ 𝑓":  {
+  "prefix": "matrix.new_box",
+  "body":[
+  "matrix.new_box(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_box(rows, columns initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (table). ⇨ 𝑓":  {
+  "prefix": "matrix.new_table",
+  "body":[
+  "matrix.new_table(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_table(rows, columns, initial_value) → any[]"
+},
+                    
+"Creates a new matrix object. Must be of type (linefill). ⇨ 𝑓":  {
+  "prefix": "matrix.new_linefill",
+  "body":[
+  "matrix.new_linefill(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "${0}"
+  ],
+  "description":"matrix.new_linefill(rows, columns, initial_value) → any[]"
+},
+
+"Creates a one-dimensional array from the elements of a matrix row. ⇨ 𝑓":  {
+  "prefix": "matrix.row",
+  "body":[
+  "matrix.row(id = $1, row = $2) $0"
+  ],
+  "description":"matrix.row(id, row) → type[]"
+},
+
+"Creates a one-dimensional array from the elements of a matrix column. ⇨ 𝑓":  {
+  "prefix": "matrix.col",
+  "body":[
+  "matrix.col(id = $1, column = $2) $0"
+  ],
+  "description":"matrix.col(id, column) → type[]"
+},
+
+"Rebuilds the `id` matrix to `rows` x `cols` dimensions. ⇨ 𝑓":  {
+  "prefix": "matrix.reshape",
+  "body":[
+  "matrix.reshape(id = $1, rows = $2, columns = $3) $0"
+  ],
+  "description":"matrix.reshape(id, rows, columns) → void"
+},
+
+"Returns the element with the specified index of the matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.get",
+  "body":[
+  "matrix.get(id = $1, row = $1, column = $2) $0"
+  ],
+  "description":"matrix.get(id, row, column) → <matrix _type | int >"
+},
+
+"Assigns `value` to the element at the `column` and `row` of the `id` matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.set",
+  "body":[
+  "matrix.set(id = $1, row = $2, column = $3, value = $4) $0"
+  ],
+  "description":"matrix.set(id, row, column, value) → void"
+},
+
+"Adds a row at the `row` index of the `id` matrix. The row can consist of `na` values, or an array can be used to provide values. ⇨ 𝑓":  {
+  "prefix": "matrix.add_row",
+  "body":[
+  "matrix.add_row(id = $1, row = $2, array_id = $3) $0"
+  ],
+  "description":"matrix.add_row(id, row, array_id) → void"
+},
+
+"Adds a column at the `column` index of the `id` matrix. The column can consist of `na` values, or an array can be used to provide values. ⇨ 𝑓":  {
+  "prefix": "matrix.add_col",
+  "body":[
+  "matrix.add_col(id = $1, column = $2, array_id = $3) $0"
+  ],
+  "description":"matrix.add_col(id, column, array_id) → void"
+},
+
+"Removes the row at `row` index of the `id` matrix and returns an array containing the removed row's values. ⇨ 𝑓":  {
+  "prefix": "matrix.remove_row",
+  "body":[
+  "matrix.remove_row(id = $1, row = $2) $0"
+  ],
+  "description":"matrix.remove_row(id, row) → type[]"
+},
+
+"Removes the column at `column` index of the `id` matrix and returns an array containing the removed column's values. ⇨ 𝑓":  {
+  "prefix": "matrix.remove_col",
+  "body":[
+  "matrix.remove_col(id = $1, column = $2) $0"
+  ],
+  "description":"matrix.remove_col(id, column) → type[]"
+},
+
+"Fills a rectangular area of the matrix defined by the indices `from_column` to `to_column` (not including it) and `from_row` to `to_row`(not including it) with the `value`. ⇨ 𝑓":  {
+  "prefix": "matrix.fill",
+  "body":[
+  "matrix.fill(id = $1, value = $2, from_row = $3, to_row = $4, from_column = $5, to_column = $6) $0"
+  ],
+  "description":"matrix.fill(id, value, from_row, to_row, from_column, to_column) → void"
+},
+
+"Extracts a submatrix of the `id` matrix within the specified indices. ⇨ 𝑓":  {
+  "prefix": "matrix.submatrix",
+  "body":[
+  "matrix.submatrix(id = $1, from_row = $2, to_row = $3, from_column = $4, to_column = $5) $0"
+  ],
+  "description":"matrix.submatrix(id, from_row, to_row, from_column, to_column) → matrix<type>;"
+},
+
+"Creates a new matrix which is a copy of the original. ⇨ 𝑓":  {
+  "prefix": "matrix.copy",
+  "body":[
+  "matrix.copy(id = $1) $0"
+  ],
+  "description":"matrix.copy(id) → matrix<type>;"
+},
+
+"Returns the number of columns in the matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.columns",
+  "body":[
+  "matrix.columns(id = $1) $0"
+  ],
+  "description":"matrix.columns(id) → series int"
+},
+
+"Returns the number of rows in the matrix. ⇨ 𝑓": {
+  "prefix": "matrix.rows",
+  "body":[
+  "matrix.rows(id = $1) $0"
+  ],
+  "description":"matrix.rows(id) → series int"
+},
+
+"Returns the total number of all matrix elements. ⇨ 𝑓":  {
+  "prefix": "matrix.elements_count",
+  "body":[
+  "matrix.elements_count(id = $1) $0"
+  ],
+  "description":"matrix.elements_count(id) → series int"
+},
+
+"Appends the `m2` matrix to the `m1` matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.concat",
+  "body":[
+  "matrix.concat(id1 = $1, id2 = $2) $0"
+  ],
+  "description":"matrix.concat(id1, id2) → matrix<type>"
+},
+
+"Swaps the rows at the index `row1` and `row2` in the `id` matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.swap_rows",
+  "body":[
+  "matrix.swap_rows(id = $1, row1 = $2, row2 = $3) $0"
+  ],
+  "description":"matrix.swap_rows(id, row1, row2) → void"
+},
+
+"Swaps the columns at the index `column1` and `column2` in the `id` matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.swap_columns",
+  "body":[
+  "matrix.swap_columns(id = $1, column1 = $2, column2 = $3) $0"
+  ],
+  "description":"matrix.swap_columns(id, column1, column2) → void"
+},
+
+"Reverses the order of rows and columns in the matrix `id`. The first row and first column become the last, and the last become the first. ⇨ 𝑓":  {
+  "prefix": "matrix.reverse",
+  "body":[
+  "matrix.reverse(id = $1) $0"
+  ],
+  "description":"matrix.reverse(id) → void"
+},
+
+"Rearranges the rows in the `id` matrix following the sorted order of the values in the `column`. ⇨ 𝑓":  {
+  "prefix": "matrix.sort",
+  "body":[
+  "matrix.sort(id = $1, column = $2, order = $3) $0"
+  ],
+  "description":"matrix.sort(id, column, order) → void"
+},
+
+"Returns the determinant of a square matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.det",
+  "body":[
+  "matrix.det(id = $1) $0"
+  ],
+  "description":"matrix.det(id) → series float | int"                 
+},
+
+"Returns the smallest value from the matrix elements. ⇨ 𝑓":  {
+  "prefix": "matrix.min",
+  "body":[
+  "matrix.min(id = $1) $0"
+  ],
+  "description":"matrix.min(id) → series float | int"
+},
+
+"Returns the largest value from the matrix elements. ⇨ 𝑓":  {
+  "prefix": "matrix.max",
+  "body":[
+  "matrix.max(id = $1) $0"
+  ],
+  "description":"matrix.max(id) → series float | int"
+},
+
+"Calculates the average of all elements in the matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.avg",
+  "body":[
+  "matrix.avg(id = $1) $0"
+  ],
+  "description":"matrix.avg(id) → series float | int"                 
+},
+
+"Calculates the median ('the middle' value) of matrix elements. ⇨ 𝑓":  {
+  "prefix": "matrix.median",
+  "body":[
+  "matrix.median(id = $1) $0"
+  ],
+  "description":"matrix.median(id) → series float | int"
+
+},
+
+"Calculates the mode of the matrix, which is the most frequently occurring value from the matrix elements. Multiple values occurring equally returns smallest value. ⇨ 𝑓":  {
+  "prefix": "matrix.mode",
+  "body":[
+  "matrix.mode(id = $1) $0"
+  ],
+  "description":"matrix.mode(id) → series float | int"
+},
+
+"Creates a new, transposed version of the `id`. This interchanges the row and column index of each element. ⇨ 𝑓":  {
+  "prefix": "matrix.transpose",
+  "body":[
+  "matrix.transpose(id = $1) $0"
+  ],
+  "description":"matrix.transpose(id) → matrix<type>;"
+},
+
+"The sum of two matrices `id1` and `id2`, or of an `id1` matrix and an `id2` scalar (a numerical value). ⇨ 𝑓":  {
+  "prefix": "matrix.sum",
+  "body":[
+  "matrix.sum(id1 = $1, id2 = $2) $0"
+  ],
+  "description":"matrix.sum(id1, id2) → <float> | <int>"
+},
+
+"The subtraction between matrices `id1` and `id2`, or of matrix `id1` and an `id2` scalar (a numerical value). ⇨ 𝑓":  {
+  "prefix": "matrix.diff",
+  "body":[
+  "matrix.diff(id1 = $1, id2 = $2) $0"
+  ],
+  "description":"matrix.diff(id1, id2) → <float> | <int>"
+},
+
+"The product between the matrices `id1` and `id2`, or `id1` matrix | `id2` scalar a #, or `id1` matrix | `id2` vector (an array). ⇨ 𝑓":  {
+  "prefix": "matrix.mult",
+  "body":[
+  "matrix.mult(id1 = $1, id2 = $2) $0"
+  ],
+  "description":"matrix.mult(id1, id2) → <float> | <int>"
+},
+
+"Returns the pseudoinverse of a matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.pinv",
+  "body":[
+  "matrix.pinv(id = $1) $0"
+  ],
+  "description":"matrix.pinv(id) → <float> | <int>"
+},
+
+"Returns the inverse of a square matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.inv",
+  "body":[
+  "matrix.inv(id = $1) $0"
+  ],
+  "description":"matrix.inv(id) → <float> | <int>"
+},
+
+"Calculates the rank of the matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.rank",
+  "body":[
+  "matrix.rank(id = $1) $0"
+  ],
+  "description":"matrix.rank(id) → series int"
+},
+
+"Calculates the trace of a matrix (the sum of the main diagonal's elements). ⇨ 𝑓":  {
+  "prefix": "matrix.trace",
+  "body":[
+  "matrix.trace(id = $1) $0"
+  ],
+  "description":"matrix.trace(id) → series float | int"
+},
+
+"Returns an array containing the eigenvalues of a square matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.eigenvalues",
+  "body":[
+  "matrix.eigenvalues(id = $1) $0"
+  ],
+  "description":"matrix.eigenvalues(id) → float[] | int[]"
+},
+
+"Returns a matrix of eigenvectors, in which each column is an eigenvector of the `id` matrix. ⇨ 𝑓":  {
+  "prefix": "matrix.eigenvectors",
+  "body":[
+  "matrix.eigenvectors(id = $1) $0"
+  ],
+  "description":"matrix.eigenvectors(id) → <float> | <int>"
+},
+
+"Returns the {product for the `id1` and `id2` matrices. ⇨ 𝑓":  {
+  "prefix": "matrix.kron",
+  "body":[
+  "matrix.kron(id1 = $1, id2 = $2) $0"
+  ],
+  "description":"matrix.kron(id1, id2) → <float> | <int>"
+},
+
+"Calculates the product of the matrix by itself `power` times. ⇨ 𝑓":  {
+  "prefix": "matrix.pow",
+  "body":[
+  "matrix.pow(id = $1, power  = $2) $0"
+  ],
+  "description":"matrix.pow(id, power) → <float> | <int>"
+},
+
+"The function determines if all elements of the matrix are zero. ⇨ 𝑓":  {
+  "prefix": "matrix.is_zero",
+  "body":[
+  "matrix.is_zero(id = $1) $0"
+  ],
+  "description":"matrix.is_zero(id) → series bool"
+},
+
+"The function determines if a matrix is an {matrix (elements with ones on the main diagonal and zeros elsewhere). ⇨ 𝑓":  {
+  "prefix": "matrix.is_identity",
+  "body":[
+  "matrix.is_identity(id = $1) $0"
+  ],
+  "description":"matrix.is_identity(id) → series bool"
+},
+
+"The function determines if the matrix is binary (when all elements of the matrix are 0 or 1). ⇨ 𝑓":  {
+  "prefix": "matrix.is_binary",
+  "body":[
+  "matrix.is_binary(id = $1) $0"
+  ],
+  "description":"matrix.is_binary(id) → series bool"
+},
+
+"The function determines if a {matrix is symmetric (elements are symmetric with respect to the main diagonal). ⇨ 𝑓":  {
+  "prefix": "matrix.is_symmetric",
+  "body":[
+  "matrix.is_symmetric(id = $1) $0"
+  ],
+  "description":"matrix.is_symmetric(id) → series bool"
+},
+
+"The function determines if a matrix is antisymmetric (its transpose equals its negative). ⇨ 𝑓":  {
+  "prefix": "matrix.is_antisymmetric",
+  "body":[
+  "matrix.is_antisymmetric(id = $1) $0"
+  ],
+  "description":"matrix.is_antisymmetric(id) → series bool"
+},
+
+"The function determines if the matrix is diagonal (all elements outside the main diagonal are zero). ⇨ 𝑓":  {
+  "prefix": "matrix.is_diagonal",
+  "body":[
+  "matrix.is_diagonal(id = $1) $0"
+  ],
+  "description":"matrix.is_diagonal(id) → series bool"
+},
+
+"The function determines if the matrix is {html_markup_1​​diagonal (all elements outside the secondary diagonal are zero). ⇨ 𝑓":  {
+  "prefix": "matrix.is_antidiagonal",
+  "body":[
+  "matrix.is_antidiagonal(id = $1) $0"
+  ],
+  "description":"matrix.is_antidiagonal(id) → series bool"
+},
+
+"The function determines if the matrix is triangular (if all elements above or below the main diagonal are zero). ⇨ 𝑓":  {
+  "prefix": "matrix.is_triangular",
+  "body":[
+  "matrix.is_triangular(id = $1) $0"
+  ],
+  "description":"matrix.is_triangular(id) → series bool"
+},
+
+"The function determines if the matrix is stochastic. ⇨ 𝑓":  {
+  "prefix": "matrix.is_stochastic",
+  "body":[
+  "matrix.is_stochastic(id = $1) $0"
+  ],
+  "description":"matrix.is_stochastic(id) → series bool"
+},
+
+"The function determines if the matrix is square (it has the same number of rows and columns). ⇨ 𝑓":  {
+  "prefix": "matrix.is_square",
+  "body":[
+  "matrix.is_square(id = $1) $0"
+  ],
+  "description":"matrix.is_square(id) → series bool"
+},
+
 "Maximum number of bars that is available for historical reference ⇨ 𝑓": {
   "prefix": "max_bars_back",
   "body": [
@@ -1362,7 +1838,7 @@
 "Plots a series of data on the chart ⇨ 𝑓": {
   "prefix": "plot",
   "body": [
-    "plot(series = ${1}, title = \"${2}\", color = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:${6:, linewidth = ${7}}${8:, style = ${9| ,plot.style_line,plot.style_stepline,plot.style_stepline_diamond,plot.style_histogram,plot.style_cross,plot.style_area,plot.style_columns,plot.style_circles|}}${10:, trackprice = ${11| ,true,false|}}${12:, offset = ${13}}${14:, join = ${15| ,true,false|}}${16:, editable = ${17| ,true,false|}}${18:, show_last = ${19}}${20:, display = ${21| ,display.none,display.all|}}})",
+    "plot(series = ${1}, title = \"${2}\", color = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:${6:, linewidth = ${7}}${8:, style = ${9| ,plot.style_line,plot.style_stepline,plot.style_stepline_diamond,plot.style_histogram,plot.style_cross,plot.style_area,plot.style_columns,plot.style_circles|}}${10:, trackprice = ${11| ,true,false|}}${12:, offset = ${13}}${14:, join = ${15| ,true,false|}}${16:, editable = ${17| ,true,false|}}${18:, show_last = ${19}}${20:, display = ${21| ,display.none,display.all|}}})",
     "${0}"
   ],
   "description": "plot(series = int|float, title = string, color = color, linewidth = input int, trackprice = bool, histbase = int|float, offset = int, join = bool, editable = bool, show_last = int, display = plot_display) → plot"
@@ -1374,7 +1850,7 @@
     "plot(",
     " series       = ${1},",
     " title        = \"${2}\",",
-    " color        = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:${6:,",
+    " color        = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0})${5:${6:,",
     " linewidth    = ${7}}${8:,",
     " style        = ${9| ,plot.style_line,plot.style_stepline,plot.style_stepline_diamond,plot.style_histogram,plot.style_cross,plot.style_area,plot.style_columns,plot.style_circles|}}${10:,",
     " trackprice   = ${11| ,true,false|}}${12:,",
@@ -1392,7 +1868,7 @@
 "Plots up and down arrows on the chart ⇨ 𝑓": {
   "prefix": "plotarrow",
   "body": [
-    "plotarrow(series = ${1}, title = \"${2}\", colorup = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), colordn = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:, offset = ${8}}, minheight = ${9}, maxheight = ${10}${11:${12:, editable = ${13| ,true,false|}}${14:, show_last = ${15}}${16:, display = ${17| ,display.none,display.all|}}})",
+    "plotarrow(series = ${1}, title = \"${2}\", colorup = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}), colordn = color.new(color = ${5| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:, offset = ${8}}, minheight = ${9}, maxheight = ${10}${11:${12:, editable = ${13| ,true,false|}}${14:, show_last = ${15}}${16:, display = ${17| ,display.none,display.all|}}})",
     "${0}"
   ],
   "description": "plotarrow(series = any, title = string, colorup = color, colordown = color, offset = int, minheight = int, maxheight = int, editable = bool, show_last = int, display = plot_display) → void"
@@ -1404,8 +1880,8 @@
     "plotarrow(",
     " series       = ${1},",
     " title        = \"${2}\",",
-    " colorup      = color.new(color = ${3| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}),",
-    " colordn      = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:,",
+    " colorup      = color.new(color = ${3| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${4:0}),",
+    " colordn      = color.new(color = ${5| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:,",
     " offset       = ${8}},",
     " minheight    = ${9},",
     " maxheight    = ${10}${11:${12:,",
@@ -1421,7 +1897,7 @@
 "Plots ohlc bars on the chart ⇨ 𝑓": {
   "prefix": "plotbar",
   "body": [
-    "plotbar(open = ${1}, high = ${2}, low = ${3}, close = ${4}, title = \"${5}\", color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})${8:${9:, editable = ${10| ,true,false|}}${11:, show_last = ${12}}${13:, display = ${14| ,display.none,display.all|}}})",
+    "plotbar(open = ${1}, high = ${2}, low = ${3}, close = ${4}, title = \"${5}\", color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})${8:${9:, editable = ${10| ,true,false|}}${11:, show_last = ${12}}${13:, display = ${14| ,display.none,display.all|}}})",
     "${0}"
   ],
   "description": "plotbar(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, editable = bool, show_last = input int, display = plot_display) → void"
@@ -1436,7 +1912,7 @@
     " low         = ${3},",
     " close       = ${4},",
     " title       = \"${5}\",",
-    " color       = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})${8:${9:,",
+    " color       = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0})${8:${9:,",
     " editable    = ${10| ,true,false|}}${11:,",
     " show_last   = ${12}}${13:,",
     " display     = ${14| ,display.none,display.all|}}}",
@@ -1446,11 +1922,10 @@
   "description": "plotbar(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, editable = bool, show_last = input int, display = plot_display) → void"
 },
 
-
   "Plots candles on the chart ⇨ 𝑓": {
   "prefix": "plotcandle",
   "body": [
-    "plotcandle(open = $1, high = $3, low = $4, close = $2, title = \"$5\", color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}), wickcolor = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0})${10:${11:, editable = ${12| ,true,false|}}${13:, show_last = ${14}}${15:, bordercolor = color.new(color = ${16| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${17:0})}${18:, display = ${19| ,display.none,display.all|}}})",
+    "plotcandle(open = $1, high = $3, low = $4, close = $2, title = \"$5\", color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}), wickcolor = color.new(color = ${8| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0})${10:${11:, editable = ${12| ,true,false|}}${13:, show_last = ${14}}${15:, bordercolor = color.new(color = ${16| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${17:0})}${18:, display = ${19| ,display.none,display.all|}}})",
     "${0}"
   ],
   "description": "plotcandle(open = int|float, high = int|float, low = int|float, close = int|float, title = string, color = color, wickcolor = color, editable = bool, show_last = input int, bordercolor = color, display = plot_display) → void"
@@ -1465,11 +1940,11 @@
     " low         = $3,",
     " close       = $4,",
     " title       = \"$5\",",
-    " color       = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}),",
-    " wickcolor   = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0})${10:${11:,",
+    " color       = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}),",
+    " wickcolor   = color.new(color = ${8| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0})${10:${11:,",
     " editable    = ${12| ,true,false|}}${13:,",
     " show_last   = $14}${15:,",
-    " bordercolor = color.new(color = ${16| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${17:0})}${18:,",
+    " bordercolor = color.new(color = ${16| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${17:0})}${18:,",
     " display     = ${19| ,display.none,display.all|}}}",
     " )",
   "${0}"
@@ -1485,10 +1960,10 @@
     " title      = \"${2}\",",
     " char       = \"${3| ,♯,☉,☼,☀,✗,✓,🠐,🠒 ,🠑,🠓,🡔,🡕,🡖,🡗,⇦,⇨,⇧,⇩,⤺,⤻,⤹,⤸,⇤,⇥,⤒,⤓,↨,⇆,⇄,⇅,⇵,➢,➣,➤,↚,↛,↮,↯,⭍,↞,↠,↟,↡,⯬,⯭,⯮,⯯,➳,➵,➴,➶,➸,➷|}\",",
     " location   = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|},",
-    " color      = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:,",
+    " color      = color.new(color = ${5| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:,",
     " offset     = ${9}}${10:,",
     " text       = \"${11}\"}${12:,",
-    " textcolor  = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:,",
+    " textcolor  = color.new(color = ${13| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:,",
     " editable   = ${16| ,true,false|}}${17:,",
     " size       = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:,",
     " show_last  = ${20}}${21:,",
@@ -1502,7 +1977,7 @@
 "Plots visual shapes using any given one Unicode char ⇨ 𝑓": {
   "prefix": "plotchar",
   "body": [
-    "plotchar(series = ${1}, title = \"${2}\", char = \"${3| ,♯,☉,☼,☀,✗,✓,🠐,🠒 ,🠑,🠓,🡔,🡕,🡖,🡗,⇦,⇨,⇧,⇩,⤺,⤻,⤹,⤸,⇤,⇥,⤒,⤓,↨,⇆,⇄,⇅,⇵,➢,➣,➤,↚,↛,↮,↯,⭍,↞,↠,↟,↡,⯬,⯭,⯮,⯯,➳,➵,➴,➶,➸,➷|}\", location = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}, color = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:, offset = ${9}}${10:, text = \"${11}\"}${12:, textcolor = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:, editable = ${16| ,true,false|}}${17:, size = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:, show_last = ${20}}${21:, display = ${22| ,display.none,display.all|}}})",
+    "plotchar(series = ${1}, title = \"${2}\", char = \"${3| ,♯,☉,☼,☀,✗,✓,🠐,🠒 ,🠑,🠓,🡔,🡕,🡖,🡗,⇦,⇨,⇧,⇩,⤺,⤻,⤹,⤸,⇤,⇥,⤒,⤓,↨,⇆,⇄,⇅,⇵,➢,➣,➤,↚,↛,↮,↯,⭍,↞,↠,↟,↡,⯬,⯭,⯮,⯯,➳,➵,➴,➶,➸,➷|}\", location = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}, color = color.new(color = ${5| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:, offset = ${9}}${10:, text = \"${11}\"}${12:, textcolor = color.new(color = ${13| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:, editable = ${16| ,true,false|}}${17:, size = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:, show_last = ${20}}${21:, display = ${22| ,display.none,display.all|}}})",
     "${0}"
     ],
   "description": "plotchar(series = bool, title = string, char = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void"
@@ -1516,10 +1991,10 @@
     " title      = \"${2}\",",
     " style      = ${3| ,shape.xcross,shape.cross,shape.triangleup,shape.triangledown,shape.flag,shape.circle,shape.arrowup,shape.arrowdown,shape.labelup,shape.labeldown,shape.square,shape.diamond|},",
     " location   = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|},",
-    " color      = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:,",
+    " color      = color.new(color = ${5| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:,",
     " offset     = ${9}}${10:,",
     " text       = \"${11}\"}${12:,",
-    " textcolor  = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:,",
+    " textcolor  = color.new(color = ${13| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:,",
     " editable   = ${16| ,true,false|}}${17:,",
     " size       = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:,",
     " show_last  = ${20}}${21:,",
@@ -1533,7 +2008,7 @@
 "Plots visual shapes on the chart ⇨ 𝑓": {
   "prefix": "plotshape",
   "body": [
-    "plotshape(series = ${1}, title = \"${2}\", style = ${3| ,shape.xcross,shape.cross,shape.triangleup,shape.triangledown,shape.flag,shape.circle,shape.arrowup,shape.arrowdown,shape.labelup,shape.labeldown,shape.square,shape.diamond|}, location = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}, color = color.new(color = ${5| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:, offset = ${9}}${10:, text = \"${11}\"}${12:, textcolor = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:, editable = ${16| ,true,false|}}${17:, size = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:, show_last = ${20}}${21:, display = ${22| ,display.none,display.all|}}})",
+    "plotshape(series = ${1}, title = \"${2}\", style = ${3| ,shape.xcross,shape.cross,shape.triangleup,shape.triangledown,shape.flag,shape.circle,shape.arrowup,shape.arrowdown,shape.labelup,shape.labeldown,shape.square,shape.diamond|}, location = ${4| ,location.abovebar,location.belowbar,location.top,location.bottom,location.absolute|}, color = color.new(color = ${5| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${6:0})${7:${8:, offset = ${9}}${10:, text = \"${11}\"}${12:, textcolor = color.new(color = ${13| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})}${15:, editable = ${16| ,true,false|}}${17:, size = ${18| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}}${19:, show_last = ${20}}${21:, display = ${22| ,display.none,display.all|}}})",
     "${0}"
   ],
   "description": "plotshape(series = bool, title = string, style = string, location = string, color = color, offset = int, text = string, textcolor = color, editable = bool, size = int, show_last = input int, display = plot_display) → void"
@@ -2485,11 +2960,11 @@
     " text           = ${4:\"${5}\"}, ",
     " width          = ${6| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, ",
     " height         = ${7| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, ",
-    " text_color     = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0}), ",
+    " text_color     = color.new(color = ${8| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0}), ",
     " text_halign    = ${10| ,text.align_left,text.align_center,text.align_right|}, ",
     " text_valign    = ${11| ,text.align_top,text.align_center,text.align_bottom|}, ",
     " text_size      = ${12| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}, ",
-    " bgcolor        = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})",
+    " bgcolor        = color.new(color = ${13| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0})",
     " )",
     "$0"
     ],
@@ -2498,7 +2973,7 @@
 "Defines a cell in the table and sets its attributes ⇨ 𝑓": {
   "prefix": "table.cell",
   "body": [
-    "table.cell(table_id = ${1}, column = ${2| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, row = ${3| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, text = ${4:\"${5}\"}, width = ${6| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, height = ${7| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, text_color = color.new(color = ${8| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0}), text_halign = ${10| ,text.align_left,text.align_center,text.align_right|}, text_valign = ${11| ,text.align_top,text.align_center,text.align_bottom|}, text_size = ${12| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}, bgcolor = color.new(color = ${13| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0}))",
+    "table.cell(table_id = ${1}, column = ${2| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, row = ${3| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, text = ${4:\"${5}\"}, width = ${6| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, height = ${7| ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20|}, text_color = color.new(color = ${8| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${9:0}), text_halign = ${10| ,text.align_left,text.align_center,text.align_right|}, text_valign = ${11| ,text.align_top,text.align_center,text.align_bottom|}, text_size = ${12| ,size.auto,size.tiny,size.small,size.normal,size.large,size.huge|}, bgcolor = color.new(color = ${13| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${14:0}))",
     "$0"
     ],
   "description": "table.cell(table_id = table, column = int, row = int, text = string, width = int|float, height = int|float, text_color = color, text_halign = string, text_valign = string, text_size = string, bgcolor = color) → void"
@@ -2507,7 +2982,7 @@
 "Background color of the cell ⇨ 𝑓": {
   "prefix": "table.cell_set_bgcolor",
   "body": [
-    "table.cell_set_bgcolor(table_id = ${1}, column = ${2}, row = ${3}, bgcolor = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}))",
+    "table.cell_set_bgcolor(table_id = ${1}, column = ${2}, row = ${3}, bgcolor = color.new(color = ${4| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}))",
     "$0"
   ],
   "description": "table.cell_set_bgcolor(table_id = table, column = int, row = int, bgcolor = color) → void"
@@ -2534,7 +3009,7 @@
 "Color of the text inside the cell ⇨ 𝑓": {
   "prefix": "table.cell_set_text_color",
   "body": [
-    "table.cell_set_text_color(table_id = ${1}, column = ${2}, row = ${3}, text_color = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}))",
+    "table.cell_set_text_color(table_id = ${1}, column = ${2}, row = ${3}, text_color = color.new(color = ${4| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}))",
     "$0"
   ],
   "description": "table.cell_set_text_color(table_id = table, column = int, row = int, text_color = color) → void"
@@ -2601,10 +3076,10 @@
     " position       = ${1| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|},",
     " columns        = ${2| ,1,2,3,4,5|},",
     " rows           = ${3| ,1,2,3,4,5|},",
-    " bgcolor        = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}),",
-    " frame_color    = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}),",
+    " bgcolor        = color.new(color = ${4| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}),",
+    " frame_color    = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}),",
     " frame_width    = ${8| ,1,2,3,4,5|},",
-    " border_color   = color.new(color = ${9| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${10:0}),",
+    " border_color   = color.new(color = ${9| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${10:0}),",
     " border_width   = ${11| ,1,2,3,4,5|}",
     " )",
     "$0"
@@ -2615,7 +3090,7 @@
 "Creates a new table ⇨ 𝑓": {
   "prefix": "table.new",
   "body": [
-    "table.new(position = ${1| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|}, columns = ${2| ,1,2,3,4,5|}, rows = ${3| ,1,2,3,4,5|}, bgcolor = color.new(color = ${4| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}), frame_color = color.new(color = ${6| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}), frame_width = ${8| ,1,2,3,4,5|}, border_color = color.new(color = ${9| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${10:0}), border_width = ${11| ,1,2,3,4,5|})",
+    "table.new(position = ${1| ,position.top_left,position.top_center,position.top_right,position.middle_left,position.middle_center,position.middle_right,position.bottom_left,position.bottom_center,position.bottom_right|}, columns = ${2| ,1,2,3,4,5|}, rows = ${3| ,1,2,3,4,5|}, bgcolor = color.new(color = ${4| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${5:0}), frame_color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${7:0}), frame_width = ${8| ,1,2,3,4,5|}, border_color = color.new(color = ${9| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${10:0}), border_width = ${11| ,1,2,3,4,5|})",
     "$0"
   ],
   "description": "table.new(position = int, columns = int, rows = int, bgcolor = color, frame_color = color, frame_width = int, border_color = color, border_width = int) → series table"
@@ -2624,7 +3099,7 @@
 "Background color of a table ⇨ 𝑓": {
   "prefix": "table.set_bgcolor",
   "body": [
-    "table.set_bgcolor(table_id = ${1}, bgcolor = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
+    "table.set_bgcolor(table_id = ${1}, bgcolor = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
   ],
   "description": "table.set_bgcolor(table_id = table, bgcolor = color) → void"
 },
@@ -2632,7 +3107,7 @@
 "Color of the borders of the table's cells ⇨ 𝑓": {
   "prefix": "table.set_border_color",
   "body": [
-    "table.set_border_color(table_id = ${1}, border_color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
+    "table.set_border_color(table_id = ${1}, border_color = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
   ],
   "description": "table.set_border_color(table_id = table, border_color = color) → void"
 },
@@ -2648,7 +3123,7 @@
 "Color of the outer frame of a table ⇨ 𝑓": {
   "prefix": "table.set_frame_color",
   "body": [
-    "table.set_frame_color(table_id = ${1}, frame_color = color.new(color = ${2| ,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
+    "table.set_frame_color(table_id = ${1}, frame_color = color.new(color = ${2| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, transp = ${3:0})) ${0}"
   ],
   "description": "table.set_frame_color(table_id = table, frame_color = color) → void"
 },
@@ -2741,6 +3216,14 @@
   "description": "time_close(timeframe = string, timezone = series string) → series int"
 },
 
+"Converts the timeframe passed to the `timeframe` argument into seconds ⇨ 𝑥": {
+  "prefix": "timeframe.in_seconds",
+  "body": [
+      "timeframe.in_seconds(timeframe = ${1| ,1,2,3,5,7,10,15,30,60,90,120,180,240,360,480,D,2D,5D,W,2W,M,2M,6M,Y|}\"${2:, session = \"${3| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}-${4| ,0000,0001,0015,0030,0045,0100,0115,0130,0145,0200,0215,0230,0245,0300,0315,0330,0345,0400,0415,0430,0445,0500,0515,0530,0545,0600,0615,0630,0645,0700,0715,0730,0745,0800,0815,0830,0845,0900,0915,0930,0945,1000,1015,1030,1045,1100,1115,1130,1145,1200,1215,1230,1245,1300,1315,1330,1345,1400,1415,1430,1445,1500,1515,1530,1545,1600,1615,1630,1645,1700,1715,1730,1745,1800,1815,1830,1845,1900,1915,1930,1945,2000,2015,2030,2045,2100,2115,2130,2145,2200,2215,2230,2245,2300,2315,2330,2345,2359,2400|}\"${5:, timezone = ${6| ,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}}) $0"
+  ],
+  "description": "timeframe.in_seconds(timeframe = string) | → series int"
+},
+
 "UNIX time of specified date and time | int 1 ⇨ 𝑓": {
   "prefix": ["timestamp", "timestamp.int"],
   "body": [
@@ -2748,6 +3231,7 @@
 ],
 "description": "timestamp(year = int, month = int, day = int, hour = int, minute = int, second = int) → simple int"
 },
+
 "UNIX time of specified date and time | int 2 -TZ ⇨ 𝑓": {
 "prefix": ["timestamp.int.2"],
 "body": [
