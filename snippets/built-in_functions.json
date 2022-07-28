@@ -428,7 +428,7 @@
     " top          = ${2}, ",
     " right        = ${3}, ",
     " bottom       = ${4}${5:, ",
-    " border_color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, ", 
+    " border_color = color.new(color = ${6| ,#000000,color.aqua,color.black,color.blue,color.fuchsia,color.gray,color.green,color.lime,color.maroon,color.navy,color.olive,color.orange,color.purple,color.red,color.silver,color.teal,color.white,color.yellow|}, ",
     " transp = ${7:0})}${8:, ",
     " border_width = ${9}}${10:, ",
     " border_style = ${11| ,line.style_solid,line.style_dotted,line.style_dashed|}}${12:, ",
@@ -1321,93 +1321,93 @@
 
 
 "Creates a new matrix object. Must be of type (int). ⇨ 𝑓":  {
-  "prefix": "matrix.new_int",
+  "prefix": "matrix.new<int>",
   "body":[
-  "matrix.new_int(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<int>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_int(rows, columns, initial_value) → any[]"
-},                      
-                    
+  "description":"matrix.new<int>(rows, columns, initial_value) → any[]"
+},
+
 "Creates a new matrix object. Must be of type (float). ⇨ 𝑓":  {
-  "prefix": "matrix.new_float",
+  "prefix": "matrix.new<float>",
   "body":[
-  "matrix.new_float(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<float>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_float(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<float>(rows, columns, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (bool). ⇨ 𝑓":  {
-  "prefix": "matrix.new_bool",
+  "prefix": "matrix.new<bool>",
   "body":[
-  "matrix.new_bool(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<bool>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_bool(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<bool>(rows, columns, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (string). ⇨ 𝑓":  {
-  "prefix": "matrix.new_string",
+  "prefix": "matrix.new<string>",
   "body":[
-  "matrix.new_string(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<string>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_string(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<string>(rows, columns, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (color). ⇨ 𝑓":  {
-  "prefix": "matrix.new_color",
+  "prefix": "matrix.new<color>",
   "body":[
-  "matrix.new_color(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<color>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_color(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<color>(rows, columns, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (line). ⇨ 𝑓":  {
-  "prefix": "matrix.new_line",
+  "prefix": "matrix.new<line>",
   "body":[
-  "matrix.new_line(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<line>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_line, co, initial_value) → any[]"
+  "description":"matrix.new<line>, co, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (label). ⇨ 𝑓":  {
-  "prefix": "matrix.new_label",
+  "prefix": "matrix.new<label>",
   "body":[
-  "matrix.new_label(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<label>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_label(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<label>(rows, columns, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (box). ⇨ 𝑓":  {
-  "prefix": "matrix.new_box",
+  "prefix": "matrix.new<box>",
   "body":[
-  "matrix.new_box(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<box>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_box(rows, columns initial_value) → any[]"
+  "description":"matrix.new<box>(rows, columns initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (table). ⇨ 𝑓":  {
-  "prefix": "matrix.new_table",
+  "prefix": "matrix.new<table>",
   "body":[
-  "matrix.new_table(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<table>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_table(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<table>(rows, columns, initial_value) → any[]"
 },
-                    
+
 "Creates a new matrix object. Must be of type (linefill). ⇨ 𝑓":  {
-  "prefix": "matrix.new_linefill",
+  "prefix": "matrix.new<linefill>",
   "body":[
-  "matrix.new_linefill(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
+  "matrix.new<linefill>(rows = $1, columns = $2, initial_value = ${2:\"${3}\"}) $0",
   "${0}"
   ],
-  "description":"matrix.new_linefill(rows, columns, initial_value) → any[]"
+  "description":"matrix.new<linefill>(rows, columns, initial_value) → any[]"
 },
 
 "Creates a one-dimensional array from the elements of a matrix row. ⇨ 𝑓":  {
@@ -1575,7 +1575,7 @@
   "body":[
   "matrix.det(id = $1) $0"
   ],
-  "description":"matrix.det(id) → series float | int"                 
+  "description":"matrix.det(id) → series float | int"
 },
 
 "Returns the smallest value from the matrix elements. ⇨ 𝑓":  {
@@ -1599,7 +1599,7 @@
   "body":[
   "matrix.avg(id = $1) $0"
   ],
-  "description":"matrix.avg(id) → series float | int"                 
+  "description":"matrix.avg(id) → series float | int"
 },
 
 "Calculates the median ('the middle' value) of matrix elements. ⇨ 𝑓":  {
@@ -2061,7 +2061,7 @@
     "request.splits(ticker = ${1| ,syminfo.ticker,syminfo.tickerid|}, field = ${2|splits.denominator,splits.numerator|}${3:${4:,gaps = ${5| ,barmerge.gaps_off,barmerge.gaps_on|}}${6:,lookahead =  ${7| ,barmerge.lookahead_off,barmerge.lookahead_on|}}${8:,ignore_invalid_symbol = ${9| ,true,false|}}}) ${0}"
   ],
   "description": "request.splits(ticker = string, field = string, gaps = const, lookahead = const, ignore_invalid_symbol = bool) → series float"
-}, 
+},
 
 "Error message ⇨ 𝑓": {
   "prefix": "runtime.error",
@@ -2533,7 +2533,7 @@
   ],
   "description": "ta.bb(series = int|float, length = int, mult = int|float) → [series float, series float, series float]"
 },
-  
+
 "Bollinger Bands Width ⇨ 𝑓": {
   "prefix": "ta.bbw",
   "body": [
