@@ -381,7 +381,7 @@
               "name": "variable.other.ps"
             }
           },
-          "end": "\\b(bg_color|fg_color)\\b",
+          "end": "\\b(bg_color|fg_color|is_heikinashi|is_kagi|is_linebreak|is_pnf|is_range|is_renko|is_standard|left_visible_bar_time|right_visible_bar_time)\\b",
           "endCaptures": {
             "1": {
               "name": "variable.other.ps"
@@ -403,7 +403,7 @@
           }
         },
         {
-          "match": "(currency)(\\.)(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)",
+          "match": "(currency)(\\.)(BTC|ETH|KRW|MYR|USDT|AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)",
           "captures": {
             "0": {
               "name": "variable.other.ps"
@@ -613,7 +613,7 @@
           }
         },
         {
-          "match": "\\b(session)\\b(\\.)\\b(extended|ismarket|ispostmarket|ispremarket|regular)\\b",
+          "match": "\\b(session)\\b(\\.)\\b(extended|isfirstbar|isfirstbar_regular|islastbar|islastbar_regular|ismarket|ispostmarket|ispremarket|regular)\\b",
           "captures": {
             "0": {
               "name": "variable.other.ps"
@@ -743,7 +743,7 @@
           }
         },
         {
-          "match": "\\b(syminfo)\\b(\\.)\\b(basecurrency|currency|description|mintick|pointvalue|prefix|root|session|ticker|tickerid|timezone|type)\\b",
+          "match": "\\b(syminfo)\\b(\\.)\\b(basecurrency|currency|description|mintick|pointvalue|prefix|root|session|ticker|tickerid|timezone|type|volumetype)\\b",
           "captures": {
             "0": {
               "name": "variable.other.ps"
@@ -771,7 +771,7 @@
           }
         },
         {
-          "match": "\\b(text)\\b(\\.)\\b(align_bottom|align_center|align_left|align_right|align_top)\\b",
+          "match": "\\b(text)\\b(\\.)\\b(align_bottom|align_center|align_left|align_right|align_top|wrap_auto|wrap_none)\\b",
           "captures": {
             "0": {
               "name": "variable.other.ps"
@@ -785,7 +785,7 @@
           }
         },
         {
-          "match": "\\b(timeframe)\\b(\\.)\\b(isdaily|isdwm|isintraday|isminutes|ismonthly|isseconds|isweekly|multiplier|period)\\b",
+          "match": "\\b(timeframe)\\b(\\.)\\b(change|isdaily|isdwm|isintraday|isminutes|ismonthly|isseconds|isweekly|multiplier|period|.in_seconds)\\b",
           "captures": {
             "0": {
               "name": "variable.other.ps"
@@ -853,7 +853,7 @@
           "name": "variable.parameter.function.language.special.self.python.ps"
         },
         {
-          "match": "(array)(\\.)(avg|clear|concat|copy|covariance|fill|from|get|includes|indexof|insert|join|lastindexof|max|median|min|mode|new_bool|new_box|new_color|new_float|new_int|new_label|new_line|new_string|new_table|pop|push|range|remove|reverse|set|shift|size|slice|sort|standardize|stdev|sum|unshift|variance)(?=\\()",
+          "match": "(array)(\\.)(abs|binary_search|binary_search_leftmost|binary_search_rightmost|new_linefill|percentile_linear_interpolation|percentile_nearest_rank|percentrank|sort_indicesavg|clear|concat|copy|covariance|fill|from|get|includes|indexof|insert|join|lastindexof|max|median|min|mode|new_bool|new_box|new_color|new_float|new_int|new_label|new_line|new_string|new_table|pop|push|range|remove|reverse|set|shift|size|slice|sort|standardize|stdev|sum|unshift|variance)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -867,7 +867,21 @@
           }
         },
         {
-          "match": "(box)(\\.)(delete|get_bottom|get_left|get_right|get_top|new|set_bgcolor|set_border_color|set_border_style|set_border_width|set_bottom|set_extend|set_left|set_lefttop|set_right|set_rightbottom|set_top)(?=\\()",
+          "match": "(matrix)(\\.)(add_col|add_row|avg|col|columns|concat|copy|det|diff|eigenvalues|eigenvectors|elements_count|fill|get|inv|is_antidiagonal|is_antisymmetric|is_binary|is_diagonal|is_identity|is_square|is_stochastic|is_symmetric|is_triangular|is_zero|kron|max|median|min|mode|mult|new<type>|pinv|pow|rank|remove_col|remove_row|reshape|reverse|row|rows|set|sort|submatrix|sum|swap_columns|swap_rows|trace|transpose)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(box)(\\.)(copy|set_text|set_text_color|set_text_halign|set_text_size|set_text_valign|set_text_wrap|delete|get_bottom|get_left|get_right|get_top|new|set_bgcolor|set_border_color|set_border_style|set_border_width|set_bottom|set_extend|set_left|set_lefttop|set_right|set_rightbottom|set_top)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -895,7 +909,7 @@
           }
         },
         {
-          "match": "(input)(\\.)(bool|color|float|int|price|session|source|string|symbol|time|timeframe)(?=\\()",
+          "match": "(input)(\\.)(bool|color|float|int|price|session|source|string|symbol|text_area|time|timeframe)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -909,7 +923,7 @@
           }
         },
         {
-          "match": "(label)(\\.)(delete|get_text|get_x|get_y|new|set_color|set_size|set_style|set_text|set_textalign|set_textcolor|set_tooltip|set_x|set_xloc|set_xy|set_y|set_yloc)(?=\\()",
+          "match": "(label)(\\.)(copy|delete|get_text|get_x|get_y|new|set_color|set_size|set_style|set_text|set_textalign|set_textcolor|set_tooltip|set_x|set_xloc|set_xy|set_y|set_yloc)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -923,7 +937,21 @@
           }
         },
         {
-          "match": "(line)(\\.)(delete|get_price|get_x1|get_x2|get_y1|get_y2|new|set_color|set_extend|set_style|set_width|set_x1|set_x2|set_xloc|set_xy1|set_xy2|set_y1|set_y2)(?=\\()",
+          "match": "(line)(\\.)(copy|delete|get_price|get_x1|get_x2|get_y1|get_y2|new|set_color|set_extend|set_style|set_width|set_x1|set_x2|set_xloc|set_xy1|set_xy2|set_y1|set_y2)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "1": {
+              "name": "string.unquoted.asciidoc.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(linefill)(\\.)(all|delete|new|get_line1|get_line2|get_y1|get_y2|set_color)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -951,7 +979,7 @@
           }
         },
         {
-          "match": "(ta)(\\.)(tr|alma|atr|barssince|bb|bbw|cci|change|cagr|cmo|cog|correlation|cross|crossover|crossunder|cum|dev|dmi|ema|falling|highest|highestbars|hma|kc|kcw|linreg|lowest|lowestbars|macd|median|mfi|mode|mom|percentile_linear_interpolation|percentile_nearest_rank|percentrank|pivothigh|pivotlow|range|rising|rma|roc|rsi|sar|sma|stdev|stoch|supertrend|swma|tsi|valuewhen|variance|vwap|vwma|wma|wpr)(?=\\()",
+          "match": "(ta)(\\.)(tr|alma|atr|barssince|bb|bbw|cci|change|cagr|cmo|cog|correlation|cross|crossover|crossunder|cum|dev|dmi|ema|falling|highest|highestbars|hma|kc|kcw|linreg|lowest|lowestbars|macd|median|mfi|mode|mom|percentile_linear_interpolation|percentile_nearest_rank|pivot_point_levels|percentrank|pivothigh|pivotlow|range|rising|rma|roc|rsi|sar|sma|stdev|stoch|supertrend|swma|tsi|valuewhen|variance|vwap|vwma|wma|wpr)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -979,7 +1007,7 @@
           }
         },
         {
-          "match": "(request)(\\.)(dividends|earnings|financial|quandl|security|splits|error)(?=\\()",
+          "match": "(request)(\\.)(dividends|earnings|financial|quandl|security|security_lower_tf|splits|economic|error)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -993,7 +1021,7 @@
           }
         },
         {
-          "match": "(strategy)(\\.)(closedtrades)(\\.)(commission|entry_bar_index|entry_price|entry_time|exit_bar_index|exit_price|exit_time|max_drawdown|max_runup|profit|size)(?=\\()",
+          "match": "(strategy)(\\.)(closedtrades)(\\.)(commission|closedtrades.entry_id|closedtrades.exit_id|opentradesntry_id|entry_bar_index|entry_price|en.etry_time|exit_bar_index|exit_price|exit_time|max_drawdown|max_runup|profit|size)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -1033,7 +1061,7 @@
           }
         },
         {
-          "match": "(strategy)(\\.)(risk)(\\.)(allow_entry_in|max_cons_loss_days|max_drawdown|max_intraday_filled_orders|max_intraday_loss|max_position_size)(?=\\()",
+          "match": "(strategy)(\\.)(risk)(\\.)(allow_entry_in|max_cons_loss_days|max_drawdown|max_intraday_filled_orders|max_intraday_loss|max_position_size|max_run_up)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -1067,7 +1095,7 @@
           }
         },
         {
-          "match": "(str)(\\.)(format|length|replace_all|split|tonumber|tostring)(?=\\()",
+          "match": "(str)(\\.)(format|length|replace_all|split|tonumber|tostring|contains|endswith|lower|match|pos|replace|startswith|substring|upper)(?=\\()",
           "captures": {
             "0": {
               "name": "string.unquoted.asciidoc.ps"
@@ -1123,11 +1151,11 @@
           }
         },
         {
-          "match": "\\b(abovebar|belowbar|bar_index|close|high|hl2|hlc3|low|ohlc4|open|timenow|time_tradingday|volume)\\b",
+          "match": "\\b(abovebar|belowbar|bar_index|close|high|hl2|hlc3|hlcc4|low|ohlc4|open|timenow|time_tradingday|volume)\\b",
           "name": "variable.other.ps"
         },
         {
-          "match": "\\b(alert|alertcondition|barcolor|bgcolor|bool|box|color|dayofmonth|dayofweek|fill|fixnan|float|hline|hour|input|int|label|line|max_bars_back|minute|month|na|nz|plot|plotarrow|plotbar|plotcandle|plotchar|plotshape|second|string|table|time|time_close|timestamp|weekofyear|year)(?=\\()",
+          "match": "\\b(bar_index|last_bar_index|last_bar_time|alert|alertcondition|barcolor|bgcolor|bool|color|dayofmonth|dayofweek|fill|fixnan|float|hline|hour|input|int|max_bars_back|minute|month|na|nz|plot|plotarrow|plotbar|plotcandle|plotchar|plotshape|second|string|time|time_close|timestamp|weekofyear|year)(?=\\()",
           "name": "string.unquoted.asciidoc.ps"
         },
         {
@@ -1212,7 +1240,7 @@
     "keywords": {
       "patterns": [
         {
-          "match": "\\b(box|by|if|in|else|elseif|line|table|continue|break|for|return|var|varip|not|while|switch|series)\\b",
+          "match": "\\b(by|if|in|else|elseif|continue|break|for|return|var|varip|not|while|switch|series)\\b",
           "name": "keyword.operator.logical.js.ps"
         }
       ]
