@@ -1804,7 +1804,7 @@
 },
 
 "Minute (in exchange timezone) for provided UNIX time ⇨ 𝑓": {
-  "prefix": "month",
+  "prefix": "minute",
   "body": [
     "minute(time ${1:= time}${2:, timezone = ${3| ,syminfo.timezone,\"GMT-12\",\"GMT-11\",\"GMT-10\",\"GMT-9\",\"GMT-8\",\"GMT-7\",\"GMT-6\",\"GMT-5\",\"GMT-4\",\"GMT-3\",\"GMT-2\",\"GMT-1\",\"GMT+0\",\"GMT+1\",\"GMT+2\",\"GMT+3\",\"GMT+4\",\"GMT+5\",\"GMT+6\",\"GMT+7\",\"GMT+8\",\"GMT+9\",\"GMT+10\",\"GMT+11\",\"GMT+12\"|}}) ${0}"
   ],
