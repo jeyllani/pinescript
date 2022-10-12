@@ -38,7 +38,6 @@
         "2": {
           "name": "keyword.operator.logical.js.ps"
         },
-        
         "3": {
           "name": "token.error-token.ps"
         },
@@ -381,7 +380,7 @@
               "name": "variable.other.ps"
             }
           },
-          "end": "\\b(bg_color|fg_color)\\b",
+          "end": "\\b(bg_color|fg_color|is_heikinashi|is_kagi|is_linebreak|is_pnf|is_range|is_reiko|is_standard|left_visible_bar_time|right_visible_bar_time)\\b",
           "endCaptures": {
             "1": {
               "name": "variable.other.ps"
