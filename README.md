@@ -117,7 +117,7 @@
 
 ### **Hover Issue**
 
-* After udating if the hovers don't work
+* After updating if the hovers don't work
 
   * 1. Unistall the extension
   * 2. Open .vscode file from explorer or finder, or execute `open .vscode` in the terminal
