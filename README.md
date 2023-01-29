@@ -69,18 +69,6 @@
 
 ---
 
-### Support The Extension
-
-- If you find this extension useful and want to support it
-
-  * **BTC**  *13tRgbSFSLEgNzdQt21THir8afuqYVi1pA*
-  * **ETH**  *0x768d0068989f68ccdabcbae8256e9d7d7a48ff98*
-  * **ADA**  *DdzFFzCqrhsxjjPrRKZtjayLJ9bCzbdCm82J2zbhE63EB1sGYJdp3R6mLkEyQSTmFhSJsHW6rNDHZx4M77p9LwmvrCLxMhwW2yxZ1Auw*
-  * **LTC**  *LMGsFqKo6rKXncEc3hb1Rxd2WWiHUJmf8E*
-  * **XMR**  *89GRBG7HrqSGMRjsPPo4W7HcEeqVpgB7UMttaGPEr9KJEwzDqq7vmxci9k7VmhcqUpWAvs2TE7qqgAMZVTX4pnAM97UAZi4*
-
----
-
 ##### Version
 
 *4.0.0*
