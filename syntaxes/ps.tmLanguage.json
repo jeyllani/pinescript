@@ -77,7 +77,7 @@
       "match": "^(?:import)\\s*(\\w+)(?:\/)(\\w+)(?:\/)(\\w+)\\s*(?:as)\\s*(?<name>\\w+)",
       "captures": {
         "0": {
-          "name": "punctuation.section.embedded.begin.ps"
+          "name": "declare.keyword.normal.ps"
         },
         "1": {
           "name": "keyword.operator.logical.js.ps"
@@ -146,7 +146,7 @@
           "name": "comment.line.double-slash.ps"
         },
         "2": {
-          "name": "punctuation.section.embedded.begin.ps"
+          "name": "declare.keyword.normal.ps"
         },
         "3": {
           "name": "token.package.ps"
@@ -266,7 +266,7 @@
       "patterns": [
         {
           "match": "\\b(export|import)\\b",
-          "name": "punctuation.section.embedded.begin.ps"
+          "name": "declare.keyword.normal.ps"
         },
         {
           "begin": "\"",
@@ -318,13 +318,13 @@
           "begin": "\\b(adjustment)\\b(?!\\()(?=\\.)",
           "beginCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           },
           "end": "\\b(dividends|none|splits)\\b",
           "endCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           }
         },
@@ -332,13 +332,13 @@
           "begin": "\\b(alert)\\b(?!\\()(?=\\.)",
           "beginCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           },
           "end": "\\b(freq_all|freq_once_per_bar|freq_once_per_bar_close)\\b",
           "endCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           }
         },
@@ -346,13 +346,13 @@
           "begin": "\\b(barmerge)\\b(?!\\()(?=\\.)",
           "beginCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           },
           "end": "\\b(gaps_off|gaps_on|lookahead_off|lookahead_on)\\b",
           "endCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           }
         },
@@ -360,31 +360,45 @@
           "begin": "\\b(barstate)\\b(?!\\()(?=\\.)",
           "beginCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           },
           "end": "\\b(isconfirmed|isfirst|ishistory|islast|islastconfirmedhistory|isnew|isrealtime)\\b",
           "endCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           }
         },
         {
           "match": "\\b(box.all)\\b",
-          "name": "variable.other.ps"
+          "name": "color.built-in.variable.ps"
         },
         {
           "begin": "\\b(chart)\\b(?!\\()(?=\\.)",
           "beginCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
+            }
+          },
+          "end": "\\b(point\\.copy|point\\.from_index|point\\.from_time|point\\.now|point|bg_color|fg_color|is_heikinashi|is_kagi|is_linebreak|is_pnf|is_range|is_renko|is_standard|left_visible_bar_time|right_visible_bar_time)\\b",
+          "endCaptures": {
+            "1": {
+              "name": "color.built-in.variable.ps"
+            }
+          }
+        },
+        {
+          "begin": "\\b(chart)\\b(?!\\()(?=\\.)",
+          "beginCaptures": {
+            "1": {
+              "name": "color.built-in.variable.ps"
             }
           },
           "end": "\\b(bg_color|fg_color)\\b",
           "endCaptures": {
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             }
           }
         },
@@ -392,10 +406,10 @@
           "match": "(color)(\\.)(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -403,13 +417,13 @@
           }
         },
         {
-          "match": "(currency)(\\.)(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)",
+          "match": "(currency)(\\.)(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR|BTC|ETH|INR|KRW|MYR)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -420,10 +434,10 @@
           "match": "(dayofweek)(\\.)(friday|monday|saturday|sunday|thursday|tuesday|wednesday)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -431,13 +445,13 @@
           }
         },
         {
-          "match": "(display)(\\.)(all|none)",
+          "match": "(display)(\\.)(all|none|data_window|none|pane|price_scale|status_line)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -448,10 +462,10 @@
           "match": "(dividends)(\\.)(gross|net)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -462,10 +476,10 @@
           "match": "(earnings)(\\.)(actual|estimate|standardized)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -476,10 +490,10 @@
           "match": "(extend)(\\.)(both|left|none|right)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -490,10 +504,10 @@
           "match": "(format)(\\.)(inherit|mintick|percent|price|volume)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -504,10 +518,10 @@
           "match": "(hline)(\\.)(style_dashed|style_dotted|style_solid)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -518,10 +532,10 @@
           "match": "(label)(\\.)(all|style_arrowdown|style_arrowup|style_circle|style_cross|style_diamond|style_flag|style_label_center|style_label_down|style_label_left|style_label_lower_left|style_label_lower_right|style_label_right|style_label_upper_left|style_label_upper_right|style_label_up|style_none|style_square|style_triangledown|style_triangleup|style_xcross)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -532,10 +546,24 @@
           "match": "(line)(\\.)(all|style_arrow_both|style_arrow_left|style_arrow_right|style_dashed|style_dotted|style_solid|style_solidline|style_dottedline|style_dashedline|style_arrow_leftline|style_arrow_rightline|style_arrow_bothline)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(linefill\\.all)",
+          "captures": {
+            "0": {
+              "name": "color.built-in.variable.ps"
+            },
+            "1": {
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -546,10 +574,24 @@
           "match": "(location)(\\.)(abovebar|absolute|belowbar|bottom|top)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(font)(\\.)(family_default|family_monospace)",
+          "captures": {
+            "0": {
+              "name": "color.built-in.variable.ps"
+            },
+            "1": {
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -560,10 +602,10 @@
           "match": "\\b(order)\\b(\\.)\\b(ascending|descending)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -574,10 +616,10 @@
           "match": "\\b(plot)\\b(\\.)\\b(style_areabr|style_area|style_circles|style_columns|style_cross|style_histogram|style_line|style_linebr|style_stepline|style_stepline_diamond)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -588,10 +630,10 @@
           "match": "\\b(position)\\b(\\.)\\b(bottom_center|bottom_left|bottom_right|middle_center|middle_left|middle_right|top_center|top_left|top_right)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -602,10 +644,10 @@
           "match": "\\b(scale)\\b(\\.)\\b(left|none|right)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -613,13 +655,13 @@
           }
         },
         {
-          "match": "\\b(session)\\b(\\.)\\b(extended|ismarket|ispostmarket|ispremarket|regular)\\b",
+          "match": "\\b(session)\\b(\\.)\\b(extended|isfirstbar|isfirstbar_regular|islastbar|islastbar_regular|ismarket|ispostmarket|ispremarket|regular)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -630,10 +672,10 @@
           "match": "\\b(shape)\\b(\\.)\\b(arrowdown|arrowup|circle|cross|diamond|flag|labeldown|labelup|square|triangledown|triangleup|xcross)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -644,10 +686,10 @@
           "match": "\\b(size)\\b(\\.)\\b(auto|huge|large|normal|small|tiny)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -658,10 +700,10 @@
           "match": "\\b(splits)\\b(\\.)\\b(denominator|numerator)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -669,13 +711,13 @@
           }
         },
         {
-          "match": "\\b(strategy)\\b(\\.)\\b(account_currency|cash|equity|eventrades|fixed|grossloss|grossprofit|initial_capital|long|losstrades|max_contracts_held_all|max_contracts_held_long|max_contracts_held_short|max_drawdown|netprofit|openprofit|percent_of_equity|position_avg_price|position_entry_name|position_size|short|wintrades)\\b",
+          "match": "\\b(strategy)\\b(\\.)\\b(account_currency|cash|equity|eventrades|fixed|grossloss|grossprofit|initial_capital|long|losstrades|max_contracts_held_all|max_contracts_held_long|max_contracts_held_short|max_drawdown|max_runup|netprofit|openprofit|percent_of_equity|position_avg_price|position_entry_name|position_size|short|wintrades)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -686,16 +728,16 @@
           "match": "(strategy)(\\.)(commission)(\\.)(cash_per_contract|cash_per_order|percent)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
             },
             "3": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "4": {
               "name": "invalid.illegal"
@@ -706,16 +748,16 @@
           "match": "(strategy)(\\.)(direction)(\\.)(all|long|short)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
             },
             "3": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "4": {
               "name": "invalid.illegal"
@@ -726,16 +768,16 @@
           "match": "(strategy)(\\.)(oca)(\\.)(cancel|none|reduce)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
             },
             "3": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "4": {
               "name": "invalid.illegal"
@@ -743,13 +785,27 @@
           }
         },
         {
-          "match": "\\b(syminfo)\\b(\\.)\\b(basecurrency|currency|description|mintick|pointvalue|prefix|root|session|ticker|tickerid|timezone|type)\\b",
+          "match": "(syminfo)(\\.)(prefix|ticker)(?=\\()",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(syminfo)\\b(\\.)\\b(basecurrency|currency|description|mintick|pointvalue|prefix|root|session|ticker|tickerid|timezone|type|volumetype)\\b",
+          "captures": {
+            "0": {
+              "name": "color.built-in.variable.ps"
+            },
+            "1": {
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -760,10 +816,10 @@
           "match": "\\b(table)\\b(\\.)\\b(all)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -771,13 +827,13 @@
           }
         },
         {
-          "match": "\\b(text)\\b(\\.)\\b(align_bottom|align_center|align_left|align_right|align_top)\\b",
+          "match": "\\b(text)\\b(\\.)\\b(align_bottom|align_center|align_left|align_right|align_top|wrap_auto|wrap_none)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -788,10 +844,10 @@
           "match": "\\b(timeframe)\\b(\\.)\\b(isdaily|isdwm|isintraday|isminutes|ismonthly|isseconds|isweekly|multiplier|period)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -802,10 +858,10 @@
           "match": "\\b(xloc)\\b(\\.)\\b(bar_index|bar_time)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -816,10 +872,38 @@
           "match": "\\b(yloc)\\b(\\.)\\b(abovebar|belowbar|price)\\b",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(last_bar_index)\\b",
+          "captures": {
+            "0": {
+              "name": "color.built-in.variable.ps"
+            },
+            "1": {
+              "name": "color.built-in.variable.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "\\b(last_bar_time)\\b",
+          "captures": {
+            "0": {
+              "name": "color.built-in.variable.ps"
+            },
+            "1": {
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -828,7 +912,7 @@
         },
         {
           "match": "\\b(true|false)\\b",
-          "name": "constant.numeric.ps"
+          "name": "color.built-in.variable.ps"
         },
         {
           "match": "\\b([0-9]+)\\b",
@@ -850,16 +934,16 @@
         },
         {
           "match": "\\b(indicator|library|strategy)+?(?=\\()",
-          "name": "variable.parameter.function.language.special.self.python.ps"
+          "name": "declare.function.built-in.ps"
         },
         {
-          "match": "(array)(\\.)(avg|clear|concat|copy|covariance|fill|from|get|includes|indexof|insert|join|lastindexof|max|median|min|mode|new_bool|new_box|new_color|new_float|new_int|new_label|new_line|new_string|new_table|pop|push|range|remove|reverse|set|shift|size|slice|sort|standardize|stdev|sum|unshift|variance)(?=\\()",
+          "match": "(array)(\\.)(abs|avg|binary_serach|binary_search_leftmost|binary_search_rightmost|clear|concat|copy|covariance|every|fill|from|get|includes|indexof|insert|join|last|lastindexof|max|median|min|mode|new|new_bool|new_box|new_color|new_float|new_int|new_label|new_line|new_string|new_table|percentile_linear_interpolation|percentile_nearest_rank|percent_rank|pop|push|range|remove|reverse|set|shift|size|slice|some|sort|sort_indices|standardize|stdev|sum|unshift|variance)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -867,13 +951,33 @@
           }
         },
         {
-          "match": "(box)(\\.)(delete|get_bottom|get_left|get_right|get_top|new|set_bgcolor|set_border_color|set_border_style|set_border_width|set_bottom|set_extend|set_left|set_lefttop|set_right|set_rightbottom|set_top)(?=\\()",
+          "match": "(array)(\\.new)(?=\\<)",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "declare.function.built-in.ps"
+            },
+            "3": {
+              "name": "keyword.operator.logical.js.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(box)(\\.)(copy|delete|get_bottom|get_left|get_right|get_top|new|set_bgcolor|set_border_color|set_border_style|set_border_width|set_bottom|set_bottom_right_point|set_extend|set_left|set_lefttop|set_right|set_rightbottom|set_text|set_text_color|set_text_font_family|set_text_halign|set_text_size|set_text_valign|set_text_wrap|set_top|set_top_left_point)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "declare.function.built-in.ps"
+            },
+            "1": {
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -884,10 +988,10 @@
           "match": "(color)(\\.)(rgb|b|from_gradient|g|new|r|t)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -895,13 +999,13 @@
           }
         },
         {
-          "match": "(input)(\\.)(bool|color|float|int|price|session|source|string|symbol|time|timeframe)(?=\\()",
+          "match": "(input)(\\.)(bool|color|float|int|price|session|source|string|symbol|text_area|time|timeframe)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -909,13 +1013,13 @@
           }
         },
         {
-          "match": "(label)(\\.)(delete|get_text|get_x|get_y|new|set_color|set_size|set_style|set_text|set_textalign|set_textcolor|set_tooltip|set_x|set_xloc|set_xy|set_y|set_yloc)(?=\\()",
+          "match": "(label)(\\.)(copy|delete|get_text|get_x|get_y|new|set_color|set_point|set_size|set_style|set_text|set_text_font_family|set_textalign|set_textcolor|set_tooltip|set_x|set_xloc|set_xy|set_y|set_yloc)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -923,13 +1027,27 @@
           }
         },
         {
-          "match": "(line)(\\.)(delete|get_price|get_x1|get_x2|get_y1|get_y2|new|set_color|set_extend|set_style|set_width|set_x1|set_x2|set_xloc|set_xy1|set_xy2|set_y1|set_y2)(?=\\()",
+          "match": "(line)(\\.)(copy|delete|get_price|get_x1|get_x2|get_y1|get_y2|new|set_color|set_extend|set_first_point|set_second_point|set_style|set_width|set_x1|set_x2|set_xloc|set_xy1|set_xy2|set_y1|set_y2)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(linefill)(\\.)(delete|get_line1|get_line2|new|set_color|all)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "declare.function.built-in.ps"
+            },
+            "1": {
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -940,10 +1058,24 @@
           "match": "(math)(\\.)(abs|acos|asin|atan|avg|ceil|cos|exp|floor|log|log10|max|min|pow|random|round|round_to_mintick|sign|sin|sqrt|sum|tan|todegrees|toradians)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+                {
+          "match": "(matrix)(\\.)(add_col|add_row|avg|col|columns|concat|copy|det|diff|eigenvalues|eigenvectors|elements_count|fill|get|inv|is_antidiagonal|is_antisymmetric|is_binary|is_diagonal|is_identity|is_square|is_stochastic|is_symmetric|is_triangular|is_zero|kron|max|median|min|mode|mult|pinv|pow|rank|remove_col|remove_row|reshape|reverse|row|rows|set|sort|submatrix|sum|swap_columns|swap_rows|trace|transpose)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "declare.function.built-in.ps"
+            },
+            "1": {
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -951,13 +1083,33 @@
           }
         },
         {
-          "match": "(ta)(\\.)(tr|alma|atr|barssince|bb|bbw|cci|change|cagr|cmo|cog|correlation|cross|crossover|crossunder|cum|dev|dmi|ema|falling|highest|highestbars|hma|kc|kcw|linreg|lowest|lowestbars|macd|median|mfi|mode|mom|percentile_linear_interpolation|percentile_nearest_rank|percentrank|pivothigh|pivotlow|range|rising|rma|roc|rsi|sar|sma|stdev|stoch|supertrend|swma|tsi|valuewhen|variance|vwap|vwma|wma|wpr)(?=\\()",
+          "match": "(matrix)(\\.new)(?=\\<)",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "declare.function.built-in.ps"
+            },
+            "3": {
+              "name": "keyword.operator.logical.js.ps"
+            },
+            "4": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(ta)(\\.)(tr|alma|atr|barssince|bb|bbw|cci|change|cagr|cmo|cog|correlation|cross|crossover|crossunder|cum|dev|dmi|ema|falling|highest|highestbars|hma|kc|kcw|linreg|lowest|lowestbars|macd|max|median|mfi|min|mode|mom|percentile_linear_interpolation|percentile_nearest_rank|percentrank|pivot_point_levels|pivothigh|pivotlow|range|rising|rma|roc|rsi|sar|sma|stdev|stoch|supertrend|swma|tsi|valuewhen|variance|vwap|vwma|wma|wpr)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "declare.function.built-in.ps"
+            },
+            "1": {
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -968,10 +1120,10 @@
           "match": "(ta)(\\.)(wad|tr|vwap|obv|accdist|iii|nvi|pvi|pvt|wvad)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -979,13 +1131,13 @@
           }
         },
         {
-          "match": "(request)(\\.)(dividends|earnings|financial|quandl|security|splits|error)(?=\\()",
+          "match": "(request)(\\.)(currency_rate|dividends|earnings|economic|error|financial|quandl|security|security_lower_tf|seed|splits)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -993,19 +1145,19 @@
           }
         },
         {
-          "match": "(strategy)(\\.)(closedtrades)(\\.)(commission|entry_bar_index|entry_price|entry_time|exit_bar_index|exit_price|exit_time|max_drawdown|max_runup|profit|size)(?=\\()",
+          "match": "(strategy)(\\.)(closedtrades)(\\.)(commission|entry_bar_index|entry_id|entry_price|entry_time|exit_bar_index|exit_comment|exit_id|exit_price|exit_time|max_drawdown|max_runup|profit|size)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
             },
             "3": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "4": {
               "name": "invalid.illegal"
@@ -1013,19 +1165,19 @@
           }
         },
         {
-          "match": "(strategy)(\\.)(opentrades)(\\.)(commission|entry_bar_index|entry_price|entry_time|max_drawdown|max_runup|profit|size)(?=\\()",
+          "match": "(strategy)(\\.)(opentrades)(\\.)(commission|entry_bar_index|entry_comment|entry_id|entry_price|entry_time|max_drawdown|max_runup|profit|size)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
             },
             "3": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "4": {
               "name": "invalid.illegal"
@@ -1036,16 +1188,16 @@
           "match": "(strategy)(\\.)(risk)(\\.)(allow_entry_in|max_cons_loss_days|max_drawdown|max_intraday_filled_orders|max_intraday_loss|max_position_size)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
             },
             "3": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "4": {
               "name": "invalid.illegal"
@@ -1056,10 +1208,10 @@
           "match": "(strategy)(\\.)(cancel|cancel_all|close|close_all|convert_to_account|convert_to_symbol|entry|exit|order|allow_entry_in|max_cons_loss_days|max_drawdown|max_intraday_filled_orders|max_intraday_loss|max_position_size)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -1067,13 +1219,13 @@
           }
         },
         {
-          "match": "(str)(\\.)(format|length|replace_all|split|tonumber|tostring)(?=\\()",
+          "match": "(str)(\\.)(contains|endswith|format|format_time|length|lower|match|pos|replace|replace_all|split|startswith|substring|tonumber|tostring|upper)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -1081,15 +1233,35 @@
           }
         },
         {
-          "match": "(table)(\\.)(cell|cell_set_bgcolor|cell_set_height|cell_set_text|cell_set_text_color|cell_set_text_halign|cell_set_text_size|cell_set_text_valign|cell_set_width|clear|delete|new|set_bgcolor|set_border_color|set_border_width|set_frame_color|set_frame_width|set_position)(?=\\()",
+          "match": "(table)(\\.)(cell|cell_set_bgcolor|cell_set_height|cell_set_text|cell_set_text_color|cell_set_text_font_family|cell_set_text_halign|cell_set_text_size|cell_set_text_valign|cell_set_tooltip|cell_set_width|clear|delete|merge_cells|new|set_bgcolor|set_border_color|set_border_width|set_frame_color|set_frame_width|set_position)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(table)(\\.new)(?=\\<)",
+          "captures": {
+            "0": {
+              "name": "declare.function.built-in.ps"
+            },
+            "1": {
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "declare.function.built-in.ps"
+            },
+            "3": {
+              "name": "keyword.operator.logical.js.ps"
+            },
+            "4": {
               "name": "invalid.illegal"
             }
           }
@@ -1098,10 +1270,24 @@
           "match": "(ticker)(\\.)(heikinashi|kagi|linebreak|modify|new|pointfigure|renko)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
+            },
+            "2": {
+              "name": "invalid.illegal"
+            }
+          }
+        },
+        {
+          "match": "(timeframe)(\\.)(change|in_seconds)(?=\\()",
+          "captures": {
+            "0": {
+              "name": "declare.function.built-in.ps"
+            },
+            "1": {
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -1112,10 +1298,10 @@
           "match": "(runtime)(\\.)(error)(?=\\()",
           "captures": {
             "0": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "1": {
-              "name": "string.unquoted.asciidoc.ps"
+              "name": "declare.function.built-in.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -1123,12 +1309,12 @@
           }
         },
         {
-          "match": "\\b(abovebar|belowbar|bar_index|close|high|hl2|hlc3|low|ohlc4|open|timenow|time_tradingday|volume)\\b",
-          "name": "variable.other.ps"
+          "match": "\\b(abovebar|belowbar|bar_index|close|high|hl2|hlc3|hlcc4|low|ohlc4|open|timenow|time_tradingday|volume)\\b",
+          "name": "color.built-in.variable.ps"
         },
         {
-          "match": "\\b(alert|alertcondition|barcolor|bgcolor|bool|box|color|dayofmonth|dayofweek|fill|fixnan|float|hline|hour|input|int|label|line|max_bars_back|minute|month|na|nz|plot|plotarrow|plotbar|plotcandle|plotchar|plotshape|second|string|table|time|time_close|timestamp|weekofyear|year)(?=\\()",
-          "name": "string.unquoted.asciidoc.ps"
+          "match": "\\b(alert|alertcondition|barcolor|bgcolor|bool|box|color|dayofmonth|dayofweek|fill|fixnan|float|hline|hour|input|int|label|line|linefill|max_bars_back|minute|month|na|nz|plot|plotarrow|plotbar|plotcandle|plotchar|plotshape|second|string|table|time|time_close|timestamp|weekofyear|year)(?=\\()",
+          "name": "declare.function.built-in.ps"
         },
         {
           "match": "(\\w+)(\\.)(\\w+)\\(",
@@ -1183,24 +1369,24 @@
         },
         {
           "match": "\\b(strategy.opentrades)\\b",
-          "name": "variable.other.ps"
+          "name": "color.built-in.variable.ps"
         },
         {
           "match": "\\b(strategy.closedtrades)\\b",
-          "name": "variable.other.ps"
+          "name": "color.built-in.variable.ps"
         },
         {
           "match": "\\b(dayofmonth|dayofweek|second|hour|minute|month|na|time|time_close|weekofyear|year)\\b",
-          "name": "variable.other.ps"
+          "name": "color.built-in.variable.ps"
         },
         {
           "match": "(math)(\\.)(e|phi|pi|rphi)",
           "captures": {
             "0": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "1": {
-              "name": "variable.other.ps"
+              "name": "color.built-in.variable.ps"
             },
             "2": {
               "name": "invalid.illegal"
@@ -1229,23 +1415,23 @@
       "patterns": [
         {
           "match": "(\\-\\=|\\+\\=|\\*\\=|/=|%=)",
-          "name": "punctuation.section.embedded.begin.ps"
+          "name": "declare.keyword.bold.ps"
         },
         {
           "match": "(\\-|\\+|\\*|/|%)",
-          "name": "punctuation.section.embedded.begin.ps"
+          "name": "declare.keyword.bold.ps"
         },
         {
           "match": "(={2}|!=|<=|>=|<|>|:=)",
-          "name": "punctuation.section.embedded.begin.ps"
+          "name": "declare.keyword.bold.ps"
         },
         {
           "match": "(\\?|\\:)",
-          "name": "keyword.operator.ternary.ps"
+          "name": "declare.keyword.bold.ps"
         },
         {
-          "match": "\\b(and|or|not|bool|float|int|string|color|table|simple)\\b",
-          "name": "keyword.operator.logical.js.ps"
+          "match": "\\b(and|or|not|bool|float|int|label|line|linefill|string|color|table|simple)\\b",
+          "name": "declare.keyword.bold.ps"
         },
         {
           "match": "\\.",
@@ -1265,11 +1451,11 @@
         },
         {
           "match": "=",
-          "name": "keyword.operator.arithmetic.ps"
+          "name": "declare.keyword.bold.ps"
         },
         {
           "match": "[a-zA-Z_][a-zA-Z0-9_]*",
-          "name": "punctuation.separator.parameters.ps"
+          "name": "txt.noquote.std.ps"
         }
       ]
     }
